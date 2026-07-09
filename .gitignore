@@ -33,3 +33,46 @@ logs/
 *.tmp
 *.swp
 *~
+
+# Build outputs
+*.jar
+!starcore/target/*.jar
+
+# Claude Code
+.claude/
+
+# Test results
+test-results/
+test-server-*/
+
+# Local configs
+*.local.yml
+config.local.yml
+
+# Error files
+errors.txt
+
+# Reference plugins (not part of this repo)
+CrazyAuctions/
+DeluxeMenus/
+Gchat-towny/
+Geyser/
+HuskChat/
+HuskHomes/
+Quarters/
+Town_Borders/
+Towns-and-Nations/
+Towny/
+TownyMenus/
+TownyWaypoints/
+mc-xaero-map-spigot/
+
+# Disabled integrations
+disabled_integrations/
+
+# Archive and outputs
+.archive/
+outputs/
+
+# Documentation (generated)
+/docs/

@@ -7,8 +7,10 @@ import dev.starcore.starcore.module.diplomacy.DiplomacyService;
 import dev.starcore.starcore.module.nation.NationService;
 import dev.starcore.starcore.module.nation.model.Nation;
 import dev.starcore.starcore.module.nation.model.NationId;
+import dev.starcore.starcore.nation.permission.NationPermission;
 import dev.starcore.starcore.nation.relation.NationRelationManager;
 import dev.starcore.starcore.nation.relation.NationRelationManager.RelationType;
+import dev.starcore.starcore.util.PermissionUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextColor;
@@ -152,6 +154,12 @@ public class NationDiplomacyCommand implements CommandExecutor, TabCompleter {
         }
         Nation myNation = myNationOpt.get();
         NationId myNationId = myNation.id();
+
+        // 审计 A-096: 使用权限系统检查 ALLY_ADD 权限
+        if (!PermissionUtil.hasNationPermission(player, myNationId.value(), NationPermission.ALLY_ADD)) {
+            player.sendMessage("§c你没有添加盟友的权限");
+            return true;
+        }
 
         // 获取目标Nation ID
         Optional<Nation> targetNationOpt = nationService.nationByName(targetNationName);
@@ -327,6 +335,12 @@ public class NationDiplomacyCommand implements CommandExecutor, TabCompleter {
         Nation myNation = myNationOpt.get();
         NationId myNationId = myNation.id();
 
+        // 审计 A-097: 使用权限系统检查 ENEMY_ADD 权限
+        if (!PermissionUtil.hasNationPermission(player, myNationId.value(), NationPermission.ENEMY_ADD)) {
+            player.sendMessage("§c你没有宣布敌对的权限");
+            return true;
+        }
+
         Optional<Nation> targetNationOpt = nationService.nationByName(targetNationName);
         if (targetNationOpt.isEmpty()) {
             player.sendMessage("§c找不到Nation: " + targetNationName);
@@ -375,6 +389,12 @@ public class NationDiplomacyCommand implements CommandExecutor, TabCompleter {
         }
         Nation myNation = myNationOpt.get();
         NationId myNationId = myNation.id();
+
+        // 审计 A-098: 使用权限系统检查 ENEMY_REMOVE 权限
+        if (!PermissionUtil.hasNationPermission(player, myNationId.value(), NationPermission.ENEMY_REMOVE)) {
+            player.sendMessage("§c你没有解除敌对的权限");
+            return true;
+        }
 
         Optional<Nation> targetNationOpt = nationService.nationByName(targetNationName);
         if (targetNationOpt.isEmpty()) {

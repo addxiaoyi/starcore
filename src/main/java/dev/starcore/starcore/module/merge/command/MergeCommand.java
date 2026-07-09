@@ -5,6 +5,8 @@ import dev.starcore.starcore.module.merge.MergeReferendumService;
 import dev.starcore.starcore.module.merge.model.MergeReferendum;
 import dev.starcore.starcore.module.nation.NationService;
 import dev.starcore.starcore.module.nation.model.Nation;
+import dev.starcore.starcore.nation.permission.NationPermission;
+import dev.starcore.starcore.util.PermissionUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.Command;
@@ -86,10 +88,10 @@ public final class MergeCommand implements CommandExecutor, TabCompleter {
 
         Nation nation = playerNation.get();
 
-        // 检查是否是国家创始人
-        if (!nation.founderId().equals(player.getUniqueId())) {
+        // 审计 A-094: 使用权限系统检查 MERGE_PROPOSE 权限（founder 或 TRUSTED+ 级别）
+        if (!PermissionUtil.hasNationPermission(player, nation.id().value(), NationPermission.MERGE_PROPOSE)) {
             player.sendMessage(Component.text(
-                messages.format("merge.founder-only"),
+                messages.format("merge.no-permission"),
                 NamedTextColor.RED
             ));
             return;
@@ -213,6 +215,25 @@ public final class MergeCommand implements CommandExecutor, TabCompleter {
         }
 
         UUID referendumId = parseReferendumId(player, args[1]);
+
+        // 获取玩家所在国家并检查 MERGE_VOTE 权限
+        Optional<Nation> playerNation = nationService.nationOf(player.getUniqueId());
+        if (playerNation.isEmpty()) {
+            player.sendMessage(Component.text(
+                messages.format("merge.not-in-nation"),
+                NamedTextColor.RED
+            ));
+            return;
+        }
+
+        // 审计 A-095: 使用权限系统检查 MERGE_VOTE 权限（TRUSTED+ 级别）
+        if (!PermissionUtil.hasNationPermission(player, playerNation.get().id().value(), NationPermission.MERGE_VOTE)) {
+            player.sendMessage(Component.text(
+                messages.format("merge.no-permission"),
+                NamedTextColor.RED
+            ));
+            return;
+        }
 
         if (!mergeService.isParticipant(player.getUniqueId(), referendumId)) {
             player.sendMessage(Component.text(
