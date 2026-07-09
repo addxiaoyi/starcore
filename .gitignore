@@ -1,0 +1,22 @@
+# Ignore everything by default
+*
+
+# But keep these specific patterns
+!starcore/
+!CLAUDE.md
+!README.md
+!.gitignore
+!.github/
+
+# In starcore/, ignore build outputs
+starcore/target/
+starcore/*.jar
+
+# In starcore/, ignore IDE files
+starcore/.idea/
+starcore/*.iml
+starcore/.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db

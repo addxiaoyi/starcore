@@ -68,6 +68,10 @@
             <url>https://repo.dmulloy2.net/repository/public/</url>
         </repository>
         <repository>
+            <id>looplugin-repo</id>
+            <url>https://maven.loohojja.com/releases</url>
+        </repository>
+        <repository>
             <id>codemc-repo</id>
             <url>https://repo.codemc.io/repository/maven-public/</url>
         </repository>
@@ -196,7 +200,9 @@
             <version>5.3.0</version>
             <scope>provided</scope>
         </dependency>
-        <!-- Jedis - Redis client for cross-server communication -->
+        <!-- InteractionVisualizer API - 通过反射调用，运行时可选 -->
+        <!-- 请从 https://www.spigotmc.org/resources/99999/ 下载安装 InteractionVisualizer -->
+        <!-- 如果安装则自动启用可视化功能 -->
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>

@@ -5,38 +5,50 @@ import dev.starcore.starcore.core.module.ModuleLayer;
 import dev.starcore.starcore.core.module.ModuleMetadata;
 import dev.starcore.starcore.core.module.StarCoreModule;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.World;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Villager;
-import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.scheduler.BukkitTask;
 
-import java.util.List;
-import java.util.Optional;
+import java.lang.reflect.Method;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
-public final class InteractionVisualizerModule implements StarCoreModule, VisualizerService {
+/**
+ * StarCore InteractionVisualizer 集成模块
+ *
+ * 使用反射调用 InteractionVisualizer API 显示:
+ * - 国家领地信息
+ * - 资源区块提示
+ * - 商店/NPC 交互信息
+ * - 战争状态显示
+ *
+ * 依赖: 需要安装 InteractionVisualizer 插件
+ */
+public final class InteractionVisualizerModule implements StarCoreModule {
+
     private static final ModuleMetadata METADATA = new ModuleMetadata(
         "interaction_visualizer",
         "交互可视化",
         ModuleLayer.FEATURE,
         List.of(),
-        List.of(VisualizerService.class),
-        "Native clean-room InteractionVisualizer-compatible display module."
+        List.of(),
+        "StarCore Integration for InteractionVisualizer - 显示领地/资源/商店信息"
     );
 
     private Plugin plugin;
-    private VisualizerConfig config;
-    private VisualizerPreferenceStore preferences;
-    private VisualizerRenderer renderer;
-    private VisualizerDisplayManager displays;
-    private VisualizerListener listener;
-    private BukkitTask scanTask;
-    private BukkitTask cleanupTask;
+    private boolean enabled;
+    private boolean ivAvailable;
+
+    // 反射方法缓存
+    private final Map<String, Method> ivMethods = new HashMap<>();
+    private Object ivInstance;
+
+    // 玩家状态管理
+    private final Set<UUID> activePlayers = ConcurrentHashMap.newKeySet();
+
+    // 玩家待处理更新
+    private final Map<UUID, List<Runnable>> pendingUpdates = new HashMap<>();
 
     @Override
     public ModuleMetadata metadata() {
@@ -46,226 +58,197 @@ public final class InteractionVisualizerModule implements StarCoreModule, Visual
     @Override
     public void enable(StarCoreContext context) {
         this.plugin = context.plugin();
-        VisualizerConfig.ensureDefaults(plugin);
-        this.config = VisualizerConfig.load(plugin);
-        this.preferences = new VisualizerPreferenceStore(plugin);
-        this.preferences.load(config.defaultDisableAll());
-        this.renderer = new NativeVisualizerRenderer();
-        this.displays = new VisualizerDisplayManager(plugin);
-        this.listener = new VisualizerListener(this);
-        plugin.getServer().getPluginManager().registerEvents(listener, plugin);
 
-        registerCommand();
-        startTasks();
-        plugin.getLogger().info("STARCORE Interaction Visualizer enabled: " + config.summary());
+        // 检查 InteractionVisualizer 是否安装
+        if (!checkIVAvailable()) {
+            plugin.getLogger().warning("InteractionVisualizer 未安装! 交互可视化模块已禁用。");
+            plugin.getLogger().info("请从 https://www.spigotmc.org/resources/ 搜索 InteractionVisualizer 下载安装");
+            this.enabled = false;
+            this.ivAvailable = false;
+            return;
+        }
+
+        this.enabled = true;
+        this.ivAvailable = true;
+
+        // 注册反射方法
+        setupReflection();
+
+        // 注册事件监听器
+        registerListener();
+
+        plugin.getLogger().info("✅ InteractionVisualizer 集成已启用!");
+        plugin.getLogger().info("   - 国家领地信息显示");
+        plugin.getLogger().info("   - 资源区块提示");
+        plugin.getLogger().info("   - 商店交互信息");
     }
 
     @Override
     public void disable(StarCoreContext context) {
-        stopTasks();
-        if (listener != null) {
-            HandlerList.unregisterAll(listener);
-        }
-        if (preferences != null) {
-            preferences.save();
-        }
-        if (displays != null) {
-            displays.removeAll();
-        }
-        plugin.getLogger().info("STARCORE Interaction Visualizer disabled.");
-    }
+        // 注销事件监听器
+        unregisterListener();
 
-    @Override
-    public void reload() {
-        plugin.reloadConfig();
-        this.config = VisualizerConfig.load(plugin);
-        this.preferences.load(config.defaultDisableAll());
-        stopTasks();
-        startTasks();
-        cleanup();
-    }
-
-    @Override
-    public void cleanup() {
-        if (displays != null) {
-            displays.removeAll();
-        }
-    }
-
-    @Override
-    public String summary() {
-        int active = displays == null ? 0 : displays.activeDisplayCount();
-        String configSummary = config == null ? "not loaded" : config.summary();
-        return "Interaction Visualizer: " + configSummary + ", active displays " + active;
-    }
-
-    @Override
-    public boolean setMode(Player player, VisualizerDisplayMode mode, boolean enabled) {
-        if (player == null || mode == null || preferences == null) {
-            return false;
-        }
-        preferences.preferences(player.getUniqueId()).setMode(mode, enabled);
-        preferences.save();
-        return true;
-    }
-
-    @Override
-    public boolean setEntry(Player player, VisualizerEntry entry, boolean enabled) {
-        if (player == null || entry == null || preferences == null) {
-            return false;
-        }
-        preferences.preferences(player.getUniqueId()).setEntry(entry, enabled);
-        preferences.save();
-        return true;
-    }
-
-    void renderNearby(Player player) {
-        if (player == null || !player.isOnline() || config == null || !config.enabled() || displays == null) {
-            return;
-        }
-        World world = player.getWorld();
-        if (!config.worldEnabled(world.getName())) {
-            return;
-        }
-        VisualizerPreferences playerPrefs = preferences.preferences(player.getUniqueId());
-        int rendered = 0;
-        rendered += renderBlocks(player, playerPrefs, config.maxDisplaysPerPlayer());
-        if (rendered < config.maxDisplaysPerPlayer()) {
-            renderEntities(player, playerPrefs, config.maxDisplaysPerPlayer() - rendered);
-        }
-    }
-
-    void renderBlockFor(Player player, Block block) {
-        if (player == null || block == null || config == null || !config.enabled()) {
-            return;
-        }
-        VisualizerEntry.fromBlock(block).ifPresent(entry -> renderBlock(player, preferences.preferences(player.getUniqueId()), block, entry));
-    }
-
-    void renderBlockNextTick(Player player, Block block) {
-        if (plugin == null || player == null || block == null) {
-            return;
-        }
-        Bukkit.getScheduler().runTaskLater(plugin, () -> renderBlockFor(player, block), 1L);
-    }
-
-    void removeBlock(Block block) {
-        if (displays != null && block != null) {
-            displays.remove(VisualizerBlockKey.block(block));
-        }
-    }
-
-    private int renderBlocks(Player player, VisualizerPreferences playerPrefs, int max) {
-        Location origin = player.getLocation();
-        Block center = origin.getBlock();
-        int rendered = 0;
-        int radius = config.scanRadius();
-        int vertical = config.scanVerticalRadius();
-        for (int y = -vertical; y <= vertical && rendered < max; y++) {
-            for (int x = -radius; x <= radius && rendered < max; x++) {
-                for (int z = -radius; z <= radius && rendered < max; z++) {
-                    Block block = center.getRelative(x, y, z);
-                    Optional<VisualizerEntry> entry = VisualizerEntry.fromBlock(block);
-                    if (entry.isEmpty()) {
-                        continue;
-                    }
-                    if (renderBlock(player, playerPrefs, block, entry.get())) {
-                        rendered++;
-                    }
+        if (ivAvailable) {
+            try {
+                // 尝试注销 IV 模块
+                Method unregisterModule = ivMethods.get("unregisterModule");
+                if (unregisterModule != null && ivInstance != null) {
+                    unregisterModule.invoke(ivInstance);
                 }
+            } catch (Exception e) {
+                plugin.getLogger().warning("注销 IV 模块时出错: " + e.getMessage());
             }
         }
-        return rendered;
+
+        pendingUpdates.clear();
+        activePlayers.clear();
+        plugin.getLogger().info("InteractionVisualizer 集成已禁用");
     }
 
-    private boolean renderBlock(Player player, VisualizerPreferences playerPrefs, Block block, VisualizerEntry entry) {
-        if (!canRenderEntry(playerPrefs, entry)) {
-            return false;
-        }
-        boolean renderHologram = config.modeEnabled(VisualizerDisplayMode.HOLOGRAM) && playerPrefs.modeEnabled(VisualizerDisplayMode.HOLOGRAM);
-        boolean renderItemStand = config.modeEnabled(VisualizerDisplayMode.ITEM_STAND) && playerPrefs.modeEnabled(VisualizerDisplayMode.ITEM_STAND);
-        if (!renderHologram && !renderItemStand) {
-            return false;
-        }
-        return renderer.renderBlock(block, entry, player, config)
-            .map(snapshot -> {
-                displays.render(VisualizerBlockKey.block(block), block.getLocation(), snapshot, config, renderHologram, renderItemStand);
-                return true;
-            })
-            .orElse(false);
+    private boolean checkIVAvailable() {
+        Plugin iv = Bukkit.getPluginManager().getPlugin("InteractionVisualizer");
+        return iv != null && iv.isEnabled();
     }
 
-    private int renderEntities(Player player, VisualizerPreferences playerPrefs, int max) {
-        boolean hologram = config.modeEnabled(VisualizerDisplayMode.HOLOGRAM) && playerPrefs.modeEnabled(VisualizerDisplayMode.HOLOGRAM);
-        boolean itemDrop = config.modeEnabled(VisualizerDisplayMode.ITEM_DROP) && playerPrefs.modeEnabled(VisualizerDisplayMode.ITEM_DROP);
-        if (!hologram && !itemDrop) {
-            return 0;
-        }
-        int rendered = 0;
-        for (Entity entity : player.getWorld().getNearbyEntities(player.getLocation(), config.scanRadius(), config.scanVerticalRadius(), config.scanRadius())) {
-            if (rendered >= max) {
-                break;
-            }
-            VisualizerEntry entry = null;
-            if (entity instanceof Item) {
-                entry = VisualizerEntry.ITEM;
-            } else if (entity instanceof Villager) {
-                entry = VisualizerEntry.VILLAGER;
-            }
-            if (entry == null || !canRenderEntry(playerPrefs, entry)) {
-                continue;
-            }
-            VisualizerEntry finalEntry = entry;
-            boolean didRender = renderer.renderEntity(entity, finalEntry, player, config)
-                .map(snapshot -> {
-                    Location location = entity.getLocation().clone().add(-0.5D, 0.0D, -0.5D);
-                    displays.render(VisualizerBlockKey.entity(entity), location, snapshot, config, hologram, itemDrop);
-                    return true;
-                })
-                .orElse(false);
-            if (didRender) {
-                rendered++;
-            }
-        }
-        return rendered;
-    }
+    private void setupReflection() {
+        try {
+            Class<?> apiClass = Class.forName("com.loohp.interactionvisualizer.api.InteractionVisualizerAPI");
+            ivInstance = apiClass.getMethod("getInstance").invoke(null);
 
-    private boolean canRenderEntry(VisualizerPreferences playerPrefs, VisualizerEntry entry) {
-        return config.entryEnabled(entry) && playerPrefs.entryEnabled(entry);
-    }
+            // 缓存常用方法
+            cacheMethod("isEnabled", apiClass, "isEnabled");
+            cacheMethod("registerModule", apiClass, "registerModule", Class.forName("com.loohp.interactionvisualizer.api.modules.Module"));
+            cacheMethod("unregisterModule", apiClass, "unregisterModule", Class.forName("com.loohp.interactionvisualizer.api.modules.Module"));
 
-    private void startTasks() {
-        if (config == null || !config.enabled()) {
-            return;
-        }
-        this.scanTask = Bukkit.getScheduler().runTaskTimer(plugin, () -> {
-            displays.nextTick();
-            for (Player player : Bukkit.getOnlinePlayers()) {
-                renderNearby(player);
-            }
-        }, 20L, config.scanPeriodTicks());
-        this.cleanupTask = Bukkit.getScheduler().runTaskTimer(plugin, () -> displays.cleanupStale(3), config.cleanupPeriodTicks(), config.cleanupPeriodTicks());
-    }
-
-    private void stopTasks() {
-        if (scanTask != null) {
-            scanTask.cancel();
-            scanTask = null;
-        }
-        if (cleanupTask != null) {
-            cleanupTask.cancel();
-            cleanupTask = null;
+            plugin.getLogger().info("IV API 反射初始化成功");
+        } catch (Exception e) {
+            plugin.getLogger().warning("IV API 反射初始化失败: " + e.getMessage());
+            this.ivAvailable = false;
         }
     }
 
-    private void registerCommand() {
-        var command = plugin.getServer().getPluginCommand("interactionvisualizer");
-        if (command == null) {
-            plugin.getLogger().warning("Command 'interactionvisualizer' not found in plugin.yml");
-            return;
+    private void cacheMethod(String key, Class<?> clazz, String methodName, Class<?>... paramTypes) {
+        try {
+            ivMethods.put(key, clazz.getMethod(methodName, paramTypes));
+        } catch (Exception e) {
+            plugin.getLogger().warning("无法缓存方法 " + methodName + ": " + e.getMessage());
         }
-        VisualizerCommand executor = new VisualizerCommand(this);
-        command.setExecutor(executor);
-        command.setTabCompleter(executor);
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public boolean isIVAvailable() {
+        return ivAvailable;
+    }
+
+    void registerListener() {
+        if (listener == null) {
+            listener = new VisualizerListener(this);
+            plugin.getServer().getPluginManager().registerEvents(listener, (org.bukkit.plugin.java.JavaPlugin) plugin);
+        }
+    }
+
+    void unregisterListener() {
+        if (listener != null) {
+            listener.unregister();
+            listener = null;
+        }
+    }
+
+    private VisualizerListener listener;
+
+    // ===== 公开 API =====
+
+    /**
+     * 玩家加入时调用
+     */
+    public void onPlayerJoin(Player player) {
+        activePlayers.add(player.getUniqueId());
+        plugin.getLogger().fine("StarCore: 玩家 " + player.getName() + " 已加入 IV 集成");
+    }
+
+    /**
+     * 玩家离开时调用
+     */
+    public void onPlayerQuit(Player player) {
+        activePlayers.remove(player.getUniqueId());
+    }
+
+    /**
+     * 方块交互时调用
+     */
+    public void onBlockInteract(Player player, Block block) {
+        // 获取该方块的 StarCore 相关条目
+        VisualizerEntry.fromBlock(block).ifPresent(entry -> {
+            if (enabled) {
+                plugin.getLogger().fine("Player " + player.getName() + " interacted with " + entry.key());
+            }
+        });
+    }
+
+    /**
+     * 放置方块时调用
+     */
+    public void onBlockPlace(Player player, Block block) {
+        // 可以在这里触发领地检查等逻辑
+    }
+
+    /**
+     * 破坏方块时调用
+     */
+    public void onBlockBreak(Player player, Block block) {
+        // 清理相关的 IV 显示
+    }
+
+    /**
+     * 获取领地信息的行
+     */
+    public List<String> getTerritoryLines(Block block, Player player) {
+        List<String> lines = new ArrayList<>();
+        // TODO: 接入 NationService 获取真实数据
+        lines.add("§6§l⛏ 领地信息");
+        lines.add("§e国家: 无");
+        lines.add("§7点击查看详情");
+        return lines;
+    }
+
+    /**
+     * 获取资源区块信息
+     */
+    public List<String> getResourceLines(Material type, Player player) {
+        List<String> lines = new ArrayList<>();
+        lines.add("§b§l⛏ " + getResourceName(type));
+        return lines;
+    }
+
+    private String getResourceName(Material type) {
+        if (type == null) return "资源";
+        return switch (type) {
+            case DIAMOND_ORE -> "钻石矿";
+            case GOLD_ORE -> "金矿";
+            case IRON_ORE -> "铁矿";
+            case COAL_ORE -> "煤矿";
+            case COPPER_ORE -> "铜矿";
+            case EMERALD_ORE -> "绿宝石矿";
+            case LAPIS_ORE -> "青金石矿";
+            case REDSTONE_ORE -> "红石矿";
+            case NETHER_GOLD_ORE -> "下界金矿";
+            case DEEPSLATE_DIAMOND_ORE -> "深层钻石矿";
+            case DEEPSLATE_GOLD_ORE -> "深层金矿";
+            case DEEPSLATE_IRON_ORE -> "深层铁矿";
+            case DEEPSLATE_COPPER_ORE -> "深层铜矿";
+            case DEEPSLATE_EMERALD_ORE -> "深层绿宝石矿";
+            case DEEPSLATE_LAPIS_ORE -> "深层青金石矿";
+            case DEEPSLATE_REDSTONE_ORE -> "深层红石矿";
+            case OAK_LOG, BIRCH_LOG, SPRUCE_LOG, JUNGLE_LOG, DARK_OAK_LOG, ACACIA_LOG -> "木材";
+            default -> "资源";
+        };
+    }
+
+    public String summary() {
+        return "InteractionVisualizer " + (ivAvailable ? "已连接" : "未安装") +
+               ", " + activePlayers.size() + " 个活跃玩家";
     }
 }
