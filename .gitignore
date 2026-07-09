@@ -7,18 +7,11 @@ pom.xml.next
 release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
-.mvn/timing.properties
-.mvn/wrapper/maven-wrapper.jar
+.mvn/
 
 # IDE
 .idea/
 *.iml
-*.ipr
-*.iws
-.project
-.classpath
-.settings/
-.factorypath
 .vscode/
 
 # OS
@@ -29,109 +22,22 @@ Thumbs.db
 *.log
 logs/
 
-# Temporary files
+# Temporary
 *.tmp
 *.swp
 *~
 
-# Build outputs
+# Build
 *.jar
-!starcore/target/*.jar
 
 # Claude Code
 .claude/
 
-# Test results
+# Test
 test-results/
-test-server-*/
-
-# Local configs
-*.local.yml
-config.local.yml
 
 # Error files
 errors.txt
-
-# Reference plugins (not part of this repo)
-CrazyAuctions/
-DeluxeMenus/
-Gchat-towny/
-Geyser/
-HuskChat/
-HuskHomes/
-Quarters/
-Town_Borders/
-Towns-and-Nations/
-Towny/
-TownyMenus/
-TownyWaypoints/
-mc-xaero-map-spigot/
-
-# Disabled integrations
-disabled_integrations/
-
-# Archive and outputs
-.archive/
-outputs/
-
-# Documentation (generated)
-/docs/
-
-# Generated audit and report files
-audit_*.md
-BUG_*.md
-FEATURE_*.md
-FIX_*.md
-INCOMPLETE_*.md
-PERFECTION_*.md
-SECURITY_*.md
-VERIFICATION_*.md
-todo.md
-goal.txt
-API_REFERENCE.md
-UNFINISHED_FEATURES.md
-
-# Build and deploy scripts
-commit_and_push.bat
-push*.bat
-push*.sh
-push_now.ps1
-stop-server.ps1
-
-# Local development files
+*.local.yml
+config.local.yml
 sqlite_mcp_server.db
-skills-lock.json
-
-# Code analysis outputs
-.graphify_*.json
-
-# Sub-projects (not core) - 这些是独立的子模块仓库
-ExcellentCrates-spigot/
-ProtectorAPI/
-starcore-remote/
-starcore-nukkit-gui-backup/
-nightcore-spigot/
-open-source-learn/
-squaremap/
-map/
-
-# Reference plugins (not part of this repo)
-CrazyAuctions/
-DeluxeMenus/
-Gchat-towny/
-Geyser/
-HuskChat/
-HuskHomes/
-Quarters/
-Town_Borders/
-Towns-and-Nations/
-Towny/
-TownyMenus/
-TownyWaypoints/
-mc-xaero-map-spigot/
-reference-plugins/
-reference-projects/
-references/
-
-# Standalone copy/backup (core code is in src/)
-starcore/
