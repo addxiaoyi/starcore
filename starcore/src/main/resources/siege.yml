@@ -1,0 +1,118 @@
+# STARCORE Siege Weapons Module Configuration
+# 攻城器械模块配置
+
+# 模块启用状态
+enabled: true
+
+# 攻城器械全局配置
+siege:
+  # 每国家最大攻城器械数量
+  max-siege-per-nation: 5
+
+  # 每种攻城器械最大数量
+  max-per-type:
+    battering-ram: 3
+    catapult: 3
+    trebuchet: 2
+    ballista: 3
+    tower: 1
+
+  # 攻城器械最小士兵数量
+  min-crew-size: 5
+
+  # 攻城器械最大士兵数量
+  max-crew-size: 50
+
+  # 攻城器械部署冷却时间（秒）
+  deployment-cooldown-seconds: 300
+
+  # 攻城器械有效范围（方块）
+  effective-range:
+    battering-ram: 10
+    catapult: 50
+    trebuchet: 100
+    ballista: 80
+    tower: 15
+
+  # 攻城器械基础伤害
+  base-damage:
+    battering-ram: 50
+    catapult: 30
+    trebuchet: 45
+    ballista: 25
+    tower: 20
+
+  # 攻城器械攻城伤害倍数（对建筑）
+  siege-damage-multiplier:
+    battering-ram: 3.0
+    catapult: 2.0
+    trebuchet: 2.5
+    ballista: 1.5
+    tower: 2.0
+
+  # 攻城器械建造成本
+  construction-cost:
+    battering-ram: 5000
+    catapult: 8000
+    trebuchet: 12000
+    ballista: 6000
+    tower: 15000
+
+  # 攻城器械维护成本（每小时）
+  maintenance-cost:
+    battering-ram: 100
+    catapult: 150
+    trebuchet: 200
+    ballista: 120
+    tower: 250
+
+# 攻城状态配置
+siege-state:
+  # 攻城准备时间（秒）
+  preparation-time-seconds: 180
+
+  # 攻城持续时间（秒）
+  siege-duration-seconds: 3600
+
+  # 攻城延长条件（剩余耐久百分比）
+  extension-threshold: 0.1
+
+  # 防守方反击成功率
+  defender-counter-chance: 0.15
+
+  # 攻城器械被摧毁条件（耐久百分比）
+  destruction-threshold: 0.05
+
+# 城墙/建筑配置
+structure:
+  # 城墙基础耐久
+  wall-base-health: 10000
+
+  #城门特殊耐久
+  gate-health-multiplier: 0.5
+
+  # 城墙每等级增加耐久
+  wall-health-per-level: 2000
+
+  # 城墙修复成本（每100耐久）
+  wall-repair-cost-per-100: 500
+
+# 攻城结果奖励
+rewards:
+  # 攻城胜利奖励
+  victory:
+    gold: 10000
+    experience: 5000
+
+  # 摧毁城门奖励
+  gate-destruction:
+    gold: 3000
+    experience: 1000
+
+# 消息配置
+messages:
+  # 是否广播攻城开始
+  broadcast-on-start: true
+
+  # 是否广播攻城结束
+  broadcast-on-end: true

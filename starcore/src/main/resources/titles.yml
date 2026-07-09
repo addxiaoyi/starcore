@@ -1,0 +1,300 @@
+# 称号配置文件
+# StarCore Title System Configuration
+#
+# ⚠️ 重要: config-version 用于配置迁移校验，请勿随意修改
+config-version: "1.0"
+
+# 预设称号列表
+titles:
+  # ========== 新手称号 ==========
+  newcomer:
+    name: "§f新人"
+    description: "欢迎来到服务器"
+    type: NOVICE
+    color: "§f"
+    priority: 1
+    icon: GRASS_BLOCK
+    hidden: false
+    unlock_conditions:
+      - "首次加入服务器"
+    rewards:
+      - "money:100"
+
+  first_steps:
+    name: "§f初次尝试"
+    description: "在线超过1小时"
+    type: NOVICE
+    color: "§f"
+    priority: 2
+    icon: WOODEN_PICKAXE
+    hidden: false
+    unlock_conditions:
+      - "在线时长达到1小时"
+    rewards:
+      - "money:200"
+
+  # ========== 成就称号 ==========
+  builder:
+    name: "§a建筑师"
+    description: "放置超过10000个方块"
+    type: ACHIEVEMENT
+    color: "§a"
+    priority: 10
+    icon: BRICKS
+    hidden: false
+    unlock_conditions:
+      - "放置方块数量达到10000"
+    rewards:
+      - "money:1000"
+      - "badge:master_builder"
+
+  miner:
+    name: "§a矿工"
+    description: "挖掘超过5000个矿石"
+    type: ACHIEVEMENT
+    color: "§a"
+    priority: 10
+    icon: DIAMOND_PICKAXE
+    hidden: false
+    unlock_conditions:
+      - "挖掘矿石数量达到5000"
+    rewards:
+      - "money:1500"
+
+  explorer:
+    name: "§a探险家"
+    description: "探索超过50个区块"
+    type: ACHIEVEMENT
+    color: "§a"
+    priority: 10
+    icon: COMPASS
+    hidden: false
+    unlock_conditions:
+      - "探索区块数量达到50"
+    rewards:
+      - "money:800"
+
+  warrior:
+    name: "§a战士"
+    description: "击败100个怪物"
+    type: ACHIEVEMENT
+    color: "§a"
+    priority: 10
+    icon: DIAMOND_SWORD
+    hidden: false
+    unlock_conditions:
+      - "击杀怪物数量达到100"
+    rewards:
+      - "money:1000"
+
+  merchant:
+    name: "§a商人"
+    description: "完成100笔交易"
+    type: ACHIEVEMENT
+    color: "§a"
+    priority: 10
+    icon: EMERALD
+    hidden: false
+    unlock_conditions:
+      - "交易次数达到100"
+    rewards:
+      - "money:2000"
+
+  # ========== 排名称号 ==========
+  top_player:
+    name: "§6顶尖玩家"
+    description: "综合排名前10"
+    type: RANKING
+    color: "§6"
+    priority: 50
+    icon: GOLDEN_APPLE
+    hidden: false
+    unlock_conditions:
+      - "综合排名达到前10名"
+    rewards:
+      - "money:5000"
+
+  elite:
+    name: "§6精英"
+    description: "综合排名前50"
+    type: RANKING
+    color: "§6"
+    priority: 40
+    icon: GOLD_INGOT
+    hidden: false
+    unlock_conditions:
+      - "综合排名达到前50名"
+    rewards:
+      - "money:3000"
+
+  wealthy:
+    name: "§6富豪"
+    description: "拥有超过100万金币"
+    type: RANKING
+    color: "§6"
+    priority: 30
+    icon: GOLD_BLOCK
+    hidden: false
+    unlock_conditions:
+      - "余额达到1000000"
+    rewards:
+      - "badge:golden_coin"
+
+  # ========== 特殊称号 ==========
+  founder:
+    name: "§5创始者"
+    description: "服务器创始玩家"
+    type: SPECIAL
+    color: "§5"
+    priority: 100
+    icon: DRAGON_EGG
+    hidden: true
+    unlock_conditions:
+      - "手动授予"
+    rewards: []
+
+  admin:
+    name: "§c管理员"
+    description: "服务器管理团队"
+    type: SPECIAL
+    color: "§c"
+    priority: 999
+    icon: COMMAND_BLOCK
+    hidden: true
+    unlock_conditions:
+      - "手动授予"
+    rewards: []
+
+  moderator:
+    name: "§9版主"
+    description: "社区版主"
+    type: SPECIAL
+    color: "§9"
+    priority: 90
+    icon: SHIELD
+    hidden: true
+    unlock_conditions:
+      - "手动授予"
+    rewards: []
+
+  helper:
+    name: "§b助手"
+    description: "热心助人的玩家"
+    type: SPECIAL
+    color: "§b"
+    priority: 80
+    icon: TOTEM_OF_UNDYING
+    hidden: false
+    unlock_conditions:
+      - "帮助其他玩家50次"
+    rewards:
+      - "money:2000"
+
+  # ========== 节日称号 ==========
+  spring_festival:
+    name: "§e春节快乐"
+    description: "春节活动参与者"
+    type: SEASONAL
+    color: "§e"
+    priority: 20
+    icon: FIREWORK_ROCKET
+    hidden: false
+    unlock_conditions:
+      - "参与春节活动"
+    rewards:
+      - "money:888"
+
+  halloween:
+    name: "§6万圣节"
+    description: "万圣节活动参与者"
+    type: SEASONAL
+    color: "§6"
+    priority: 20
+    icon: JACK_O_LANTERN
+    hidden: false
+    unlock_conditions:
+      - "参与万圣节活动"
+    rewards:
+      - "money:500"
+
+  christmas:
+    name: "§c圣诞快乐"
+    description: "圣诞节活动参与者"
+    type: SEASONAL
+    color: "§c"
+    priority: 20
+    icon: SNOWBALL
+    hidden: false
+    unlock_conditions:
+      - "参与圣诞节活动"
+    rewards:
+      - "money:1225"
+
+  # ========== 传奇称号 ==========
+  legend:
+    name: "§c传奇"
+    description: "完成所有成就"
+    type: LEGENDARY
+    color: "§c"
+    priority: 200
+    icon: NETHER_STAR
+    hidden: false
+    unlock_conditions:
+      - "完成所有成就"
+      - "在线时长达到500小时"
+      - "综合排名前3"
+    rewards:
+      - "money:50000"
+      - "badge:legendary_star"
+
+  immortal:
+    name: "§d不朽者"
+    description: "服务器最高荣誉"
+    type: LEGENDARY
+    color: "§d"
+    priority: 300
+    icon: END_CRYSTAL
+    hidden: true
+    unlock_conditions:
+      - "手动授予"
+    rewards: []
+
+  # ========== 荣誉称号 ==========
+  nation_founder:
+    name: "§9国家创始人"
+    description: "创建了一个国家"
+    type: HONOR
+    color: "§9"
+    priority: 60
+    icon: BANNER
+    hidden: false
+    unlock_conditions:
+      - "成功创建国家"
+    rewards:
+      - "money:5000"
+
+  war_hero:
+    name: "§c战争英雄"
+    description: "在战争中立下大功"
+    type: HONOR
+    color: "§c"
+    priority: 70
+    icon: DIAMOND_CHESTPLATE
+    hidden: false
+    unlock_conditions:
+      - "战争胜利贡献度达到1000"
+    rewards:
+      - "money:10000"
+
+  diplomat:
+    name: "§b外交官"
+    description: "促成5次外交协议"
+    type: HONOR
+    color: "§b"
+    priority: 50
+    icon: PAPER
+    hidden: false
+    unlock_conditions:
+      - "成功促成5次外交协议"
+    rewards:
+      - "money:3000"

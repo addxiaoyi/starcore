@@ -1,0 +1,63 @@
+# StarCore 合并公投模块配置
+# ===============================================
+
+# 是否启用合并公投模块
+enabled: true
+
+# 公投持续时间（天）
+referendum:
+  duration-days: 3
+
+  # 投票通过所需最低投票率 (0.0 - 1.0)
+  # 例如: 0.5 表示至少50%的成员需要投票
+  minimum-vote-rate: 0.5
+
+  # 是否使用简单多数制（true）或绝对多数制（false）
+  simple-majority: true
+
+  # 公投冷却时间（小时）- 同一对国家之间的公投间隔
+  cooldown-hours: 24
+
+# 合并设置
+merge:
+  # 合并后新国家名称最大长度
+  max-name-length: 32
+
+  # 是否允许宗主国吞并卫星国
+  allow-annexation: true
+
+  # 吞并所需最低成员比例 (0.0 - 1.0)
+  annexation-minimum-rate: 0.75
+
+# 消息配置
+messages:
+  # 广播公投结果给所有玩家
+  broadcast-results: true
+
+  # 是否在公投通过/拒绝时发送通知
+  notify-members: true
+
+# 权限配置
+permissions:
+  # 发起公投所需权限
+  propose: "starcore.merge.propose"
+
+  # 投票所需权限
+  vote: "starcore.merge.vote"
+
+  # 取消公投所需权限
+  cancel: "starcore.merge.cancel"
+
+  # 查看历史所需权限
+  history: "starcore.merge.history"
+
+  # 管理员权限
+  admin: "starcore.merge.admin"
+
+# 记录配置
+logging:
+  # 是否记录所有公投活动
+  enabled: true
+
+  # 日志级别: INFO, WARNING, SEVERE
+  level: INFO

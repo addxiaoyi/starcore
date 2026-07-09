@@ -1,0 +1,108 @@
+-- ============================================
+-- StarCore 数据库迁移回滚脚本示例
+-- ============================================
+--
+-- 此文件展示如何为迁移脚本编写回滚逻辑
+-- 注意：Flyway 的 UNDO 功能需要付费版本
+-- 对于免费版本，可以使用这些脚本手动执行回滚
+--
+-- 使用方式：
+-- 1. 手动执行此脚本前先备份数据库
+-- 2. 按照版本号顺序反向执行回滚
+-- 3. 记录回滚操作到迁移日志表
+--
+
+-- ============================================
+-- V9 回滚 (撤销排行榜和审计表)
+-- ============================================
+-- DROP TABLE IF EXISTS starcore_delegation_tasks;
+-- DROP TABLE IF EXISTS starcore_mail_attachments;
+-- DROP TABLE IF EXISTS starcore_audit_log;
+-- DROP TABLE IF EXISTS starcore_trade_history;
+-- DROP TABLE IF EXISTS starcore_trade_orders;
+-- DROP TABLE IF EXISTS starcore_kda_stats;
+-- DROP TABLE IF EXISTS starcore_ranking_snapshots;
+
+-- ============================================
+-- V8 回滚 (撤销宠物模块)
+-- ============================================
+-- DROP TABLE IF EXISTS starcore_pet_skins;
+-- DROP TABLE IF EXISTS starcore_mount_equipment;
+-- DROP TABLE IF EXISTS starcore_mounts;
+-- DROP TABLE IF EXISTS starcore_pet_evolution_log;
+-- DROP TABLE IF EXISTS starcore_pet_skills;
+-- DROP TABLE IF EXISTS starcore_pets;
+-- DROP TABLE IF EXISTS starcore_backup_records;
+-- DROP TABLE IF EXISTS starcore_migration_log;
+
+-- ============================================
+-- V7 回滚 (撤销社交系统)
+-- ============================================
+-- DROP TABLE IF EXISTS starcore_player_status;
+-- DROP TABLE IF EXISTS starcore_party_invites;
+-- DROP TABLE IF EXISTS starcore_party_members;
+-- DROP TABLE IF EXISTS starcore_parties;
+-- DROP TABLE IF EXISTS starcore_guild_invites;
+-- DROP TABLE IF EXISTS starcore_guild_members;
+-- DROP TABLE IF EXISTS starcore_guilds;
+-- DROP TABLE IF EXISTS starcore_blacklist;
+-- DROP TABLE IF EXISTS starcore_friend_requests;
+-- DROP TABLE IF EXISTS starcore_friend_relations;
+
+-- ============================================
+-- V6 回滚 (撤销研究系统)
+-- ============================================
+-- DROP TABLE IF EXISTS starcore_technology_research;
+
+-- ============================================
+-- V5 回滚 (撤销领土系统)
+-- ============================================
+-- DROP TABLE IF EXISTS starcore_subregions_permissions;
+-- DROP TABLE IF EXISTS starcore_subregions;
+-- DROP TABLE IF EXISTS starcore_territory_members;
+-- DROP TABLE IF EXISTS starcore_territories_permissions;
+-- DROP TABLE IF EXISTS starcore_territories;
+
+-- ============================================
+-- V4 回滚 (撤销破产和国际化)
+-- ============================================
+-- DROP TABLE IF EXISTS starcore_transfer_config;
+-- DROP TABLE IF EXISTS starcore_player_locale;
+-- DROP TABLE IF EXISTS starcore_bankruptcy_state;
+
+-- ============================================
+-- V3 回滚 (撤销性能索引)
+-- ============================================
+-- 注意：索引在 SQLite/MySQL 中使用 DROP INDEX 删除
+-- DROP INDEX IF EXISTS idx_nation_keys;
+-- DROP INDEX IF EXISTS idx_diplomacy_keys;
+-- DROP INDEX IF EXISTS idx_transactions_timestamp_desc;
+-- DROP INDEX IF EXISTS idx_transactions_player_type;
+-- DROP INDEX IF EXISTS idx_map_chunks_region;
+-- DROP INDEX IF EXISTS idx_map_chunks_updated;
+-- DROP INDEX IF EXISTS idx_markers_type;
+-- DROP INDEX IF EXISTS idx_markers_location;
+
+-- ============================================
+-- V2 回滚 (撤销地图模块)
+-- ============================================
+-- DROP TABLE IF EXISTS starcore_map_markers;
+-- DROP TABLE IF EXISTS starcore_map_chunks;
+
+-- ============================================
+-- V1 回滚 (撤销初始架构)
+-- ============================================
+-- 注意：这是最后回滚的表，会删除所有数据
+-- DROP TABLE IF EXISTS starcore_resolution_state;
+-- DROP TABLE IF EXISTS starcore_event_state;
+-- DROP TABLE IF EXISTS starcore_officer_state;
+-- DROP TABLE IF EXISTS starcore_war_state;
+-- DROP TABLE IF EXISTS starcore_treasury_state;
+-- DROP TABLE IF EXISTS starcore_technology_state;
+-- DROP TABLE IF EXISTS starcore_resource_state;
+-- DROP TABLE IF EXISTS starcore_policy_state;
+-- DROP TABLE IF EXISTS starcore_diplomacy_state;
+-- DROP TABLE IF EXISTS starcore_nation_state;
+-- DROP TABLE IF EXISTS starcore_economy_transactions;
+-- DROP TABLE IF EXISTS starcore_player_balance;
+-- DROP TABLE IF EXISTS starcore_territory_state;

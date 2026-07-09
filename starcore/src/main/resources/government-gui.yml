@@ -1,0 +1,209 @@
+# ============================================================
+# STARCORE 政体系统 GUI 配置
+# ============================================================
+
+# --- 政体主菜单 ---
+government-main:
+  title: "&d&l🏛 政体系统 &7| &f主菜单"
+  rows: 5
+
+  items:
+    # 当前政体
+    current:
+      slot: 4
+      material: NETHER_STAR
+      display-name: "&d&l🏛 当前政体"
+      glow: true
+      lore:
+        - ""
+        - "&7政体: &e{government_type}"
+        - "&7统治者: &b{ruler_name}"
+        - "&7统治时间: &7{reign_time}"
+        - ""
+
+    # 政体信息
+    info:
+      slot: 11
+      material: BOOK
+      display-name: "&f&l📖 政体信息"
+      glow: false
+      lore:
+        - ""
+        - "&7描述: &f{description}"
+        - "&7特点: &e{features}"
+        - ""
+        - "&e▶ 查看详情"
+
+    # 政体改革
+    reform:
+      slot: 13
+      material: ANVIL
+      display-name: "&c&l🔄 政体改革"
+      glow: true
+      lore:
+        - ""
+        - "&7消耗: &c{reform_cost} &7影响力"
+        - "&7冷却: &e{cooldown}"
+        - "&c⚠ 需要绝对权力"
+        - ""
+        - "&e▶ 申请改革"
+
+    # 政策效果
+    effects:
+      slot: 15
+      material: ENCHANTING_TABLE
+      display-name: "&e&l⚡ 政策效果"
+      glow: false
+      lore:
+        - ""
+        - "&7税收: &a+{tax_bonus}%"
+        - "&7军事: &c{military_modifier}"
+        - "&7稳定度: &b{stability}"
+        - ""
+        - "&e▶ 查看效果"
+
+  border:
+    enabled: true
+    material: BLACK_STAINED_GLASS_PANE
+    display-name: " "
+
+# --- 政体类型选择 ---
+government-types:
+  title: "&d&l🏛 选择政体"
+  rows: 6
+
+  items:
+    # 君主制
+    monarchy:
+      slot: 11
+      material: GOLDEN_CROWN
+      display-name: "&6&l👑 君主制"
+      glow: false
+      lore:
+        - ""
+        - "&7权力集中于统治者"
+        - "&7税收: &a+10%"
+        - "&7稳定度: &b+5"
+        - "&7军事: &c-5%"
+        - ""
+        - "&e▶ 选择此政体"
+
+    # 共和制
+    republic:
+      slot: 13
+      material: VOTE_DORITE
+      display-name: "&b&l🗳 共和制"
+      glow: false
+      lore:
+        - ""
+        - "&7权力分散于议会"
+        - "&7税收: &c-5%"
+        - "&7稳定度: &a+10"
+        - "&7军事: &a+5%"
+        - ""
+        - "&e▶ 选择此政体"
+
+    # 独裁制
+    dictatorship:
+      slot: 15
+      material: COMMAND_BLOCK
+      display-name: "&c&l⚔ 独裁制"
+      glow: false
+      lore:
+        - ""
+        - "&7绝对权力"
+        - "&7税收: &a+20%"
+        - "&7稳定度: &c-10"
+        - "&7军事: &a+15%"
+        - ""
+        - "&e▶ 选择此政体"
+
+    # 神权制
+    theocracy:
+      slot: 20
+      material: GOLDEN_CHESTPLATE
+      display-name: "&d&l✨ 神权制"
+      glow: false
+      lore:
+        - ""
+        - "&7宗教领袖统治"
+        - "&7税收: &a+15%"
+        - "&7稳定度: &b+8"
+        - "&7科技: &a+10%"
+        - ""
+        - "&e▶ 选择此政体"
+
+    # 联邦制
+    federation:
+      slot: 22
+      material: CREEPER_BANNER_PATTERN
+      display-name: "&a&l🏛 联邦制"
+      glow: false
+      lore:
+        - ""
+        - "&7多个势力共同治理"
+        - "&7税收: &c-10%"
+        - "&7稳定度: &a+15"
+        - "&7外交: &a+20%"
+        - ""
+        - "&e▶ 选择此政体"
+
+  border:
+    enabled: true
+    material: BLACK_STAINED_GLASS_PANE
+    display-name: " "
+
+# --- 政体详情 ---
+government-detail:
+  title: "&d&l🏛 {government_name}"
+  rows: 4
+
+  items:
+    # 政体图标
+    icon:
+      slot: 4
+      material: NETHER_STAR
+      display-name: "&e&l{government_name}"
+      glow: true
+      lore:
+        - ""
+        - "&7类型: &e{type}"
+        - "&7特点: &b{features}"
+
+    # 优势
+    advantages:
+      slot: 11
+      material: EMERALD
+      display-name: "&a&l✓ 优势"
+      glow: false
+      lore:
+        - ""
+        - "{advantages}"
+
+    # 劣势
+    disadvantages:
+      slot: 15
+      material: BARRIER
+      display-name: "&c&l✗ 劣势"
+      glow: false
+      lore:
+        - ""
+        - "{disadvantages}"
+
+    # 特殊效果
+    effects:
+      slot: 22
+      material: ENCHANTING_TABLE
+      display-name: "&e&l⚡ 特殊效果"
+      glow: false
+      lore:
+        - ""
+        - "&7{tax_modifier}"
+        - "&7{military_modifier}"
+        - "&7{stability_modifier}"
+        - "&7{diplomacy_modifier}"
+
+  border:
+    enabled: true
+    material: BLACK_STAINED_GLASS_PANE
+    display-name: " "

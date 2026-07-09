@@ -1,0 +1,259 @@
+{
+  "version": 1,
+  "description": "Release performance budget gates. Thresholds are intentionally stored here, not in PowerShell logic.",
+  "trend": {
+    "baselineWindowSize": 5,
+    "aggregation": "median"
+  },
+  "budgets": [
+    {
+      "id": "claim_lookup",
+      "label": "Claim lookup and preview path",
+      "kind": "surefire-suite-time",
+      "required": true,
+      "suitePatterns": [
+        "dev.starcore.starcore.module.map.MapClaimEndpointTest",
+        "dev.starcore.starcore.foundation.protection.ClaimConflictSamplerTest",
+        "dev.starcore.starcore.foundation.territory.SqlTerritoryServiceTest"
+      ],
+      "maxSeconds": 2.0,
+      "regressionMode": "warn",
+      "maxRegressionPercent": 100.0,
+      "minRegressionDeltaSeconds": 0.05
+    },
+    {
+      "id": "claim_lookup_cases",
+      "label": "Claim lookup method-level runtime path",
+      "kind": "surefire-testcase-time",
+      "required": true,
+      "testcases": [
+        {
+          "className": "dev.starcore.starcore.module.map.MapClaimEndpointTest",
+          "names": [
+            "validatesSelectionParametersBeforePreviewing",
+            "submitCreatesPendingClaimAndCooldown",
+            "confirmChecksOwnerAndConsumesPendingClaim"
+          ]
+        },
+        {
+          "className": "dev.starcore.starcore.foundation.protection.ClaimConflictSamplerTest",
+          "names": [
+            "buildsCenterAndCornerProbesAcrossConfiguredHeights",
+            "deduplicatesSurfaceHeightAndClampsLargeInset"
+          ]
+        },
+        {
+          "className": "dev.starcore.starcore.foundation.territory.SqlTerritoryServiceTest",
+          "names": [
+            "claimAndUnclaimPersistAgainstSqlBackend"
+          ]
+        }
+      ],
+      "maxSeconds": 1.0,
+      "regressionMode": "warn",
+      "maxRegressionPercent": 150.0,
+      "minRegressionDeltaSeconds": 0.05
+    },
+    {
+      "id": "claim_lookup_batch",
+      "label": "Claim lookup dedicated batch sample",
+      "kind": "surefire-testcase-time",
+      "required": true,
+      "testcases": [
+        {
+          "className": "dev.starcore.starcore.module.map.MapPerformanceBatchSamplesTest",
+          "names": [
+            "samplesClaimLookupPreviewSubmitAndConfirmBatch"
+          ]
+        }
+      ],
+      "maxSeconds": 1.5,
+      "regressionMode": "warn",
+      "maxRegressionPercent": 150.0,
+      "minRegressionDeltaSeconds": 0.05
+    },
+    {
+      "id": "map_render",
+      "label": "Map snapshot and terrain render path",
+      "kind": "surefire-suite-time",
+      "required": true,
+      "suitePatterns": [
+        "dev.starcore.starcore.module.map.MapSnapshotJsonWriterTest",
+        "dev.starcore.starcore.module.map.MapModuleViewerSnapshotContractTest",
+        "dev.starcore.starcore.module.map.TerrainTileServiceTest",
+        "dev.starcore.starcore.module.map.TerrainTileEndpointTest",
+        "dev.starcore.starcore.module.map.TerrainTilePrewarmServiceTest"
+      ],
+      "maxSeconds": 3.0,
+      "regressionMode": "warn",
+      "maxRegressionPercent": 100.0,
+      "minRegressionDeltaSeconds": 0.05
+    },
+    {
+      "id": "map_render_cases",
+      "label": "Map render method-level runtime path",
+      "kind": "surefire-testcase-time",
+      "required": true,
+      "testcases": [
+        {
+          "className": "dev.starcore.starcore.module.map.MapModuleViewerSnapshotContractTest",
+          "names": [
+            "authenticatedViewerJsonIncludesBalanceNationAndProgressionFields",
+            "resourceDistrictMigrationResponseUsesUnifiedServicePath",
+            "resourceDistrictLayerIncludesOperationalMetadataForMapUi",
+            "claimPreviewJsonReturnsHighestPricedChunksFirst"
+          ]
+        },
+        {
+          "className": "dev.starcore.starcore.module.map.TerrainTileServiceTest",
+          "names": [
+            "readsDiskCachedPngWithoutRenderingAgain",
+            "cachesRasterPngAndBinaryWithoutRenderingAgain"
+          ]
+        },
+        {
+          "className": "dev.starcore.starcore.module.map.TerrainTileEndpointTest",
+          "names": [
+            "returnsPngBinaryAndDataResponsesWithCacheTtl"
+          ]
+        }
+      ],
+      "maxSeconds": 1.5,
+      "regressionMode": "warn",
+      "maxRegressionPercent": 150.0,
+      "minRegressionDeltaSeconds": 0.05
+    },
+    {
+      "id": "map_render_batch",
+      "label": "Terrain render cold hot disk cache batch sample",
+      "kind": "surefire-testcase-time",
+      "required": true,
+      "testcases": [
+        {
+          "className": "dev.starcore.starcore.module.map.MapPerformanceBatchSamplesTest",
+          "names": [
+            "samplesTerrainRasterColdHotDiskAndBinaryBatch"
+          ]
+        }
+      ],
+      "maxSeconds": 2.0,
+      "regressionMode": "warn",
+      "maxRegressionPercent": 150.0,
+      "minRegressionDeltaSeconds": 0.05
+    },
+    {
+      "id": "sql_flush",
+      "label": "SQL state flush path",
+      "kind": "surefire-suite-time",
+      "required": true,
+      "suitePatterns": [
+        "dev.starcore.starcore.module.nation.SqlNationStateStorageTest",
+        "dev.starcore.starcore.module.nation.resource.SqlNationResourceDistrictStateStorageTest",
+        "dev.starcore.starcore.module.resource.SqlResourceStateStorageTest",
+        "dev.starcore.starcore.module.treasury.SqlTreasuryStateStorageTest",
+        "dev.starcore.starcore.foundation.economy.SqlBalanceStorageTest"
+      ],
+      "maxSeconds": 5.0,
+      "regressionMode": "warn",
+      "maxRegressionPercent": 100.0,
+      "minRegressionDeltaSeconds": 0.05
+    },
+    {
+      "id": "sql_flush_cases",
+      "label": "SQL flush method-level runtime path",
+      "kind": "surefire-testcase-time",
+      "required": true,
+      "testcases": [
+        {
+          "className": "dev.starcore.starcore.module.nation.SqlNationStateStorageTest",
+          "names": [
+            "persistsNationSnapshotAcrossSqlReloads"
+          ]
+        },
+        {
+          "className": "dev.starcore.starcore.module.nation.resource.SqlNationResourceDistrictStateStorageTest",
+          "names": [
+            "persistsDistrictSnapshotAcrossSqlReloads"
+          ]
+        },
+        {
+          "className": "dev.starcore.starcore.module.resource.SqlResourceStateStorageTest",
+          "names": [
+            "persistsResourceSnapshotAcrossSqlReloads"
+          ]
+        },
+        {
+          "className": "dev.starcore.starcore.module.treasury.SqlTreasuryStateStorageTest",
+          "names": [
+            "persistsTreasurySnapshotAcrossSqlReloads"
+          ]
+        },
+        {
+          "className": "dev.starcore.starcore.foundation.economy.SqlBalanceStorageTest",
+          "names": [
+            "internalEconomyServicePersistsAcrossSqlRestarts"
+          ]
+        }
+      ],
+      "maxSeconds": 2.0,
+      "regressionMode": "warn",
+      "maxRegressionPercent": 150.0,
+      "minRegressionDeltaSeconds": 0.05
+    },
+    {
+      "id": "sql_flush_batch",
+      "label": "SQL balance flush dedicated batch sample",
+      "kind": "surefire-testcase-time",
+      "required": true,
+      "testcases": [
+        {
+          "className": "dev.starcore.starcore.foundation.economy.SqlEconomyPerformanceBatchSamplesTest",
+          "names": [
+            "samplesSqlBalanceFlushBatchAgainstSqlite"
+          ]
+        }
+      ],
+      "maxSeconds": 4.0,
+      "regressionMode": "warn",
+      "maxRegressionPercent": 150.0,
+      "minRegressionDeltaSeconds": 0.05
+    },
+    {
+      "id": "browser_snapshot",
+      "label": "Browser snapshot artifact budget",
+      "kind": "smoke-artifact-size",
+      "required": true,
+      "requiredStatusPath": "browserSmoke.status",
+      "requiredStatus": "PASS",
+      "artifacts": [
+        {
+          "label": "browser DOM",
+          "jsonPath": "browserDom",
+          "minBytes": 12000,
+          "maxBytes": 250000,
+          "regressionMode": "warn",
+          "maxRegressionPercent": 50.0,
+          "minRegressionDeltaBytes": 50000
+        },
+        {
+          "label": "browser screenshot",
+          "jsonPath": "browserScreenshot",
+          "minBytes": 120000,
+          "maxBytes": 1500000,
+          "regressionMode": "warn",
+          "maxRegressionPercent": 50.0,
+          "minRegressionDeltaBytes": 100000
+        },
+        {
+          "label": "browser mobile screenshot",
+          "jsonPath": "browserMobileScreenshot",
+          "minBytes": 80000,
+          "maxBytes": 1200000,
+          "regressionMode": "warn",
+          "maxRegressionPercent": 50.0,
+          "minRegressionDeltaBytes": 80000
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <title>STARCORE Strategic Map</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <meta name="theme-color" content="#05090b" />
+    <link rel="stylesheet" href="css/styles.css?v=20260629-radar-nav" />
+</head>
+<body class="sidebar-collapsed">
+    <main id="map-shell" class="reveal-shell" aria-label="STARCORE map viewport">
+        <div id="map" class="reveal-map-stage"></div>
+        <div class="map-pixel-vignette" aria-hidden="true"></div>
+    </main>
+
+    <div id="hud-root" class="hud-root" aria-label="Map controls">
+        <header class="hud-topbar reveal-floating">
+            <button id="sidebar-toggle" class="hud-sidebar-toggle motion-button" type="button" aria-controls="sidebar" aria-expanded="false" data-i18n-title="sidebarExpand" title="展开情报面板">
+                <span class="toggle-glyph" aria-hidden="true"></span>
+            </button>
+            <div id="hud-identity" class="hud-identity" hidden>
+                <span id="hud-identity-avatar" class="hud-identity-avatar" aria-hidden="true"></span>
+                <strong id="hud-identity-name" class="hud-identity-name"></strong>
+            </div>
+        </header>
+
+        <div id="zoom-controls" class="hud-control-rail reveal-floating" aria-label="Map zoom controls">
+            <button id="zoom-in" class="motion-button" type="button" data-i18n-title="zoomIn" title="放大">+</button>
+            <button id="zoom-out" class="motion-button" type="button" data-i18n-title="zoomOut" title="缩小">−</button>
+            <button id="zoom-reset" class="motion-button" type="button" data-i18n-title="resetView" title="重置视图">⌂</button>
+        </div>
+
+        <!-- 雷达控件 -->
+        <div id="radar-container" class="radar-container reveal-floating" aria-label="Mini radar">
+            <canvas id="radar-canvas" width="120" height="120"></canvas>
+            <div id="radar-center" class="radar-center"></div>
+            <div id="radar-cursor" class="radar-cursor"></div>
+            <div id="radar-nation-markers" class="radar-marker-layer"></div>
+        </div>
+
+        <!-- 导航控件 -->
+        <div id="nav-controls" class="nav-control-rail reveal-floating" aria-label="Navigation controls">
+            <button id="nav-north" class="nav-btn motion-button" type="button" title="向北移动" data-dir="north">▲</button>
+            <div class="nav-row">
+                <button id="nav-west" class="nav-btn motion-button" type="button" title="向西移动" data-dir="west">◄</button>
+                <button id="nav-home" class="nav-btn nav-btn-home motion-button" type="button" title="回到我的位置">●</button>
+                <button id="nav-east" class="nav-btn motion-button" type="button" title="向东移动" data-dir="east">►</button>
+            </div>
+            <button id="nav-south" class="nav-btn motion-button" type="button" title="向南移动" data-dir="south">▼</button>
+        </div>
+
+        <!-- 快捷按钮 -->
+        <div id="quick-actions" class="quick-action-rail reveal-floating" aria-label="Quick actions">
+            <button id="qa-layers" class="qa-btn motion-button" type="button" title="图层">
+                <span class="qa-icon">☰</span>
+            </button>
+            <button id="qa-search" class="qa-btn motion-button" type="button" title="搜索">
+                <span class="qa-icon">⌕</span>
+            </button>
+            <button id="qa-marker" class="qa-btn motion-button" type="button" title="添加标记">
+                <span class="qa-icon">✚</span>
+            </button>
+            <button id="qa-nation" class="qa-btn motion-button" type="button" title="我的国家">
+                <span class="qa-icon">⚑</span>
+            </button>
+            <button id="qa-fullscreen" class="qa-btn motion-button" type="button" title="全屏">
+                <span class="qa-icon">⛶</span>
+            </button>
+        </div>
+
+        <!-- 搜索面板 -->
+        <div id="search-panel" class="search-panel reveal-floating" hidden>
+            <div class="search-header">
+                <input type="text" id="search-input" class="search-input" placeholder="搜索国家 / 玩家 / 资源..." data-i18n-placeholder="searchPlaceholder">
+                <button id="search-close" class="search-close motion-button" type="button">✕</button>
+            </div>
+            <div id="search-results" class="search-results"></div>
+        </div>
+
+        <div id="coord-display" class="coordinate-chip reveal-floating">
+            <span id="coords">0, 0</span>
+            <span id="world-name">全部世界</span>
+        </div>
+    </div>
+
+    <aside id="sidebar" class="dashboard-sidebar reveal-shell" aria-label="STARCORE intel sidebar">
+        <button id="sidebar-dismiss" class="sidebar-dismiss motion-button" type="button" data-i18n-title="sidebarCollapse" title="收起情报面板">
+            <span class="sidebar-dismiss-glyph" aria-hidden="true"></span>
+        </button>
+        <div id="sidebar-content">
+            <section id="section-summary" class="section section-summary section-utility reveal-block reveal-panel" aria-label="Map summary">
+                <div id="map-summary"></div>
+            </section>
+            <section id="section-intel" class="section section-intel section-utility reveal-block reveal-panel" aria-label="Viewer intel">
+                <div id="intel-grid"></div>
+            </section>
+            <section id="section-world" class="section section-filter section-utility reveal-block reveal-panel" aria-label="World filter">
+                <div class="filter-shell">
+                    <div id="world-filter" class="chip-group" data-i18n-aria="worldFilter"></div>
+                </div>
+            </section>
+            <section id="section-claim" class="section section-claim reveal-block reveal-panel">
+                <div class="section-head">
+                    <h2 data-i18n="claimTitle">网页圈地</h2>
+                </div>
+                <div id="claim-panel" class="claim-panel">
+                    <div class="claim-panel-header">
+                        <button id="claim-toggle" class="motion-button" type="button" data-i18n="claimModeOff">开始选区</button>
+                    </div>
+                    <div id="claim-meta">
+                        <span data-i18n="claimChunkCount">区块数</span>
+                        <strong id="claim-chunks">0</strong>
+                        <span data-i18n="claimPrice">价格</span>
+                        <strong id="claim-price">0.00</strong>
+                        <span data-i18n="claimBalance">余额</span>
+                        <strong id="claim-balance">0.00</strong>
+                    </div>
+                    <div id="claim-status" data-i18n="claimNeedAuth">使用个人地图链接后可拖框圈地。</div>
+                    <div id="claim-details"></div>
+                    <button id="claim-submit" class="motion-button" type="button" disabled data-i18n="claimSubmit">提交确认</button>
+                </div>
+            </section>
+            <section id="section-nations" class="section reveal-block reveal-panel">
+                <div class="section-head">
+                    <h2 data-i18n="sectionNations">国家</h2>
+                </div>
+                <ul id="nation-list"></ul>
+                <div id="nation-detail-panel" class="nation-detail-panel" hidden></div>
+            </section>
+            <section id="section-players" class="section section-collapsible is-collapsed reveal-block reveal-panel">
+                <button id="players-toggle" class="section-toggle motion-button" type="button" aria-expanded="false" aria-controls="player-list-shell">
+                    <span class="section-toggle-copy">
+                        <span class="section-toggle-title" data-i18n="sectionPlayers">在线玩家</span>
+                        <span id="players-toggle-meta" class="section-toggle-meta">0</span>
+                    </span>
+                    <span class="section-toggle-glyph" aria-hidden="true"></span>
+                </button>
+                <div id="player-list-shell" class="section-collapse">
+                    <ul id="player-list"></ul>
+                </div>
+            </section>
+            <section id="section-resources" class="section reveal-block reveal-panel">
+                <div class="section-head">
+                    <h2 data-i18n="sectionResources">资源区块</h2>
+                </div>
+                <ul id="resource-list"></ul>
+            </section>
+            <section id="section-layers" class="section section-layers reveal-block reveal-panel">
+                <div class="section-head">
+                    <h2 data-i18n="sectionLayers">图层</h2>
+                </div>
+                <div class="layer-grid">
+                    <div class="layer-legend-row">
+                        <span><i class="legend-block territory"></i><span data-i18n="legendTerritory">领地</span></span>
+                        <span><i class="legend-block allied"></i><span data-i18n="legendAllied">成员</span></span>
+                        <span><i class="legend-block neutral"></i><span data-i18n="legendNeutral">中立</span></span>
+                        <span><i class="legend-block resource"></i><span data-i18n="legendResource">资源</span></span>
+                    </div>
+                    <button type="button" class="control-pill motion-button is-active" id="toggle-territory" aria-pressed="true">
+                        <span class="pill-dot territory"></span>
+                        <span data-i18n="territoryFootprint">领地图层</span>
+                    </button>
+                    <button type="button" class="control-pill motion-button is-active" id="toggle-terrain" aria-pressed="true">
+                        <span class="pill-dot terrain"></span>
+                        <span data-i18n="terrainLayer">地形底图</span>
+                    </button>
+                    <button type="button" class="control-pill motion-button is-active" id="toggle-players" aria-pressed="true">
+                        <span class="pill-dot players"></span>
+                        <span data-i18n="memberPresence">成员图层</span>
+                    </button>
+                    <button type="button" class="control-pill motion-button is-active" id="toggle-resources" aria-pressed="true">
+                        <span class="pill-dot resources"></span>
+                        <span data-i18n="resourceDistrictLayer">资源区块</span>
+                    </button>
+                </div>
+            </section>
+        </div>
+        <div id="sidebar-footer" class="reveal-block reveal-footer">
+            <div class="sidebar-footer-tools">
+                <div class="language-switch locale-select" role="group" data-i18n-aria="languageSwitch">
+                    <button type="button" class="lang-button motion-button" data-lang="zh">中文</button>
+                    <button type="button" class="lang-button motion-button" data-lang="en">EN</button>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <script>
+        (() => {
+            const installSidebarFallback = () => {
+                const body = document.body;
+                const button = document.getElementById('sidebar-toggle');
+                const dismiss = document.getElementById('sidebar-dismiss');
+                const playersSection = document.getElementById('section-players');
+                const playersToggle = document.getElementById('players-toggle');
+                if (!body || !button) {
+                    return;
+                }
+
+                const params = new URLSearchParams(window.location.search || '');
+                const explicitSidebar = String(params.get('sidebar') || params.get('show_sidebar') || '').toLowerCase();
+                const isChinese = (document.documentElement.lang || '').toLowerCase().startsWith('zh');
+                const openLabel = isChinese ? '展开情报面板' : 'Open Intel';
+                const closeLabel = isChinese ? '收起情报面板' : 'Hide Intel';
+                let collapsed = body.classList.contains('sidebar-collapsed');
+                let playersCollapsed = playersSection ? playersSection.classList.contains('is-collapsed') : true;
+                if (explicitSidebar === 'open' || explicitSidebar === 'expanded' || explicitSidebar === 'true' || explicitSidebar === '1') {
+                    collapsed = false;
+                } else if (explicitSidebar === 'closed' || explicitSidebar === 'collapsed' || explicitSidebar === 'false' || explicitSidebar === '0') {
+                    collapsed = true;
+                }
+                const sync = () => {
+                    if (window.strategicMap) {
+                        return;
+                    }
+                    body.classList.toggle('sidebar-collapsed', collapsed);
+                    body.classList.toggle('sidebar-expanded', !collapsed);
+                    const label = collapsed ? openLabel : closeLabel;
+                    button.setAttribute('aria-expanded', String(!collapsed));
+                    button.setAttribute('title', label);
+                    button.setAttribute('aria-label', label);
+                    if (playersSection) {
+                        playersSection.classList.toggle('is-collapsed', playersCollapsed);
+                    }
+                    if (playersToggle) {
+                        playersToggle.setAttribute('aria-expanded', String(!playersCollapsed));
+                    }
+                };
+
+                button.addEventListener('click', (event) => {
+                    if (window.strategicMap) {
+                        return;
+                    }
+                    event.preventDefault();
+                    collapsed = !collapsed;
+                    sync();
+                });
+
+                dismiss?.addEventListener('click', (event) => {
+                    if (window.strategicMap) {
+                        return;
+                    }
+                    event.preventDefault();
+                    collapsed = true;
+                    sync();
+                });
+
+                playersToggle?.addEventListener('click', (event) => {
+                    if (window.strategicMap) {
+                        return;
+                    }
+                    event.preventDefault();
+                    playersCollapsed = !playersCollapsed;
+                    sync();
+                });
+
+                document.addEventListener('keydown', (event) => {
+                    if (window.strategicMap || event.key !== 'Escape' || collapsed) {
+                        return;
+                    }
+                    collapsed = true;
+                    sync();
+                });
+
+                sync();
+                window.setTimeout(() => {
+                    if (!window.strategicMap) {
+                        document.body.classList.add('page-ready');
+                        sync();
+                    }
+                }, 220);
+            };
+
+            const CDN = {
+                leafletCss: [
+                    'vendor/leaflet/leaflet.css',
+                    'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
+                    'https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css',
+                    'https://registry.npmmirror.com/leaflet/1.9.4/files/dist/leaflet.css',
+                ],
+                leafletJs: [
+                    'vendor/leaflet/leaflet.js',
+                    'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',
+                    'https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js',
+                    'https://registry.npmmirror.com/leaflet/1.9.4/files/dist/leaflet.js',
+                ],
+                gsap: [
+                    'vendor/gsap/gsap.min.js',
+                    'https://unpkg.com/gsap@3.12.7/dist/gsap.min.js',
+                    'https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js',
+                    'https://registry.npmmirror.com/gsap/3.12.7/files/dist/gsap.min.js',
+                ],
+            };
+
+            const loadStyle = (urls, index = 0) => new Promise((resolve) => {
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = urls[index];
+                link.onload = resolve;
+                link.onerror = () => index + 1 < urls.length ? resolve(loadStyle(urls, index + 1)) : resolve();
+                document.head.appendChild(link);
+            });
+
+            const loadScript = (urls, isReady, index = 0) => new Promise((resolve, reject) => {
+                if (isReady()) {
+                    resolve();
+                    return;
+                }
+                const script = document.createElement('script');
+                script.src = urls[index];
+                script.defer = true;
+                script.onload = () => isReady() ? resolve() : reject(new Error('dependency unavailable'));
+                script.onerror = () => index + 1 < urls.length ? resolve(loadScript(urls, isReady, index + 1)) : reject(new Error('dependency unavailable'));
+                document.head.appendChild(script);
+            });
+
+            const loadApp = () => {
+                const script = document.createElement('script');
+                script.src = 'js/map.js?v=20260629-radar-nav';
+                script.defer = true;
+                document.body.appendChild(script);
+            };
+
+            installSidebarFallback();
+
+            loadStyle(CDN.leafletCss)
+                .then(() => loadScript(CDN.leafletJs, () => Boolean(window.L)))
+                .then(() => loadScript(CDN.gsap, () => Boolean(window.gsap)).catch(() => undefined))
+                .then(loadApp)
+                .catch(loadApp);
+        })();
+    </script>
+</body>
+</html>

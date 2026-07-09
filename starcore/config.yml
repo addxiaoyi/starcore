@@ -1,0 +1,161 @@
+# ===============================================
+# STARCORE 插件配置文件
+# ===============================================
+# 版本: 1.0.0
+# 作者: STARCORE Team
+# 说明: 这是 STARCORE 插件的主配置文件
+#       所有设置都有详细的中文说明
+#       修改后使用 /starcore reload 重载配置
+# ===============================================
+
+# ===============================================
+# 基础设置
+# ===============================================
+settings:
+  # 语言设置 (zh_cn=简体中文, en_us=English)
+  language: zh_cn
+
+  # 调试模式 (true=开启详细日志, false=正常模式)
+  debug: false
+
+  # 插件前缀 (聊天消息前缀)
+  prefix: "§6[§e★STARCORE§6]§r"
+
+  # 自动保存间隔 (单位: 分钟)
+  auto-save-interval: 5
+
+# ===============================================
+# 传送系统配置
+# ===============================================
+teleport:
+  # 冷却时间设置 (单位: 秒)
+  cooldowns:
+    spawn: 3      # /star spawn 冷却
+    anchor: 3     # /star anchor 冷却
+    port: 3       # /star port 冷却
+    beam: 5       # /star beam 冷却
+    recall: 3     # /star recall 冷却
+
+  # 传送延迟 (单位: 秒, 0=立即传送)
+  delays:
+    spawn: 3
+    anchor: 3
+    port: 3
+    beam: 5
+    recall: 0
+
+  # 取消传送的条件
+  cancel-on:
+    move: true      # 移动时取消
+    damage: true    # 受伤时取消
+    combat: true    # 战斗中取消
+
+  # 锚点(家园)设置
+  anchors:
+    max-count: 5              # 最大锚点数量
+    default-name: "home"      # 默认锚点名称
+    allow-bed: true           # 允许使用床设置锚点
+
+# ===============================================
+# 经济系统配置
+# ===============================================
+economy:
+  # 货币名称
+  currency:
+    name: "星尘"
+    name-plural: "星尘"
+    symbol: "✦"
+
+  # 初始余额
+  starting-balance: 1000.0
+
+  # 转账设置
+  transfer:
+    min-amount: 1.0           # 最小转账金额
+    max-amount: 1000000.0     # 最大转账金额
+    tax-rate: 0.0             # 转账税率 (0.05 = 5%)
+
+# ===============================================
+# PvP/决斗系统配置
+# ===============================================
+pvp:
+  # 决斗(轨道)系统
+  orbit:
+    request-timeout: 30       # 请求超时 (秒)
+    allow-spectators: true    # 允许观战
+
+    # 赌注设置
+    wager:
+      enable: true
+      min-amount: 100.0
+      max-amount: 10000.0
+
+  # 连杀系统
+  killstreak:
+    # 连杀里程碑 (连杀数: 奖励星尘)
+    milestones:
+      3: 50
+      5: 100
+      10: 300
+      15: 500
+      20: 1000
+
+    broadcast:
+      enable: true
+      min-streak: 3           # 最小广播连杀数
+
+# ===============================================
+# AI系统配置
+# ===============================================
+ai:
+  # AI训练机器人
+  training-bot:
+    enable: true
+    max-bots-per-player: 1
+
+  # 智能匹配系统
+  matchmaking:
+    enable: true
+
+  # 赛季通行证
+  battle-pass:
+    enable: true
+    season-duration: 60       # 赛季持续天数
+    exp-per-level: 1000
+    premium-price: 5000
+
+# ===============================================
+# 社交系统配置
+# ===============================================
+guild:
+  enable: true
+  create-cost: 10000
+  max-members: 50
+
+party:
+  enable: true
+  max-members: 8
+
+friend:
+  enable: true
+  max-friends: 100
+
+# ===============================================
+# 每日系统配置
+# ===============================================
+daily:
+  checkin:
+    enable: true
+    base-reward: 100
+
+  quest:
+    enable: true
+    refresh-time: "04:00"
+
+# ===============================================
+# 数据库配置
+# ===============================================
+database:
+  type: "sqlite"
+  sqlite:
+    file: "starcore.db"

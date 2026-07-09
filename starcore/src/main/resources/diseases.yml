@@ -1,0 +1,192 @@
+# 疾病与医疗系统配置文件
+
+# 启用疾病系统
+enabled: true
+
+# 基础感染概率
+base-infection-chance: 0.01
+
+# 允许疾病传播
+allow-spread: true
+
+# 疾病配置
+diseases:
+  cold:
+    name: "感冒"
+    severity: 1               # 严重程度 (1-5)
+    contagion: 0.3            # 传染性 (0-1)
+    duration: 7               # 持续天数
+    symptoms: "轻微咳嗽，移动速度-5%"
+    treatment-difficulty: 20  # 治疗难度 (1-100)
+
+  flu:
+    name: "流感"
+    severity: 2
+    contagion: 0.5
+    duration: 10
+    symptoms: "发烧咳嗽，移动速度-10%，饥饿+20%"
+    treatment-difficulty: 40
+
+  plague:
+    name: "瘟疫"
+    severity: 5
+    contagion: 0.8
+    duration: 14
+    symptoms: "严重虚弱，生命上限-30%，持续伤害"
+    treatment-difficulty: 100
+    lethal: true              # 致命疾病
+
+  poison:
+    name: "中毒"
+    severity: 3
+    contagion: 0.1
+    duration: 5
+    symptoms: "中毒状态，持续损失生命"
+    treatment-difficulty: 60
+
+  curse:
+    name: "诅咒"
+    severity: 4
+    contagion: 0.2
+    duration: 21
+    symptoms: "被诅咒，所有属性-20%，幸运-50%"
+    treatment-difficulty: 80
+
+  infection:
+    name: "感染"
+    severity: 2
+    contagion: 0.4
+    duration: 7
+    symptoms: "伤口感染，缓慢损失生命"
+    treatment-difficulty: 40
+
+  fever:
+    name: "发烧"
+    severity: 1
+    contagion: 0.3
+    duration: 5
+    symptoms: "高烧不退，视野模糊"
+    treatment-difficulty: 20
+
+  weakness:
+    name: "虚弱"
+    severity: 1
+    contagion: 0.2
+    duration: 3
+    symptoms: "身体虚弱，攻击力-15%"
+    treatment-difficulty: 20
+
+# 感染来源概率
+infection-sources:
+  poison-damage: 0.3          # 中毒伤害
+  wither-damage: 0.2          # 凋零伤害
+  magic-damage: 0.1           # 魔法伤害
+  entity-attack: 0.05         # 实体攻击
+  environment: 0.01           # 环境（雨天、沼泽等）
+
+# 疾病传播设置
+disease-spread:
+  enabled: true
+  range: 5                    # 传播范围（格）
+  check-interval: 600         # 检查间隔（tick）
+  spread-chance-multiplier: 0.01  # 传播概率倍率
+
+# 自然恢复
+natural-recovery:
+  enabled: true
+  check-interval: 12000       # 检查间隔（tick）
+  mild-disease-chance: 0.1    # 轻微疾病自然恢复概率
+  recovery-amount: 10         # 每次恢复的严重程度降低量
+
+# 医院配置
+hospitals:
+  default-level: 1
+  max-level: 5
+  base-capacity: 10           # 基础床位数
+  capacity-per-level: 10      # 每级增加的床位数
+  base-staff: 2               # 基础医护人员数
+  staff-per-level: 2          # 每级增加的医护人员数
+  treatment-efficiency-bonus: 0.1  # 每级治疗效率加成
+  upgrade-cost-per-level: 10000    # 每级升级费用
+  maintenance-cost-per-bed: 10     # 每床位每日维护费
+  maintenance-cost-per-staff: 50   # 每医护人员每日维护费
+  range-base: 50              # 基础范围（格）
+  range-per-level: 10         # 每级增加范围
+
+# 院外治疗效率惩罚
+outside-hospital-penalty: 0.7
+
+# 治疗配置
+treatments:
+  cold:
+    items:
+      - "HONEY_BOTTLE:2"
+      - "GOLDEN_CARROT:1"
+    duration: 30              # 治疗持续时间（分钟）
+    effectiveness: 90         # 有效性 (0-100)
+    cost: 1000                # 治疗费用
+
+  flu:
+    items:
+      - "GOLDEN_APPLE:1"
+      - "HONEY_BOTTLE:3"
+      - "SUSPICIOUS_STEW:1"
+    duration: 60
+    effectiveness: 80
+    cost: 2000
+
+  plague:
+    items:
+      - "ENCHANTED_GOLDEN_APPLE:1"
+      - "GOLDEN_APPLE:3"
+      - "POTION:2"
+    duration: 150
+    effectiveness: 50
+    cost: 5000
+
+  poison:
+    items:
+      - "MILK_BUCKET:2"
+      - "HONEY_BOTTLE:2"
+    duration: 90
+    effectiveness: 70
+    cost: 3000
+
+  curse:
+    items:
+      - "TOTEM_OF_UNDYING:1"
+      - "NETHER_STAR:1"
+    duration: 120
+    effectiveness: 60
+    cost: 4000
+
+  infection:
+    items:
+      - "GOLDEN_APPLE:2"
+      - "FERMENTED_SPIDER_EYE:1"
+    duration: 60
+    effectiveness: 80
+    cost: 2000
+
+  fever:
+    items:
+      - "ICE:10"
+      - "HONEY_BOTTLE:2"
+      - "GOLDEN_CARROT:2"
+    duration: 30
+    effectiveness: 90
+    cost: 1000
+
+  weakness:
+    items:
+      - "GOLDEN_APPLE:1"
+      - "COOKED_BEEF:5"
+    duration: 30
+    effectiveness: 90
+    cost: 1000
+
+# 疾病效果应用间隔（tick）
+effect-interval: 200
+
+# 数据保存间隔（tick）
+save-interval: 6000

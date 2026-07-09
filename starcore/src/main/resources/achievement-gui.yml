@@ -1,0 +1,218 @@
+# ============================================================
+# STARCORE 成就系统 GUI 配置
+# ============================================================
+
+# --- 成就主菜单 ---
+achievement-main:
+  title: "&6&l🏅 成就系统 &7| &f主菜单"
+  rows: 6
+
+  items:
+    # 成就概览
+    overview:
+      slot: 4
+      material: GOLD_MEDAL
+      display-name: "&6&l🏅 成就概览"
+      glow: true
+      lore:
+        - ""
+        - "&7已解锁: &a{completed} &7/ &e{total}"
+        - "&7完成度: &a{progress_bar}"
+        - "&7总积分: &e{points} &7分"
+        - ""
+        - "&e▶ 点击查看详情"
+
+    # 战斗成就
+    combat:
+      slot: 11
+      material: DIAMOND_SWORD
+      display-name: "&c&l⚔ 战斗成就"
+      glow: false
+      lore:
+        - ""
+        - "&7已解锁: &a{combat_completed}"
+        - "&7总数量: &e{combat_total}"
+        - "&7积分奖励: &6500"
+        - ""
+        - "&e▶ 点击查看"
+
+    # 社交成就
+    social:
+      slot: 13
+      material: PLAYER_HEAD
+      display-name: "&b&l👥 社交成就"
+      glow: false
+      lore:
+        - ""
+        - "&7已解锁: &a{social_completed}"
+        - "&7总数量: &e{social_total}"
+        - "&7积分奖励: &6300"
+        - ""
+        - "&e▶ 点击查看"
+
+    # 经济成就
+    economy:
+      slot: 15
+      material: GOLD_INGOT
+      display-name: "&6&l💰 经济成就"
+      glow: false
+      lore:
+        - ""
+        - "&7已解锁: &a{economy_completed}"
+        - "&7总数量: &e{economy_total}"
+        - "&7积分奖励: &6400"
+        - ""
+        - "&e▶ 点击查看"
+
+    # 探索成就
+    exploration:
+      slot: 20
+      material: MAP
+      display-name: "&a&l🗺 探索成就"
+      glow: false
+      lore:
+        - ""
+        - "&7已解锁: &a{explore_completed}"
+        - "&7总数量: &e{explore_total}"
+        - "&7积分奖励: &6350"
+        - ""
+        - "&e▶ 点击查看"
+
+    # 收集成就
+    collection:
+      slot: 24
+      material: CHEST
+      display-name: "&e&l📦 收集成就"
+      glow: false
+      lore:
+        - ""
+        - "&7已解锁: &a{collect_completed}"
+        - "&7总数量: &e{collect_total}"
+        - "&7积分奖励: &6300"
+        - ""
+        - "&e▶ 点击查看"
+
+    # 特殊成就
+    special:
+      slot: 31
+      material: NETHER_STAR
+      display-name: "&d&l✨ 特殊成就"
+      glow: true
+      lore:
+        - ""
+        - "&7已解锁: &a{special_completed}"
+        - "&7总数量: &e{special_total}"
+        - "&7积分奖励: &61000"
+        - ""
+        - "&e▶ 点击查看"
+
+    # 最近成就
+    recent:
+      slot: 33
+      material: BOOK
+      display-name: "&b&l📜 最近成就"
+      glow: false
+      lore:
+        - ""
+        - "&7最近获得: &e{recent_name}"
+        - "&7获得时间: &7{recent_time}"
+        - "&7积分: &a+{recent_points}"
+        - ""
+        - "&e▶ 点击查看"
+
+  border:
+    enabled: true
+    material: BLACK_STAINED_GLASS_PANE
+    display-name: " "
+
+# --- 成就分类列表 ---
+achievement-category:
+  title: "&6&l🏅 {category_name}"
+  rows: 6
+
+  items:
+    # 成就项目
+    achievement-item:
+      slot: 22
+      material: GOLD_MEDAL
+      display-name: "&e{achievement_name}"
+      glow: true
+      lore:
+        - ""
+        - "&7描述: &f{description}"
+        - "&7进度: &a{progress}"
+        - "&7奖励: &e+{points} &7积分"
+        - ""
+        - "&e▶ 点击领取"
+
+    # 未解锁
+    locked:
+      slot: 22
+      material: GRAY_DYE
+      display-name: "&7{achievement_name}"
+      glow: false
+      lore:
+        - ""
+        - "&c尚未解锁"
+        - "&7条件: &f{requirement}"
+        - "&7进度: &c{progress}"
+        - ""
+
+  border:
+    enabled: true
+    material: BLACK_STAINED_GLASS_PANE
+    display-name: " "
+
+# --- 成就详情 ---
+achievement-detail:
+  title: "&6&l🏅 成就详情"
+  rows: 3
+
+  items:
+    # 成就图标
+    icon:
+      slot: 4
+      material: GOLD_MEDAL
+      display-name: "&e&l{achievement_name}"
+      glow: true
+      lore:
+        - ""
+        - "&7分类: &e{category}"
+        - "&7难度: &c{difficulty}"
+
+    # 描述
+    description:
+      slot: 13
+      material: BOOK
+      display-name: "&f&l描述"
+      glow: false
+      lore:
+        - ""
+        - "&7{description}"
+
+    # 奖励
+    rewards:
+      slot: 22
+      material: CHEST
+      display-name: "&a&l奖励"
+      glow: false
+      lore:
+        - ""
+        - "&7积分: &e+{points}"
+        - "&7物品: &b{reward_items}"
+
+    # 进度
+    progress:
+      slot: 31
+      material: EXPERIENCE_BOTTLE
+      display-name: "&e&l进度"
+      glow: false
+      lore:
+        - ""
+        - "&7{progress_bar}"
+        - "&7{current} / {target}"
+
+  border:
+    enabled: true
+    material: BLACK_STAINED_GLASS_PANE
+    display-name: " "

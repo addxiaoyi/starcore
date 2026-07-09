@@ -1,0 +1,40 @@
+# ==========================================
+# 战争赔款系统配置文件
+# War Reparations Configuration
+# ==========================================
+
+# 赔款配置
+reparations:
+  # 最低赔款金额
+  min-reparation-amount: "1000"
+
+  # 最高赔款金额
+  max-reparation-amount: "1000000"
+
+  # 默认分期数
+  default-installments: 12
+
+  # 最大分期数
+  max-installments: 60
+
+  # 逾期天数（超过此天数未支付则违约）
+  overdue-days: 30
+
+  # 是否启用自动扣款
+  # 启用后，系统将在每个检查周期自动扣除分期金额
+  auto-charge-enabled: false
+
+  # 自动扣款金额（每次检查时扣除的金额）
+  auto-charge-amount: "10000"
+
+  # 检查周期（分钟）
+  check-interval-minutes: 1440  # 默认每天检查一次
+
+  # 是否启用违约惩罚
+  enable-default-penalty: true
+
+  # 违约惩罚：降低声望值
+  default-reputation-penalty: 50
+
+  # 是否启用自动免除功能（当支付方国库为空时）
+  auto-forgive-when-bankrupt: false

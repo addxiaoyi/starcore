@@ -1,0 +1,35 @@
+target/
+.idea/
+.vscode/
+*.iml
+*.class
+
+# Generated analysis/index artifacts
+.codegraph/
+graphify-out/
+**/graphify-out/
+
+# Local audit scan outputs
+/_dead.txt
+/_en_only.txt
+/_undefined.txt
+/_zh_only.txt
+/sets.json
+/undef*.json
+/undef_full.txt
+/nul
+
+# Local Paper runtime artifacts
+run/
+plugins/
+
+# Third-party plugins (embedded, do not track)
+ExcellentCrates-spigot/
+ProtectorAPI/
+starcore-remote/
+nightcore-spigot/
+squaremap/
+
+# OS
+Thumbs.db
+.DS_Store

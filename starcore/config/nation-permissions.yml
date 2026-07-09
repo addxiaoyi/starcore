@@ -1,0 +1,152 @@
+# Nation权限系统配置文件
+
+# ============================================
+# Nation Rank配置
+# ============================================
+nation:
+  # 预设Rank
+  starter-ranks:
+    # 新兵 - 基础权限
+    recruit:
+      display-name: "&7新兵"
+      priority: 1
+      permissions:
+        - spawn.tp
+        - chat.nation
+        - bank.view
+
+    # 外交官 - 外交权限
+    diplomat:
+      display-name: "&b外交官"
+      priority: 3
+      permissions:
+        - ally.add
+        - ally.remove
+        - enemy.add
+        - enemy.remove
+        - announcement
+        - spawn.tp
+        - chat.nation
+        - bank.view
+
+    # 财政官 - 经济权限
+    treasurer:
+      display-name: "&6财政官"
+      priority: 4
+      permissions:
+        - bank.deposit
+        - bank.withdraw
+        - bank.view
+        - tax.set
+        - tax.collect
+        - spawn.tp
+        - chat.nation
+
+    # 将军 - 军事权限
+    general:
+      display-name: "&c将军"
+      priority: 5
+      permissions:
+        - war.declare
+        - war.end
+        - war.occupy
+        - war.siege
+        - army.create
+        - army.disband
+        - army.command
+        - army.recruit
+        - spawn.tp
+        - chat.nation
+        - bank.view
+
+    # 建筑师 - 建设权限
+    architect:
+      display-name: "&e建筑师"
+      priority: 4
+      permissions:
+        - territory.claim
+        - territory.unclaim
+        - territory.settype
+        - territory.rename
+        - territory.setspawn
+        - territory.permissions
+        - city.create
+        - city.rename
+        - spawn.tp
+        - chat.nation
+        - bank.view
+
+  # 默认Rank（新成员加入时自动分配）
+  default-rank: "recruit"
+
+  # 是否允许Nation自定义Rank
+  allow-custom-ranks: true
+
+  # 每个Nation最多可创建的自定义Rank数量
+  max-custom-ranks-per-nation: 10
+
+# ============================================
+# 权限层级配置
+# ============================================
+permission-levels:
+  # 创始人
+  founder:
+    display-name: "&6&l创始人"
+    level: 4
+    description: "国家创建者，拥有最高权限"
+
+  # 领导者
+  leader:
+    display-name: "&c&l领导者"
+    level: 3
+    description: "国家领导层，拥有管理权限"
+
+  # 受信任成员
+  trusted:
+    display-name: "&a信任成员"
+    level: 2
+    description: "资深成员，拥有部分管理权限"
+
+  # 普通成员
+  member:
+    display-name: "&7成员"
+    level: 1
+    description: "基础成员，拥有基本权限"
+
+# ============================================
+# 权限消息配置
+# ============================================
+messages:
+  no-permission: "&c你没有权限执行此操作！"
+  permission-required: "&7需要权限: &e%permission%"
+  level-required: "&7所需层级: &e%level%"
+  rank-assigned: "&a已将 &e%player% &a的职位设置为 &e%rank%"
+  rank-removed: "&a已移除 &e%player% &a的职位"
+  rank-created: "&a已创建职位: &e%rank%"
+  rank-deleted: "&a已删除职位: &e%rank%"
+  rank-not-found: "&c找不到职位: &e%rank%"
+  rank-list-header: "&6&l==== Nation职位列表 ===="
+  rank-list-format: "&e%rank% &7- &f%permission_count%个权限 &7(优先级: %priority%)"
+
+# ============================================
+# 示例：如何添加自定义Rank
+# ============================================
+# custom-ranks:
+#   # 示例：内政官
+#   minister:
+#     display-name: "&d内政官"
+#     priority: 3
+#     permissions:
+#       - member.invite
+#       - member.kick
+#       - announcement
+#       - settings.modify
+#
+#   # 示例：侦察兵
+#   scout:
+#     display-name: "&9侦察兵"
+#     priority: 2
+#     permissions:
+#       - spawn.tp
+#       - chat.nation
+#       - territory.claim

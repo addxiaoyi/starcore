@@ -1,0 +1,53 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------< dev.starcore:starcore >------------------------
+[INFO] Building STARCORE 0.1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- jacoco:0.8.12:prepare-agent (default) @ starcore ---
+[INFO] argLine set to -javaagent:C:\\Users\\l\\.m2\\repository\\org\\jacoco\\org.jacoco.agent\\0.8.12\\org.jacoco.agent-0.8.12-runtime.jar=destfile=D:\\qwq\\项目\\mapadd\\starcore\\target\\jacoco.exec
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ starcore ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] Copying 104 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ starcore ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1683 source files with javac [debug parameters release 21] to target\classes
+[INFO] 由于在类路径中发现了一个或多个处理程序，因此启用了
+  批注处理。未来发行版的 javac 可能会禁用批注处理，
+  除非至少按名称指定了一个处理程序 (-processor)，
+  或指定了搜索路径 (--processor-path, --processor-module-path)，
+  或显式启用了批注处理 (-proc:only, -proc:full)。
+  可使用 -Xlint:-options 隐藏此消息。
+  可使用 -proc:none 禁用批注处理。
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/foundation/sound/SceneSoundService.java:[657,25] org.bukkit.Sound 中的 valueOf(java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/foundation/sound/SceneSoundService.java:[675,35] org.bukkit.Sound 中的 values() 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/foundation/sound/SceneSoundService.java:[676,18] org.bukkit.util.OldEnum 中的 name() 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/foundation/animation/SoundFeedbackManager.java:[152,25] org.bukkit.Sound 中的 valueOf(java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/foundation/feedback/BukkitInGameFeedbackService.java:[157,37] org.bukkit.Sound 中的 valueOf(java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/foundation/feedback/BukkitInGameFeedbackService.java:[162,41] org.bukkit.Sound 中的 valueOf(java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/foundation/sound/SceneSoundCommand.java:[431,46] org.bukkit.Sound 中的 values() 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/foundation/sound/SceneSoundCommand.java:[432,18] org.bukkit.util.OldEnum 中的 name() 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonWorldManager.java:[472,18] org.bukkit.World 中的 setGameRuleValue(java.lang.String,java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonWorldManager.java:[473,18] org.bukkit.World 中的 setGameRuleValue(java.lang.String,java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonWorldManager.java:[474,18] org.bukkit.World 中的 setGameRuleValue(java.lang.String,java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonWorldManager.java:[475,18] org.bukkit.World 中的 setGameRuleValue(java.lang.String,java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonWorldManager.java:[476,18] org.bukkit.World 中的 setGameRuleValue(java.lang.String,java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonWorldManager.java:[477,18] org.bukkit.World 中的 setGameRuleValue(java.lang.String,java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/technology/TechnologyEffectRegistry.java:[101,49] org.bukkit.attribute.AttributeModifier 中的 getUniqueId() 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/technology/TechnologyEffectRegistry.java:[255,35] org.bukkit.attribute.AttributeModifier 中的 AttributeModifier(java.util.UUID,java.lang.String,double,org.bukkit.attribute.AttributeModifier.Operation) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/technology/TechnologyEffectRegistry.java:[265,35] org.bukkit.attribute.AttributeModifier 中的 AttributeModifier(java.util.UUID,java.lang.String,double,org.bukkit.attribute.AttributeModifier.Operation) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/technology/TechnologyEffectRegistry.java:[275,35] org.bukkit.attribute.AttributeModifier 中的 AttributeModifier(java.util.UUID,java.lang.String,double,org.bukkit.attribute.AttributeModifier.Operation) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/technology/TechnologyEffectRegistry.java:[321,35] org.bukkit.attribute.AttributeModifier 中的 AttributeModifier(java.util.UUID,java.lang.String,double,org.bukkit.attribute.AttributeModifier.Operation) 已过时, 且标记为待删除
+[INFO] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/event/random/RandomEventService.java: 某些输入文件使用或覆盖了已过时的 API。
+[INFO] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/event/random/RandomEventService.java: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+[INFO] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/crossserver/CrossServerNationSync.java: 某些输入文件使用了未经检查或不安全的操作。
+[INFO] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/crossserver/CrossServerNationSync.java: 有关详细信息, 请使用 -Xlint:unchecked 重新编译。
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  16.467 s
+[INFO] Finished at: 2026-06-30T14:20:15+08:00
+[INFO] ------------------------------------------------------------------------

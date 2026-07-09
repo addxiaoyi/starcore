@@ -1,0 +1,23 @@
+# Test resources for StarCore unit tests
+# This file is used by integration tests that need configuration
+
+plugin:
+  name: StarCoreTest
+  version: 0.1.0-SNAPSHOT
+  authors:
+    - test
+
+database:
+  type: sqlite
+  path: ":memory:"
+
+logging:
+  level: INFO
+
+# Test language settings
+locale: zh_cn
+
+# Test web server settings
+web:
+  host: localhost
+  port: 8080
