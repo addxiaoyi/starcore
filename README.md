@@ -3,7 +3,7 @@
 [![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://adoptium.net/)
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.21.11-green.svg)](https://www.minecraft.net/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Build](https://github.com/addxiaoyi/starcore/actions/workflows/ci.yml/badge.svg)](https://github.com/addxiaoyi/starcore/actions)
+[![Build](https://github.com/addxiaoyi/starcore/actions/workflows/build.yml/badge.svg)](https://github.com/addxiaoyi/starcore/actions)
 
 **StarCore** 是 Paper/Nukkit 原生的国家战略与政策引擎，提供完整的多人王国管理、领土系统、外交战争、财政科技等玩法。
 
@@ -43,9 +43,8 @@
 |------|------|
 | Vault | 经济系统 |
 | PlaceholderAPI | 占位符变量 |
-| ProtectorAPI | 领地保护 |
-| squaremap/Pl3xMap/dynmap | 地图渲染 |
-| WorldGuard | 区域保护 |
+| Citizens | NPC 商店 |
+| PacketEvents | 高性能数据包 |
 
 ---
 
@@ -60,13 +59,13 @@
 ### 快速安装
 
 ```bash
-# 1. 下载或构建 JAR
+# 构建 JAR
 mvn clean package -DskipTests
 
-# 2. 放入服务器 plugins/ 目录
-cp starcore-0.1.0-SNAPSHOT.jar /path/to/server/plugins/
+# 放入服务器 plugins/ 目录
+cp target/starcore-*.jar /path/to/server/plugins/
 
-# 3. 重启服务器
+# 重启服务器
 ```
 
 ---
@@ -75,25 +74,41 @@ cp starcore-0.1.0-SNAPSHOT.jar /path/to/server/plugins/
 
 ```bash
 # 国家管理
-/sc n create <国家名>       # 创建国家
-/sc n info                  # 查看国家信息
-/sc n invite <玩家>         # 邀请玩家
+/nation create <国家名>       # 创建国家
+/nation info                  # 查看国家信息
+/nation invite <玩家>         # 邀请玩家
 
 # 领地圈地
-/sc claim tool              # 获取圈地工具
-/sc claim confirm           # 确认圈地
+/claim tool                   # 获取圈地工具
+/claim confirm                # 确认圈地
 
 # 财政
-/sc treasury deposit <金额> # 存款到国库
-/sc treasury balance        # 查看国库
+/treasury deposit <金额>      # 存款到国库
+/treasury balance             # 查看国库
 
 # 外交
-/sc diplomacy set <国家> <关系>  # 设置外交关系
+/diplomacy set <国家> <关系>   # 设置外交关系
 ```
 
 ---
 
-## 🔧 构建
+## 🏗️ 项目结构
+
+```
+starcore/
+├── src/main/java/dev/starcore/starcore/
+│   ├── foundation/        # 基础设施（经济、存储、反馈）
+│   ├── module/            # 13个核心业务模块
+│   └── integration/       # 插件集成
+└── src/main/resources/
+    ├── config.yml         # 主配置
+    ├── lang/              # 语言文件
+    └── db/migration/       # 数据库迁移
+```
+
+---
+
+## 🔧 开发
 
 ```bash
 # 克隆
@@ -103,16 +118,26 @@ cd starcore
 # 构建
 mvn clean package
 
-# 生成的 JAR: target/starcore-0.1.0-SNAPSHOT.jar
+# 生成: target/starcore-0.1.0-SNAPSHOT.jar
 ```
+
+### 技术栈
+
+- **Java 21** - 语言
+- **Paper 1.21.11** - 服务器
+- **Maven** - 构建工具
+- **HikariCP** - 数据库连接池
+- **SQLite/MySQL** - 数据存储
 
 ---
 
 ## 📊 统计数据
 
-- **677** 个 Java 类文件
-- **13** 个核心模块
-- **100+** 配置文件
+| 指标 | 数量 |
+|------|------|
+| Java 类文件 | 677 |
+| 核心模块 | 13 |
+| 集成插件 | 10+ |
 
 ---
 
@@ -125,7 +150,7 @@ mvn clean package
 ## 🔗 链接
 
 - [问题反馈](https://github.com/addxiaoyi/starcore/issues)
-- [ Releases](https://github.com/addxiaoyi/starcore/releases)
+- [Releases](https://github.com/addxiaoyi/starcore/releases)
 
 ---
 
