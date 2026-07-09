@@ -227,8 +227,8 @@ public class RedisTransport {
             if (ps != null && ps.isSubscribed()) {
                 try {
                     ps.punsubscribe();
-                } catch (Exception ignored) {
-                    // ignore
+                } catch (Exception e) {
+                    logger.fine("Error unsubscribing from Redis pubsub: " + e.getMessage());
                 }
             }
             if (subscriberThread != null) {

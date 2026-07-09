@@ -260,17 +260,14 @@ public class PolygonalRegion implements RegionSelection {
         }
 
         if (other instanceof CuboidRegion otherCuboid) {
-            Optional<RegionSelection> intersection = thisCuboid.get().intersection(otherCuboid);
-            return intersection.flatMap(r -> r.toPolygonal());
+            return thisCuboid
+                .flatMap(c -> c.intersection(otherCuboid))
+                .flatMap(r -> r.toPolygonal());
         }
 
         Optional<CuboidRegion> otherCuboidOpt = other.toCuboid();
-        if (otherCuboidOpt.isEmpty()) {
-            return Optional.empty();
-        }
-
-        Optional<RegionSelection> intersection = thisCuboid.get().intersection(otherCuboidOpt.get());
-        return intersection.flatMap(r -> r.toPolygonal());
+        return thisCuboid.flatMap(c -> otherCuboidOpt.flatMap(o -> c.intersection(o)))
+            .flatMap(r -> r.toPolygonal());
     }
 
     /**
