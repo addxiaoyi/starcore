@@ -1,0 +1,167 @@
+# ============================================================
+# STARCORE 外交系统 GUI 配置
+# ============================================================
+
+# --- 外交主菜单 ---
+diplomacy-main:
+  title: "&b&l🤝 外交系统 &7| &f主菜单"
+  rows: 6
+
+  items:
+    # 外交概览
+    overview:
+      slot: 4
+      material: EMBER_ROLL
+      display-name: "&b&l🤝 外交概览"
+      glow: true
+      lore:
+        - ""
+        - "&7盟友: &a{ally_count} &7个国家"
+        - "&7停战: &e{truce_count} &7个国家"
+        - "&7敌对: &c{hostile_count} &7个国家"
+        - ""
+        - "&e▶ 点击查看详情"
+
+    # 联盟管理
+    alliance:
+      slot: 11
+      material: CREEPER_BANNER_PATTERN
+      display-name: "&a&l🤝 联盟管理"
+      glow: false
+      lore:
+        - ""
+        - "&7联盟国家: &a{ally_count}"
+        - "&7联盟请求: &e{pending_count}"
+        - ""
+        - "&e▶ 管理联盟"
+
+    # 停战协议
+    truce:
+      slot: 13
+      material: PAPER
+      display-name: "&e&l📜 停战协议"
+      glow: false
+      lore:
+        - ""
+        - "&7停战国: &e{truce_count}"
+        - "&7即将到期: &c{expiring_count}"
+        - ""
+        - "&e▶ 管理停战"
+
+    # 宣战
+    declare-war:
+      slot: 15
+      material: DIAMOND_SWORD
+      display-name: "&c&l⚔ 宣战"
+      glow: true
+      lore:
+        - ""
+        - "&c⚠ 此操作不可逆"
+        - "&7宣战后双方进入战争状态"
+        - "&7敌对国家: &c{hostile_count}"
+        - ""
+        - "&e▶ 选择目标"
+
+    # 外交关系
+    relations:
+      slot: 20
+      material: HEART
+      display-name: "&f&l❤️ 外交关系"
+      glow: false
+      lore:
+        - ""
+        - "&7关系评分: &e{relation_score}"
+        - "&7外交声望: &b{prestige}"
+        - ""
+        - "&e▶ 查看关系"
+
+    # 外交历史
+    history:
+      slot: 24
+      material: BOOK
+      display-name: "&f&l📖 外交历史"
+      glow: false
+      lore:
+        - ""
+        - "&7历史事件: &e{event_count}"
+        - "&7最近: &7{recent_event}"
+        - ""
+        - "&e▶ 查看历史"
+
+  border:
+    enabled: true
+    material: BLACK_STAINED_GLASS_PANE
+    display-name: " "
+
+# --- 联盟管理菜单 ---
+alliance-management:
+  title: "&a&l🤝 联盟管理"
+  rows: 6
+
+  items:
+    # 联盟列表
+    alliance-item:
+      slot: 20
+      material: CREEPER_BANNER_PATTERN
+      display-name: "&a&l{nation_name}"
+      glow: false
+      lore:
+        - ""
+        - "&7实力: &e{strength}"
+        - "&7关系: &a{relation}"
+        - "&7成员: &b{member_count}"
+        - ""
+        - "&e▶ 查看详情"
+
+  border:
+    enabled: true
+    material: BLACK_STAINED_GLASS_PANE
+    display-name: " "
+
+# --- 宣战选择菜单 ---
+war-declare:
+  title: "&c&l⚔ 选择目标"
+  rows: 6
+
+  items:
+    # 目标国家
+    target:
+      slot: 20
+      material: DIAMOND_SWORD
+      display-name: "&c&l{nation_name}"
+      glow: true
+      lore:
+        - ""
+        - "&7实力对比: &c{strength_comparison}"
+        - "&7战争风险: &e{risk_level}"
+        - ""
+        - "&c⚠ 宣战后不可撤回"
+
+  border:
+    enabled: true
+    material: BLACK_STAINED_GLASS_PANE
+    display-name: " "
+
+# --- 停战协议菜单 ---
+truce-management:
+  title: "&e&l📜 停战协议"
+  rows: 6
+
+  items:
+    # 协议项目
+    truce-item:
+      slot: 20
+      material: PAPER
+      display-name: "&e&l{nation_name}"
+      glow: false
+      lore:
+        - ""
+        - "&7剩余时间: &e{remaining_time}"
+        - "&7状态: &a有效"
+        - ""
+        - "&e▶ 续签协议"
+
+  border:
+    enabled: true
+    material: BLACK_STAINED_GLASS_PANE
+    display-name: " "

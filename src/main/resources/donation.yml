@@ -1,0 +1,169 @@
+# ============================================
+# Donation (献金) Module Configuration
+# Feature ID: 13
+# ============================================
+
+# 启用献金系统
+enabled: true
+
+# 最低献金额（0表示无限制）
+min-donation-amount: 10.00
+
+# 最高献金额（0表示无限制）
+max-donation-amount: 100000.00
+
+# 自动发放等级奖励（玩家升级时自动领取奖励）
+auto-grant-tier-rewards: false
+
+# 是否公告献金信息
+announce-donations: true
+
+# 是否显示献金排名
+show-rankings: true
+
+# 献金等级配置
+tiers:
+  bronze:
+    name: "铜牌"
+    min-amount: 0
+    max-amount: 99.99
+    priority: 1
+    benefits:
+      - "基础献金者"
+    perks:
+      chat_badge: "bronze"
+
+  silver:
+    name: "银牌"
+    min-amount: 100
+    max-amount: 499.99
+    priority: 2
+    benefits:
+      - "基础献金者"
+      - "专属称号"
+    perks:
+      chat_badge: "silver"
+      title: "银色献金者"
+
+  gold:
+    name: "金牌"
+    min-amount: 500
+    max-amount: 999.99
+    priority: 3
+    benefits:
+      - "基础献金者"
+      - "专属称号"
+      - "优先传送"
+    perks:
+      chat_badge: "gold"
+      title: "金色献金者"
+      priority_tp: true
+
+  platinum:
+    name: "白金"
+    min-amount: 1000
+    max-amount: 4999.99
+    priority: 4
+    benefits:
+      - "基础献金者"
+      - "专属称号"
+      - "优先传送"
+      - "专属传送点"
+    perks:
+      chat_badge: "platinum"
+      title: "白金献金者"
+      priority_tp: true
+      home: true
+
+  diamond:
+    name: "钻石"
+    min-amount: 5000
+    max-amount: 99999.99
+    priority: 5
+    benefits:
+      - "基础献金者"
+      - "专属称号"
+      - "优先传送"
+      - "专属传送点"
+      - "专属头衔"
+    perks:
+      chat_badge: "diamond"
+      title: "钻石献金者"
+      priority_tp: true
+      home: true
+      prefix: true
+
+  legend:
+    name: "传奇"
+    min-amount: 100000
+    max-amount: 999999999
+    priority: 6
+    benefits:
+      - "全部特权"
+      - "传奇称号"
+      - "专属旗帜"
+      - "传奇特效"
+    perks:
+      chat_badge: "legend"
+      title: "传奇献金者"
+      priority_tp: true
+      home: true
+      prefix: true
+      banner: true
+      effects: true
+
+# 献金奖励配置
+rewards:
+  bronze_welcome:
+    name: "铜牌欢迎礼"
+    description: "铜牌献金者的欢迎礼物"
+    required-tier: "bronze"
+    commands:
+      - "eco give %player% 50"
+    one-time: true
+    claimable: true
+
+  silver_bonus:
+    name: "银牌Bonus"
+    description: "银牌献金者额外奖励"
+    required-tier: "silver"
+    commands:
+      - "eco give %player% 200"
+    one-time: true
+    claimable: true
+
+  gold_pack:
+    name: "金牌礼包"
+    description: "金牌献金者专属礼包"
+    required-tier: "gold"
+    commands:
+      - "eco give %player% 500"
+    one-time: true
+    claimable: true
+
+  platinum_chest:
+    name: "白金宝箱"
+    description: "白金献金者专属宝箱"
+    required-tier: "platinum"
+    commands:
+      - "eco give %player% 2000"
+    one-time: true
+    claimable: true
+
+  diamond_treasure:
+    name: "钻石宝箱"
+    description: "钻石献金者专属宝箱"
+    required-tier: "diamond"
+    commands:
+      - "eco give %player% 5000"
+    one-time: true
+    claimable: true
+
+  legend_crown:
+    name: "传奇皇冠"
+    description: "传奇献金者专属皇冠"
+    required-tier: "legend"
+    commands:
+      - "eco give %player% 10000"
+    one-time: true
+    claimable: true

@@ -1,0 +1,126 @@
+# 副本系统中文语言文件
+dungeon:
+  prefix: "&6[副本]&r"
+
+  # 基础消息
+  enabled: "{prefix} &a副本系统已启用!"
+  disabled: "{prefix} &c副本系统已禁用!"
+
+  # 入口点消息
+  enter:
+    success: "{prefix} &a你已进入 &e{dungeon}&a!"
+    failed_no_party: "{prefix} &c你需要先组建队伍才能进入副本!"
+    failed_cooldown: "{prefix} &c你需要在 &e{time} &c分钟后才能再次进入此副本!"
+    failed_requirements: "{prefix} &c你的等级不足以进入此副本(需要 &e{level}&c 级)"
+    failed_fee: "{prefix} &c你需要 &e{cost} &c金币才能进入此副本!"
+    failed_full: "{prefix} &c副本已满!"
+    exit: "{prefix} &a你已离开副本!"
+
+  # 副本状态
+  status:
+    started: "{prefix} &a副本 &e{dungeon} &a已开始!"
+    completed: "{prefix} &a恭喜! 你完成了 &e{dungeon}&a!"
+    failed: "{prefix} &c副本 &e{dungeon} &c失败!"
+    timeout: "{prefix} &c副本 &e{dungeon} &c超时!"
+    no_party: "{prefix} &c队伍不存在或已解散!"
+
+  # Boss 战斗
+  boss:
+    spawn: "{prefix} &cBOSS &e{name} &c出现了!"
+    phase_change: "{prefix} &e{name} &c进入了 &e{phase} &c阶段!"
+    defeated: "{prefix} &aBOSS &e{name} &a已被击败!"
+    enrage: "{prefix} &cBOSS &e{name} &c进入了狂暴状态!"
+
+  # 房间状态
+  room:
+    cleared: "{prefix} &a房间 &e{room} &a已清理!"
+    failed: "{prefix} &c房间 &e{room} &c挑战失败!"
+    locked: "{prefix} &e{room} &c门被锁住了，需要先清理之前的房间!"
+    unlock: "{prefix} &a通往 &e{room} &a的门已打开!"
+
+  # 奖励
+  reward:
+    header: "&6========== 副本奖励 =========="
+    footer: "&6=============================="
+    gold: "&a金币: &e{amount}"
+    experience: "&a经验: &e{amount}"
+    item: "&a物品: &e{item}"
+
+  # 命令消息
+  command:
+    usage: "{prefix} &e用法: /dungeon <create|join|leave|list|info|reward|admin>"
+    no_permission: "{prefix} &c你没有权限使用此命令!"
+    player_not_found: "{prefix} &c玩家 &e{player} &c不存在!"
+    dungeon_not_found: "{prefix} &c副本 &e{dungeon} &c不存在!"
+    already_in_dungeon: "{prefix} &c你已经在副本中!"
+    not_in_dungeon: "{prefix} &c你不在副本中!"
+    creating: "{prefix} &a正在创建副本实例..."
+    created: "{prefix} &a副本实例已创建!"
+    joining: "{prefix} &a正在加入副本..."
+    joined: "{prefix} &a成功加入副本!"
+    leaving: "{prefix} &a正在离开副本..."
+    left: "{prefix} &a已离开副本!"
+    listing: "&6========== 副本列表 =========="
+    info_header: "&6========== 副本信息 =========="
+    info_name: "&e名称: &f{name}"
+    info_difficulty: "&e难度: &f{difficulty}"
+    info_players: "&e玩家: &f{current}/{max}"
+    info_status: "&e状态: &f{status}"
+
+  # 管理命令
+  admin:
+    reload: "{prefix} &a副本配置已重新加载!"
+    reset: "{prefix} &a已重置副本 &e{dungeon} &a!"
+    reset_all: "{prefix} &a已重置所有副本!"
+    force_start: "{prefix} &a已强制开始副本 &e{dungeon} &a!"
+    force_end: "{prefix} &a已强制结束副本 &e{dungeon} &a!"
+    teleport: "{prefix} &a已传送到副本入口!"
+    backup_created: "{prefix} &a已创建副本世界快照!"
+    backup_restored: "{prefix} &a已恢复副本世界快照!"
+
+  # GUI
+  gui:
+    title: "&6副本选择"
+    dungeon_item:
+      lore:
+        - ""
+        - "&7难度: &e{difficulty}"
+        - "&7玩家: &e{min_players}-{max_players}"
+        - "&7推荐等级: &e{level}"
+        - "&7入场费: &e{cost} 金币"
+        - ""
+        - "&a点击进入副本"
+      locked_lore:
+        - ""
+        - "&7难度: &e{difficulty}"
+        - "&7玩家: &e{min_players}-{max_players}"
+        - "&7推荐等级: &e{level}"
+        - "&7入场费: &e{cost} 金币"
+        - ""
+        - "&c需要组建队伍才能进入"
+    difficulty:
+      easy: "&a简单"
+      normal: "&e普通"
+      hard: "&c困难"
+      nightmare: "&4噩梦"
+
+  # 冷却消息
+  cooldown:
+    message: "{prefix} &c请等待 &e{time} &c后再试!"
+    expired: "{prefix} &a冷却时间已过，可以再次进入!"
+
+  # 错误消息
+  error:
+    generic: "{prefix} &c发生错误: &e{error}"
+    world_load: "{prefix} &c无法加载副本世界!"
+    instance_create: "{prefix} &c无法创建副本实例!"
+    player_state: "{prefix} &c无法保存玩家状态!"
+    restore_state: "{prefix} &c无法恢复玩家状态!"
+    database: "{prefix} &c数据库错误!"
+
+  # 提示消息
+  tips:
+    - "&7提示: 与队友配合可以更容易通关!"
+    - "&7提示: 注意观察BOSS的技能预警!"
+    - "&7提示: 保持血量健康再进入下一个房间!"
+    - "&7提示: 不同难度奖励差距很大哦!"

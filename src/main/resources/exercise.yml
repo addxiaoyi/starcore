@@ -1,0 +1,64 @@
+# StarCore 演习系统配置文件
+# 军事演习配置
+
+# ========== 演习设置 ==========
+exercise:
+  # 最长演习时间（分钟）
+  max-duration-minutes: 60
+  # 最少参与国家数
+  min-participants: 2
+  # 最多参与国家数
+  max-participants: 10
+  # 每个国家最少士兵数
+  min-soldiers-per-participant: 50
+  # 每个国家最多士兵数
+  max-soldiers-per-participant: 500
+  # 胜利获得士气
+  morale-gain-per-victory: 5.0
+  # 失败扣除士气
+  morale-penalty-for-defeat: 2.0
+  # 每参与者获得经验
+  experience-gain-per-participant: 100.0
+  # 启用友军伤害
+  friendly-fire-enabled: false
+  # 启用奖励
+  rewards-enabled: true
+
+# ========== 战斗设置 ==========
+combat:
+  # 战斗冷却时间（毫秒）
+  battle-cooldown: 30000
+  # 检测半径
+  detection-radius: 30.0
+  # 每次战斗基础伤害比例
+  base-damage-rate: 0.2
+  # 随机性因子范围
+  random-factor: 0.3
+
+# ========== 区域设置 ==========
+zone:
+  # 默认演习世界
+  default-world: "world"
+  # 默认演习半径
+  default-radius: 200
+
+# ========== 消息设置 ==========
+messages:
+  # 演习开始广播
+  broadcast-started: "&6演习 %s 已经开始！类型: %s，参与国家: %d"
+  # 演习结束广播
+  broadcast-ended: "&e演习 %s 已结束。原因: %s"
+  # 战斗结果广播
+  broadcast-battle: "&c%s 与 %s 发生战斗，%s 获胜！伤亡: %d vs %d"
+  # 玩家加入广播
+  broadcast-joined: "&a%s 加入了演习 %s，投入 %d 士兵"
+  # 玩家退出广播
+  broadcast-disconnect: "&e%s 的代表已离开演习"
+  # 玩家死亡广播
+  broadcast-death: "&4%s 的代表 %s 在演习中阵亡，损失 %d 士兵"
+  # 战斗胜利消息
+  battle-victory: "&a胜利！损失 %d 士兵"
+  # 战斗平局消息
+  battle-draw: "&e平局！损失 %d 士兵"
+  # 战斗失败消息
+  battle-defeat: "&c失败！损失 %d 士兵"

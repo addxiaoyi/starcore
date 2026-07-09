@@ -1,0 +1,59 @@
+# ===============================================
+# 指挥官系统配置
+# ===============================================
+commander:
+  # 是否启用指挥官系统
+  enabled: true
+  # 每个指挥官最多可学习的技能数量
+  max-skills-per-commander: 5
+  # 是否允许重置技能
+  allow-skill-reset: true
+  # 技能重置返还比例（1/2 表示返还一半经验）
+  skill-reset-refund-ratio: 2
+  # 经验获取配置
+  exp:
+    # 每场战斗获得经验
+    from-battle: 10
+    # 每次击杀获得经验
+    per-kill: 5
+    # 每次胜利获得经验
+    per-victory: 50
+    # 创建军队获得经验
+    per-army-created: 20
+    # 防守领土获得经验
+    per-territory-defended: 15
+
+# ===============================================
+# 指挥官等级配置（可选覆盖）
+# ===============================================
+# commander-levels:
+#   private:
+#     title: "列兵"
+#     experience-required: 0
+#   corporal:
+#     title: "班长"
+#     experience-required: 100
+#   sergeant:
+#     title: "排长"
+#     experience-required: 300
+#   lieutenant:
+#     title: "连长"
+#     experience-required: 600
+#   major:
+#     title: "营长"
+#     experience-required: 1000
+#   colonel:
+#     title: "团长"
+#     experience-required: 1500
+#   brigadier:
+#     title: "旅长"
+#     experience-required: 2200
+#   division-general:
+#     title: "师长"
+#     experience-required: 3000
+#   army-commander:
+#     title: "军长"
+#     experience-required: 4000
+#   marshal:
+#     title: "元帅"
+#     experience-required: 5500
