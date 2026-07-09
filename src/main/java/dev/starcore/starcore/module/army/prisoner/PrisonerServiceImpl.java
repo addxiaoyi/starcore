@@ -423,6 +423,39 @@ public final class PrisonerServiceImpl implements PrisonerService {
         }
     }
 
+    /**
+     * 安全的对象输入流 - 白名单验证
+     * 防止反序列化漏洞 (CWE-502)
+     */
+    private static class SafeObjectInputStream extends ObjectInputStream {
+        private static final Set<String> ALLOWED_CLASSES = Set.of(
+            "dev.starcore.starcore.module.army.prisoner.model.PrisonerOfWar",
+            "java.util.ArrayList",
+            "java.util.HashSet",
+            "java.util.LinkedHashSet",
+            "java.util.concurrent.ConcurrentHashMap",
+            "java.util.UUID",
+            "java.time.Instant",
+            "java.lang.String",
+            "java.lang.Integer",
+            "java.lang.Boolean",
+            "java.lang.Double"
+        );
+
+        private SafeObjectInputStream(InputStream in) throws IOException {
+            super(in);
+        }
+
+        @Override
+        protected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException {
+            String className = desc.getName();
+            if (!ALLOWED_CLASSES.contains(className)) {
+                throw new IOException("不允许反序列化类: " + className + " - 可能存在安全风险");
+            }
+            return super.resolveClass(desc);
+        }
+    }
+
     @SuppressWarnings("unchecked")
     public void loadAll() {
         Path dataPath = plugin.getDataFolder().toPath().resolve("prisoners");
@@ -432,11 +465,16 @@ public final class PrisonerServiceImpl implements PrisonerService {
             return;
         }
 
-        try (ObjectInputStream ois = new ObjectInputStream(
+        try (SafeObjectInputStream ois = new SafeObjectInputStream(
             new BufferedInputStream(Files.newInputStream(file)))) {
             List<PrisonerOfWar> loaded = (List<PrisonerOfWar>) ois.readObject();
 
             for (PrisonerOfWar prisoner : loaded) {
+                // 验证数据完整性
+                if (prisoner == null || prisoner.id() == null || prisoner.prisonerId() == null) {
+                    plugin.getLogger().warning("跳过无效的俘虏数据记录");
+                    continue;
+                }
                 prisonersById.put(prisoner.id(), prisoner);
                 playerToPrisoner.put(prisoner.prisonerId(), prisoner.id());
                 nationCaptives.computeIfAbsent(prisoner.captorNationId(), k -> ConcurrentHashMap.newKeySet()).add(prisoner.id());
@@ -447,6 +485,8 @@ public final class PrisonerServiceImpl implements PrisonerService {
             plugin.getLogger().info("Loaded " + loaded.size() + " prisoner records");
         } catch (IOException | ClassNotFoundException e) {
             plugin.getLogger().severe("Failed to load prisoner data: " + e.getMessage());
+        } catch (Exception e) {
+            plugin.getLogger().severe("安全检查失败，无法加载俘虏数据: " + e.getMessage());
         }
     }
 

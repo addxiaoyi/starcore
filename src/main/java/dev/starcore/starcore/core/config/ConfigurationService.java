@@ -22,8 +22,16 @@ import java.util.Map;
 import java.util.Set;
 
 public final class ConfigurationService {
-    private static final String DEFAULT_MAP_WEB_ACCESS_SECRET = "change-this-secret";
-    private static final String DEFAULT_REST_API_SIGNING_SECRET = "change-this-secret";
+    // 默认密钥，插件启动时必须更改
+    private static final String DEFAULT_MAP_WEB_ACCESS_SECRET = "CHANGE_THIS_SECRET_ON_FIRST_START";
+    private static final String DEFAULT_REST_API_SIGNING_SECRET = "CHANGE_THIS_SECRET_ON_FIRST_START";
+
+    // 标记默认密钥是否已配置（用于安全检查）
+    private static final Set<String> DEFAULT_SECRET_VALUES = Set.of(
+        "change-this-secret",
+        "CHANGE_THIS_SECRET_ON_FIRST_START",
+        "CHANGE_THIS_SECRET"
+    );
     private static final List<String> DEFAULT_MAP_AVATAR_UPSTREAMS = List.of(
         "https://crafatar.com/avatars/{uuid}?size=64&overlay",
         "https://minotar.net/avatar/{uuid}/64.png",
@@ -960,15 +968,19 @@ public final class ConfigurationService {
 
     public boolean mapWebAccessSecretConfigured() {
         String secret = mapWebAccessSecret();
-        return secret != null && !secret.isBlank() && !DEFAULT_MAP_WEB_ACCESS_SECRET.equals(secret);
+        return secret != null
+            && !secret.isBlank()
+            && !DEFAULT_SECRET_VALUES.contains(secret);
     }
 
     public boolean ensureMapWebAccessSecretConfigured() {
         if (mapWebAccessSecretConfigured()) {
             return false;
         }
-        config().set("map.web.access-secret", generateSecret());
+        String newSecret = generateSecret();
+        config().set("map.web.access-secret", newSecret);
         plugin.saveConfig();
+        plugin.getLogger().warning("⚠️ 地图 Web 服务访问密钥已自动生成！请在 config.yml 中查看并妥善保管。");
         return true;
     }
 
@@ -1097,15 +1109,19 @@ public final class ConfigurationService {
 
     public boolean restApiSigningSecretConfigured() {
         String secret = restApiSigningSecret();
-        return secret != null && !secret.isBlank() && !DEFAULT_REST_API_SIGNING_SECRET.equals(secret);
+        return secret != null
+            && !secret.isBlank()
+            && !DEFAULT_SECRET_VALUES.contains(secret);
     }
 
     public boolean ensureRestApiSigningSecretConfigured() {
         if (restApiSigningSecretConfigured()) {
             return false;
         }
-        config().set("rest-api.signing-secret", generateSecret());
+        String newSecret = generateSecret();
+        config().set("rest-api.signing-secret", newSecret);
         plugin.saveConfig();
+        plugin.getLogger().warning("⚠️ REST API 签名密钥已自动生成！请在 config.yml 中查看并妥善保管。");
         return true;
     }
 
