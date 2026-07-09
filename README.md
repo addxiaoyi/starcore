@@ -33,18 +33,19 @@
 
 ```bash
 # 构建
-cd starcore
 mvn clean package
 
 # 生成: target/starcore-0.1.0-SNAPSHOT.jar
 ```
 
 ### 前置要求
+
 - Java 21+
 - Minecraft 1.21.11+ (Paper/Spigot)
-- Vault（必需）
+- **Vault**（必需）
 
 ### 集成支持
+
 - Vault 经济系统
 - PlaceholderAPI 占位符
 - squaremap/Pl3xMap/dynmap 地图渲染
@@ -55,23 +56,18 @@ mvn clean package
 ## 📁 项目结构
 
 ```
-starcore/
-├── src/main/java/dev/starcore/starcore/
-│   ├── foundation/        # 基础设施（经济、存储、反馈）
-│   ├── module/            # 核心业务模块
-│   ├── integration/       # 插件集成
-│   └── api/               # 公开API
-└── src/main/resources/
-    ├── config.yml         # 主配置
-    ├── lang/              # 语言文件
-    └── db/migration/       # 数据库迁移
+src/main/java/dev/starcore/starcore/
+├── foundation/        # 基础设施（经济、存储、反馈）
+├── module/           # 核心业务模块
+├── integration/      # 插件集成
+└── api/             # 公开API
 ```
 
 ---
 
 ## 📊 统计数据
 
-- **677** 个 Java 类文件
+- **677+** 个 Java 类文件
 - **13** 个核心模块
 - **6** 个集成插件
 
@@ -85,5 +81,5 @@ starcore/
 
 ## 🔗 链接
 
-- [文档](starcore/README.md)
+- [文档](docs/)
 - [问题反馈](https://github.com/addxiaoyi/starcore/issues)
