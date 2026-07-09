@@ -1,0 +1,5 @@
+-d
+C:/Users/l/AppData/Local/Temp/test
+-cp
+.;
+src/main/java/dev/starcore/starcore/social/simulation/gui/SocialClassGui.java

@@ -1,0 +1,576 @@
+{
+  "target": "http://localhost:3000/",
+  "browser": "Codex In-app Browser",
+  "generatedAt": "2026-06-05T14:42:27.678Z",
+  "checks": [
+    {
+      "label": "wait-ready",
+      "last": {
+        "bodyClass": "sidebar-collapsed page-ready",
+        "ready": true,
+        "textLength": 720
+      }
+    },
+    {
+      "label": "root-default",
+      "state": {
+        "bodyClass": "sidebar-collapsed page-ready",
+        "hasHudZoomControls": true,
+        "hasMapPane": true,
+        "hasTitleText": true,
+        "mapRect": {
+          "height": 684,
+          "left": 18,
+          "top": 18,
+          "width": 1244
+        },
+        "mapShellPaddingLeft": "18px",
+        "mapShellPosition": "absolute",
+        "sidebarBackdrop": "blur(28px) saturate(1.18)",
+        "sidebarDisplay": "flex",
+        "sidebarOpacity": "0.08",
+        "sidebarPointerEvents": "none",
+        "sidebarRect": {
+          "height": 684,
+          "left": -348,
+          "top": 18,
+          "width": 360
+        },
+        "sidebarTransform": "matrix(1, 0, 0, 1, -366, 0)",
+        "statusDetail": "当前读取本地导出的静态快照。",
+        "textLength": 744,
+        "title": "STARCORE Strategic Map",
+        "toggleDisplay": "flex",
+        "toggleExpanded": "false",
+        "toggleRect": {
+          "height": 46,
+          "left": 18,
+          "top": 18,
+          "width": 138
+        },
+        "toggleText": "展开情报面板",
+        "url": "http://localhost:3000/?qa=corrected-default",
+        "viewport": {
+          "height": 720,
+          "width": 1280
+        },
+        "zoomDisplay": "flex",
+        "zoomRect": {
+          "height": 138,
+          "left": 1220,
+          "top": 116,
+          "width": 42
+        }
+      }
+    },
+    {
+      "label": "after-toggle-expanded",
+      "state": {
+        "bodyClass": "page-ready sidebar-expanded",
+        "hasHudZoomControls": true,
+        "hasMapPane": true,
+        "hasTitleText": true,
+        "mapRect": {
+          "height": 684,
+          "left": 406,
+          "top": 18,
+          "width": 856
+        },
+        "mapShellPaddingLeft": "406px",
+        "mapShellPosition": "absolute",
+        "sidebarBackdrop": "blur(28px) saturate(1.18)",
+        "sidebarDisplay": "flex",
+        "sidebarOpacity": "1",
+        "sidebarPointerEvents": "auto",
+        "sidebarRect": {
+          "height": 684,
+          "left": 18,
+          "top": 18,
+          "width": 360
+        },
+        "sidebarTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "statusDetail": "当前读取本地导出的静态快照。",
+        "textLength": 744,
+        "title": "STARCORE Strategic Map",
+        "toggleDisplay": "flex",
+        "toggleExpanded": "true",
+        "toggleRect": {
+          "height": 46,
+          "left": 388,
+          "top": 18,
+          "width": 138
+        },
+        "toggleText": "收起情报面板",
+        "url": "http://localhost:3000/?qa=corrected-default",
+        "viewport": {
+          "height": 720,
+          "width": 1280
+        },
+        "zoomDisplay": "flex",
+        "zoomRect": {
+          "height": 138,
+          "left": 1220,
+          "top": 116,
+          "width": 42
+        }
+      }
+    },
+    {
+      "label": "wait-ready",
+      "last": {
+        "bodyClass": "sidebar-collapsed page-ready",
+        "ready": true,
+        "textLength": 720
+      }
+    },
+    {
+      "label": "url-closed",
+      "state": {
+        "bodyClass": "sidebar-collapsed page-ready",
+        "hasHudZoomControls": true,
+        "hasMapPane": true,
+        "hasTitleText": true,
+        "mapRect": {
+          "height": 684,
+          "left": 18,
+          "top": 18,
+          "width": 1244
+        },
+        "mapShellPaddingLeft": "18px",
+        "mapShellPosition": "absolute",
+        "sidebarBackdrop": "blur(28px) saturate(1.18)",
+        "sidebarDisplay": "flex",
+        "sidebarOpacity": "0.08",
+        "sidebarPointerEvents": "none",
+        "sidebarRect": {
+          "height": 684,
+          "left": -348,
+          "top": 18,
+          "width": 360
+        },
+        "sidebarTransform": "matrix(1, 0, 0, 1, -366, 0)",
+        "statusDetail": "当前读取本地导出的静态快照。",
+        "textLength": 744,
+        "title": "STARCORE Strategic Map",
+        "toggleDisplay": "flex",
+        "toggleExpanded": "false",
+        "toggleRect": {
+          "height": 46,
+          "left": 18,
+          "top": 18,
+          "width": 138
+        },
+        "toggleText": "展开情报面板",
+        "url": "http://localhost:3000/?sidebar=closed&qa=corrected",
+        "viewport": {
+          "height": 720,
+          "width": 1280
+        },
+        "zoomDisplay": "flex",
+        "zoomRect": {
+          "height": 138,
+          "left": 1220,
+          "top": 116,
+          "width": 42
+        }
+      }
+    },
+    {
+      "label": "wait-ready",
+      "last": {
+        "bodyClass": "sidebar-expanded page-ready",
+        "ready": true,
+        "textLength": 720
+      }
+    },
+    {
+      "label": "url-open",
+      "state": {
+        "bodyClass": "sidebar-expanded page-ready",
+        "hasHudZoomControls": true,
+        "hasMapPane": true,
+        "hasTitleText": true,
+        "mapRect": {
+          "height": 684,
+          "left": 406,
+          "top": 18,
+          "width": 856
+        },
+        "mapShellPaddingLeft": "406px",
+        "mapShellPosition": "absolute",
+        "sidebarBackdrop": "blur(28px) saturate(1.18)",
+        "sidebarDisplay": "flex",
+        "sidebarOpacity": "1",
+        "sidebarPointerEvents": "auto",
+        "sidebarRect": {
+          "height": 684,
+          "left": 18,
+          "top": 18,
+          "width": 360
+        },
+        "sidebarTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "statusDetail": "当前读取本地导出的静态快照。",
+        "textLength": 744,
+        "title": "STARCORE Strategic Map",
+        "toggleDisplay": "flex",
+        "toggleExpanded": "true",
+        "toggleRect": {
+          "height": 46,
+          "left": 388,
+          "top": 18,
+          "width": 138
+        },
+        "toggleText": "收起情报面板",
+        "url": "http://localhost:3000/?sidebar=open&qa=corrected",
+        "viewport": {
+          "height": 720,
+          "width": 1280
+        },
+        "zoomDisplay": "flex",
+        "zoomRect": {
+          "height": 138,
+          "left": 1220,
+          "top": 116,
+          "width": 42
+        }
+      }
+    },
+    {
+      "label": "desktop-console",
+      "logs": []
+    },
+    {
+      "label": "wait-ready",
+      "last": {
+        "bodyClass": "sidebar-collapsed page-ready",
+        "ready": true,
+        "textLength": 713
+      }
+    },
+    {
+      "label": "mobile-390x844-closed-param",
+      "state": {
+        "bodyClass": "sidebar-collapsed page-ready",
+        "hasHudZoomControls": true,
+        "hasMapPane": true,
+        "hasTitleText": true,
+        "mapRect": {
+          "height": 596,
+          "left": 12,
+          "top": 2350,
+          "width": 351
+        },
+        "mapShellPaddingLeft": "12px",
+        "mapShellPosition": "relative",
+        "sidebarBackdrop": "blur(28px) saturate(1.18)",
+        "sidebarDisplay": "flex",
+        "sidebarOpacity": "1",
+        "sidebarPointerEvents": "auto",
+        "sidebarRect": {
+          "height": 2326,
+          "left": 12,
+          "top": 12,
+          "width": 351
+        },
+        "sidebarTransform": "none",
+        "statusDetail": "当前读取本地导出的静态快照。",
+        "textLength": 737,
+        "title": "STARCORE Strategic Map",
+        "toggleDisplay": "none",
+        "toggleExpanded": "false",
+        "toggleRect": {
+          "height": 0,
+          "left": 0,
+          "top": 0,
+          "width": 0
+        },
+        "toggleText": "展开情报面板",
+        "url": "http://localhost:3000/?sidebar=closed&qa=mobile-corrected",
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "zoomDisplay": "flex",
+        "zoomRect": {
+          "height": 138,
+          "left": 336,
+          "top": 694,
+          "width": 42
+        }
+      }
+    },
+    {
+      "label": "mobile-console",
+      "logs": []
+    }
+  ],
+  "defaultState": {
+    "bodyClass": "sidebar-collapsed page-ready",
+    "hasHudZoomControls": true,
+    "hasMapPane": true,
+    "hasTitleText": true,
+    "mapRect": {
+      "height": 684,
+      "left": 18,
+      "top": 18,
+      "width": 1244
+    },
+    "mapShellPaddingLeft": "18px",
+    "mapShellPosition": "absolute",
+    "sidebarBackdrop": "blur(28px) saturate(1.18)",
+    "sidebarDisplay": "flex",
+    "sidebarOpacity": "0.08",
+    "sidebarPointerEvents": "none",
+    "sidebarRect": {
+      "height": 684,
+      "left": -348,
+      "top": 18,
+      "width": 360
+    },
+    "sidebarTransform": "matrix(1, 0, 0, 1, -366, 0)",
+    "statusDetail": "当前读取本地导出的静态快照。",
+    "textLength": 744,
+    "title": "STARCORE Strategic Map",
+    "toggleDisplay": "flex",
+    "toggleExpanded": "false",
+    "toggleRect": {
+      "height": 46,
+      "left": 18,
+      "top": 18,
+      "width": 138
+    },
+    "toggleText": "展开情报面板",
+    "url": "http://localhost:3000/?qa=corrected-default",
+    "viewport": {
+      "height": 720,
+      "width": 1280
+    },
+    "zoomDisplay": "flex",
+    "zoomRect": {
+      "height": 138,
+      "left": 1220,
+      "top": 116,
+      "width": 42
+    }
+  },
+  "defaultScreenshot": "D:\\qwq\\项目\\mapadd\\test-results\\hud-sidebar\\default-collapsed.png",
+  "expandedState": {
+    "bodyClass": "page-ready sidebar-expanded",
+    "hasHudZoomControls": true,
+    "hasMapPane": true,
+    "hasTitleText": true,
+    "mapRect": {
+      "height": 684,
+      "left": 406,
+      "top": 18,
+      "width": 856
+    },
+    "mapShellPaddingLeft": "406px",
+    "mapShellPosition": "absolute",
+    "sidebarBackdrop": "blur(28px) saturate(1.18)",
+    "sidebarDisplay": "flex",
+    "sidebarOpacity": "1",
+    "sidebarPointerEvents": "auto",
+    "sidebarRect": {
+      "height": 684,
+      "left": 18,
+      "top": 18,
+      "width": 360
+    },
+    "sidebarTransform": "matrix(1, 0, 0, 1, 0, 0)",
+    "statusDetail": "当前读取本地导出的静态快照。",
+    "textLength": 744,
+    "title": "STARCORE Strategic Map",
+    "toggleDisplay": "flex",
+    "toggleExpanded": "true",
+    "toggleRect": {
+      "height": 46,
+      "left": 388,
+      "top": 18,
+      "width": 138
+    },
+    "toggleText": "收起情报面板",
+    "url": "http://localhost:3000/?qa=corrected-default",
+    "viewport": {
+      "height": 720,
+      "width": 1280
+    },
+    "zoomDisplay": "flex",
+    "zoomRect": {
+      "height": 138,
+      "left": 1220,
+      "top": 116,
+      "width": 42
+    }
+  },
+  "expandedScreenshot": "D:\\qwq\\项目\\mapadd\\test-results\\hud-sidebar\\expanded-sidebar.png",
+  "urlClosedState": {
+    "bodyClass": "sidebar-collapsed page-ready",
+    "hasHudZoomControls": true,
+    "hasMapPane": true,
+    "hasTitleText": true,
+    "mapRect": {
+      "height": 684,
+      "left": 18,
+      "top": 18,
+      "width": 1244
+    },
+    "mapShellPaddingLeft": "18px",
+    "mapShellPosition": "absolute",
+    "sidebarBackdrop": "blur(28px) saturate(1.18)",
+    "sidebarDisplay": "flex",
+    "sidebarOpacity": "0.08",
+    "sidebarPointerEvents": "none",
+    "sidebarRect": {
+      "height": 684,
+      "left": -348,
+      "top": 18,
+      "width": 360
+    },
+    "sidebarTransform": "matrix(1, 0, 0, 1, -366, 0)",
+    "statusDetail": "当前读取本地导出的静态快照。",
+    "textLength": 744,
+    "title": "STARCORE Strategic Map",
+    "toggleDisplay": "flex",
+    "toggleExpanded": "false",
+    "toggleRect": {
+      "height": 46,
+      "left": 18,
+      "top": 18,
+      "width": 138
+    },
+    "toggleText": "展开情报面板",
+    "url": "http://localhost:3000/?sidebar=closed&qa=corrected",
+    "viewport": {
+      "height": 720,
+      "width": 1280
+    },
+    "zoomDisplay": "flex",
+    "zoomRect": {
+      "height": 138,
+      "left": 1220,
+      "top": 116,
+      "width": 42
+    }
+  },
+  "urlOpenState": {
+    "bodyClass": "sidebar-expanded page-ready",
+    "hasHudZoomControls": true,
+    "hasMapPane": true,
+    "hasTitleText": true,
+    "mapRect": {
+      "height": 684,
+      "left": 406,
+      "top": 18,
+      "width": 856
+    },
+    "mapShellPaddingLeft": "406px",
+    "mapShellPosition": "absolute",
+    "sidebarBackdrop": "blur(28px) saturate(1.18)",
+    "sidebarDisplay": "flex",
+    "sidebarOpacity": "1",
+    "sidebarPointerEvents": "auto",
+    "sidebarRect": {
+      "height": 684,
+      "left": 18,
+      "top": 18,
+      "width": 360
+    },
+    "sidebarTransform": "matrix(1, 0, 0, 1, 0, 0)",
+    "statusDetail": "当前读取本地导出的静态快照。",
+    "textLength": 744,
+    "title": "STARCORE Strategic Map",
+    "toggleDisplay": "flex",
+    "toggleExpanded": "true",
+    "toggleRect": {
+      "height": 46,
+      "left": 388,
+      "top": 18,
+      "width": 138
+    },
+    "toggleText": "收起情报面板",
+    "url": "http://localhost:3000/?sidebar=open&qa=corrected",
+    "viewport": {
+      "height": 720,
+      "width": 1280
+    },
+    "zoomDisplay": "flex",
+    "zoomRect": {
+      "height": 138,
+      "left": 1220,
+      "top": 116,
+      "width": 42
+    }
+  },
+  "urlOpenScreenshot": "D:\\qwq\\项目\\mapadd\\test-results\\hud-sidebar\\url-open-sidebar.png",
+  "desktopLogs": [],
+  "mobileState": {
+    "bodyClass": "sidebar-collapsed page-ready",
+    "hasHudZoomControls": true,
+    "hasMapPane": true,
+    "hasTitleText": true,
+    "mapRect": {
+      "height": 596,
+      "left": 12,
+      "top": 2350,
+      "width": 351
+    },
+    "mapShellPaddingLeft": "12px",
+    "mapShellPosition": "relative",
+    "sidebarBackdrop": "blur(28px) saturate(1.18)",
+    "sidebarDisplay": "flex",
+    "sidebarOpacity": "1",
+    "sidebarPointerEvents": "auto",
+    "sidebarRect": {
+      "height": 2326,
+      "left": 12,
+      "top": 12,
+      "width": 351
+    },
+    "sidebarTransform": "none",
+    "statusDetail": "当前读取本地导出的静态快照。",
+    "textLength": 737,
+    "title": "STARCORE Strategic Map",
+    "toggleDisplay": "none",
+    "toggleExpanded": "false",
+    "toggleRect": {
+      "height": 0,
+      "left": 0,
+      "top": 0,
+      "width": 0
+    },
+    "toggleText": "展开情报面板",
+    "url": "http://localhost:3000/?sidebar=closed&qa=mobile-corrected",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "zoomDisplay": "flex",
+    "zoomRect": {
+      "height": 138,
+      "left": 336,
+      "top": 694,
+      "width": 42
+    }
+  },
+  "mobileScreenshot": "D:\\qwq\\项目\\mapadd\\test-results\\hud-sidebar\\mobile-390x844.png",
+  "mobileLogs": [],
+  "verdict": {
+    "pageIdentity": true,
+    "notBlank": true,
+    "defaultCollapsed": true,
+    "expandsOnClick": true,
+    "urlClosedWorks": true,
+    "urlOpenWorks": true,
+    "mobileUsable": true,
+    "consoleClean": true
+  },
+  "passed": true,
+  "relevantLogs": [],
+  "screenshots": [
+    "D:\\qwq\\项目\\mapadd\\test-results\\hud-sidebar\\default-collapsed.png",
+    "D:\\qwq\\项目\\mapadd\\test-results\\hud-sidebar\\expanded-sidebar.png",
+    "D:\\qwq\\项目\\mapadd\\test-results\\hud-sidebar\\url-open-sidebar.png",
+    "D:\\qwq\\项目\\mapadd\\test-results\\hud-sidebar\\mobile-390x844.png"
+  ]
+}

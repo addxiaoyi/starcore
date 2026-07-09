@@ -1,0 +1,146 @@
+# 第三方插件集成配置
+# StarCore Plugin Integration Configuration
+
+integrations:
+  # 全局开关
+  enabled: true
+
+  # 调试模式
+  debug: false
+
+  # 粘液科技 (Slimefun)
+  slimefun:
+    enabled: true
+    # 保护粘液科技机器
+    protect_machines: true
+    # 保护货运网络
+    protect_cargo: true
+    # 保护能量网络
+    protect_energy: true
+    # 保护农业机器
+    protect_farms: true
+    # 保护采矿机器
+    protect_mining: true
+    # 粘液胶使用权限检查
+    check_tape_permission: true
+
+  # MMOItems
+  mmoitems:
+    enabled: true
+    # 保护自定义物品
+    protect_custom_items: true
+    # 物品使用权限检查
+    check_use_permission: true
+    # 物品拾取权限检查
+    check_pickup_permission: false
+    # 物品丢弃权限检查
+    check_drop_permission: false
+    # 物品制作权限检查
+    check_craft_permission: true
+
+  # ItemsAdder
+  itemsadder:
+    enabled: true
+    # 保护自定义方块
+    protect_blocks: true
+    # 保护自定义家具
+    protect_furniture: true
+    # 保护自定义物品
+    protect_items: true
+    # 方块放置权限检查
+    check_place_permission: true
+    # 方块破坏权限检查
+    check_break_permission: true
+    # 物品使用权限检查
+    check_use_permission: true
+
+  # Oraxen
+  oraxen:
+    enabled: true
+    # 保护自定义家具
+    protect_furniture: true
+    # 保护自定义方块
+    protect_blocks: true
+    # 保护自定义物品
+    protect_items: true
+    # 家具特殊权限
+    furniture_special_permission: true
+
+  # 自定义 NBT 物品
+  custom_nbt:
+    enabled: true
+    # 保护带有自定义 NBT 的物品
+    protect_nbt_items: true
+    # 受限物品检查
+    check_restricted: true
+    # 自定义模型数据检查
+    check_custom_model_data: true
+
+  # 展示框保护
+  item_frame:
+    enabled: true
+    # 保护包含自定义物品的展示框
+    protect_custom_items: true
+    # 防止破坏
+    prevent_break: true
+    # 防止取出物品
+    prevent_remove: true
+    # 防止旋转
+    prevent_rotate: false
+    # 防止放置自定义物品
+    prevent_place: false
+
+# 权限配置
+permissions:
+  # 默认权限
+  default:
+    # 是否默认给予所有玩家基本权限
+    grant_basic: false
+
+  # 权限组
+  groups:
+    # 管理员组 - 拥有所有权限
+    admin:
+      - "starcore.protection.*"
+
+    # 建筑师组 - 可以放置和破坏自定义方块
+    builder:
+      - "starcore.protection.*.place"
+      - "starcore.protection.*.break"
+
+    # 普通玩家组 - 只能使用和交互
+    player:
+      - "starcore.protection.*.use"
+      - "starcore.protection.*.interact"
+
+# 消息配置
+messages:
+  # 权限拒绝消息
+  permission_denied:
+    break: "§c你没有权限破坏这个自定义方块！"
+    place: "§c你没有权限放置这个自定义方块！"
+    interact: "§c你没有权限与这个自定义方块交互！"
+    use: "§c你没有权限使用这个自定义物品！"
+    pickup: "§c你没有权限拾取这个自定义物品！"
+    drop: "§c你没有权限丢弃这个自定义物品！"
+    craft: "§c你没有权限制作这个自定义物品！"
+    itemframe_break: "§c你没有权限破坏展示的自定义物品！"
+    itemframe_remove: "§c你没有权限从展示框中取出自定义物品！"
+    itemframe_place: "§c你没有权限将自定义物品放入展示框！"
+    itemframe_rotate: "§c你没有权限旋转展示框中的自定义物品！"
+
+  # 集成加载消息
+  integration_loaded: "§a[StarCore] 已加载 {plugin} 集成"
+  integration_failed: "§e[StarCore] {plugin} 集成加载失败: {reason}"
+  integration_disabled: "§7[StarCore] {plugin} 集成已禁用"
+
+# 日志配置
+logging:
+  # 是否记录保护事件
+  log_protection_events: true
+  # 是否记录权限检查
+  log_permission_checks: false
+  # 是否记录集成初始化
+  log_integration_init: true
+  # 日志级别 (FINE, INFO, WARNING, SEVERE)
+  level: "INFO"

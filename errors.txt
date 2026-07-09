@@ -1,0 +1,451 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------< dev.starcore:starcore >------------------------
+[INFO] Building STARCORE 0.1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- jacoco:0.8.12:prepare-agent (default) @ starcore ---
+[INFO] argLine set to -javaagent:C:\\Users\\l\\.m2\\repository\\org\\jacoco\\org.jacoco.agent\\0.8.12\\org.jacoco.agent-0.8.12-runtime.jar=destfile=D:\\qwq\\项目\\mapadd\\starcore\\target\\jacoco.exec
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ starcore ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] Copying 101 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ starcore ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1600 source files with javac [debug parameters release 21] to target\classes
+[INFO] 由于在类路径中发现了一个或多个处理程序，因此启用了
+  批注处理。未来发行版的 javac 可能会禁用批注处理，
+  除非至少按名称指定了一个处理程序 (-processor)，
+  或指定了搜索路径 (--processor-path, --processor-module-path)，
+  或显式启用了批注处理 (-proc:only, -proc:full)。
+  可使用 -Xlint:-options 隐藏此消息。
+  可使用 -proc:none 禁用批注处理。
+[INFO] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/event/random/RandomEventService.java: 某些输入文件使用或覆盖了已过时的 API。
+[INFO] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/event/random/RandomEventService.java: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+[INFO] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/crossserver/CrossServerNationSync.java: 某些输入文件使用了未经检查或不安全的操作。
+[INFO] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/crossserver/CrossServerNationSync.java: 有关详细信息, 请使用 -Xlint:unchecked 重新编译。
+[INFO] 某些消息已经过简化; 请使用 -Xdiags:verbose 重新编译以获得完整输出
+[INFO] -------------------------------------------------------------
+[WARNING] COMPILATION WARNING : 
+[INFO] -------------------------------------------------------------
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/foundation/animation/SoundFeedbackManager.java:[152,25] org.bukkit.Sound 中的 valueOf(java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/foundation/feedback/BukkitInGameFeedbackService.java:[157,37] org.bukkit.Sound 中的 valueOf(java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/foundation/feedback/BukkitInGameFeedbackService.java:[162,41] org.bukkit.Sound 中的 valueOf(java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonWorldManager.java:[472,18] org.bukkit.World 中的 setGameRuleValue(java.lang.String,java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonWorldManager.java:[473,18] org.bukkit.World 中的 setGameRuleValue(java.lang.String,java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonWorldManager.java:[474,18] org.bukkit.World 中的 setGameRuleValue(java.lang.String,java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonWorldManager.java:[475,18] org.bukkit.World 中的 setGameRuleValue(java.lang.String,java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonWorldManager.java:[476,18] org.bukkit.World 中的 setGameRuleValue(java.lang.String,java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonWorldManager.java:[477,18] org.bukkit.World 中的 setGameRuleValue(java.lang.String,java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/technology/TechnologyEffectRegistry.java:[101,49] org.bukkit.attribute.AttributeModifier 中的 getUniqueId() 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/technology/TechnologyEffectRegistry.java:[255,35] org.bukkit.attribute.AttributeModifier 中的 AttributeModifier(java.util.UUID,java.lang.String,double,org.bukkit.attribute.AttributeModifier.Operation) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/technology/TechnologyEffectRegistry.java:[265,35] org.bukkit.attribute.AttributeModifier 中的 AttributeModifier(java.util.UUID,java.lang.String,double,org.bukkit.attribute.AttributeModifier.Operation) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/technology/TechnologyEffectRegistry.java:[275,35] org.bukkit.attribute.AttributeModifier 中的 AttributeModifier(java.util.UUID,java.lang.String,double,org.bukkit.attribute.AttributeModifier.Operation) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/technology/TechnologyEffectRegistry.java:[321,35] org.bukkit.attribute.AttributeModifier 中的 AttributeModifier(java.util.UUID,java.lang.String,double,org.bukkit.attribute.AttributeModifier.Operation) 已过时, 且标记为待删除
+[INFO] 14 warnings 
+[INFO] -------------------------------------------------------------
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/exercise/ExerciseServiceImpl.java:[75,78] 不兼容的类型: dev.starcore.starcore.module.army.exercise.ExerciseService.ExerciseConfig无法转换为dev.starcore.starcore.module.army.exercise.ExerciseConfig
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/fatigue/command/FatigueCommand.java:[387,9] 找不到符号
+  符号:   类 Map
+  位置: 类 dev.starcore.starcore.module.army.fatigue.command.FatigueCommand
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/mercenary/command/MercenaryCommand.java:[60,20] 已在方法 onCommand(@org.jetbrains.annotations.NotNull org.bukkit.command.CommandSender,@org.jetbrains.annotations.NotNull org.bukkit.command.Command,@org.jetbrains.annotations.NotNull java.lang.String,@org.jetbrains.annotations.NotNull java.lang.String[])中定义了变量 subCommand
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/mercenary/command/MercenaryCommand.java:[67,36] 尝试从 switch 表达式返回
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/prisoner/Prisoner.java:[88,13] 不兼容的类型: java.util.UUID无法转换为java.lang.String
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/prisoner/Prisoner.java:[124,13] 不兼容的类型: java.util.UUID无法转换为java.lang.String
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/prisoner/PrisonerServiceImpl.java:[109,33] 不兼容的类型: java.lang.String无法转换为java.util.UUID
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/prisoner/PrisonerServiceImpl.java:[116,33] 不兼容的类型: java.lang.String无法转换为java.util.UUID
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/prisoner/PrisonerServiceImpl.java:[129,71] 不兼容的类型: dev.starcore.starcore.module.army.prisoner.Prisoner无法转换为dev.starcore.starcore.module.army.prisoner.model.PrisonerOfWar
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/prisoner/PrisonerServiceImpl.java:[145,71] 不兼容的类型: dev.starcore.starcore.module.army.prisoner.Prisoner无法转换为dev.starcore.starcore.module.army.prisoner.model.PrisonerOfWar
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/prisoner/PrisonerServiceImpl.java:[165,71] 不兼容的类型: dev.starcore.starcore.module.army.prisoner.Prisoner无法转换为dev.starcore.starcore.module.army.prisoner.model.PrisonerOfWar
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/prisoner/PrisonerServiceImpl.java:[181,71] 不兼容的类型: dev.starcore.starcore.module.army.prisoner.Prisoner无法转换为dev.starcore.starcore.module.army.prisoner.model.PrisonerOfWar
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/prisoner/PrisonerServiceImpl.java:[217,72] 不兼容的类型: dev.starcore.starcore.module.army.prisoner.Prisoner无法转换为dev.starcore.starcore.module.army.prisoner.model.PrisonerOfWar
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/prisoner/PrisonerServiceImpl.java:[246,70] 不兼容的类型: dev.starcore.starcore.module.army.prisoner.Prisoner无法转换为dev.starcore.starcore.module.army.prisoner.model.PrisonerOfWar
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/NightRaidServiceImpl.java:[81,5] 方法不会覆盖或实现超类型的方法
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/NightRaidServiceImpl.java:[100,5] 方法不会覆盖或实现超类型的方法
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/NightRaidServiceImpl.java:[126,44] 找不到符号
+  符号:   方法 displayName(java.util.UUID)
+  位置: 类型为dev.starcore.starcore.foundation.player.OnlinePlayerDirectory的变量 playerDirectory
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/NightRaidServiceImpl.java:[137,19] 找不到符号
+  符号:   方法 notifyTarget()
+  位置: 类型为dev.starcore.starcore.module.army.raid.NightRaidService.NightRaidConfig的变量 config
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/NightRaidServiceImpl.java:[148,45] 不兼容的类型: dev.starcore.starcore.module.army.raid.model.Raid无法转换为dev.starcore.starcore.module.army.raid.model.NightRaid
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/NightRaidServiceImpl.java:[187,44] 找不到符号
+  符号:   方法 displayName(java.util.UUID)
+  位置: 类型为dev.starcore.starcore.foundation.player.OnlinePlayerDirectory的变量 playerDirectory
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/NightRaidServiceImpl.java:[253,45] 不兼容的类型: dev.starcore.starcore.module.army.raid.model.Raid无法转换为dev.starcore.starcore.module.army.raid.model.NightRaid
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/NightRaidServiceImpl.java:[295,43] 不兼容的类型: dev.starcore.starcore.module.army.raid.model.Raid无法转换为dev.starcore.starcore.module.army.raid.model.NightRaid
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/NightRaidServiceImpl.java:[334,5] 方法不会覆盖或实现超类型的方法
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/NightRaidServiceImpl.java:[339,5] 方法不会覆盖或实现超类型的方法
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/listener/RaidListener.java:[49,34] 不兼容的类型: dev.starcore.starcore.module.army.raid.model.NightRaid无法转换为dev.starcore.starcore.module.army.raid.model.Raid
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/listener/RaidListener.java:[74,34] 不兼容的类型: dev.starcore.starcore.module.army.raid.model.NightRaid无法转换为dev.starcore.starcore.module.army.raid.model.Raid
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/listener/RaidListener.java:[129,51] 找不到符号
+  符号:   方法 getLatestAlert(dev.starcore.starcore.module.nation.model.NationId)
+  位置: 类型为dev.starcore.starcore.module.army.raid.NightRaidService的变量 raidService
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/command/RaidCommand.java:[314,51] 找不到符号
+  符号:   方法 getLatestAlert(dev.starcore.starcore.module.nation.model.NationId)
+  位置: 类型为dev.starcore.starcore.module.army.raid.NightRaidService的变量 raidService
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/command/RaidCommand.java:[356,47] 找不到符号
+  符号:   变量 plugin
+  位置: 类 dev.starcore.starcore.module.army.raid.command.RaidCommand
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/SiegeModule.java:[114,68] 找不到符号
+  符号:   方法 name()
+  位置: 类型为dev.starcore.starcore.core.module.ModuleMetadata的变量 METADATA
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/command/SiegeCommand.java:[306,17] 找不到符号
+  符号:   方法 reloadSiege(java.util.UUID,int)
+  位置: 类型为dev.starcore.starcore.module.army.siege.SiegeServiceImpl的变量 impl
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/command/SiegeCommand.java:[323,17] 找不到符号
+  符号:   方法 moveSiege(java.util.UUID,org.bukkit.Location)
+  位置: 类型为dev.starcore.starcore.module.army.siege.SiegeServiceImpl的变量 impl
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/command/SiegeCommand.java:[339,17] 找不到符号
+  符号:   方法 retreatSiege(java.util.UUID)
+  位置: 类型为dev.starcore.starcore.module.army.siege.SiegeServiceImpl的变量 impl
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/command/SiegeCommand.java:[401,13] 找不到符号
+  符号:   方法 setLevel(int)
+  位置: 类型为dev.starcore.starcore.module.army.siege.model.WallData的变量 wall
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[69,48] 不兼容的类型: java.util.UUID无法转换为dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[82,48] 不兼容的类型: java.util.UUID无法转换为dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[97,52] 不兼容的类型: java.util.UUID无法转换为dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[98,55] 不兼容的类型: java.util.UUID无法转换为dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[114,30] 找不到符号
+  符号:   方法 damageDealt()
+  位置: 类型为dev.starcore.starcore.module.army.siege.event.SiegeFiredEvent的变量 event
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[129,47] 不兼容的类型: java.util.UUID无法转换为dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[136,52] 不兼容的类型: java.util.UUID无法转换为dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[148,48] 不兼容的类型: java.util.UUID无法转换为dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[265,52] 不兼容的类型: java.util.UUID无法转换为dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[288,52] 不兼容的类型: java.util.UUID无法转换为dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[307,26] 找不到符号
+  符号:   方法 isAtWar(dev.starcore.starcore.module.nation.model.NationId,dev.starcore.starcore.module.nation.model.NationId)
+  位置: 类型为dev.starcore.starcore.module.war.WarService的变量 warService
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[314,34] 不兼容的类型: lambda 表达式中的参数类型不兼容
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[315,39] 找不到符号
+  符号:   方法 context()
+  位置: 类型为dev.starcore.starcore.module.nation.NationService的变量 nationService
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/tunnel/listener/TunnelListener.java:[151,27] 不兼容的类型: net.kyori.adventure.text.TextComponent无法转换为java.lang.String
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/tunnel/listener/TunnelListener.java:[169,27] 不兼容的类型: net.kyori.adventure.text.TextComponent无法转换为java.lang.String
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/tunnel/TunnelServiceImpl.java:[92,58] 不兼容的类型: java.lang.String无法转换为java.util.UUID
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/tunnel/TunnelServiceImpl.java:[97,58] 不兼容的类型: java.lang.String无法转换为java.util.UUID
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/tunnel/TunnelServiceImpl.java:[712,73] 找不到符号
+  符号:   变量 CONFUSION
+  位置: 类 org.bukkit.potion.PotionEffectType
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[261,118] 找不到符号
+  符号: 类 WeatherType
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[266,106] 找不到符号
+  符号: 类 WeatherType
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[271,20] 找不到符号
+  符号: 类 WeatherType
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[281,20] 找不到符号
+  符号: 类 WeatherEffect
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[291,20] 找不到符号
+  符号: 类 WorldWeatherState
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[296,42] 找不到符号
+  符号: 类 WorldWeatherState
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[326,103] 找不到符号
+  符号: 类 NationWeatherPermission
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[331,20] 找不到符号
+  符号: 类 NationWeatherPermission
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[346,64] 找不到符号
+  符号: 类 WeatherType
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[346,20] 找不到符号
+  符号: 类 WeatherResourceModifier
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[351,71] 找不到符号
+  符号: 类 WeatherType
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[272,24] 找不到符号
+  符号: 变量 WeatherType
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[282,28] 找不到符号
+  符号: 类 WeatherEffect
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[282,42] 找不到符号
+  符号: 变量 WeatherType
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[292,28] 找不到符号
+  符号: 类 WorldWeatherState
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[292,57] 找不到符号
+  符号: 变量 WeatherType
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[332,24] 找不到符号
+  符号: 变量 NationWeatherPermission
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[366,20] 无法从最终dev.starcore.starcore.module.army.ArmyService进行继承
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/listener/WeatherTacticsListener.java:[126,74] 不兼容的类型: dev.starcore.starcore.module.nation.model.NationId无法转换为java.util.UUID
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/listener/WeatherTacticsListener.java:[144,74] 不兼容的类型: dev.starcore.starcore.module.nation.model.NationId无法转换为java.util.UUID
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsServiceImpl.java:[94,29] 不兼容的类型: java.util.logging.Logger无法转换为org.bukkit.plugin.java.JavaPlugin
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/diplomacy/military/MilitaryAllianceServiceImpl.java:[586,27] 找不到符号
+  符号:   方法 defender()
+  位置: 类型为dev.starcore.starcore.module.war.WarSnapshot的变量 w
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/diplomacy/military/MilitaryAllianceServiceImpl.java:[586,59] 找不到符号
+  符号:   方法 attacker()
+  位置: 类型为dev.starcore.starcore.module.war.WarSnapshot的变量 w
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/diplomacy/military/MilitaryAllianceServiceImpl.java:[606,39] 不兼容的类型: java.util.Map<dev.starcore.starcore.module.diplomacy.military.MilitaryPactKey,dev.starcore.starcore.module.diplomacy.military.MilitaryAllianceServiceImpl.MilitaryPactData>无法转换为java.util.Map<dev.starcore.starcore.module.diplomacy.military.MilitaryPactKey,dev.starcore.starcore.module.diplomacy.military.MilitaryPactData>
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/diplomacy/military/MilitaryAllianceServiceImpl.java:[607,41] 不兼容的类型: java.util.Map<dev.starcore.starcore.module.diplomacy.military.MilitaryPactKey,dev.starcore.starcore.module.diplomacy.military.MilitaryAllianceServiceImpl.PactInviteData>无法转换为java.util.Map<dev.starcore.starcore.module.diplomacy.military.MilitaryPactKey,dev.starcore.starcore.module.diplomacy.military.storage.MilitaryAllianceStorage.PactInviteRecord>
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/diplomacy/military/MilitaryAllianceServiceImpl.java:[620,47] 不兼容的类型: java.util.Map<dev.starcore.starcore.module.diplomacy.military.MilitaryPactKey,dev.starcore.starcore.module.diplomacy.military.MilitaryPactData>无法转换为java.util.Map<? extends dev.starcore.starcore.module.diplomacy.military.MilitaryPactKey,? extends dev.starcore.starcore.module.diplomacy.military.MilitaryAllianceServiceImpl.MilitaryPactData>
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/diplomacy/military/MilitaryAllianceServiceImpl.java:[623,58] 不兼容的类型: java.util.Map<dev.starcore.starcore.module.diplomacy.military.MilitaryPactKey,dev.starcore.starcore.module.diplomacy.military.storage.MilitaryAllianceStorage.PactInviteRecord>无法转换为java.util.Map<? extends dev.starcore.starcore.module.diplomacy.military.MilitaryPactKey,? extends dev.starcore.starcore.module.diplomacy.military.MilitaryAllianceServiceImpl.PactInviteData>
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/diplomacy/military/listener/MilitaryAllianceListener.java:[133,49] 无法将接口 dev.starcore.starcore.module.war.WarService中的方法 atWar应用到给定类型;
+  需要: dev.starcore.starcore.module.nation.model.NationId,dev.starcore.starcore.module.nation.model.NationId
+  找到:    dev.starcore.starcore.module.nation.model.NationId
+  原因: 实际参数列表和形式参数列表长度不同
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dynasty/DynastyServiceImpl.java:[395,30] 找不到符号
+  符号:   方法 lastKnownName(java.util.UUID)
+  位置: 类型为dev.starcore.starcore.foundation.player.PlayerProfileService的变量 playerProfiles
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dynasty/listener/DynastyListener.java:[126,54] 找不到符号
+  符号:   方法 player(java.util.UUID)
+  位置: 类型为dev.starcore.starcore.foundation.player.OnlinePlayerDirectory的变量 onlinePlayerDirectory
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dynasty/listener/DynastyListener.java:[164,31] 找不到符号
+  符号:   方法 getPlugin()
+  位置: 类型为org.bukkit.entity.Player的变量 player
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dynasty/listener/DynastyListener.java:[251,20] 找不到符号
+  符号:   类 NationMember
+  位置: 类 dev.starcore.starcore.module.nation.model.Nation
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/emergency/DatabaseAwareEmergencyStateStorage.java:[67,27] 找不到符号
+  符号:   方法 runAsync(()->save(p[...]ties))
+  位置: 类型为dev.starcore.starcore.core.persistence.PersistenceService的变量 persistenceService
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/emergency/model/EmergencyState.java:[252,13] 无法为 final 变量 expiresAt 分配值
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/lease/LeaseModule.java:[114,37] 找不到符号
+  符号:   方法 runSyncRepeating(()->{ if ([...]; } },long,long)
+  位置: 类型为dev.starcore.starcore.core.scheduler.StarCoreScheduler的变量 scheduler
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/lease/LeaseModule.java:[125,34] 找不到符号
+  符号:   方法 runSyncRepeating(()->{ if ([...]; } },long,long)
+  位置: 类型为dev.starcore.starcore.core.scheduler.StarCoreScheduler的变量 scheduler
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/lease/LeaseModule.java:[141,32] 找不到符号
+  符号:   方法 cancelTask(long)
+  位置: 类 dev.starcore.starcore.core.scheduler.StarCoreScheduler
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/lease/LeaseModule.java:[145,32] 找不到符号
+  符号:   方法 cancelTask(long)
+  位置: 类 dev.starcore.starcore.core.scheduler.StarCoreScheduler
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/lease/LeaseServiceImpl.java:[37,62] 不兼容的类型: javax.sql.DataSource无法转换为com.zaxxer.hikari.HikariDataSource
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/merge/MergeReferendumServiceImpl.java:[64,45] 找不到符号
+  符号:   方法 fromUUID(java.util.UUID)
+  位置: 类 dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/merge/MergeReferendumServiceImpl.java:[65,43] 找不到符号
+  符号:   方法 fromUUID(java.util.UUID)
+  位置: 类 dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/merge/MergeReferendumServiceImpl.java:[115,45] 找不到符号
+  符号:   方法 fromUUID(java.util.UUID)
+  位置: 类 dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/merge/MergeReferendumServiceImpl.java:[116,43] 找不到符号
+  符号:   方法 fromUUID(java.util.UUID)
+  位置: 类 dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/merge/MergeReferendumServiceImpl.java:[184,40] 找不到符号
+  符号:   方法 fromUUID(java.util.UUID)
+  位置: 类 dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/merge/MergeReferendumServiceImpl.java:[247,40] 找不到符号
+  符号:   方法 fromUUID(java.util.UUID)
+  位置: 类 dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/merge/listener/MergeListener.java:[99,100] 找不到符号
+  符号:   方法 fromUUID(java.util.UUID)
+  位置: 类 dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/merge/listener/MergeListener.java:[105,23] 找不到符号
+  符号:   类 Player
+  位置: 程序包 org.bukkit
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/merge/listener/MergeListener.java:[127,23] 找不到符号
+  符号:   类 Player
+  位置: 程序包 org.bukkit
+[INFO] 100 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  16.295 s
+[INFO] Finished at: 2026-06-29T10:07:07+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project starcore: Compilation failure: Compilation failure: 
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/exercise/ExerciseServiceImpl.java:[75,78] 不兼容的类型: dev.starcore.starcore.module.army.exercise.ExerciseService.ExerciseConfig无法转换为dev.starcore.starcore.module.army.exercise.ExerciseConfig
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/fatigue/command/FatigueCommand.java:[387,9] 找不到符号
+[ERROR]   符号:   类 Map
+[ERROR]   位置: 类 dev.starcore.starcore.module.army.fatigue.command.FatigueCommand
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/mercenary/command/MercenaryCommand.java:[60,20] 已在方法 onCommand(@org.jetbrains.annotations.NotNull org.bukkit.command.CommandSender,@org.jetbrains.annotations.NotNull org.bukkit.command.Command,@org.jetbrains.annotations.NotNull java.lang.String,@org.jetbrains.annotations.NotNull java.lang.String[])中定义了变量 subCommand
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/mercenary/command/MercenaryCommand.java:[67,36] 尝试从 switch 表达式返回
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/prisoner/Prisoner.java:[88,13] 不兼容的类型: java.util.UUID无法转换为java.lang.String
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/prisoner/Prisoner.java:[124,13] 不兼容的类型: java.util.UUID无法转换为java.lang.String
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/prisoner/PrisonerServiceImpl.java:[109,33] 不兼容的类型: java.lang.String无法转换为java.util.UUID
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/prisoner/PrisonerServiceImpl.java:[116,33] 不兼容的类型: java.lang.String无法转换为java.util.UUID
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/prisoner/PrisonerServiceImpl.java:[129,71] 不兼容的类型: dev.starcore.starcore.module.army.prisoner.Prisoner无法转换为dev.starcore.starcore.module.army.prisoner.model.PrisonerOfWar
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/prisoner/PrisonerServiceImpl.java:[145,71] 不兼容的类型: dev.starcore.starcore.module.army.prisoner.Prisoner无法转换为dev.starcore.starcore.module.army.prisoner.model.PrisonerOfWar
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/prisoner/PrisonerServiceImpl.java:[165,71] 不兼容的类型: dev.starcore.starcore.module.army.prisoner.Prisoner无法转换为dev.starcore.starcore.module.army.prisoner.model.PrisonerOfWar
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/prisoner/PrisonerServiceImpl.java:[181,71] 不兼容的类型: dev.starcore.starcore.module.army.prisoner.Prisoner无法转换为dev.starcore.starcore.module.army.prisoner.model.PrisonerOfWar
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/prisoner/PrisonerServiceImpl.java:[217,72] 不兼容的类型: dev.starcore.starcore.module.army.prisoner.Prisoner无法转换为dev.starcore.starcore.module.army.prisoner.model.PrisonerOfWar
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/prisoner/PrisonerServiceImpl.java:[246,70] 不兼容的类型: dev.starcore.starcore.module.army.prisoner.Prisoner无法转换为dev.starcore.starcore.module.army.prisoner.model.PrisonerOfWar
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/NightRaidServiceImpl.java:[81,5] 方法不会覆盖或实现超类型的方法
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/NightRaidServiceImpl.java:[100,5] 方法不会覆盖或实现超类型的方法
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/NightRaidServiceImpl.java:[126,44] 找不到符号
+[ERROR]   符号:   方法 displayName(java.util.UUID)
+[ERROR]   位置: 类型为dev.starcore.starcore.foundation.player.OnlinePlayerDirectory的变量 playerDirectory
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/NightRaidServiceImpl.java:[137,19] 找不到符号
+[ERROR]   符号:   方法 notifyTarget()
+[ERROR]   位置: 类型为dev.starcore.starcore.module.army.raid.NightRaidService.NightRaidConfig的变量 config
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/NightRaidServiceImpl.java:[148,45] 不兼容的类型: dev.starcore.starcore.module.army.raid.model.Raid无法转换为dev.starcore.starcore.module.army.raid.model.NightRaid
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/NightRaidServiceImpl.java:[187,44] 找不到符号
+[ERROR]   符号:   方法 displayName(java.util.UUID)
+[ERROR]   位置: 类型为dev.starcore.starcore.foundation.player.OnlinePlayerDirectory的变量 playerDirectory
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/NightRaidServiceImpl.java:[253,45] 不兼容的类型: dev.starcore.starcore.module.army.raid.model.Raid无法转换为dev.starcore.starcore.module.army.raid.model.NightRaid
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/NightRaidServiceImpl.java:[295,43] 不兼容的类型: dev.starcore.starcore.module.army.raid.model.Raid无法转换为dev.starcore.starcore.module.army.raid.model.NightRaid
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/NightRaidServiceImpl.java:[334,5] 方法不会覆盖或实现超类型的方法
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/NightRaidServiceImpl.java:[339,5] 方法不会覆盖或实现超类型的方法
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/listener/RaidListener.java:[49,34] 不兼容的类型: dev.starcore.starcore.module.army.raid.model.NightRaid无法转换为dev.starcore.starcore.module.army.raid.model.Raid
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/listener/RaidListener.java:[74,34] 不兼容的类型: dev.starcore.starcore.module.army.raid.model.NightRaid无法转换为dev.starcore.starcore.module.army.raid.model.Raid
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/listener/RaidListener.java:[129,51] 找不到符号
+[ERROR]   符号:   方法 getLatestAlert(dev.starcore.starcore.module.nation.model.NationId)
+[ERROR]   位置: 类型为dev.starcore.starcore.module.army.raid.NightRaidService的变量 raidService
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/command/RaidCommand.java:[314,51] 找不到符号
+[ERROR]   符号:   方法 getLatestAlert(dev.starcore.starcore.module.nation.model.NationId)
+[ERROR]   位置: 类型为dev.starcore.starcore.module.army.raid.NightRaidService的变量 raidService
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/raid/command/RaidCommand.java:[356,47] 找不到符号
+[ERROR]   符号:   变量 plugin
+[ERROR]   位置: 类 dev.starcore.starcore.module.army.raid.command.RaidCommand
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/SiegeModule.java:[114,68] 找不到符号
+[ERROR]   符号:   方法 name()
+[ERROR]   位置: 类型为dev.starcore.starcore.core.module.ModuleMetadata的变量 METADATA
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/command/SiegeCommand.java:[306,17] 找不到符号
+[ERROR]   符号:   方法 reloadSiege(java.util.UUID,int)
+[ERROR]   位置: 类型为dev.starcore.starcore.module.army.siege.SiegeServiceImpl的变量 impl
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/command/SiegeCommand.java:[323,17] 找不到符号
+[ERROR]   符号:   方法 moveSiege(java.util.UUID,org.bukkit.Location)
+[ERROR]   位置: 类型为dev.starcore.starcore.module.army.siege.SiegeServiceImpl的变量 impl
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/command/SiegeCommand.java:[339,17] 找不到符号
+[ERROR]   符号:   方法 retreatSiege(java.util.UUID)
+[ERROR]   位置: 类型为dev.starcore.starcore.module.army.siege.SiegeServiceImpl的变量 impl
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/command/SiegeCommand.java:[401,13] 找不到符号
+[ERROR]   符号:   方法 setLevel(int)
+[ERROR]   位置: 类型为dev.starcore.starcore.module.army.siege.model.WallData的变量 wall
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[69,48] 不兼容的类型: java.util.UUID无法转换为dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[82,48] 不兼容的类型: java.util.UUID无法转换为dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[97,52] 不兼容的类型: java.util.UUID无法转换为dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[98,55] 不兼容的类型: java.util.UUID无法转换为dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[114,30] 找不到符号
+[ERROR]   符号:   方法 damageDealt()
+[ERROR]   位置: 类型为dev.starcore.starcore.module.army.siege.event.SiegeFiredEvent的变量 event
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[129,47] 不兼容的类型: java.util.UUID无法转换为dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[136,52] 不兼容的类型: java.util.UUID无法转换为dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[148,48] 不兼容的类型: java.util.UUID无法转换为dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[265,52] 不兼容的类型: java.util.UUID无法转换为dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[288,52] 不兼容的类型: java.util.UUID无法转换为dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[307,26] 找不到符号
+[ERROR]   符号:   方法 isAtWar(dev.starcore.starcore.module.nation.model.NationId,dev.starcore.starcore.module.nation.model.NationId)
+[ERROR]   位置: 类型为dev.starcore.starcore.module.war.WarService的变量 warService
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[314,34] 不兼容的类型: lambda 表达式中的参数类型不兼容
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/siege/listener/SiegeListener.java:[315,39] 找不到符号
+[ERROR]   符号:   方法 context()
+[ERROR]   位置: 类型为dev.starcore.starcore.module.nation.NationService的变量 nationService
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/tunnel/listener/TunnelListener.java:[151,27] 不兼容的类型: net.kyori.adventure.text.TextComponent无法转换为java.lang.String
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/tunnel/listener/TunnelListener.java:[169,27] 不兼容的类型: net.kyori.adventure.text.TextComponent无法转换为java.lang.String
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/tunnel/TunnelServiceImpl.java:[92,58] 不兼容的类型: java.lang.String无法转换为java.util.UUID
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/tunnel/TunnelServiceImpl.java:[97,58] 不兼容的类型: java.lang.String无法转换为java.util.UUID
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/tunnel/TunnelServiceImpl.java:[712,73] 找不到符号
+[ERROR]   符号:   变量 CONFUSION
+[ERROR]   位置: 类 org.bukkit.potion.PotionEffectType
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[261,118] 找不到符号
+[ERROR]   符号: 类 WeatherType
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[266,106] 找不到符号
+[ERROR]   符号: 类 WeatherType
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[271,20] 找不到符号
+[ERROR]   符号: 类 WeatherType
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[281,20] 找不到符号
+[ERROR]   符号: 类 WeatherEffect
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[291,20] 找不到符号
+[ERROR]   符号: 类 WorldWeatherState
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[296,42] 找不到符号
+[ERROR]   符号: 类 WorldWeatherState
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[326,103] 找不到符号
+[ERROR]   符号: 类 NationWeatherPermission
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[331,20] 找不到符号
+[ERROR]   符号: 类 NationWeatherPermission
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[346,64] 找不到符号
+[ERROR]   符号: 类 WeatherType
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[346,20] 找不到符号
+[ERROR]   符号: 类 WeatherResourceModifier
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[351,71] 找不到符号
+[ERROR]   符号: 类 WeatherType
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[272,24] 找不到符号
+[ERROR]   符号: 变量 WeatherType
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[282,28] 找不到符号
+[ERROR]   符号: 类 WeatherEffect
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[282,42] 找不到符号
+[ERROR]   符号: 变量 WeatherType
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[292,28] 找不到符号
+[ERROR]   符号: 类 WorldWeatherState
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[292,57] 找不到符号
+[ERROR]   符号: 变量 WeatherType
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[332,24] 找不到符号
+[ERROR]   符号: 变量 NationWeatherPermission
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsModule.java:[366,20] 无法从最终dev.starcore.starcore.module.army.ArmyService进行继承
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/listener/WeatherTacticsListener.java:[126,74] 不兼容的类型: dev.starcore.starcore.module.nation.model.NationId无法转换为java.util.UUID
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/listener/WeatherTacticsListener.java:[144,74] 不兼容的类型: dev.starcore.starcore.module.nation.model.NationId无法转换为java.util.UUID
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/army/weather/WeatherTacticsServiceImpl.java:[94,29] 不兼容的类型: java.util.logging.Logger无法转换为org.bukkit.plugin.java.JavaPlugin
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/diplomacy/military/MilitaryAllianceServiceImpl.java:[586,27] 找不到符号
+[ERROR]   符号:   方法 defender()
+[ERROR]   位置: 类型为dev.starcore.starcore.module.war.WarSnapshot的变量 w
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/diplomacy/military/MilitaryAllianceServiceImpl.java:[586,59] 找不到符号
+[ERROR]   符号:   方法 attacker()
+[ERROR]   位置: 类型为dev.starcore.starcore.module.war.WarSnapshot的变量 w
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/diplomacy/military/MilitaryAllianceServiceImpl.java:[606,39] 不兼容的类型: java.util.Map<dev.starcore.starcore.module.diplomacy.military.MilitaryPactKey,dev.starcore.starcore.module.diplomacy.military.MilitaryAllianceServiceImpl.MilitaryPactData>无法转换为java.util.Map<dev.starcore.starcore.module.diplomacy.military.MilitaryPactKey,dev.starcore.starcore.module.diplomacy.military.MilitaryPactData>
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/diplomacy/military/MilitaryAllianceServiceImpl.java:[607,41] 不兼容的类型: java.util.Map<dev.starcore.starcore.module.diplomacy.military.MilitaryPactKey,dev.starcore.starcore.module.diplomacy.military.MilitaryAllianceServiceImpl.PactInviteData>无法转换为java.util.Map<dev.starcore.starcore.module.diplomacy.military.MilitaryPactKey,dev.starcore.starcore.module.diplomacy.military.storage.MilitaryAllianceStorage.PactInviteRecord>
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/diplomacy/military/MilitaryAllianceServiceImpl.java:[620,47] 不兼容的类型: java.util.Map<dev.starcore.starcore.module.diplomacy.military.MilitaryPactKey,dev.starcore.starcore.module.diplomacy.military.MilitaryPactData>无法转换为java.util.Map<? extends dev.starcore.starcore.module.diplomacy.military.MilitaryPactKey,? extends dev.starcore.starcore.module.diplomacy.military.MilitaryAllianceServiceImpl.MilitaryPactData>
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/diplomacy/military/MilitaryAllianceServiceImpl.java:[623,58] 不兼容的类型: java.util.Map<dev.starcore.starcore.module.diplomacy.military.MilitaryPactKey,dev.starcore.starcore.module.diplomacy.military.storage.MilitaryAllianceStorage.PactInviteRecord>无法转换为java.util.Map<? extends dev.starcore.starcore.module.diplomacy.military.MilitaryPactKey,? extends dev.starcore.starcore.module.diplomacy.military.MilitaryAllianceServiceImpl.PactInviteData>
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/diplomacy/military/listener/MilitaryAllianceListener.java:[133,49] 无法将接口 dev.starcore.starcore.module.war.WarService中的方法 atWar应用到给定类型;
+[ERROR]   需要: dev.starcore.starcore.module.nation.model.NationId,dev.starcore.starcore.module.nation.model.NationId
+[ERROR]   找到:    dev.starcore.starcore.module.nation.model.NationId
+[ERROR]   原因: 实际参数列表和形式参数列表长度不同
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dynasty/DynastyServiceImpl.java:[395,30] 找不到符号
+[ERROR]   符号:   方法 lastKnownName(java.util.UUID)
+[ERROR]   位置: 类型为dev.starcore.starcore.foundation.player.PlayerProfileService的变量 playerProfiles
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dynasty/listener/DynastyListener.java:[126,54] 找不到符号
+[ERROR]   符号:   方法 player(java.util.UUID)
+[ERROR]   位置: 类型为dev.starcore.starcore.foundation.player.OnlinePlayerDirectory的变量 onlinePlayerDirectory
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dynasty/listener/DynastyListener.java:[164,31] 找不到符号
+[ERROR]   符号:   方法 getPlugin()
+[ERROR]   位置: 类型为org.bukkit.entity.Player的变量 player
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dynasty/listener/DynastyListener.java:[251,20] 找不到符号
+[ERROR]   符号:   类 NationMember
+[ERROR]   位置: 类 dev.starcore.starcore.module.nation.model.Nation
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/emergency/DatabaseAwareEmergencyStateStorage.java:[67,27] 找不到符号
+[ERROR]   符号:   方法 runAsync(()->save(p[...]ties))
+[ERROR]   位置: 类型为dev.starcore.starcore.core.persistence.PersistenceService的变量 persistenceService
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/emergency/model/EmergencyState.java:[252,13] 无法为 final 变量 expiresAt 分配值
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/lease/LeaseModule.java:[114,37] 找不到符号
+[ERROR]   符号:   方法 runSyncRepeating(()->{ if ([...]; } },long,long)
+[ERROR]   位置: 类型为dev.starcore.starcore.core.scheduler.StarCoreScheduler的变量 scheduler
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/lease/LeaseModule.java:[125,34] 找不到符号
+[ERROR]   符号:   方法 runSyncRepeating(()->{ if ([...]; } },long,long)
+[ERROR]   位置: 类型为dev.starcore.starcore.core.scheduler.StarCoreScheduler的变量 scheduler
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/lease/LeaseModule.java:[141,32] 找不到符号
+[ERROR]   符号:   方法 cancelTask(long)
+[ERROR]   位置: 类 dev.starcore.starcore.core.scheduler.StarCoreScheduler
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/lease/LeaseModule.java:[145,32] 找不到符号
+[ERROR]   符号:   方法 cancelTask(long)
+[ERROR]   位置: 类 dev.starcore.starcore.core.scheduler.StarCoreScheduler
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/lease/LeaseServiceImpl.java:[37,62] 不兼容的类型: javax.sql.DataSource无法转换为com.zaxxer.hikari.HikariDataSource
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/merge/MergeReferendumServiceImpl.java:[64,45] 找不到符号
+[ERROR]   符号:   方法 fromUUID(java.util.UUID)
+[ERROR]   位置: 类 dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/merge/MergeReferendumServiceImpl.java:[65,43] 找不到符号
+[ERROR]   符号:   方法 fromUUID(java.util.UUID)
+[ERROR]   位置: 类 dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/merge/MergeReferendumServiceImpl.java:[115,45] 找不到符号
+[ERROR]   符号:   方法 fromUUID(java.util.UUID)
+[ERROR]   位置: 类 dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/merge/MergeReferendumServiceImpl.java:[116,43] 找不到符号
+[ERROR]   符号:   方法 fromUUID(java.util.UUID)
+[ERROR]   位置: 类 dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/merge/MergeReferendumServiceImpl.java:[184,40] 找不到符号
+[ERROR]   符号:   方法 fromUUID(java.util.UUID)
+[ERROR]   位置: 类 dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/merge/MergeReferendumServiceImpl.java:[247,40] 找不到符号
+[ERROR]   符号:   方法 fromUUID(java.util.UUID)
+[ERROR]   位置: 类 dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/merge/listener/MergeListener.java:[99,100] 找不到符号
+[ERROR]   符号:   方法 fromUUID(java.util.UUID)
+[ERROR]   位置: 类 dev.starcore.starcore.module.nation.model.NationId
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/merge/listener/MergeListener.java:[105,23] 找不到符号
+[ERROR]   符号:   类 Player
+[ERROR]   位置: 程序包 org.bukkit
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/merge/listener/MergeListener.java:[127,23] 找不到符号
+[ERROR]   符号:   类 Player
+[ERROR]   位置: 程序包 org.bukkit
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

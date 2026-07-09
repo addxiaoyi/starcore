@@ -1,0 +1,13 @@
+{
+    "name": "starcore-map",
+    "version": "0.1.0",
+    "private": true,
+    "description": "STARCORE Strategic Map Viewer",
+    "scripts": {
+        "dev": "npx serve . -p 3000",
+        "start": "npx serve . -p 3000"
+    },
+    "devDependencies": {
+        "serve": "^14.2.0"
+    }
+}

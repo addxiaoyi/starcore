@@ -1,0 +1,257 @@
+# ===============================================
+# STARCORE 成就系统配置
+# ===============================================
+# 完全可自定义的成就系统
+# 参考 Minecraft Wiki 成就系统
+# ===============================================
+#
+# ⚠️ 重要: config-version 用于配置迁移校验，请勿随意修改
+config-version: "1.0"
+
+# 是否启用成就系统
+enabled: true
+
+# 成就显示设置
+display:
+  # 是否显示Toast弹窗
+  show-toast: true
+
+  # 是否在聊天栏公告（挑战成就默认公告）
+  announce-challenge: true
+
+  # 是否在聊天栏公告（目标成就默认公告）
+  announce-goal: true
+
+  # 是否在聊天栏公告（普通任务成就）
+  announce-task: false
+
+# 音效设置
+sounds:
+  # 任务成就音效
+  task: "ENTITY_PLAYER_LEVELUP"
+
+  # 挑战成就音效
+  challenge: "UI_TOAST_CHALLENGE_COMPLETE"
+
+  # 目标成就音效
+  goal: "ENTITY_ENDER_DRAGON_GROWL"
+
+# 成就奖励倍率
+reward-multiplier: 1.0
+
+# ===============================================
+# 自定义成就定义
+# ===============================================
+# 你可以在这里添加自己的成就
+# 参考格式如下：
+# ===============================================
+
+custom-achievements:
+  # 示例成就1：击杀100只僵尸
+  zombie_slayer:
+    title: "僵尸杀手"
+    description: "击杀100只僵尸"
+    icon: "ZOMBIE_HEAD"
+    frame: "task"  # task/challenge/goal
+    parent: "root"  # 父成就ID
+    position:
+      x: 5
+      y: 0
+
+    # 触发器
+    trigger:
+      type: "PLAYER_KILLED_ENTITY"
+      conditions:
+        entity: "ZOMBIE"
+        kill_count: 100
+
+    # 奖励
+    experience: 50
+    rewards:
+      - "money:1000"
+      - "item:DIAMOND:5"
+
+    # 显示设置
+    show-toast: true
+    announce-to-chat: true
+
+  # 示例成就2：收集所有木头
+  lumberjack:
+    title: "伐木大师"
+    description: "收集所有类型的木头"
+    icon: "OAK_LOG"
+    frame: "challenge"
+    parent: "root"
+    position:
+      x: 6
+      y: 0
+
+    trigger:
+      type: "INVENTORY_CHANGED"
+      conditions:
+        items:
+          - "OAK_LOG"
+          - "SPRUCE_LOG"
+          - "BIRCH_LOG"
+          - "JUNGLE_LOG"
+          - "ACACIA_LOG"
+          - "DARK_OAK_LOG"
+          - "MANGROVE_LOG"
+          - "CHERRY_LOG"
+
+    experience: 100
+    rewards:
+      - "money:5000"
+
+    show-toast: true
+    announce-to-chat: true
+
+  # 示例成就3：PvP大师
+  pvp_master:
+    title: "PvP大师"
+    description: "赢得50场决斗"
+    icon: "DIAMOND_SWORD"
+    frame: "challenge"
+    parent: "root"
+    position:
+      x: -5
+      y: 0
+
+    trigger:
+      type: "CUSTOM_DUEL_WIN"
+      conditions:
+        win_count: 50
+
+    experience: 200
+    rewards:
+      - "money:10000"
+      - "item:NETHERITE_SWORD:1"
+
+    show-toast: true
+    announce-to-chat: true
+
+  # 示例成就4：社交达人
+  social_butterfly:
+    title: "社交达人"
+    description: "添加10个好友"
+    icon: "PLAYER_HEAD"
+    frame: "task"
+    parent: "root"
+    position:
+      x: 0
+      y: 5
+
+    trigger:
+      type: "CUSTOM_FRIEND_ADDED"
+      conditions:
+        friend_count: 10
+
+    experience: 30
+    rewards:
+      - "money:500"
+
+    show-toast: true
+    announce-to-chat: false
+
+  # 示例成就5：星尘收藏家
+  money_collector:
+    title: "星尘收藏家"
+    description: "累计赚取10万星尘"
+    icon: "GOLD_BLOCK"
+    frame: "goal"
+    parent: "root"
+    position:
+      x: 3
+      y: 3
+
+    trigger:
+      type: "CUSTOM_MONEY_EARNED"
+      conditions:
+        total_earned: 100000
+
+    experience: 100
+    rewards:
+      - "money:10000"
+      - "item:DIAMOND_BLOCK:10"
+
+    show-toast: true
+    announce-to-chat: true
+
+# ===============================================
+# 成就触发器类型说明
+# ===============================================
+#
+# Minecraft 原版触发器：
+# - PLAYER_KILLED_ENTITY: 击杀实体
+# - INVENTORY_CHANGED: 背包变化
+# - BREAK_BLOCK: 破坏方块
+# - PLACED_BLOCK: 放置方块
+# - ITEM_USED_ON_BLOCK: 物品用于方块
+# - ENCHANTED_ITEM: 附魔物品
+# - VILLAGER_TRADE: 村民交易
+# - BRED_ANIMALS: 繁殖动物
+# - TAME_ANIMAL: 驯服动物
+# - FISHING_ROD_HOOKED: 钓鱼
+# - LOCATION: 到达位置
+# - SLEPT_IN_BED: 睡觉
+# - CHANGED_DIMENSION: 改变维度
+# - CONSUME_ITEM: 消耗物品
+# - RECIPE_CRAFTED: 合成配方
+#
+# STARCORE 自定义触发器：
+# - CUSTOM_KILL_STREAK: 连杀
+# - CUSTOM_DUEL_WIN: 决斗胜利
+# - CUSTOM_MONEY_EARNED: 赚取金钱
+# - CUSTOM_GUILD_CREATED: 创建公会
+# - CUSTOM_FRIEND_ADDED: 添加好友
+# - CUSTOM_DAILY_CHECKIN: 每日签到
+# - CUSTOM_QUEST_COMPLETED: 完成任务
+#
+# ===============================================
+
+# ===============================================
+# 成就条件说明
+# ===============================================
+#
+# 实体条件：
+# - entity: 单个实体类型（如 "ZOMBIE"）
+# - entities: 多个实体类型列表
+# - kill_count: 击杀数量
+#
+# 物品条件：
+# - item: 单个物品类型
+# - items: 多个物品类型列表
+# - item_count_min: 最小数量
+# - item_count_max: 最大数量
+#
+# 方块条件：
+# - block: 单个方块类型
+# - blocks: 多个方块类型列表
+#
+# 位置条件：
+# - world: 世界名称
+# - biome: 生物群系
+# - y_min: 最小Y坐标
+# - y_max: 最大Y坐标
+#
+# 数值条件：
+# - damage_min: 最小伤害
+# - damage_max: 最大伤害
+# - distance_min: 最小距离
+# - distance_max: 最大距离
+#
+# ===============================================
+
+# ===============================================
+# 奖励格式说明
+# ===============================================
+#
+# 格式：类型:参数
+#
+# 支持的奖励类型：
+# - money:<金额>           例如: "money:1000"
+# - item:<物品>:<数量>     例如: "item:DIAMOND:10"
+# - exp:<经验>             例如: "exp:100"
+# - command:<命令>         例如: "command:give {player} diamond 1"
+#
+# ===============================================

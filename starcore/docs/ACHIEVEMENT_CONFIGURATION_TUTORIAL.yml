@@ -1,0 +1,652 @@
+# ===============================================
+# STARCORE 成就系统完整配置教程
+# ===============================================
+# 这个文件包含详细的配置方法和示例
+# 跟随教程可以创建任何你想要的成就
+# ===============================================
+
+# ===============================================
+# 第一部分：基础设置
+# ===============================================
+
+# 是否启用成就系统
+enabled: true
+
+# 成就显示设置
+display:
+  # 是否显示Toast弹窗（原版样式的弹窗提示）
+  show-toast: true
+
+  # 是否在聊天栏全服公告（挑战成就默认公告）
+  announce-challenge: true
+
+  # 是否在聊天栏全服公告（目标成就默认公告）
+  announce-goal: true
+
+  # 是否在聊天栏全服公告（普通任务成就）
+  announce-task: false
+
+# 音效设置
+sounds:
+  # 任务成就音效（普通成就）
+  task: "ENTITY_PLAYER_LEVELUP"
+
+  # 挑战成就音效（高难度成就）
+  challenge: "UI_TOAST_CHALLENGE_COMPLETE"
+
+  # 目标成就音效（里程碑成就）
+  goal: "ENTITY_ENDER_DRAGON_GROWL"
+
+# 成就奖励倍率（1.0 = 100%，2.0 = 200%）
+reward-multiplier: 1.0
+
+# ===============================================
+# 第二部分：成就定义格式说明
+# ===============================================
+#
+# 每个成就包含以下字段：
+#
+# 1. ID（唯一标识符）
+#    - 格式：小写字母和下划线
+#    - 示例：zombie_slayer, first_kill
+#
+# 2. title（成就标题）
+#    - 格式：字符串
+#    - 示例：title: "僵尸杀手"
+#
+# 3. description（成就描述）
+#    - 格式：字符串
+#    - 示例：description: "击杀100只僵尸"
+#
+# 4. icon（成就图标）
+#    - 格式：Minecraft物品ID
+#    - 示例：icon: "DIAMOND_SWORD"
+#
+# 5. frame（成就框架类型）
+#    - task：普通任务（绿色框）
+#    - challenge：挑战（紫色框）
+#    - goal：目标（金色框）
+#
+# 6. parent（父成就）
+#    - 格式：父成就的ID
+#    - 示例：parent: "root"
+#    - 注意：必须先完成父成就才能获得子成就
+#
+# 7. position（GUI中的位置）
+#    - x：横坐标
+#    - y：纵坐标
+#    - 示例：position: { x: 1, y: 0 }
+#
+# 8. trigger（触发器）
+#    - type：触发器类型（见后文详细说明）
+#    - conditions：触发条件
+#
+# 9. experience（经验奖励）
+#    - 格式：整数
+#    - 示例：experience: 50
+#
+# 10. rewards（其他奖励）
+#     - 格式：字符串列表
+#     - 示例：
+#       rewards:
+#         - "money:1000"
+#         - "item:DIAMOND:5"
+#
+# 11. show-toast（是否显示Toast弹窗）
+#     - true：显示
+#     - false：不显示
+#
+# 12. announce-to-chat（是否全服公告）
+#     - true：公告
+#     - false：不公告
+#
+# ===============================================
+
+# ===============================================
+# 第三部分：触发器类型完整列表
+# ===============================================
+#
+# ========== Minecraft 原版触发器 ==========
+#
+# 1. PLAYER_KILLED_ENTITY
+#    说明：玩家击杀实体时触发
+#    条件：
+#      - entity: 实体类型（单个）
+#      - entities: 实体类型（多个）
+#      - kill_count: 击杀数量
+#      - distance_min: 最小距离
+#      - distance_max: 最大距离
+#
+# 2. INVENTORY_CHANGED
+#    说明：背包变化时触发
+#    条件：
+#      - item: 物品类型（单个）
+#      - items: 物品类型（多个）
+#      - item_count_min: 最小数量
+#      - item_count_max: 最大数量
+#
+# 3. BREAK_BLOCK
+#    说明：破坏方块时触发
+#    条件：
+#      - block: 方块类型（单个）
+#      - blocks: 方块类型（多个）
+#
+# 4. PLACED_BLOCK
+#    说明：放置方块时触发
+#    条件：
+#      - block: 方块类型
+#      - blocks: 方块类型（多个）
+#
+# 5. ITEM_USED_ON_BLOCK
+#    说明：物品用于方块时触发
+#    条件：
+#      - item: 物品类型
+#      - block: 方块类型
+#
+# 6. ENCHANTED_ITEM
+#    说明：附魔物品时触发
+#    条件：
+#      - item: 物品类型
+#
+# 7. VILLAGER_TRADE
+#    说明：与村民交易时触发
+#    条件：
+#      - item: 交易物品
+#
+# 8. BRED_ANIMALS
+#    说明：繁殖动物时触发
+#    条件：
+#      - entity: 动物类型
+#
+# 9. TAME_ANIMAL
+#    说明：驯服动物时触发
+#    条件：
+#      - entity: 动物类型
+#
+# 10. FISHING_ROD_HOOKED
+#     说明：钓鱼竿钩住时触发
+#
+# 11. LOCATION
+#     说明：到达特定位置时触发
+#     条件：
+#       - world: 世界名称
+#       - biome: 生物群系
+#       - y_min: 最小Y坐标
+#       - y_max: 最大Y坐标
+#
+# 12. SLEPT_IN_BED
+#     说明：在床上睡觉时触发
+#
+# 13. CHANGED_DIMENSION
+#     说明：改变维度时触发
+#     条件：
+#       - world: 目标世界名称
+#
+# 14. CONSUME_ITEM
+#     说明：消耗物品时触发
+#     条件：
+#       - item: 物品类型
+#
+# 15. RECIPE_CRAFTED
+#     说明：合成配方时触发
+#     条件：
+#       - item: 合成物品
+#
+# ========== STARCORE 自定义触发器 ==========
+#
+# 1. CUSTOM_KILL_STREAK
+#    说明：连杀触发
+#    条件：
+#      - kill_count: 连杀数量
+#
+# 2. CUSTOM_DUEL_WIN
+#    说明：决斗胜利触发
+#    条件：
+#      - win_count: 胜利次数
+#
+# 3. CUSTOM_MONEY_EARNED
+#    说明：赚取金钱触发
+#    条件：
+#      - total_earned: 累计金额
+#      - amount: 单次金额
+#
+# 4. CUSTOM_GUILD_CREATED
+#    说明：创建公会触发
+#
+# 5. CUSTOM_FRIEND_ADDED
+#    说明：添加好友触发
+#    条件：
+#      - friend_count: 好友数量
+#
+# 6. CUSTOM_DAILY_CHECKIN
+#    说明：每日签到触发
+#    条件：
+#      - checkin_days: 连续签到天数
+#
+# 7. CUSTOM_QUEST_COMPLETED
+#    说明：完成任务触发
+#    条件：
+#      - quest_count: 任务数量
+#
+# ===============================================
+
+# ===============================================
+# 第四部分：奖励格式说明
+# ===============================================
+#
+# 奖励格式：类型:参数
+#
+# 1. 金钱奖励
+#    格式：money:<金额>
+#    示例：
+#      - "money:1000"      # 奖励1000星尘
+#      - "money:50000"     # 奖励50000星尘
+#
+# 2. 物品奖励
+#    格式：item:<物品ID>:<数量>
+#    示例：
+#      - "item:DIAMOND:10"           # 10个钻石
+#      - "item:NETHERITE_SWORD:1"    # 1把下界合金剑
+#      - "item:GOLDEN_APPLE:5"       # 5个金苹果
+#
+# 3. 经验奖励
+#    格式：exp:<经验值>
+#    示例：
+#      - "exp:100"         # 100经验值
+#      - "exp:1000"        # 1000经验值
+#
+# 4. 命令奖励
+#    格式：command:<命令>
+#    占位符：{player} = 玩家名
+#    示例：
+#      - "command:give {player} diamond 5"
+#      - "command:effect give {player} speed 60 1"
+#
+# ===============================================
+
+# ===============================================
+# 第五部分：完整示例成就
+# ===============================================
+
+custom-achievements:
+  # ========== 示例1：击杀成就 ==========
+  zombie_slayer:
+    # 成就标题
+    title: "僵尸杀手"
+
+    # 成就描述
+    description: "击杀100只僵尸"
+
+    # 成就图标（显示的物品）
+    icon: "ZOMBIE_HEAD"
+
+    # 成就框架（task=普通, challenge=挑战, goal=目标）
+    frame: "task"
+
+    # 父成就（必须先完成这个成就）
+    parent: "root"
+
+    # GUI中的位置
+    position:
+      x: 5
+      y: 0
+
+    # 触发器配置
+    trigger:
+      # 触发器类型：玩家击杀实体
+      type: "PLAYER_KILLED_ENTITY"
+
+      # 触发条件
+      conditions:
+        # 实体类型：僵尸
+        entity: "ZOMBIE"
+
+        # 击杀数量：100只
+        kill_count: 100
+
+    # 经验奖励
+    experience: 50
+
+    # 其他奖励
+    rewards:
+      - "money:1000"        # 1000星尘
+      - "item:DIAMOND:5"    # 5个钻石
+
+    # 显示设置
+    show-toast: true              # 显示Toast弹窗
+    announce-to-chat: true        # 全服公告
+
+  # ========== 示例2：收集成就 ==========
+  lumberjack:
+    title: "伐木大师"
+    description: "收集所有类型的木头"
+    icon: "OAK_LOG"
+    frame: "challenge"
+    parent: "root"
+    position:
+      x: 6
+      y: 0
+
+    trigger:
+      # 触发器类型：背包变化
+      type: "INVENTORY_CHANGED"
+
+      conditions:
+        # 需要收集的所有木头类型
+        items:
+          - "OAK_LOG"
+          - "SPRUCE_LOG"
+          - "BIRCH_LOG"
+          - "JUNGLE_LOG"
+          - "ACACIA_LOG"
+          - "DARK_OAK_LOG"
+          - "MANGROVE_LOG"
+          - "CHERRY_LOG"
+
+    experience: 100
+    rewards:
+      - "money:5000"
+
+    show-toast: true
+    announce-to-chat: true
+
+  # ========== 示例3：PvP成就 ==========
+  pvp_master:
+    title: "PvP大师"
+    description: "赢得50场决斗"
+    icon: "DIAMOND_SWORD"
+    frame: "challenge"
+    parent: "root"
+    position:
+      x: -5
+      y: 0
+
+    trigger:
+      # 触发器类型：决斗胜利（自定义触发器）
+      type: "CUSTOM_DUEL_WIN"
+
+      conditions:
+        # 胜利次数：50场
+        win_count: 50
+
+    experience: 200
+    rewards:
+      - "money:10000"
+      - "item:NETHERITE_SWORD:1"
+
+    show-toast: true
+    announce-to-chat: true
+
+  # ========== 示例4：建筑成就 ==========
+  builder:
+    title: "建筑大师"
+    description: "放置10000个方块"
+    icon: "BRICKS"
+    frame: "challenge"
+    parent: "root"
+    position:
+      x: 7
+      y: 0
+
+    trigger:
+      # 触发器类型：放置方块
+      type: "PLACED_BLOCK"
+
+      conditions:
+        # 任意方块都计数
+        # 放置10000个
+        block_count: 10000
+
+    experience: 150
+    rewards:
+      - "money:8000"
+      - "item:DIAMOND_BLOCK:10"
+
+    show-toast: true
+    announce-to-chat: true
+
+  # ========== 示例5：探险成就 ==========
+  nether_explorer:
+    title: "下界探险家"
+    description: "进入下界"
+    icon: "NETHERRACK"
+    frame: "task"
+    parent: "root"
+    position:
+      x: 3
+      y: -2
+
+    trigger:
+      # 触发器类型：改变维度
+      type: "CHANGED_DIMENSION"
+
+      conditions:
+        # 目标世界：下界
+        world: "world_nether"
+
+    experience: 30
+    rewards:
+      - "money:500"
+
+    show-toast: true
+    announce-to-chat: false
+
+  # ========== 示例6：社交成就 ==========
+  social_butterfly:
+    title: "社交达人"
+    description: "添加10个好友"
+    icon: "PLAYER_HEAD"
+    frame: "task"
+    parent: "root"
+    position:
+      x: 0
+      y: 5
+
+    trigger:
+      # 触发器类型：添加好友（自定义触发器）
+      type: "CUSTOM_FRIEND_ADDED"
+
+      conditions:
+        # 好友数量：10个
+        friend_count: 10
+
+    experience: 30
+    rewards:
+      - "money:500"
+
+    show-toast: true
+    announce-to-chat: false
+
+  # ========== 示例7：经济成就 ==========
+  money_collector:
+    title: "星尘收藏家"
+    description: "累计赚取10万星尘"
+    icon: "GOLD_BLOCK"
+    frame: "goal"
+    parent: "root"
+    position:
+      x: 3
+      y: 3
+
+    trigger:
+      # 触发器类型：赚取金钱（自定义触发器）
+      type: "CUSTOM_MONEY_EARNED"
+
+      conditions:
+        # 累计金额：100000
+        total_earned: 100000
+
+    experience: 100
+    rewards:
+      - "money:10000"
+      - "item:DIAMOND_BLOCK:10"
+
+    show-toast: true
+    announce-to-chat: true
+
+  # ========== 示例8：连杀成就 ==========
+  unstoppable:
+    title: "无人能挡"
+    description: "达成10连杀"
+    icon: "DIAMOND_SWORD"
+    frame: "challenge"
+    parent: "root"
+    position:
+      x: -4
+      y: 0
+
+    trigger:
+      # 触发器类型：连杀（自定义触发器）
+      type: "CUSTOM_KILL_STREAK"
+
+      conditions:
+        # 连杀数量：10
+        kill_count: 10
+
+    experience: 150
+    rewards:
+      - "money:5000"
+      - "item:GOLDEN_APPLE:5"
+
+    show-toast: true
+    announce-to-chat: true
+
+  # ========== 示例9：合成成就 ==========
+  master_crafter:
+    title: "合成大师"
+    description: "合成钻石镐"
+    icon: "DIAMOND_PICKAXE"
+    frame: "task"
+    parent: "root"
+    position:
+      x: 4
+      y: 0
+
+    trigger:
+      # 触发器类型：合成配方
+      type: "RECIPE_CRAFTED"
+
+      conditions:
+        # 合成物品：钻石镐
+        item: "DIAMOND_PICKAXE"
+
+    experience: 20
+    rewards:
+      - "money:200"
+
+    show-toast: true
+    announce-to-chat: false
+
+  # ========== 示例10：狙击手成就 ==========
+  sniper:
+    title: "神枪手"
+    description: "从50格外击杀敌人"
+    icon: "BOW"
+    frame: "challenge"
+    parent: "root"
+    position:
+      x: -3
+      y: 1
+
+    trigger:
+      # 触发器类型：玩家击杀实体
+      type: "PLAYER_KILLED_ENTITY"
+
+      conditions:
+        # 任意敌对生物
+        entities:
+          - "ZOMBIE"
+          - "SKELETON"
+          - "SPIDER"
+          - "CREEPER"
+
+        # 最小距离：50格
+        distance_min: 50
+
+        # 最大距离：999格
+        distance_max: 999
+
+    experience: 100
+    rewards:
+      - "money:3000"
+      - "item:BOW:1"
+
+    show-toast: true
+    announce-to-chat: true
+
+# ===============================================
+# 第六部分：常见问题
+# ===============================================
+#
+# Q1: 如何创建连续完成的成就链？
+# A1: 使用 parent 字段创建父子关系
+#     示例：
+#     kill_1:
+#       parent: "root"
+#     kill_10:
+#       parent: "kill_1"
+#     kill_100:
+#       parent: "kill_10"
+#
+# Q2: 如何让成就更难获得？
+# A2: 增加触发条件中的数量要求
+#     使用 challenge 框架类型
+#     给予更高的经验和奖励
+#
+# Q3: 如何创建隐藏成就？
+# A3: 设置 hidden: true（需要在代码中实现）
+#
+# Q4: 可以同时满足多个条件吗？
+# A4: 可以，在 conditions 中添加多个条件
+#     所有条件都必须满足才能获得成就
+#
+# Q5: 如何测试成就是否正常工作？
+# A5: 使用命令：/achievement grant <玩家> <成就ID>
+#     或触发相应的游戏动作
+#
+# Q6: 成就图标可以用什么？
+# A6: 任何 Minecraft 物品ID
+#     推荐使用与成就主题相关的物品
+#
+# Q7: 奖励可以叠加吗？
+# A7: 可以，在 rewards 列表中添加多个奖励
+#
+# Q8: 如何删除玩家的成就？
+# A8: 使用命令：/achievement revoke <玩家> <成就ID>
+#
+# ===============================================
+
+# ===============================================
+# 第七部分：高级技巧
+# ===============================================
+#
+# 1. 创建成就树
+#    - 使用 parent 构建层级关系
+#    - 合理规划 position 坐标
+#    - 从简单到困难逐步递进
+#
+# 2. 平衡奖励
+#    - 简单成就：10-30 经验，少量金钱
+#    - 中等成就：50-100 经验，中等金钱
+#    - 挑战成就：100-200 经验，大量金钱+物品
+#    - 目标成就：200+ 经验，丰厚奖励
+#
+# 3. 设计有趣的成就
+#    - 参考玩家游戏习惯
+#    - 设置有挑战性但可达成的目标
+#    - 使用幽默或有趣的标题
+#    - 给予玩家成就感
+#
+# 4. 性能优化
+#    - 避免设置过于频繁触发的成就
+#    - 合理使用条件过滤
+#    - 不要创建过多成就（建议<100个）
+#
+# ===============================================
+
+# ===============================================
+# 配置文件结束
+# ===============================================
+# 现在你可以创建自己的成就了！
+# 祝你玩得愉快！
+# ===============================================

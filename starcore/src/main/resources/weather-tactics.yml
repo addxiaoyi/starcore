@@ -1,0 +1,261 @@
+# ========================================
+# 天气战术模块配置
+# Weather Tactics Module Configuration
+# ========================================
+# Feature ID: 16
+# Package: dev.starcore.starcore.module.army.weather
+
+# ==================== 模块开关 ====================
+module:
+  # 是否启用天气战术模块
+  enabled: true
+
+  # 模块加载优先级 (数字越小越先加载)
+  priority: 85
+
+# ==================== 天气战术配置 ====================
+weather-tactics:
+  # 战术升级基础成本
+  upgrade:
+    base-cost: 5000.0
+    # 每级升级成本倍数
+    cost-multiplier: 1.5
+    # 最大战术等级
+    max-level: 5
+
+  # 兵种天气适应性配置
+  unit-adaptation:
+    # 晴天适应性 (所有兵种基准)
+    clear:
+      infantry: 1.0
+      cavalry: 1.0
+      archer: 1.3    # 远程优势
+      siege: 1.0
+      defensive: 0.9
+
+    # 雨天适应性
+    rain:
+      infantry: 0.9
+      cavalry: 0.7
+      archer: 0.5
+      siege: 0.4
+      defensive: 1.1
+
+    # 雷暴适应性
+    thunder:
+      infantry: 0.8
+      cavalry: 0.4
+      archer: 0.1
+      siege: 0.2
+      defensive: 1.3
+
+    # 雪天适应性
+    snow:
+      infantry: 0.7
+      cavalry: 0.1
+      archer: 0.3
+      siege: 0.0
+      defensive: 1.2
+
+    # 暴风雨适应性
+    storm:
+      infantry: 0.6
+      cavalry: 0.0
+      archer: 0.0
+      siege: 0.0
+      defensive: 1.5
+
+  # 天气战斗修正配置
+  battle-modifier:
+    # 晴天
+    clear:
+      attack-bonus: 1.0
+      defense-bonus: 1.0
+      movement-bonus: 1.0
+      morale-bonus: 1.0
+
+    # 雨天
+    rain:
+      attack-bonus: 0.8
+      defense-bonus: 1.2
+      movement-bonus: 0.7
+      morale-bonus: 1.0
+
+    # 雷暴
+    thunder:
+      attack-bonus: 0.6
+      defense-bonus: 1.5
+      movement-bonus: 0.5
+      morale-bonus: 0.9
+
+    # 雪天
+    snow:
+      attack-bonus: 0.5
+      defense-bonus: 1.3
+      movement-bonus: 0.3
+      morale-bonus: 0.8
+
+    # 暴风雨
+    storm:
+      attack-bonus: 0.4
+      defense-bonus: 1.8
+      movement-bonus: 0.2
+      morale-bonus: 0.7
+
+  # 天气战术加成配置
+  tactics-boost:
+    # 晴天加成
+    clear:
+      attack-mult: 1.0
+      defense-mult: 1.0
+      movement-mult: 1.0
+      morale-bonus: 1.0
+      name: "晴天作战"
+      description: "所有兵种正常作战，弓箭手获得额外远程优势"
+
+    # 雨天加成
+    rain:
+      attack-mult: 0.8
+      defense-mult: 1.2
+      movement-mult: 0.7
+      morale-bonus: 1.0
+      name: "雨天战术"
+      description: "弓箭手和骑兵能力下降，步兵获得防守优势"
+
+    # 雷暴加成
+    thunder:
+      attack-mult: 0.6
+      defense-mult: 1.5
+      movement-mult: 0.5
+      morale-bonus: 0.9
+      name: "雷暴战术"
+      description: "骑兵最危险，步兵和守军获得地形优势"
+
+    # 雪天加成
+    snow:
+      attack-mult: 0.5
+      defense-mult: 1.3
+      movement-mult: 0.3
+      morale-bonus: 0.8
+      name: "雪地作战"
+      description: "骑兵完全无法移动，步兵勉强维持"
+
+    # 暴风雨加成
+    storm:
+      attack-mult: 0.4
+      defense-mult: 1.8
+      movement-mult: 0.2
+      morale-bonus: 0.7
+      name: "风暴突击"
+      description: "所有兵种受限，守军获得最大优势"
+
+# ==================== 战术类型配置 ====================
+tactics-types:
+  # 天气掌控 - 基础战术
+  weather_mastery:
+    display-name: "天气掌控"
+    description: "掌握天气变化规律的基础战术能力"
+    required-level: 0
+    effects:
+      - "解锁基础天气战术"
+      - "提升所有天气下军队的基础适应性"
+
+  # 雨天战术
+  rain_warfare:
+    display-name: "雨天战术"
+    description: "在雨天条件下作战的特殊战术"
+    required-level: 1
+    effects:
+      - "雨天攻击力损失减少20%"
+      - "解锁雨天专属阵型"
+
+  # 雷暴战术
+  thunder_tactics:
+    display-name: "雷暴战术"
+    description: "利用雷暴天气进行战术打击"
+    required-level: 2
+    effects:
+      - "雷暴天气下防御力提升50%"
+      - "解锁引雷攻击技能"
+
+  # 雪地作战
+  snow_operations:
+    display-name: "雪地作战"
+    description: "在极端寒冷条件下的作战能力"
+    required-level: 3
+    effects:
+      - "雪天移动损失减少50%"
+      - "解锁雪地伪装技能"
+
+  # 风暴突击
+  storm_assault:
+    display-name: "风暴突击"
+    description: "利用暴风雨进行突袭的终极战术"
+    required-level: 4
+    effects:
+      - "风暴天气下获得战术优势"
+      - "解锁风暴召唤技能"
+      - "解锁所有天气战术的完整效果"
+
+# ==================== 命令配置 ====================
+commands:
+  # 主命令
+  main:
+    aliases:
+      - "weathertactics"
+      - "wt"
+
+  # 子命令权限
+  permissions:
+    weathertactics.info: "starcore.weathertactics.info"
+    weathertactics.boost: "starcore.weathertactics.boost"
+    weathertactics.upgrade: "starcore.weathertactics.upgrade"
+    weathertactics.list: "starcore.weathertactics.list"
+    weathertactics.effect: "starcore.weathertactics.effect"
+    weathertactics.weather: "starcore.weathertactics.weather"
+    weathertactics.adaptation: "starcore.weathertactics.adaptation"
+
+# ==================== 事件配置 ====================
+events:
+  # 是否启用天气战术事件广播
+  broadcast:
+    enabled: true
+    # 广播范围（玩家距离）
+    range: 100
+
+  # 战术升级事件
+  upgrade:
+    # 是否通知国家成员
+    notify-nation: true
+    # 是否显示升级动画
+    show-animation: true
+
+  # 天气战斗优势事件
+  battle-advantage:
+    # 是否在战斗前显示天气分析
+    show-pre-battle-analysis: true
+    # 是否在战斗后记录天气影响
+    log-post-battle-analysis: true
+
+# ==================== 性能配置 ====================
+performance:
+  # 天气状态刷新间隔（tick）
+  state-refresh-interval: 6000  # 5分钟
+  # 军队状态清理间隔（tick）
+  army-state-cleanup-interval: 36000  # 30分钟
+  # 最大缓存的军队天气状态数量
+  max-cached-states: 1000
+  # 是否启用异步处理
+  async-enabled: true
+
+# ==================== 国际化配置 ====================
+i18n:
+  # 消息语言
+  locale: "zh_cn"
+
+  # 消息前缀
+  prefix:
+    info: "&6[天气战术] &r"
+    success: "&a[天气战术] &r"
+    warning: "&e[天气战术] &r"
+    error: "&c[天气战术] &r"

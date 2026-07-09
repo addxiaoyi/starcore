@@ -1,0 +1,142 @@
+# 军事联盟系统配置文件
+# Feature ID: 27
+# Package: dev.starcore.starcore.module.diplomacy.military
+
+# ==================== 基础配置 ====================
+# 是否启用军事联盟系统
+enabled: true
+
+# ==================== 外交冷却配置 ====================
+cooldown:
+  # 军事联盟操作冷却时间（毫秒），默认 24 小时
+  pact-break-ms: 86400000
+  # 邀请过期时间（毫秒），默认 7 天
+  invite-expiry-ms: 604800000
+
+# ==================== 条约类型配置 ====================
+pact-types:
+  # 观察员国 - 最低级别，仅信息共享
+  observer:
+    enabled: true
+    defense-bonus: 0.0
+    description: "信息共享，无军事义务"
+  # 防御同盟 - 被动防御承诺
+  defensive:
+    enabled: true
+    defense-bonus: 0.1
+    protection-enabled: true
+    description: "受到攻击时盟国将协助防御"
+  # 全面同盟 - 主动军事援助
+  full-alliance:
+    enabled: true
+    defense-bonus: 0.25
+    joint-defense-enabled: true
+    auto-join-war: false
+    description: "盟国将被自动通知战争状态"
+  # 军事一体化 - 最高级别联合
+  integrated:
+    enabled: true
+    defense-bonus: 0.5
+    joint-defense-enabled: true
+    auto-join-war: true
+    shared-territory-enabled: false
+    description: "最高级别联合，盟国将自动参战"
+
+# ==================== 防御加成配置 ====================
+defense:
+  # 基础防御加成
+  base-bonus: 0.1
+  # 每个条约等级增加的加成
+  bonus-per-level: 0.1
+  # 最大防御加成上限
+  max-bonus: 1.0
+  # 是否在战争期间启用防御加成
+  enabled-during-war: true
+
+# ==================== 联合防御配置 ====================
+joint-defense:
+  # 是否启用联合防御机制
+  enabled: true
+  # 联合防御最大参与国家数量
+  max-participants: 5
+  # 联合防御加成倍率
+  bonus-multiplier: 1.5
+  # 是否通知盟国关于联合防御
+  notify-allies: true
+
+# ==================== 保护机制配置 ====================
+protection:
+  # 是否启用军事联盟保护
+  enabled: true
+  # 保护通知消息
+  messages:
+    attacker-blocked: "§c该玩家正受到军事联盟保护（%pact_type%）"
+    defender-protected: "§a你正受到来自 %ally% 的军事联盟保护"
+    ally-in-danger: "§6[军事联盟] §c盟国 %nation% 正在遭受攻击！"
+  # 保护生效的条约等级
+  min-pact-level: 2  # DEFENSIVE 及以上
+
+# ==================== 邀请系统配置 ====================
+invites:
+  # 最大同时待处理邀请数（每个国家）
+  max-pending-per-nation: 10
+  # 邀请过期时间（小时）
+  expiry-hours: 168  # 7 天
+  # 是否允许邀请敌对国家
+  allow-enemy-invite: false
+  # 是否需要双方确认
+  require-mutual-accept: false
+
+# ==================== 消息配置 ====================
+messages:
+  # 邀请发送成功
+  invite-sent: "§a军事联盟邀请已发送至 %nation%"
+  # 邀请被接受
+  invite-accepted: "§a军事联盟已建立！条约类型: %pact_type%"
+  # 邀请被拒绝
+  invite-rejected: "§e%nation% 拒绝了军事联盟邀请"
+  # 联盟破裂
+  pact-broken: "§c与 %nation% 的军事联盟已解除"
+  # 条约升级
+  pact-upgraded: "§a军事联盟条约已升级为 %pact_type%"
+  # 保护触发
+  protection-triggered: "§6[军事联盟] §e%ally% 的盟国 %target% 正在遭受 %attacker% 的攻击！"
+
+# ==================== 通知配置 ====================
+notifications:
+  # 战争开始通知
+  war-started:
+    enabled: true
+    message: "§6[军事联盟] §c盟国 %nation% 正在与 %enemy% 交战！"
+  # 战争结束通知
+  war-ended:
+    enabled: true
+    message: "§6[军事联盟] §a盟国 %nation% 与 %enemy% 的战争已结束"
+  # 联盟成员加入战争
+  ally-joined-war:
+    enabled: true
+    message: "§6[军事联盟] §e盟国 %nation% 加入了与 %enemy% 的战争"
+
+# ==================== 反馈配置 ====================
+feedback:
+  # 是否启用游戏内反馈
+  enabled: true
+  # 联盟建立时的粒子效果
+  particles:
+    alliance-formed: "HAPPY_VILLAGER"
+    alliance-broken: "SMOKE"
+    pact-upgraded: "END_ROD"
+  # 联盟建立时的声音
+  sounds:
+    alliance-formed: "ENTITY_PLAYER_LEVELUP"
+    alliance-broken: "BLOCK_NOTE_BLOCK_BASS"
+    pact-upgraded: "BLOCK_BEACON_ACTIVATE"
+
+# ==================== 权限配置 ====================
+permissions:
+  # 可以创建军事联盟的最低官职
+  create-min-rank: "diplomat"
+  # 可以升级条约的最低官职
+  upgrade-min-rank: "diplomat"
+  # 可以解除联盟的最低官职
+  break-min-rank: "leader"

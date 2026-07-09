@@ -1,0 +1,97 @@
+# StarCore 宠物系统配置文件
+# ============================================
+
+# 价格配置
+prices:
+  # 宠物类别价格倍率
+  category:
+    companion: 1.0    # 伴侣型宠物
+    mount: 1.5        # 骑乘型宠物
+    flying: 2.0       # 飞行型宠物
+    aquatic: 1.2      # 水生型宠物
+    special: 3.0      # 特殊型宠物
+
+  # 各类型宠物的价格倍率
+  type:
+    wolf: 1.0
+    cat: 1.0
+    fox: 1.2
+    parrot: 1.0
+    rabbit: 0.8
+    horse: 1.5
+    donkey: 1.2
+    mule: 1.3
+    llama: 1.4
+    pig: 0.5
+    strider: 1.8
+    skeleton_horse: 2.0
+    zombie_horse: 2.0
+    snow_golem: 1.5
+    iron_golem: 2.5
+    blaze: 3.0
+    wither_skeleton: 3.5
+    phantom: 2.2
+    dolphin: 2.0
+    turtle: 1.5
+    axolotl: 2.5
+
+# 经验配置
+experience:
+  feed: 10           # 喂养获得的经验
+  kill-multiplier: 5  # 击杀获得经验的倍率
+  level-up-base: 100  # 升级所需基础经验
+
+# 功能开关
+features:
+  summon: true       # 启用召唤功能
+  ride: true          # 启用骑乘功能
+  shop: true          # 启用商店功能
+  upgrade: true       # 启用升级功能
+
+# 限制配置
+limits:
+  default-max-pets: 5    # 默认最大宠物数量
+  max-ride-speed: 0.5     # 最大骑乘速度
+
+# 稀有度升级费用
+upgrade-costs:
+  common: 5000          # 普通 -> 优秀
+  uncommon: 20000        # 优秀 -> 稀有
+  rare: 80000            # 稀有 -> 史诗
+  epic: 300000           # 史诗 -> 传说
+  legendary: 1000000      # 传说 -> 神话
+  mythic: 0              # 神话（无法升级）
+
+# 宠物商店分类显示
+shop-categories:
+  - COMPANION
+  - MOUNT
+  - FLYING
+  - AQUATIC
+  - SPECIAL
+
+# 骑乘速度加成（百分比）
+ride-speed-bonus:
+  common: 10
+  uncommon: 15
+  rare: 25
+  epic: 40
+  legendary: 60
+  mythic: 100
+
+# 战斗属性加成（百分比）
+combat-bonuses:
+  damage:
+    common: 5
+    uncommon: 10
+    rare: 20
+    epic: 35
+    legendary: 50
+    mythic: 75
+  defense:
+    common: 3
+    uncommon: 6
+    rare: 12
+    epic: 20
+    legendary: 30
+    mythic: 50

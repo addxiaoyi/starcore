@@ -1,0 +1,104 @@
+# StarCore 国策配置文件
+# 国策系统配置文件，定义所有可用的国策
+
+# 经济类国策
+civil_industry:
+  display-name: "文民工业"
+  category: "经济"
+  treasury-cost: "250.00"
+  duration-seconds: 86400
+  cooldown-seconds: 3600
+  prerequisite-keys: []
+  conflict-keys:
+    - "military_drill"
+  effects:
+    - key: "production_bonus"
+      scope: "GLOBAL"
+      modifier: 0.12
+      description: "国家生产与基础设施产出 +12%"
+
+mercantile_focus:
+  display-name: "商业重心"
+  category: "经济"
+  treasury-cost: "150.00"
+  duration-seconds: 86400
+  cooldown-seconds: 3600
+  prerequisite-keys:
+    - "civil_industry"
+  conflict-keys: []
+  effects:
+    - key: "trade_income_bonus"
+      scope: "GLOBAL"
+      modifier: 0.10
+      description: "贸易与关税收入 +10%"
+
+# 军事类国策
+military_drill:
+  display-name: "军事演习"
+  category: "军事"
+  treasury-cost: "300.00"
+  duration-seconds: 43200
+  cooldown-seconds: 7200
+  prerequisite-keys: []
+  conflict-keys:
+    - "civil_industry"
+    - "open_diplomacy"
+  effects:
+    - key: "combat_readiness"
+      scope: "PLAYER"
+      modifier: 0.08
+      description: "公民战斗准备度 +8%（国家行动范围内）"
+
+war_economy:
+  display-name: "战时经济"
+  category: "军事"
+  treasury-cost: "400.00"
+  duration-seconds: 172800
+  cooldown-seconds: 14400
+  prerequisite-keys:
+    - "military_drill"
+  conflict-keys:
+    - "open_diplomacy"
+  effects:
+    - key: "military_production_bonus"
+      scope: "GLOBAL"
+      modifier: 0.15
+      description: "军事单位生产 +15%"
+    - key: "combat_readiness"
+      scope: "PLAYER"
+      modifier: 0.05
+      description: "战斗准备度 +5%"
+
+# 内政类国策
+fortified_borders:
+  display-name: "边境要塞化"
+  category: "内政"
+  treasury-cost: "500.00"
+  duration-seconds: 172800
+  cooldown-seconds: 14400
+  prerequisite-keys:
+    - "military_drill"
+  conflict-keys:
+    - "open_diplomacy"
+  effects:
+    - key: "claim_defense_bonus"
+      scope: "TERRITORY"
+      modifier: 0.15
+      description: "领土防御与围攻抗性 +15%"
+
+# 外交类国策
+open_diplomacy:
+  display-name: "开放外交"
+  category: "外交"
+  treasury-cost: "100.00"
+  duration-seconds: 86400
+  cooldown-seconds: 3600
+  prerequisite-keys: []
+  conflict-keys:
+    - "fortified_borders"
+    - "military_drill"
+  effects:
+    - key: "diplomacy_point_bonus"
+      scope: "GLOBAL"
+      modifier: 0.20
+      description: "外交点数获取 +20%"

@@ -1,0 +1,4647 @@
+common: 
+  prefix: §6[§e★STARCORE§6]§r
+  no-permission: §c你没有权限执行此操作！
+  player-only: §c该命令只能由玩家执行！
+  console-only: §c该命令只能从控制台执行！
+  invalid-player: §c玩家 §e{player} §c不存在或未在线！
+  invalid-number: §c无效的数字：§e{input}
+  invalid-usage: §c用法错误！正确用法：§e{usage}
+  cooldown: §c请等待 §e{time}秒 §c后再使用！
+  success: §a操作成功！
+  failed: §c操作失败！
+  loading: §e正在加载...
+  processing: §e正在处理...
+menu: 
+  admin: 
+    economy: §e经济
+    economy-desc: §7经济管理
+    logs: §e日志
+    logs-desc: §7查看服务器日志
+    players: §e玩家
+    players-desc: §7管理在线玩家
+    title: §6§l★ 管理面板 ★
+    world: §e世界
+    world-desc: §7世界管理
+  combat: 
+    duels: §e决斗
+    duels-desc: §7挑战其他玩家
+    leaderboard: §e排行榜
+    leaderboard-desc: §7查看服务器排名
+    matchmaking: §e匹配对战
+    matchmaking-desc: §7加入排位匹配
+    stats: §e战斗统计
+    stats-desc: §7查看你的战斗统计
+    title: §6§l★ 战斗 ★
+  confirmation: 
+    cancel: §c✗ 取消
+    cancel-lore: §7点击取消并返回
+    confirm: §a§l✓ 确认
+    confirm-lore: §7点击确认此操作
+    message: §7你确定要继续吗？
+    title: §6§l⚠ 确认操作 ⚠
+    warning: §c此操作无法撤销！
+  economy: 
+    auction: §e拍卖
+    auction-desc: §7查看进行中的拍卖
+    balance: §e余额
+    balance-desc: §7查看你的余额
+    jobs: §e工作
+    jobs-desc: §7查看可用工作
+    shop: §e商店
+    shop-desc: §7浏览服务器商店
+    title: §6§l★ 经济 ★
+    transfer: §e转账
+    transfer-desc: §7向其他玩家转账金币
+  main: 
+    playtime: §7今日在线时长：§e{time}
+    title: §6§l★ STARCORE 主菜单 ★
+    welcome: §7欢迎来到 STARCORE！
+  navigation: 
+    help: §e帮助
+    help-desc: §7获取命令帮助
+    home: §e主页
+    home-desc: §7返回你的主页位置
+    rules: §e规则
+    rules-desc: §7查看服务器规则
+    server: §e服务器信息
+    server-desc: §7查看服务器信息
+  pagination: 
+    empty: §7本页无内容
+    first: §a§l◀◀ 首页
+    last: §e§l末页 ▶▶
+    next: §e§l下一页 ▶
+    page: §7第 {current} / {total} 页
+    previous: §a§l◀ 上一页
+  player: 
+    achievements: §e成就
+    achievements-desc: §7查看你的成就
+    profile: §e个人资料
+    profile-desc: §7查看你的玩家资料
+    settings: §e设置
+    settings-desc: §7配置你的设置
+    stats: §e统计数据
+    stats-desc: §7查看你的玩家统计
+    title: §6§l★ 玩家菜单 ★
+  settings: 
+    audio: §e音频
+    audio-desc: §7音频设置
+    display: §e显示
+    display-desc: §7显示设置
+    keybinds: §e按键绑定
+    keybinds-desc: §7配置按键绑定
+    notifications: §e通知
+    notifications-desc: §7配置通知设置
+    privacy: §e隐私
+    privacy-desc: §7隐私设置
+    title: §6§l★ 设置 ★
+  social: 
+    friends: §e好友
+    friends-desc: §7管理好友列表
+    guild: §e公会
+    guild-desc: §7管理你的公会
+    mail: §e邮件
+    mail-desc: §7查看你的邮件
+    party: §e队伍
+    party-desc: §7管理你的队伍
+    title: §6§l★ 社交 ★
+  status: 
+    away: §7● 离开
+    busy: §e● 忙碌
+    in-game: §b● 游戏中
+    offline: §c● 离线
+    online: §a● 在线
+  time: 
+    days: '{0} 天'
+    forever: 永久
+    hours: '{0} 小时'
+    minutes: '{0} 分钟'
+    remaining: 剩余 {0}
+    seconds: '{0} 秒'
+  tooltip: 
+    click-to-close: §7点击关闭
+    click-to-open: §7点击打开
+    hover-for-info: §7悬停查看更多信息
+    left-click: §7左键选择
+    right-click: §7右键查看选项
+    shift-click: §7Shift+点击查看详情
+teleport: 
+  spawn: 
+    teleporting: §a正在传送到§e星核§a...
+    success: §a已传送到§e星核§a！
+    not-set: §c星核位置尚未设置！
+    set-success: §a已设置§e星核§a位置！
+  anchor: 
+    teleporting: §a正在传送到锚点 §e{name}§a...
+    success: §a已传送到锚点 §e{name}§a！
+    not-found: §c锚点 §e{name} §c不存在！
+    set-success: §a已设置锚点 §e{name}§a！
+    delete-success: §a已删除锚点 §e{name}§a！
+    limit-reached: §c你已达到最大锚点数量限制！(§e{max}§c)
+    list-empty: §e你还没有设置任何锚点！
+    list-header: §6========== §e你的锚点列表 §6==========
+    list-item: §e{index}. §a{name} §7- §f{world} ({x}, {y}, {z})
+  port: 
+    teleporting: §a正在传送到星港 §e{name}§a...
+    success: §a已传送到星港 §e{name}§a！
+    not-found: §c星港 §e{name} §c不存在！
+    set-success: §a已设置星港 §e{name}§a！
+    delete-success: §a已删除星港 §e{name}§a！
+    list-empty: §e当前没有可用的星港！
+    list-header: §6========== §e可用星港列表 §6==========
+    list-item: §e{index}. §a{name} §7- §f{world}
+  beam: 
+    request-sent: §a已向 §e{player} §a发送传送请求！
+    request-received: §e{player} §a请求传送到你的位置！
+    request-expired: §c传送请求已过期！
+    no-request: §c你没有待处理的传送请求！
+    accept-success: §a已接受 §e{player} §a的传送请求！
+    deny-success: §c已拒绝 §e{player} §c的传送请求！
+    already-pending: §c你已经有一个待处理的传送请求！
+    self-request: §c你不能向自己发送传送请求！
+  recall: 
+    success: §a已召回到上一个位置！
+    no-location: §c没有可召回的位置！
+  cancel: 
+    move: §c传送已取消：你移动了！
+    damage: §c传送已取消：你受到了伤害！
+    combat: §c传送已取消：你正在战斗中！
+economy: 
+  currency: 
+    name-singular: 金币
+    name-plural: 金币
+    symbol: ✦
+  balance: 
+    self: §a你的星尘：§e{balance} ✦
+    other: §e{player} §a的星尘：§e{balance} ✦
+  transfer: 
+    success-sender: §a已转移 §e{amount} ✦ §a给 §e{receiver}§a！
+    success-receiver: §a收到来自 §e{sender} §a的 §e{amount} ✦§a！
+    insufficient: §c星尘不足！你的余额：§e{balance} ✦
+    self-transfer: §c你不能转账给自己！
+    min-amount: §c最小转账金额为 §e{min} ✦§c！
+    max-amount: §c最大转账金额为 §e{max} ✦§c！
+  baltop: 
+    header: §6========== §e星尘富豪榜 §7(第{page}/{total}页) §6==========
+    entry: §e{rank}. §a{player} §7- §e{balance} ✦
+    your-rank: §7你的排名：§e#{rank} §7(§e{balance} ✦§7)
+    no-rank: §7你还未上榜！
+  admin: 
+    give-success: §a已给予 §e{player} §a星尘 §e{amount} ✦§a！
+    take-success: §a已扣除 §e{player} §a星尘 §e{amount} ✦§a！
+    set-success: §a已设置 §e{player} §a星尘为 §e{amount} ✦§a！
+social: 
+  nova: 
+    format: §7[§e{sender}§7 → §e{receiver}§7]§f {message}
+    reply-format: §7[§e你§7 → §e{receiver}§7]§f {message}
+    no-reply-target: §c没有可回复的对象！
+    self-message: §c你不能给自己发消息！
+  mute: 
+    success: §a已静音 §e{player}§a！
+    already-muted: §c你已经静音了 §e{player}§c！
+    not-muted: §c你没有静音 §e{player}§c！
+    unmute-success: §a已取消静音 §e{player}§a！
+    blocked: §c该玩家已将你静音！
+nickname: 
+  set-success: §a已设置昵称为：{nickname}
+  clear-success: §a已清除昵称！
+  too-short: §c昵称长度不能小于 {min} 个字符！
+  too-long: §c昵称长度不能超过 {max} 个字符！
+  blacklisted: §c该昵称不可用！
+  invalid-format: §c昵称格式无效！
+  no-colors: §c你没有权限使用颜色代码！
+  realname: §e{nickname} §a的真实名称是：§e{realname}
+  not-found: §c找不到昵称为 §e{nickname} §c的玩家！
+pvp: 
+  orbit: 
+    request-sent: §a已向 §e{player} §a发起轨道决斗请求！
+    request-received: §e{player} §a向你发起轨道决斗！
+    accept-instructions: §7输入 §e/orbit accept §7接受 或 §e/orbit deny §7拒绝
+    accept-success: §a已接受决斗！正在准备竞技场...
+    deny-success: §c已拒绝 §e{player} §c的决斗请求！
+    no-request: §c你没有待处理的决斗请求！
+    already-in-duel: §c你已经在决斗中了！
+    target-in-duel: §c该玩家已经在决斗中了！
+    no-arena: §c暂无可用竞技场！
+    start: §6========== §c决斗开始！ §6==========
+    countdown: §e决斗将在 §c{seconds} §e秒后开始...
+    win: §a§l你赢得了决斗！
+    lose: §c§l你输掉了决斗！
+    draw: §e§l决斗平局！
+    quit: §c{player} §7退出了决斗，§e{winner} §7获胜！
+  killstreak: 
+    milestone: §e{player} §f达成 §c{streak}连杀§f！
+    ended: §c{victim} §f的 §e{streak}连杀 §f被 §e{killer} §f终结了！
+    reward: §a你获得了 §e{amount} ✦ §a的连杀奖励！
+  stats: 
+    header: §6========== §e{player} 的战斗统计 §6==========
+    kills: §a击杀：§e{kills}
+    deaths: §c死亡：§e{deaths}
+    assists: §b助攻：§e{assists}
+    kd: §eK/D比率：§f{kd}
+    kda: §eKDA：§f{kda}
+    current-streak: §e当前连杀：§c{streak}
+    best-streak: §e最高连杀：§6{streak}
+    duel-record: §e决斗战绩：§a{wins}胜 §c{losses}负 §7{draws}平
+    win-rate: §e胜率：§a{rate}%
+    damage-dealt: §e造成伤害：§c{damage}
+    damage-taken: §e受到伤害：§c{damage}
+ai: 
+
+  bot: 
+    limit-reached: §c服务器机器人数量已达上限 (§e{max}§c)，请稍后再试
+    already-exists: §c你已经有一个训练机器人了
+    spawn-success: §a已生成 §e{difficulty} §a难度的训练机器人
+    global-count: "§7全局机器人数量: §e{count}§7/§e{max}"
+    remove-success: §a已移除训练机器人
+    report-header: §6========== 训练报告 ==========
+    report-footer: §6============================
+    report-bot: "§e机器人: §f{name}"
+    report-difficulty: "§e难度: §f{name}"
+    report-kills: "§e击杀: §a{count}"
+    report-deaths: "§e死亡: §c{count}"
+    report-kd: "§eK/D: §f{ratio}"
+    report-duration: "§e用时: §f{seconds} 秒"
+
+  bot: 
+    spawn-success: §a已生成 §e{difficulty} §a难度的训练机器人！
+    spawn-failed: §c生成训练机器人失败！
+    remove-success: §a已移除训练机器人！
+    already-exists: §c你已经有一个训练机器人了！
+    report-header: §6========== §e训练报告 §6==========
+    report-bot: §e机器人：§f{name}
+    report-difficulty: §e难度：§f{difficulty}
+    report-kills: §e击杀：§a{kills}
+    report-deaths: §e死亡：§c{deaths}
+    report-kd: §eK/D：§f{kd}
+    report-duration: §e用时：§f{duration}秒
+  matchmaking: 
+    queue-join: §a已加入匹配队列！当前排队：§e{count} §a人
+    queue-leave: §a已离开匹配队列！
+    match-found: §a§l找到匹配！
+    match-info: §7对手：§e{opponent} §7- 匹配度：§a{score}%
+    searching: §e正在寻找对手... §7(§e{time}s§7)
+  pass: 
+    info-header: §6========== §e赛季通行证 §6==========
+    info-level: §e等级：§a{level} §7/ §e{max}
+    info-exp: §e经验：§a{exp} §7/ §e{required}
+    info-type: §e类型：§f{type}
+    info-days-left: §e剩余天数：§c{days}
+    level-up: §a§l恭喜！通行证等级提升至 §e§l{level}§a§l！
+    reward-claimed: §a已领取奖励：{reward}
+    no-reward: §c当前等级没有可领取的奖励！
+    upgrade-success: §a已升级至高级通行证！
+    already-premium: §c你已经拥有高级通行证了！
+guild: 
+  create-success: §a已创建星座 §e{name} §7[{tag}]§a！
+  create-failed: §c创建星座失败！
+  name-taken: §c该星座名称已被使用！
+  disband-success: §a已解散星座 §e{name}§a！
+  join-success: §a{player} §7加入了星座！
+  leave-success: §a已离开星座 §e{name}§a！
+  invite-sent: §a已邀请 §e{player} §a加入星座！
+  invite-received: §e{player} §a邀请你加入星座 §e{guild}§a！
+  not-in-guild: §c你不在任何星座中！
+  already-in-guild: §c你已经在一个星座中了！
+  not-leader: §c只有星座会长可以执行此操作！
+  info-header: §6========== §e星座信息 §6==========
+  info-name: §e名称：§f{name} §7[{tag}]
+  info-leader: §e会长：§f{leader}
+  info-members: §e成员：§f{count} §7/ §e{max}
+  info-level: §e等级：§a{level}
+  info-exp: §e经验：§a{exp} §7/ §e{required}
+party: 
+  create-success: §a已创建小队！
+  disband-success: §a已解散小队！
+  join-success: §a{player} §7加入了小队！
+  leave-success: §a已离开小队！
+  invite-sent: §a已邀请 §e{player} §a加入小队！
+  invite-received: §e{player} §a邀请你加入小队！
+  not-in-party: §c你不在任何小队中！
+  already-in-party: §c你已经在一个小队中了！
+  not-leader: §c只有队长可以执行此操作！
+  full: §c小队已满！
+friend: 
+  request-sent: §a已向 §e{0} §a发送好友请求！
+  request-received: §e{0} §a请求添加你为好友，使用 §e/friend accept {0} §a接受
+  accept-success: §a已和 §e{0} §a成为好友！
+  deny-success: §c已拒绝 §e{0} §c的好友请求！
+  remove-success: §a已删除好友 §e{0}§a！
+  already-friends: §c你们已经是好友了！
+  not-friends: §c你们不是好友！
+  online: §a§l✦ §e{0} §7上线了！
+  offline: §7✦ §e{0} §7下线了！
+  list-header: §6========== §e好友列表 §6==========
+  list-empty: §7你还没有好友！
+  list-item-online: §a- {0} §7[在线]
+  list-item-offline: §7- {0} §7[离线]
+  requests-header: §6========== §e好友请求 §6==========
+  requests-empty: §7没有待处理的好友请求！
+  request-item: §e- {0}
+  help-header: §6========== §e好友命令 §6==========
+  help-add: §e/friend add <玩家> §7- 发送好友请求
+  help-accept: §e/friend accept <玩家> §7- 接受请求
+  help-deny: §e/friend deny <玩家> §7- 拒绝请求
+  help-remove: §e/friend remove <玩家> §7- 删除好友
+  help-list: §e/friend list §7- 好友列表
+  help-requests: §e/friend requests §7- 待处理请求
+  player-not-online: §c玩家 {0} 不在线或不存在！
+  operation-failed: §c操作失败：{0}
+  usage: §e用法：/friend {0} <玩家>
+daily: 
+  checkin: 
+    success: §a§l签到成功！
+    reward: §a获得 §e{amount} ✦ §a星尘！
+    streak: §e连续签到：§a{days} §e天
+    already: §c你今天已经签到过了！
+    milestone: §e§l达成连续签到 {days} 天！额外奖励 {bonus} ✦！
+  quest: 
+    list-header: §6========== §e每日任务 §6==========
+    list-item: §e{index}. §f{name}
+    list-progress: §7进度：§a{current}§7/§e{target}
+    list-reward: §7奖励：§e{reward} ✦
+    complete: §a§l任务完成！
+    reward-claimed: §a获得奖励：§e{reward} ✦§a！
+    all-complete: §a§l所有每日任务已完成！
+moderation: 
+  silence: 
+    success: §a已禁言 §e{player} §a！
+    info: §7原因：§f{reason}
+    duration: §7时长：§e{duration}
+    permanent: §7时长：§c永久
+    unsilence-success: §a已解除 §e{player} §a的禁言！
+    silenced: §c你已被禁言！剩余时间：§e{time}
+  exile: 
+    success: §a已放逐 §e{player} §a！
+    unexile-success: §a已赦免 §e{player} §a！
+  eject: 
+    success: §a已将 §e{player} §a弹出服务器！
+  imprison: 
+    success: §a已监禁 §e{player} §a！
+    release-success: §a已释放 §e{player} §a！
+    imprisoned: §c你已被监禁！剩余时间：§e{time}
+  cloak: 
+    enable: §a已启用隐形斗篷！
+    disable: §c已关闭隐形斗篷！
+spectator: 
+  start: §a正在观战 §e{player}§a...
+  stop: §a已停止观战！
+  switch: §a切换观战目标至 §e{player}§a！
+  no-target: §c没有可观战的目标！
+  full: §c该玩家的观众已达上限！
+ugc: 
+  submit-success: §a已提交创作！等待审核...
+  approve-success: §a已通过创作 §e{name}§a！
+  reject-success: §c已拒绝创作 §e{name}§c！
+  your-submission-approved: §a§l你的创作 §e{name} §a§l已通过审核！
+  your-submission-rejected: §c你的创作 §e{name} §c未通过审核！
+  reward: §a获得创作奖励：§e{amount} ✦§a！
+gui: 
+  main-menu: 
+    title: §6§l★ STARCORE 主菜单 ★
+  back-button: §c返回
+  close-button: §c关闭
+  next-page: §a下一页
+  previous-page: §e上一页
+help: 
+  header: §6========== §eCOMMAND帮助 §6==========
+  footer: §7输入 §e/star help §7查看更多命令
+officer: 
+  disabled-service: §c官员功能当前不可用！
+  status-title: §6官员列表 - §e
+  empty: §7暂无官员，可用职位：§f{roles}
+  list-title: §6§l官员列表 - §e
+  list-usage: §e/sc officer list [国家名]
+  vacant-title: §7空缺职位：
+  info-title: §6§l官员详情 - §e
+  info-usage: §e/sc officer info [角色名]
+  current-officers: §7当前官员：
+  role: §7职位：
+  officer: §7官员：
+  status: §7状态：
+  no-officer: §c该职位暂无官员
+  online: 在线
+  offline: 离线
+  gui-unavailable: §cGUI功能暂不可用！
+  no-gui-permission: §c只有国家创始人或管理员才能打开GUI！
+  not-in-nation: §c你还没有加入任何国家！
+  not-in-nation-other: §c目标玩家不在任何国家！
+  no-appoint-permission: §c你没有权限任命官员！
+  no-remove-permission: §c你没有权限移除官员！
+  player-not-found: §c找不到该玩家！
+  member-only: §c只能任命国家成员为官员！
+  unknown-role: §c未知角色，可选：§e{roles}
+  appoint-usage: §e/sc officer appoint <角色> <玩家>
+  remove-usage: §e/sc officer remove <角色>
+  appointed-success: §a成功任命 §f
+  removed-success: §a已移除官员 §f
+  remove-failed: §c移除官员失败！
+  usage: §e/sc officer <status|appoint|remove|list|info|gui>
+  gui-title: §6{nation_name} §7| §6官员管理
+  gui-select-title: §6{nation_name} §7| §6任命 {role_name}
+  gui-confirm-title: §6{nation_name} §7| §6确认移除
+  gui-help-name: §b帮助
+  gui-help-lore: 
+  - ''
+  - §7官员系统帮助
+  - ''
+  - '§a任命官员:'
+  - §f  点击空缺职位 -> 选择成员
+  - ''
+  - '§c移除官员:'
+  - §f  右键点击已有官员职位
+  gui-role-vacant: '§7当前官员: §c空缺'
+  gui-role-occupied: '§7当前官员: §a{player_name}'
+  gui-click-appoint: '§a左键: §7任命官员'
+  gui-click-replace: '§a左键: §7更换官员'
+  gui-click-remove: '§c右键: §7移除官员'
+  gui-confirm-info: §c确定要移除此官员吗？
+  gui-confirm-button: §a✓ 确认移除
+  gui-cancel-button: §c✖ 取消
+  gui-confirm-click: §a点击确认移除该官员
+  gui-cancel-click: §7点击返回主菜单
+  gui-select-help: §7选择要任命的成员
+  gui-select-click: §e点击成员头像进行任命
+  gui-member-current: '§7当前职位: §c{role_name}'
+  gui-member-replace: §7(将被替换)
+  gui-member-free: '§7当前职位: §a无'
+  gui-member-click: §e点击任命
+  gui-back-button: §e◀ 返回
+  gui-back-lore: 
+  - ''
+  - §7返回官员管理主菜单
+  gui-close-button: §c✖ 关闭
+error: 
+  unknown: §c发生未知错误！
+  database: §c数据库错误！请联系管理员！
+  permission: §c你没有权限执行此操作！
+  player-not-found: §c找不到该玩家！
+  world-not-found: §c找不到该世界！
+  location-invalid: §c位置无效！
+marker: 
+  create: 
+    success: §a标记 §e{name} §a已创建！
+    failed: §c创建标记失败：{reason}
+    limit-reached: §c你已达到最大标记数量限制！(§e{max}§c)
+    no-permission: §c你没有权限创建此类标记！
+    invalid-category: §c无效的标记分类！
+  delete: 
+    success: §a标记已删除！
+    failed: §c删除标记失败：{reason}
+    not-found: §c找不到该标记！
+    no-permission: §c你没有权限删除此标记！
+  update: 
+    success: §a标记已更新！
+    failed: §c更新标记失败：{reason}
+    no-permission: §c你没有权限编辑此标记！
+  list: 
+    header: §6========== §e你的标记列表 §6==========
+    empty: §e你还没有创建任何标记！
+    item: §e{index}. §a{name} §7- §f{world} ({x}, {z}) §7[§f{category}§7]
+    count: §7共 §e{count} §7个标记，剩余 §e{remaining} §7个可用
+  navigate: 
+    teleporting: §a正在传送到标记 §e{name}§a...
+    success: §a已传送到 §e{name}§a！
+    not-found: §c找不到标记 §e{name}§c！
+    world-mismatch: §c该标记在 §e{markerWorld} §c世界，你当前在 §e{currentWorld} §c世界！
+  category: 
+    waypoint: 路径点
+    home: 家
+    shop: 商店
+    farm: 农场
+    spawn: 出生点
+    battle: 战场
+    event: 事件
+    custom: 自定义
+  error: 
+    marker-not-found: §c找不到该标记！
+    invalid-color: '§c无效的颜色格式！请使用 #RRGGBB 格式！'
+    name-too-long: §c标记名称不能超过 §e32 §c个字符！
+    name-empty: §c标记名称不能为空！
+    invalid-category: §c无效的标记分类！可用分类：{categories}
+dynamic-marker: 
+  create: 
+    war-zone: §c战争区域标记 §e{name} §c已创建！
+    pvp-zone: §6PVP区域标记 §e{name} §6已创建！
+    safe-zone: §a安全区域标记 §e{name} §a已创建！
+  expired: 
+    message: §e标记 §a{name} §e已过期！
+    automatic: §7标记 §e{name} §7已自动清理
+  countdown: 
+    remaining: §e标记 §a{name} §e剩余时间：§f{time}
+command: 
+  amount-positive: §c金额必须是正数！
+  marker: 
+    usage: §e/sc marker <create|delete|list|edit|navigate> [参数]
+    description: 管理地图标记
+    create: 
+      usage: §e/sc marker create <名称> [分类] [颜色]
+      description: 在当前位置创建标记
+      examples: 
+        waypoint: '§e/sc marker create 我的家 home #22C55E'
+        shop: '§e/sc marker create 武器店 shop #EAB308'
+    delete: 
+      usage: §e/sc marker delete <名称|ID>
+      description: 删除标记
+      confirm: §c确定要删除标记 §e{name} §c吗？
+      success: §a标记已删除！
+    list: 
+      usage: §e/sc marker list [分类]
+      description: 查看你的标记列表
+    edit: 
+      usage: §e/sc marker edit <名称|ID> [属性] [值]
+      description: 编辑标记属性
+      properties: 
+        name: 名称
+        description: 描述
+        color: 颜色
+        pinned: 钉住
+        visible-nation: 对国家可见
+        visible-all: 对所有人可见
+    navigate: 
+      usage: §e/sc marker navigate <名称>
+      description: 传送到标记位置
+    categories: 
+      header: §6========== §e可用标记分类 §6==========
+      waypoint: §e路径点 §7- 旅行标记
+      home: §e家 §7- 重要位置
+      shop: §e商店 §7- 交易地点
+      farm: §e农场 §7- 资源产地
+      battle: §e战场 §7- 战斗标记
+      event: §e事件 §7- 活动标记
+  nation: 
+    usage: §e/sc nation <create|info|list|join|leave|claim|unclaim|city> [参数...]
+    usage-extended: §e/sc nation <transfer|rename|disband> [参数...]
+    create-usage: §e/sc nation create <国家名称> [原因...]
+    city-usage: §e/sc nation city <create|list> [城市名]
+    city-create-usage: §e/sc nation city create <城市名> [原因...]
+    info-usage: §e/sc nation info [国家名]
+    join-usage: §e/sc nation join <国家名称> [原因...]
+    rename-usage: §e/sc nation rename <新名称> [原因...]
+    created: §a国家已创建：
+    create-failed: §c创建国家失败：{0}
+    disabled-service: §c国家系统当前不可用！
+    not-in-nation: §c你必须属于一个国家才能使用此命令！
+    already-in-nation: §c你已经是某国家的成员！
+    nation-not-found: §c未找到该国家！
+    city-created: §a城邦已创建：
+    city-create-failed: §c创建城邦失败：{0}
+    city-list-no-nation: §c你所在国家没有母国可显示城邦。
+    city-list-title: §6§f{0}§6 的城邦列表
+    city-list-empty: §7暂无城邦。
+    city-list-detail: §7创建者：§f{0}
+    parent-label: §7母国：
+    founder-label: §7创建者：
+    members-label: §7成员数：
+    level-label: §7等级：
+    experience-detail: §7经验：§f{0}
+    level-progress-label: §7进度：
+    level-progress-detail: §f{0}§7/§f{1}§7（还差 §f{2}§7）
+    level-progress-max: §7已满级
+    claims-label: §7领地数：
+    city-states-label: §7城邦数：
+    resource-districts-label: §7资源区数：
+    government-label: §7政体：
+    claim-already-owned: §e部分区块已被你的国家占有。
+    claimed-current: §a已为你的国家认领该区块。
+    claim-failed: §c认领区块失败：{0}
+    no-current-claim: §7该区块未被认领。
+    unclaimed-current: §a已为你的国家解除认领。
+    unclaim-failed: §c解除认领失败：{0}
+    tool-confirm-failed: §c通过工具确认认领失败：{0}
+    claims-title: §6§f{0}§6 的领地（§f{1}§6）：
+    claims-limit-note: §7（仅显示前 12 项）
+    here-title: '§6区块 '
+    list-title: §6国家列表：
+    list-detail: §7- §f{0}§7（等级 §f{1}§7，成员 §f{2}§7）
+    join-proposed: §a加入提案已提交，决议 ID：
+    rename-proposed: §a重命名提案已提交，决议 ID：
+    gui-unavailable: §c国家 GUI 当前不可用。
+  resolution: 
+    usage: §e/sc resolution <list|sign|cancel|info|history> [参数...]
+    list-usage: §e/sc resolution list §7- 列出待处理决议
+    sign-usage: §e/sc resolution sign <uuid> [原因...]
+    cancel-usage: §e/sc resolution cancel <uuid> [原因...]
+    info-usage: §e/sc resolution info <uuid> §7- 查看决议详情
+    history-usage: §e/sc resolution history §7- 查看决议历史
+  government: 
+    usage: §e/sc government <propose|status> [参数...]
+    propose-usage: §e/sc government propose <政体类型> [原因...]
+    disabled-service: §c政府系统当前不可用！
+    current: §7当前政体：
+    proposed: §a政体变更提案已提交，决议 ID：
+    propose-failed: §c提交政体变更失败：{0}
+    unknown-type: §c未知的政体类型！
+  diplomacy: 
+    usage: §e/sc diplomacy <status|list|set|propose> [参数...]
+    status-usage: §e/diplomacy status §7- 查看外交状态
+    list-usage: §e/diplomacy list §7- 查看外交关系
+    set-usage: §e/diplomacy set <国家A> <国家B> <关系> [原因...]
+    propose-usage: §e/diplomacy propose <目标国家> <关系> [原因...]
+    list-title: §6§l===== {nation} 的外交关系 =====
+    list-empty: §7当前没有外交关系
+    disabled-service: §c外交系统当前不可用！
+    target-not-found: §c未找到目标国家！
+    status-title: §6外交状态 §7
+    set-no-permission: §c你没有权限设置外交关系！
+    set-success: §a外交关系已设置：
+    self-target: §c不能对自身国家进行操作！
+    proposed: §a已提交外交关系提案，决议 ID：
+    unknown-relation: §c未知的外交关系类型！
+    propose-failed: §c提交外交关系失败：{0}
+  officer: 
+    usage: §e/sc officer <list|appoint|remove|status> [参数...]
+    list-usage: §e/sc officer list [国家名]
+    info-usage: §e/sc officer info [角色名]
+    appoint-usage: §e/sc officer appoint <角色> <玩家>
+    remove-usage: §e/sc officer remove <角色>
+  treasury: 
+    usage: §e/sc treasury <status|deposit|withdraw|income|tax> [参数...]
+    status-usage: §e/treasury status §7- 查看国库状态
+    deposit-usage: §e/treasury deposit <金额> [原因...]
+    withdraw-usage: §e/treasury withdraw <金额> [原因...]
+    income-usage: §e/treasury income [国家名|all]
+    reward-usage: §e/treasury reward <玩家> <金额> [原因...]
+    tax-usage: §e/treasury tax [国家名|all] [原因...]
+  economy: 
+    usage: §e/sc economy <balance|give|take|set> [参数...]
+    balance-usage: §e/sc economy balance [玩家]
+    give-usage: §e/sc economy give <玩家> <金额>
+    take-usage: §e/sc economy take <玩家> <金额>
+    set-usage: §e/sc economy set <玩家> <金额>
+    disabled-service: §c经济系统当前不可用！
+    no-admin: §c你没有权限管理经济账户！
+    balance-label: §6余额：
+    balance-detail: §7{0}
+    delta-detail: §7{0}{1} §7(新余额：§f{2}§7)
+    given: '§a已发放 '
+    taken: '§a已扣除 '
+    set: §a已设置余额：
+    insufficient: §c余额不足！
+  policy: 
+    usage: §e/sc policy <status|set|tree> [参数...]
+    status-usage: §e/policy status §7- 查看政策状态
+    set-usage: §e/policy set <政策键> [原因...]
+    disabled-service: §c政策系统当前不可用！
+    none: §7无
+    status-title: §6§f{0}§6 的政策
+    available-label: §7可设置：
+    available-inline: §7可设置：§f{0}
+    effects-title: §7激活效果：
+    effects-none: §7暂无激活效果。
+    effect-format: §f{0}§7（§f{1}§7，修正 §f{2}§7）：§f{3}
+    definition-format: §f{0}§7（§f{1}§7，花费 §f{2}§7，前置 §f{3}§7）
+    set-no-permission: §c你没有权限设置政策！
+    set-success: §a已为 §f{0}§a 激活政策。
+    set-failed: §c激活政策失败：{0}
+    clear-no-permission: §c你没有权限清除政策！
+    clear-success: §a已为 §f{0}§a 清除政策。
+    tree-overview-name: §6§l政策树
+    tree-overview-lore: §7共有 §f{0}§7 个可用政策
+    tree-empty: §c未配置任何政策。
+    tree-key: §7键：§f{0}
+    tree-category: §7类别：§f{0}
+    tree-cost: §7花费：§f{0}
+    tree-duration: §7持续：§f{0}秒§7（冷却 §f{1}秒§7）
+    tree-prerequisites: §7前置：§f{0}
+    tree-effect: §7- §f{0}
+    tree-more-effects: §7……还有 §f{0}§7 条效果
+    tree-state-active: §a激活中
+    tree-state-unlocked: §e已解锁
+    tree-state-available: §b可解锁
+    tree-state-locked: §c未解锁
+    tree-command: §7点击设置 §f{0}
+  technology: 
+    usage: §e/sc technology <status|tree|unlock|revoke> [参数...]
+    status-usage: §e/tech status §7- 查看科技状态
+    tree-usage: §e/tech tree §7- 查看科技树
+    unlock-usage: §e/tech unlock <科技名> [原因...]
+    revoke-usage: §e/tech revoke <科技名> [原因...]
+  resource: 
+    usage: §e/sc resource <status|districts|inspect|migrate|grant|consume> [参数...]
+    status-usage: §e/resource status §7- 查看资源状态
+    districts-usage: §e/resource districts §7- 查看资源区
+    inspect-usage: §e/resource inspect <x> <z> §7- 检查区块资源
+    migrate-usage: §e/resource migrate <区块x> <区块z> <目标区x> <目标区z>
+    grant-usage: §e/resource grant <玩家> <资源> <数量> [原因...]
+    consume-usage: §e/resource consume <资源> <数量> [原因...]
+    menu: 
+      title: §6§l★ 资源管理 ★
+      stockpile: §e资源储备
+      stockpile-desc: §7查看国家资源储备
+      market: §e资源市场
+      market-desc: §7查看市场价格波动
+      reserve: §e战略储备
+      reserve-desc: §7管理国家战略储备
+      orderbook: §e市场订单簿
+      orderbook-desc: §7查看和管理市场订单
+      history: §e交易历史
+      history-desc: §7查看你的交易记录
+      player-trade: §e玩家交易
+      player-trade-desc: §7与其他玩家交易资源
+      back: §c返回
+      close: §c关闭
+      loading: §7加载中...
+      no-nation: §c请先加入一个国家以使用此功能！
+      total-stockpile: §7总储备量：§f{amount} §7单位
+      status-joined: §a国家已加入
+      status-not-joined: §c未加入国家
+    stockpile: 
+      title: §6资源储备
+      click-detail: §7点击查看详情
+      total: §7总计：§f{amount}
+      production: §7产量：§a+{rate}/小时
+      consumption: §7消耗：§c-{rate}/小时
+      net: §7净增：{sign}{amount}/小时
+      storage: §7存储：§e{current}/{max}
+      capacity-warning: §c存储即将满！
+    errors: 
+      not-in-nation: §c你必须在一个国家中！
+      insufficient: §c资源不足！
+      invalid-amount: §c无效的数量！
+      operation-failed: §c操作失败！
+  map: 
+    usage: §e/sc map <confirm|cancel|status> [参数...]
+    confirm-usage: §e/sc map confirm <编号>
+    cancel-usage: §e/sc map cancel <编号>
+    status-title: §6地图状态 §7
+    disabled-service: §c地图系统当前不可用！
+    admin-address: §a管理员地图地址：
+    personal-address: §a个人地图地址：
+    public-address: §a公共地图地址：
+    ip-bound: §7IP 绑定访问（TTL 分钟）：§f{0}
+    player-link-hint: §e在浏览器中打开链接查看地图，更多说明请查看屏幕提示。
+    signed-link-hint: §7该链接为签名链接，与你的会话绑定，请勿分享给他人。
+    public-url-hint: §e若服务器位于代理或局域网后，请使用公共地址，而非 §f0.0.0.0§e。
+    secret-missing: §c地图密钥未配置，签名地址不可用。
+    health-label: §7地图 API 健康：
+    stream-label: §7地图流端点：
+    resource-district-label: §a{0}§7 资源区
+    pending-confirm: §6有一个网页认领待确认：
+    pending-chunks: §7区块数：§f{0}
+    pending-cost: §7花费：§f{0}
+    confirm-command: §e确认命令：§f/starcore map confirm {0}
+    confirm-command-zh: '§e确认命令: §f/starcore map confirm '
+    confirm-command-zh-value: §f{0}
+    cancel-command: §e取消命令：§f/starcore map cancel {0}
+    cancel-command-zh: '§e取消命令: §f/starcore map cancel '
+    cancel-command-zh-value: §f{0}
+    confirmed: §a网页认领已确认。
+    confirmed-chunks: §7区块数：§f{0}
+    confirmed-owner: §7国家：§f{0}
+    confirmed-cost: §7花费：§f{0}
+    cancelled: §a网页认领已取消。
+    cancelled-id: §7待处理编号：§f{0}
+    confirm-failed: §c网页认领确认失败：{0}
+    cancel-failed: §c网页认领取消失败：{0}
+    confirm-id-invalid: §c待处理编号无效或缺失。
+    confirm-not-found: §c未找到该编号对应的待处理网页认领。
+    confirm-not-owner: §c你不是此待处理网页认领的所有者。
+    confirm-expired: §c此待处理网页认领已过期。
+    confirm-state-changed: §c待处理网页认领状态已变更，无法再确认。
+    exported: §a已导出地图数据：
+    export-failed: §c导出地图数据失败：{0}
+    missing-world: §c请求参数中缺少世界名。
+    web-claim-disabled: §c网页认领选择已禁用。
+    web-claim-cooldown: §c你正在网页认领冷却中，请稍后重试。
+    web-claim-too-large: §c你的选择超过最大 §e{0}§c 区块，已截断。
+    web-claim-completed: §a网页认领完成。
+    web-disabled: §c地图网页界面已禁用。
+    web-error-method-not-allowed: §c该端点不允许此 HTTP 方法。
+    web-resource-district-disabled: §c网页资源区管理已禁用。
+    web-resource-district-missing-id: §c缺少资源区编号。
+    web-resource-district-id-invalid: §c资源区编号无效。
+    login-required: §c需要登录才能访问此端点。
+    request-failed: §c请求失败，请稍后重试。
+    sync-interrupted: §c地图同步被中断。
+  war: 
+    usage: §e/sc war <declare|end|status> [参数...]
+    declare-usage: §e/war declare <国家1> <国家2> [原因...]
+    end-usage: §e/war end <国家1> <国家2> [原因...]
+    list-usage: §e/war list §7- 列出所有战争
+    info-usage: §e/war info <国家1> <国家2> §7- 战争详情
+  event: 
+    usage: §e/sc event <list|audit|export|record|clear> [参数...]
+    list-usage: §e/sc event list §7- 列出事件
+    audit-usage: §e/sc event audit <类型> [页码]
+    export-usage: §e/sc event export <类型> <文件名>
+    record-usage: §e/sc event record <事件ID> [备注...]
+    clear-usage: §e/sc event clear <类型> [天数]
+    disabled-service: §c事件系统当前不可用！
+    no-export-permission: §c你没有权限导出事件！
+    no-record-permission: §c你没有权限记录事件！
+    no-clear-permission: §c你没有权限清除事件！
+    list-title: '§6§l===== §e事件列表 - '
+    audit-title: '§6§l===== §e事件审计 - '
+    filter-label: §7过滤器：{0}
+    filter-empty: §7没有符合过滤条件的事件
+    empty: §7暂无事件可显示
+    page-empty: §7该页无事件
+    page-label: §7第 §f{0}§7/§f{1} §7页（每页 §f{2}§7 条，共 §f{3}§7 条）
+    time-window-label: §7时间窗口：{0}
+    context-label: §7上下文：{0}
+    nation-not-found: §c未找到国家！
+    invalid-page: §c无效的页码！
+    invalid-export: §c无效的导出请求！
+    export-success: §a已导出 §e{0}§a 个事件为 §e{1}§a 到 §f{2}§a。
+    export-failed: §c导出失败：{0}
+    cleared-success: '§a已清除 '
+    recorded-success: §a事件已记录。ID：
+    record-failed: §c记录事件失败：{0}
+    reason-auto: 自动
+    reason-unspecified: 未指定
+    message: 
+      donation: §7{0} 向 §a{2} §7捐赠了 §e{1}§7
+      resource-granted: §7{0} 发放了 §e{1}§7 单位 §a{2}§7（原因：§f{3}§7）
+      resource-consumed: §7{0} 消耗了 §e{1}§7 单位 §a{2}§7（原因：§f{3}§7）
+      treasury-deposit: §7{0} 存入 §e{1}§7（原因：§f{2}§7）
+      treasury-withdraw: §7{0} 取出 §e{1}§7（原因：§f{2}§7）
+      treasury-reward: §7{0} 发放奖励 §e{1}§7（原因：§f{2}§7）
+      treasury-income: §7{0} 收入 §e{1}§7（成员：§f{2}§7，领地：§f{3}§7，原因：§f{4}§7）
+      treasury-tax: §7{0} 征税 §e{1}§7（已征：§f{2}§7，跳过：§f{3}§7，原因：§f{4}§7）
+      treasury-tax-type: §7{0} 征收 §a{1}§7 税，金额：§e{2}§7
+    type: 
+      nation-created: §e国家建立
+      city-state-created: §e城邦建立
+      territory-claimed: §e领土认领
+      territory-unclaimed: §e领土解除认领
+      resolution-proposed: §e决议提交
+      resolution-signed: §e决议签署
+      diplomacy-updated: §e外交更新
+      diplomacy-proposed: §e外交提案
+      treasury-deposit: §e国库存入
+      treasury-withdraw: §e国库支取
+      treasury-income: §e国库收入
+      treasury-reward: §e国库赏赐
+      treasury-tax: §e国库征税
+      policy-set: §e政策设置
+      policy-cleared: §e政策清除
+      resource-granted: §e资源授予
+      resource-consumed: §e资源消耗
+      resource-migration-requested: §e资源迁移申请
+      resource-migration-target-selected: §e资源迁移目标选定
+      resource-migration-completed: §e资源迁移完成
+      resource-migration-completed-forced: §e资源迁移完成（强制）
+      technology-unlocked: §e科技解锁
+      technology-revoked: §e科技撤销
+      war-declared: §e宣战
+      war-ended: §e停战
+      officer-appointed: §e官员任命
+      officer-removed: §e官员罢免
+  epoch: 
+    usage: §e/sc epoch <status|advance|set|info> [参数...]
+    disabled-service: §c纪元系统当前不可用！
+    title: §6纪元状态
+    status-label: §7状态：
+    enabled: §a已启用
+    disabled: §c已禁用
+    current: §7当前纪元：
+    started: §7开始时间：
+    next: §7下次纪元：
+    remaining: §7剩余时间：
+  time-sync: 
+    usage: §e/sc time-sync <status|sync|set> [参数...]
+  sc: 
+    usage: §e/sc <nation|government|diplomacy|war|resolution|treasury|policy|technology|resource|event|officer|map>
+      [参数...]
+  essentials: 
+    usage: §e/sc <home|spawn|warp|sethome|setwarp|delhome|delwarp|tpa|tphere> [参数...]
+  pvp: 
+    usage: §e/sc pvp <duel|accept|reject|cancel> [参数...]
+  chat: 
+    usage: §e/sc chat <nick|color|clear|spy> [参数...]
+  no-permission: §c你没有权限执行此命令！
+  player-only: §c此命令只能由玩家执行！
+  status: 
+    title: §6§l===== 服务器状态 =====
+    modules: §7模块：§f{count}
+    database: §7数据库：§f{status}
+    epoch: §7纪元：§f{epoch}
+    minecraft: §7Minecraft：§f{version}
+    platform: §7平台：§f{platform}
+  reload: 
+    complete: §a配置已重新加载！
+    no-permission: §c你没有权限重新加载配置！
+    generated-map-secret: §a已生成新的地图密钥：§e{secret}
+  modules: 
+    title: §6§l===== 模块状态 =====
+    enabled: §a启用
+    disabled: §c禁用
+    loading: §e加载中...
+    error: §c错误
+sovereignty: 
+  addclaim-failed: §c添加领土主权声明失败！
+  addclaim: 
+    added: §a已添加领土主权声明：§e{0}（{1}, {2}）
+    description: 在当前位置添加领土主权声明
+    usage: §e/sovereignty addclaim <主权ID>
+  confirm-failed: §c确认主权失败！
+  confirm: 
+    description: 确认主权（解决争议）
+    usage: §e/sovereignty confirm <主权ID> [争议ID列表]
+  confirmed: §a主权已确认！
+  declare: 
+    description: 宣布对某地区的主权
+    usage: §e/sovereignty declare <地区名> <描述> [重要性]
+  declared: §a成功宣布对 §e{0}§a 的主权！重要性：§e{1}
+  event: 
+    declared: §6[主权] §e{0} §a宣布对 §e{1}§a 的主权！重要性：§e{2}
+    revoked: §6[主权] §e{0} §c撤销了对 §e{1}§c 的主权！
+    status-changed: §6[主权] §e{0}§7 的状态已从 §f{1} §7变更为 §f{2}§7！
+  help: 
+    addclaim: §e/sovereignty addclaim <ID> §7- 添加领土声明
+    confirm: §e/sovereignty confirm <ID> [争议ID] §7- 确认主权
+    declare: §e/sovereignty declare <地区> <描述> [重要性] §7- 宣布主权
+    header: §6========== §e主权帮助 §6==========
+    info: §e/sovereignty info <ID|地区> §7- 查看主权详情
+    list: §e/sovereignty list [国家] §7- 查看主权列表
+    removeclaim: §e/sovereignty removeclaim <ID> §7- 移除领土声明
+    revoke: §e/sovereignty revoke <ID> §7- 撤销主权
+    status: §e/sovereignty status <ID> <状态> §7- 更新状态
+    strength: §e/sovereignty strength <ID> <数值> §7- 调整强度
+  info: 
+    claims: §7已声明领土：§e{0} §7个区块
+    declared: §7声明时间：§f{0}
+    description: 查看主权声明详情
+    description_label: §7描述：§f{0}
+    header: §6========== §e主权声明详情 §6==========
+    nation: §7国家：§f{0}
+    region: §7地区名称：§f{0}
+    significance: §7重要性：§f{0}
+    status: §7状态：§f{0}
+    strength: §7主权强度：§f{0}
+    usage: §e/sovereignty info <主权ID或地区名称>
+  invalid-number: §c无效数字：§e{0}
+  invalid-significance: §c无效的重要性等级！选项：LOW, MEDIUM, HIGH, CRITICAL
+  invalid-status: §c状态无效！选项：CLAIMED、RECOGNIZED、CONTESTED、DISPUTED、REVOKED
+  list: 
+    description: 查看国家主权声明
+    empty: §e该国家没有主权声明！
+    entry: §e{0} §7- 状态：§f{1} §7| 重要性：§f{2} §7| 强度：§f{3} §7| 声明时间：§f{4}
+    header: §6========== §e主权声明列表 §6==========
+    usage: §e/sovereignty list [国家名称]
+  not-found: §c未找到主权声明！
+  not-in-nation: §c你必须加入一个国家才能使用主权功能！
+  not-owner: §c你不是此主权声明的所有者！
+  region: 
+    enter: §7已进入 §e{0} §7的声明区域 §e{1}§7。状态：§f{2}
+    leave: §8离开了 §7{0} §8的主权区域。
+  removeclaim-failed: §c移除领土声明失败！
+  removeclaim: 
+    description: 移除当前位置的主权声明
+    removed: §a已移除领土声明：§e{0} ({1}, {2})
+    usage: §e/sovereignty removeclaim <主权ID>
+  revoke: 
+    description: 撤销主权声明
+    usage: §e/sovereignty revoke <主权ID>
+  revoked: §a已撤销对 §e{0}§a 的主权声明！
+  status: 
+    description: 更新主权声明状态
+    updated: §a状态已更新为：§e{0}
+    usage: §e/sovereignty status <主权ID> <状态>
+  strength: 
+    description: 调整主权强度
+    updated: §a主权强度已更新为：§e{0}
+    usage: §e/sovereignty strength <主权ID> <数值>
+satellite: 
+  relation: 
+    none: 无
+    dominion: 自治领
+    vassal: 附庸国
+    protectorate: 保护国
+    colony: 殖民地
+  command: 
+    create-success: §a已与 §e{satellite} §a建立{relation}关系！
+    create-failed: §c建立卫星关系失败：{reason}
+    dissolve-success: §a已解除与 §e{satellite} §a的卫星关系！
+    dissolve-failed: §c解除卫星关系失败：{reason}
+    release-success: §a已释放 §e{satellite} §a独立！
+    release-failed: §c释放卫星国失败：{reason}
+    independence-success: §a已宣布独立！脱离 §e{suzerain} §a成为主权国家！
+    independence-failed: §c独立失败：{reason}
+    tribute-set: §a贡金税率已设置为 §e{rate}%§a！
+    tribute-collected: §a已收取贡金：§e{amount}§a
+    no-tributes: §e没有可收取的贡金
+  status: 
+    is-satellite: 你的国家是 §e{suzerain} §7的{relation}
+    is-suzerain: 你的国家拥有 §e{count} §7个卫星国
+    not-satellite: 你的国家不是任何国家的卫星
+    no-satellites: 你的国家没有卫星国
+    defense-protected: 受宗主国军事保护
+    defense-not-protected: 无宗主国保护
+    tribute-rate: 当前贡金税率：§e{rate}%§7
+    tribute-pending: 待缴贡金：§e{amount}§7
+  help: 
+    header: §6========== §e卫星国系统帮助 §6==========
+    create: §e/satellite create <卫星国> <类型> §7- 建立卫星关系
+    dissolve: §e/satellite dissolve <卫星国> §7- 解除卫星关系
+    release: §e/satellite release <卫星国> §7- 释放卫星国
+    independence: §e/satellite independence §7- 宣布独立（卫星国用）
+    tribute: §e/satellite tribute [税率] §7- 设置/查看贡金
+    collect: §e/satellite collect §7- 收取卫星国贡金
+    info: §e/satellite info §7- 查看卫星国信息
+    list: §e/satellite list §7- 列出卫星国
+    status: §e/satellite status §7- 系统状态
+    relation-types: §7关系类型：§adominion(自治), vassal(附庸), protectorate(保护), colony(殖民)
+  event: 
+    relation-established: §6{卫星国} §a已成为 §e{宗主国} §a的{关系}！
+    relation-dissolved: §6{卫星国} §c已脱离 §e{宗主国} §c的控制！
+    tribute-paid: §6{卫星国} §a向宗主国缴纳了 §e{金额} §a贡金！
+    independence-declared: §6{国家} §a宣布独立！成为主权国家！
+emergency: 
+  not-in-nation: §c你必须属于一个国家才能使用紧急状态系统！
+  no-permission: §c你没有权限执行此操作！
+  declared: §a已宣布 §c{0}§a，持续 §e{1} §a分钟！
+  declare-failed: §c宣布紧急状态失败！可能已存在不可叠加的紧急状态。
+  cancelled: §a紧急状态已取消！
+  no-active-emergency: §e你的国家当前没有活跃的紧急状态！
+  invalid-type: §c无效的紧急状态类型：§e{0}§c！使用 /emergency types 查看可用类型。
+  invalid-duration: §c无效的持续时间：§e{0}§c！
+  declare: 
+    usage: §c用法：/emergency declare <类型> <分钟> [原因]
+  status: 
+    title: 紧急状态
+    type: 类型：§c{0}
+    reason: 原因：§7{0}
+    remaining: 剩余时间：§e{0} §7分钟
+    progress: 进度：§7{0}
+    progress-bar: §a{0}§7|§c{1}
+  extend: 
+    usage: §c用法：/emergency extend <分钟>
+  no-emergency: §e该国家当前没有紧急状态。
+  no-emergency-anywhere: §e当前没有任何国家处于紧急状态！
+  list: 
+    title: 当前紧急状态
+    empty: §e当前没有任何国家处于紧急状态！
+  types: 
+    title: 紧急状态类型
+  help: 
+    title: 紧急状态帮助
+    declare: §e/emergency declare <类型> <分钟> [原因] §7- 宣布紧急状态
+    cancel: §e/emergency cancel §7- 取消紧急状态
+    status: §e/emergency status [国家] §7- 查看紧急状态
+    list: §e/emergency list §7- 列出所有紧急状态
+    extend: §e/emergency extend <分钟> §7- 延长紧急状态
+    types: §e/emergency types §7- 查看紧急状态类型
+  event: 
+    declared: 
+      title: '{0} 宣布紧急状态'
+      subtitle: '{0}'
+      member: §c你的国家已宣布 §e{0}§c！持续 §e{1} §c分钟！
+    cancelled: 
+      title: '{0} 取消紧急状态'
+      subtitle: 恢复正常状态
+      member: §a紧急状态已取消，你的国家恢复正常！
+    expired: 
+      title: '{0} 紧急状态到期'
+      subtitle: 恢复正常状态
+      member: §e{0} §7紧急状态已到期，国家恢复正常！
+donation: 
+  help: 
+    header: §6========== §e献金系统帮助 §6==========
+    donate: §e/donate <国家> <金额> [附言] §7- 向国家献金
+    rank: §e/donate rank [国家] §7- 查看献金排名
+    tier: §e/donate tier §7- 查看你的献金等级
+    history: §e/donate history [页数] §7- 查看献金历史
+    rewards: §e/donate rewards [国家] §7- 查看可领取奖励
+    top: §e/donate top [国家] §7- 查看献金排行榜
+  donate: 
+    usage: §c用法：/donate <国家名> <金额> [附言]
+  error: 
+    invalid-amount: §c无效的金额：§e{0}
+    nation-not-found: §c找不到国家：§e{0}
+    insufficient-balance: §c你的余额不足！
+    below-minimum: §c献金额不能低于 §e{0}§c！
+    above-maximum: §c献金额不能超过 §e{0}§c！
+    withdraw-failed: §c提款失败，请稍后再试！
+  success: 
+    header: §a═══════════════════════════════
+    amount: §a你向 §e{0} §a献金了 §6{1} §a金币！
+    footer: §a═══════════════════════════════
+  tier: 
+    header: §6========== §e献金等级信息 §6==========
+    current: §7当前等级：§e{0}
+    upgraded: §6恭喜！你的献金等级从 §e{0} §6提升到 §a{1}§6！
+    benefits: §7等级特权：
+    next: §7升级到 §e{0} §7还需献金：§6{1}
+    max: §6你已经达到了最高等级！
+    name: §e等级名称：§a{0}
+    entry: §7  - {0}
+  rank: 
+    usage: §c用法：/donate rank [国家名]
+    header: §6========== §e{0} §6献金排名 §6==========
+    position: §7你的排名：§a第 {0} 名
+    none: §7你还没有献金记录！
+    total: §7累计献金：§6{0}
+  history: 
+    header: §6========== §e献金历史 (第 {0} 页) §6==========
+    empty: §7你还没有献金记录！
+    entry: §7{3} §e{0} §7金币 -> §a{1} §7(等级：{2})
+    page: §7使用 §e/donate history [页数] §7查看更多
+  rewards: 
+    usage: §c用法：/donate rewards [国家名]
+    header: §6========== §e{0} §6可领取奖励 §6==========
+    empty: §7没有可领取的奖励！
+    entry: §7- §e{0} §7(需要等级：{1}) §7状态：{2}
+    claimable: §a可领取
+    locked: §c未解锁
+    unclaimed: §6你有 §e{0} §6个可领取的献金奖励！使用 §e/donate rewards §6查看！
+  top: 
+    usage: §c用法：/donate top [国家名]
+    header: §6========== §e{0} §6献金排行榜 §6==========
+    empty: §7该国家还没有献金记录！
+    entry: §e{0}. §a{1} §7- §6{2} §7金币 (等级：{3})
+  welcome: 
+    message: '§6感谢你一直以来对国家的支持！
+
+      §7当前献金等级：§e{0}
+
+      §7累计献金：§6{1} §7金币'
+faith: 
+  not-in-nation: §c你还没有加入任何国家！
+  not-in-territory: §c你不在任何国家的领土内！
+  not-member: §c你不是该国家的成员！
+  prayed: '§a你为 §e{0} §a祈祷了！
+
+    §7当前信仰值：§e{1}§7/100 §7[§e{2}§7]'
+  prayer-cooldown: §c请稍后再祈祷！
+  info: 
+    header: §6========== §e{0} §6信仰信息 §6==========
+    faith: §7信仰值：§e{0}§7/§e{1}
+    level: §7信仰等级：§eLv.{0} §6{1}
+    prayers-total: §7累计祈祷次数：§e{0}
+    prayers-today: §7今日祈祷次数：§e{0}
+    consecutive-days: §7连续祈祷天数：§e{0}
+    bonuses: §7========== §6信仰加成 §7==========
+    resource-bonus: §7  资源加成：§e{0}
+    defense-bonus: §7  防御加成：§e{0}
+    tax-bonus: §7  税收加成：§e{0}
+    exp-bonus: §7  经验加成：§e{0}
+  stats: 
+    header: §6========== §e信仰统计 §6==========
+    prayer-tip: §7使用 §e/f <物品> §7在国家领土内祈祷来增加信仰值！
+  blessing: 
+    usage: §c用法：/faith blessing <类型>
+    invalid-type: §c无效的祈福类型！
+    types: §7可用的祈福类型：
+    leader-only: §c只有国家领导者才能使用祈福功能！
+    success: §a祈福 §e{0} §a已生效！消耗 §e{1} §a信仰值。
+    failed: §c祈福失败，信仰值不足！
+  level-up: §6[信仰升级] §e{0} §6的信仰等级从 §e{1} §6提升到 §a{2}§6！
+  level-down: §e[信仰降级] §e{0} §7的信仰等级从 §6{1} §7降低到 §c{2}§7！
+  blessing-used: §6[祈福] §e{0} §6使用了 §b{1}§6，消耗 §e{2} §6信仰值。
+  leaderboard: 
+    header: §6========== §e信仰排行榜 §6==========
+    tip: §7使用 §e/faith leaderboard §7查看完整的信仰排行榜！
+  help: 
+    header: §6========== §e信仰系统帮助 §6==========
+    info: §e/faith info §7- 查看当前国家的信仰信息
+    blessing: §e/faith blessing <类型> §7- 使用祈福功能
+    leaderboard: §e/faith top §7- 查看信仰排行榜
+    prayer-tip: §7提示：在国家领土内使用 §eBLAZE_ROD §7或其他祈祷物品进行祈祷！
+rent: 
+  error: 
+    no-nation: §c你必须加入一个国家才能使用租借系统！
+    no-permission: §c你没有权限在这个领土上进行操作！
+    no-permission.break: §c你没有权限破坏这个方块！
+    no-permission.place: §c你没有权限放置这个方块！
+    no-permission.interact: §c你没有权限与这个方块交互！
+    not-lessor: §c你不是这个契约的出租方！
+    not-lessee: §c你不是这个契约的承租方！
+    contract-not-found: §c契约不存在！
+    proposal-not-found: §c提议不存在！
+    insufficient-balance: §c你的余额不足以支付租金！
+    insufficient-treasury: §c国家国库余额不足以支付租金！
+    chunk-not-owned: §c这个区块不属于你的国家！
+    chunk-already-leased: §c这个区块已经被租借出去了！
+    proposal-expired: §c这个提议已经过期！
+  success: 
+    proposal-created: §a租借提议已创建！等待对方确认。
+    proposal-accepted: §a租借提议已被接受，契约已生效！
+    proposal-rejected: §e租借提议已被拒绝。
+    contract-terminated: §a契约已终止。
+    contract-renewed: §a契约已续约！
+    rent-collected: §a日租已收取。
+    enter-leased-territory: §7你进入了租借领土。
+  info: 
+    status: §7状态：{0}
+    lessor: §7出租方：{0}
+    lessee: §7承租方：{0}
+    chunks: §7区块数：{0}
+    world: §7世界：{0}
+    daily-rent: §7每日租金：{0}
+    rent-per-chunk: §7每区块日租：{0}
+    total-rent: §7总租金：{0}
+    remaining-days: §7剩余天数：{0}
+    auto-renewal: §7自动续约：{0}
+    termination-reason: §7终止原因：{0}
+  status: 
+    active: §a生效中
+    pending: §e待确认
+    expired: §c已过期
+    terminated: §c已终止
+    completed: §b已完成
+  help: 
+    header: §6========== §e领土租借系统 §6==========
+    create: §e/rent create <国家> <天数> [每区块日租] §7- 创建租借提议
+    list: §e/rent list §7- 查看所有契约
+    info: §e/rent info <契约ID> §7- 查看契约详情
+    accept: §e/rent accept <提议ID> §7- 接受租借提议
+    reject: §e/rent reject <提议ID> §7- 拒绝租借提议
+    terminate: §e/rent terminate <契约ID> [原因] §7- 终止契约
+    renew: §e/rent renew <契约ID> <天数> §7- 续约
+    proposals: §e/rent proposals §7- 查看待处理提议
+    stats: §e/rent stats §7- 查看租借统计
+split: 
+  not-in-nation: §c你还没有加入任何国家！
+  not-leader: §c只有国家领导人才能执行此操作！
+  unknown-command: §c未知的子命令：§e{0}§c，使用 /split help 查看帮助。
+  invalid-coords: "§c无效的坐标格式！请使用 x:z 或 x:z,radius"
+  invalid-number: §c无效的数字：§e{0}
+  invalid-request-id: §c无效的请求ID：§e{0}
+  request-not-found: §c找不到请求：§e{0}
+  create: 
+    usage: '§e/split create <新国家名> <区块坐标> §7- 发起分裂请求
+
+      §7示例：/split create 新国家 0:0§7 或 §e/split create 新国家 0:0,2'
+    success: §a分裂请求已创建！新国家：§e{0}§a，分离区块：§e{1}§a 个
+    await-approval: §e等待国家领导人审批...
+  approve: 
+    usage: §e/split approve <请求ID> §7- 批准分裂请求
+    success: §a分裂请求已批准！
+    completed: '§a分裂完成！
+
+      §7原国家：§e{0}§7
+
+      §7新国家：§e{1}§7
+
+      §7分离区块：§e{2}§7 个'
+  reject: 
+    usage: §e/split reject <请求ID> §7- 拒绝分裂请求
+    success: §e分裂请求已被拒绝。
+  cancel: 
+    usage: §e/split cancel <请求ID> §7- 取消你发起的分裂请求
+    success: §a分裂请求已取消。
+  list: 
+    header: §6========== §e分裂请求列表 §6==========
+    entry: §e{0}§7 | 新国家：§a{1}§7 | 申请人：§e{2}§7 | 区块：§e{3}§7 | {4}分钟前
+    empty: §e当前没有待处理的分裂请求。
+  info: 
+    usage: §e/split info <请求ID> §7- 查看分裂请求详情
+    header: §6========== §e分裂请求详情 §6==========
+    id: §7请求ID：§e{0}
+    status: §7状态：§e{0}
+    source: §7源国家：§e{0}
+    new: §7新国家名称：§e{0}
+    requester: §7申请人：§e{0}
+    chunks: §7分离区块数：§e{0}
+    duration: §7持续时间：§e{0} 分钟
+  cost: 
+    info: §7分裂 {0} 个区块的费用：§e{1} §7金币
+  check: 
+    allowed: §a你可以在 §e{0} §a发起分裂！
+    denied: §c你无法在 §e{0} §c发起分裂：{1}
+  reload: 
+    success: §a分裂系统配置已重载！
+  help: 
+    header: §6========== §e国家分裂系统帮助 §6==========
+    create: §e/split create <新国家名> <区块> §7- 发起分裂请求
+    approve: §e/split approve <请求ID> §7- 批准分裂请求（领导人）
+    reject: §e/split reject <请求ID> §7- 拒绝分裂请求（领导人）
+    cancel: §e/split cancel <请求ID> §7- 取消你发起的请求
+    list: §e/split list §7- 列出待处理的请求
+    info: §e/split info <请求ID> §7- 查看请求详情
+    cost: §e/split cost [区块数] §7- 计算分裂费用
+    check: §e/split check §7- 检查是否可以发起分裂
+merge: 
+  command: 
+    player-only: §c该命令只能由玩家执行！
+  not-in-nation: §c你必须属于一个国家才能使用此命令！
+  founder-only: §c只有国家创始人才能发起合并公投！
+  target-not-found: §c目标国家 §e{0} §c不存在！
+  no-active: §e目前没有进行中的合并公投！
+  not-participant: §c你不是这个公投的参与者！
+  already-voted: §c你已经投过票了！
+  not-found: §c公投 §e{0} §c不存在！
+  no-history: §e目前没有公投历史记录！
+  propose: 
+    usage: §e/merge propose <目标国家> <新国家名> §7- 发起合并公投
+    proposed: §a成功发起合并公投！§e{0} §a与 §e{1} §a将合并为 §e{2}§a！
+  list: 
+    header: §6========== §e进行中的合并公投 §6==========
+  info: 
+    usage: §e/merge info <公投ID> §7- 查看公投详情
+    header: §6========== §e公投详情 §6==========
+    target: §7公投国家：§e{0} §7+ §e{1} §7-> §e{2}
+    votes: §7票数统计：§a赞成 {0} §7/ §c反对 {1} §7/ 总计 {2}
+    state: §7状态：§e{0}
+  vote: 
+    usage: §e/merge vote <公投ID> §7- 投赞成票
+    voted-approve: §a你投了赞成票！
+    voted-reject: §c你投了反对票！
+  cancel: 
+    usage: §e/merge cancel <公投ID> §7- 取消公投（仅发起者）
+    cancelled: §a公投已取消！
+  history: 
+    header: §6========== §e公投历史 §6==========
+  help: 
+    header: §6========== §e合并公投系统帮助 §6==========
+    propose: §e/merge propose <目标国家> <新国家名> §7- 发起合并公投
+    list: §e/merge list §7- 列出进行中的公投
+    info: §e/merge info <公投ID> §7- 查看公投详情
+    vote: §e/merge vote <公投ID> §7- 投赞成票
+    approve: §e/merge approve <公投ID> §7- 快速投赞成票
+    reject: §e/merge reject <公投ID> §7- 投反对票
+    cancel: §e/merge cancel <公投ID> §7- 取消公投
+    history: §e/merge history [数量] §7- 查看公投历史
+  notify: 
+    proposed: §6{0} §e发起了一个合并公投！§a合并后国家名：{1}
+  approved: 
+    broadcast: §6[公投] §a国家 {0} 与 {1} 的合并公投已通过！§e合并后国家名：{2}
+  rejected: 
+    broadcast: §6[公投] §c国家 {0} 与 {1} 的合并公投被否决！
+  completed: 
+    broadcast: §6[公投] §a国家合并完成！§e新国家ID：{0}
+doctrine: 
+  not-in-nation: §c你还没有加入任何国家！
+  no-permission: §c你没有权限设置国家学说！
+  no-doctrine: §e你的国家还没有选择任何学说！
+  set-failed: §c设置学说失败！
+  clear-failed: §c清除学说失败！
+  set: §a已成功设置学说为 §e{name}§a！
+  cleared: §a已成功清除学说！
+  cooldown: §c学说切换冷却中，请等待 §e{time}§c 后再试！
+  insufficient-funds: §c国家国库余额不足，无法切换学说！§e需要：{cost}
+  invalid-type: §c无效的学说类型：§e{type}§c！
+  announce: 
+    adopted: §6[学说] §e{0} §a采用了 §b{1} §a学说！
+    switched: §6[学说] §e{0} §a将学说从 §c{1} §a切换为 §b{2}§a！
+    cleared: §6[学说] §e{0} §a已清除 §c{1} §a学说！
+wounded: 
+  not-in-nation: §c你还没有加入任何国家！
+  not-found: §c未找到伤兵记录：§e{id}
+  not-owned: §c该伤兵记录不属于你的国家！
+  limit-reached: §c伤兵容量已满，无法接收更多伤兵！
+  no-wounded: §e你的国家目前没有伤兵。
+  list: 
+    header: §6========== §e国家伤兵列表 §6==========
+    total: §7共 §e{total} §7条记录，§c{count} §7名伤兵
+  info: 
+    usage: §e/wounded info <伤兵ID>
+    header: §6========== §e伤兵详情 §6==========
+    id: §7ID：§e{id}
+    severity: §7严重程度：§e{severity}
+    soldiers: §7当前伤兵：§c{count} §7人
+    original: §7原始士兵：§e{count} §7人
+    status: §7状态：§e{status}
+    progress: §7治疗进度：§a{progress}% §7(剩余 §e{time}秒)
+    healing-time: §7预计康复时间：§e{time}秒
+  status: 
+    waiting: §e等待治疗
+    healing: §7正在治疗：§a{count} §7人
+    recovered: §a已康复
+    dead: §c已死亡
+    header: §6========== §e伤兵系统状态 §6==========
+    wounded: §7伤兵总数：§c{total}§7/§e{limit}
+    death-chance: §7到达时死亡几率：§e{chance}
+  hospital: 
+    header: §6========== §e医院状态 §6==========
+    total: §7伤兵总数：§c{total}§7/§e{limit}
+    healing: §7正在治疗：§a{count} §7人
+    waiting: §7等待治疗：§e{count} §7人
+  heal: 
+    usage: §e/wounded heal <伤兵ID>
+    started: §a已开始治疗 §e{count} §a名伤兵！
+    failed: §c开始治疗失败！可能需要等待或已达到容量上限。
+  cancel: 
+    usage: §e/wounded cancel <伤兵ID>
+    success: §a已取消治疗，伤兵回到等待队列。
+    failed: §c取消治疗失败！该伤兵可能不在治疗中。
+  player: 
+    wounded: §6[战斗] §e{count} §6名士兵在战斗中负伤！严重程度：§e{severity}
+    respawn-notice: §6[伤兵] §e你目前有 §c{count} §e名伤兵需要治疗！使用 §e/wounded heal <ID> §e开始治疗。
+  help: 
+    header: §6========== §e伤兵系统帮助 §6==========
+    list: §e/wounded list §7- 查看国家伤兵列表
+    info: §e/wounded info <ID> §7- 查看伤兵详情
+    heal: §e/wounded heal <ID> §7- 开始治疗伤兵
+    cancel: §e/wounded cancel <ID> §7- 取消治疗
+    hospital: §e/wounded hospital §7- 查看医院状态
+    status: §e/wounded status §7- 查看伤兵系统状态
+  severity: 
+    light: §a轻伤
+    moderate: §e中伤
+    severe: §6重伤
+    critical: §c危急
+commander: 
+  help: 
+    title: 指挥官系统帮助
+    info: §e/commander info §7- 查看指挥官信息
+    skills: §e/commander skills §7- 查看技能列表
+    unlock: §e/commander unlock <技能> §7- 解锁技能
+    upgrade: §e/commander upgrade <技能> §7- 升级技能
+    use: §e/commander use <技能> [目标ID] §7- 使用技能
+    reset: §e/commander reset §7- 重置技能（返还部分经验）
+    exp: §e/commander exp §7- 查看经验信息
+  info: 
+    title: 指挥官信息
+    level: §6等级：§e{0} §7- §f{1}
+    experience: §7经验值：§e{0} §7/ 升级需要 §e{1}
+    skills: §7已解锁技能：§e{0}§7/§e{1}
+    skill-list: §7已解锁：
+  skills: 
+    title: 技能列表
+    your-level: §6你的指挥官等级：§e{0}级
+    unlocked: §a已解锁 Lv.{0}/{1}
+    available: §e可用（消耗 §e{0} §e经验）
+    locked: §7需要达到 §e{0}§7 级才能解锁
+  unlock: 
+    usage: §e/commander unlock <技能名> §7- 解锁技能
+    success: §a成功解锁技能：§e{0}
+    failed: §c解锁技能失败：§e{0} §c（可能等级不足或经验不够）
+  upgrade: 
+    usage: §e/commander upgrade <技能名> §7- 升级技能
+    success: §a成功升级技能：§e{0} §a到下一级！
+    failed: §c升级技能失败：§e{0} §c（可能已达最高级或经验不够）
+  use: 
+    usage: §e/commander use <技能> [目标ID] §7- 使用技能
+    invalid-target: §c无效的目标ID！
+  exp: 
+    title: 经验信息
+    current: §6当前经验：§e{0}
+    to-next: §7距离升级到 §e{0} §7还需要 §e{1} §7经验
+    gained: §a+{0} 经验值
+    kill-bonus: §6击杀奖励：§a+{0} §e指挥官经验
+    army-created: §6创建军队奖励：§a+{0} §e指挥官经验
+    territory-defended: §6防守奖励：§a+{0} §e指挥官经验
+  skill: 
+    not-found: §c未找到技能：§e{0}
+  level: 
+    up: §6§l升级！§r §e你的指挥官等级提升到 {0} - {1}！
+  reset: 
+    disabled: §c技能重置功能已禁用！
+    success: §a技能已重置！§e返还 {0} §a经验值
+  error: 
+    no-nation: §c你必须加入一个国家才能使用指挥官系统！
+    max-skills: §c你已达到最大技能数量限制（§e{0}§c）！
+reparations: 
+  create: 
+    success: §a赔款记录创建成功！
+    failed: §c创建赔款失败：§e{0}
+    amount-too-low: §c赔款金额不能低于 §e{0}§c！
+    amount-too-high: §c赔款金额不能超过 §e{0}§c！
+  pay: 
+    success: §a支付成功！
+    failed: §c支付失败！
+    insufficient-balance: §c国库余额不足！当前余额：§e{0}
+    not-active: §c此赔款不是活跃状态！
+    wrong-payer: §c你的国家不是此赔款的支付方！
+    progress: §7赔款进度：§e{0}%% §7(已付 §e{1}§7/总计 §e{2}§7)
+    completed: §6§l赔款已全部付清！
+  event: 
+    created: 
+      title: 战争赔款已判定
+      subtitle: §e{0} §7需向 §e{1} §7支付 §6{2} §7(分 §e{3} §7期)
+    your-nation: 
+      created: §c你的国家被判定向 §e{0} §c支付 §6{1} §c战争赔款！
+      paid: §a已向 §e{0} §a支付 §6{1}§a！进度：§e{2}
+      completed: §a你已完成向 §e{0} §a的赔款支付！
+      defaulted: §c你的国家向 §e{0} §c的赔款已违约！欠款：§e{1}
+      forgiven: §a你向 §e{0} §a的赔款已被免除！
+    enemy: 
+      created: §e{0} §7需向你支付 §6{1} §7战争赔款！
+      paid: §a收到来自 §e{0} §a的赔款 §6{1}§a！
+      completed: §6你已收到来自 §e{0} §6的完整赔款：§e{1}
+      defaulted: §e{0} §7的赔款已违约！
+      forgiven: §7你免除了 §e{0} §7的赔款义务。
+    completed: 
+      title: 战争赔款支付完成
+      subtitle: §e{0} §7已向 §e{1} §7支付 §6{2}
+    defaulted: 
+      title: 战争赔款违约
+      subtitle: §e{0} §7未履行赔款义务，需向 §e{1} §7支付 §c{2}
+  status: 
+    active: 进行中
+    completed: 已完成
+    defaulted: 已违约
+    forgiven: 已免除
+    total-debt: §c总债务：§e{0}
+    total-paid: §a已付总额：§e{0}
+    next-payment: §7下一期应付：§e{0}
+    remaining: §7剩余应付：§e{0}
+  list: 
+    header: §6========== §e赔款列表 §6==========
+    empty: §e暂无赔款记录！
+    item: §7{0} §c-> §a{1} §7- §6{2} §7({3})
+    page: §7第 §e{0} §7页，共 §e{1} §7页
+  error: 
+    not-found: §c未找到赔款记录！
+    invalid-id: §c无效的赔款ID格式！
+    not-active: §c此赔款不是活跃状态！
+    no-nation: §c你必须加入一个国家！
+    already-completed: §c此赔款已完成或已被免除！
+mercenary: 
+  registered: §a你已经注册为雇佣兵！
+  unregistered: §a你已经取消雇佣兵注册！
+  cannot-unregister-active: §c你还有活跃的雇佣合同，无法取消注册！
+  available: 
+    enabled: §a雇佣兵可用状态已开启！
+    disabled: §e雇佣兵可用状态已关闭！
+    usage: §e用法：/mercenary available <on|off>
+  hired: §a成功雇佣 §e{0} §a作为 §e{1}§a，合同期 §e{2} §a天，薪资 §e{3}
+  hire: 
+    usage: §e用法：/mercenary hire <玩家> <类型> [天数]
+  being-hired: §a你被 §e{0} §a雇佣为 §e{1}§a，合同期 §e{2} §a天！
+  fired: §a已解雇雇佣兵 §e{0}
+  fire: 
+    usage: §e用法：/mercenary fire <玩家>
+  being-fired: §c你被雇主 §e{0} §c解雇了！
+  resigned: §a你已辞去雇佣兵身份！
+  not-employed: §c你目前没有雇佣合同！
+  info: 
+    header: §6========== §e雇佣兵信息 §6==========
+    not-mercenary: §7你不是雇佣兵
+    available-status: §7可用状态：§e{0}
+    contract-id: §7合同ID：§e{0}
+    type: §7兵种：§e{0}
+    rank: §7军衔：§e{0}
+    status: §7状态：§e{0}
+    exp: §7经验：§e{0} §7(等级 §e{1}§7)
+    kdr: §7K/D：§e{0}/{1} §7(§f{2}§7)
+    salary: §7当前薪资：§e{0}
+    remaining: §e合同剩余 §e{0} §e天
+    other-not-implemented: §e查看其他雇佣兵信息功能暂未实现
+  list: 
+    header: §6========== §e雇佣兵列表 §6========== §7(共 §e{0} §7名)
+    entry: §7{0} §7- §e{1} §7- §a{2} §7- §e{3} §7- 剩余§e{4}§7天
+  no-contracts: §e暂无雇佣合同！
+  stats: 
+    header: §6========== §e雇佣兵市场统计 §6==========
+    total-available: §7可雇佣总数：§e{0}
+    by-type: §7  {0}：§e{1} §7人
+  settings: 
+    header: §6========== §e雇佣兵设置 §6==========
+    available: §7可用状态：§e{0}
+    contract-days: §7合同天数：§e{0} - {1}
+    min-salary: §7最低日薪：§e{0}
+    preferred-types: §7偏好类型：§e{0}
+    available-enabled: §a雇佣兵可用状态已开启！
+    available-disabled: §e雇佣兵可用状态已关闭！
+    min-days-set: §a最低合同天数已设置为 §e{0}
+    max-days-set: §a最高合同天数已设置为 §e{0}
+    usage: §e用法：/mercenary settings <available|mindays|maxdays> [值]
+  renew-request-sent: §a续约请求已发送给你的雇主！
+  renew: 
+    usage: §e用法：/mercenary renew [天数]
+  player-not-online: §c玩家 §e{0} §c不在线！
+  invalid-type: §c无效的雇佣兵类型：§e{0}
+  invalid-days: §c无效的天数格式：§e{0}
+  invalid-nation-id: §c无效的国家ID格式！
+  no-nation: §c你必须加入一个国家或指定国家ID！
+  already-employed: §c该玩家已有雇佣合同！
+  already-in-nation: §c该玩家已经加入了其他国家！
+  not-available: §c该玩家目前不接受雇佣！
+  insufficient-funds: §c国家金库余额不足！
+  withdraw-failed: §c从金库扣款失败！
+  no-active-contract: §c你没有活跃的雇佣合同！
+  unknown-command: §c未知的子命令：§e{0}
+  offline: §7离线
+  help: 
+    header: §6========== §e雇佣兵帮助 §6==========
+    register: §e/mercenary register §7- 注册为雇佣兵
+    unregister: §e/mercenary unregister §7- 取消雇佣兵注册
+    available: §e/mercenary available <on|off> §7- 设置可用状态
+    info: §e/mercenary info [玩家] §7- 查看雇佣兵信息
+    hire: §e/mercenary hire <玩家> <类型> [天数] §7- 雇佣雇佣兵
+    fire: §e/mercenary fire <玩家> §7- 解雇雇佣兵
+    resign: §e/mercenary resign §7- 辞去雇佣兵身份
+    list: §e/mercenary list [国家ID] §7- 查看国家雇佣兵列表
+    stats: §e/mercenary stats §7- 查看雇佣兵市场统计
+    settings: §e/mercenary settings §7- 管理雇佣兵设置
+    renew: §e/mercenary renew [天数] §7- 申请续约
+  event: 
+    hired: §a你已被雇佣到 §e{0} §a担任 §e{1}§a，合同期 §e{2} §a天
+    warning-same-nation: §e警告：你目前在本国服役，请注意行为！
+    employer-hired: §a你成功雇佣了 §e{0} §a到 §e{1}
+    promoted: §6§l晋升！§r §a你的军衔提升到 §e{0}！
+    employer-promoted: §a你的雇佣兵 §e{0} §a从 §e{1} §a晋升为 §e{2}！
+    contract-ended: §e你的雇佣合同已结束，原因：§c{0}
+    final-stats: §7总薪资：§e{0} §7完成任务：§e{1}
+    employer-contract-ended: §e你的雇佣兵 §e{0} §e的合同已结束，原因：§c{1}
+    mission-completed: §a任务完成：§e{0}§a，奖励：§e{1}
+    contract-expiring: §e警告：你的合同将在 §c{0} §e天后到期！
+    respawn-penalty: §c累计死亡次数：§e{0}
+  kill: 
+    recorded: §a击杀已记录！+15经验
+  death: 
+    recorded: §c死亡已记录！-10经验
+  common: 
+    true: §a是
+    false: §c否
+raid: 
+  alert: 
+    header: §c========== §4突袭警报 §c==========
+    incoming: §c紧急：§e{0} §c正在突袭你的国家！立即响应！
+    message: §c警告：§e{0} §c正在突袭你的领土（{1}）！战斗将在 {2} 秒后开始！
+    none: §7暂无待处理警报！
+    welcome: §c警告：§e{0} §c正在突袭你的领土（{1}）！剩余 {2} 秒！
+  broadcast: 
+    attacker-victory: §a突袭结束：§e{0} §a成功击败了 §c{1}
+    defender-victory: §c突袭结束：§a{0} §c成功击退了 §e{1}§c 的攻击！
+    draw: §e突袭结束：§c{0} §e与 §a{1} §e打成平手！
+    start: §c[警报] §e{0} §c对 §a{1}§c 发起了夜间突袭！
+    stats: §7最终比分：进攻方 {0} vs 防守方 {1}
+    target: §c你的国家正受到 §e{0}§c 的突袭！
+  create: 
+    already-pending: §c已有一个针对该国家的突袭待执行！
+    cooldown: §c你的国家在突袭冷却中，还需 §e{0} §c小时！
+    failed: §c发起突袭失败！
+    no-target: §c请指定目标国家！
+    self-target: §c不能突袭自己的国家！
+    success: §a对 §e{0}§a 的突袭已开始！
+  help: 
+    cancel: §e/raid cancel §7- 取消突袭（仅创建者）
+    create: §e/raid create <目标国家> §7- 发起突袭
+    header: §6========== §e突袭帮助 §6==========
+    info: §e/raid info [突袭ID] §7- 查看突袭详情
+    join: §e/raid join §7- 加入突袭
+    leave: §e/raid leave §7- 离开突袭
+    list: §e/raid list §7- 查看进行中的突袭
+    status: §e/raid status §7- 查看突袭状态
+  kill: 
+    message: §e{0} §7击败了 §c{1} §7（{2}）
+  status: 
+    active: §7当前进行中的突袭：§e{0}
+    cooldown: §7冷却时间：§e{0} §7小时
+    duration: §7突袭持续时间：§e{0} §7分钟
+    header: §6========== §e突袭状态 §6==========
+    participants: §7最小/最大参与人数：§e{0}/{1}
+    preparation: §7准备时间：§e{0} §7秒
+    window: §7突袭窗口：{0}
+nation: 
+  bankrupt: 
+    alert: §c⚠ 国家破产！无法支付维护费用！
+    maintenance-suspended: §e维护服务已暂停，直至国库恢复。
+    warning: §c⚠ 国库警告！余额严重不足！
+  diplomacy: 
+    ally: §a已结盟
+    casus-belli: §7宣战理由：§e{reason}
+    enemy: §c交战
+    neutral: §7中立
+    protectorate: §e保护国
+    tributary: §6朝贡国
+  gui: 
+    diplomacy-title: §6外交关系
+    info-title: §6国家信息
+    main-title: §6§l★ 国家管理 ★
+    members-title: §6成员管理
+    military-title: §6军事指挥部
+    officers-title: §6官员管理
+    settings-title: §6国家设置
+    technology-title: §6科技研究
+    treasury-title: §6国家国库
+  info: 
+    alliance: §7联盟：§e{alliance}
+    founded: §7成立时间：§e{date}
+    leader: §7领袖：§e{leader}
+    level: §7等级：§e{level}
+    members: §7成员：§e{current}§7/§e{max}
+    name: §7国家名称：§e{name}
+    population: §7人口：§e{population}
+    reputation: §7声望：§e{reputation}
+    territory: §7领土：§e{territory} §7个区块
+  member: 
+    contributions: §7贡献：§e{contributions}
+    join-date: §7加入时间：§e{date}
+    last-seen: §7最后在线：§e{time}
+    offline: §7离线
+    online: §a在线
+    rank: §7等级：§e{rank}
+  treasury: 
+    balance: §7余额：§e{balance} ✦
+    daily-income: §7日收入：§a+{income} ✦
+    expenses: §7开支：§c-{expenses}§7/分钟
+    income: §7收入：§a+{income}§7/分钟
+    net: §7净增：{sign}{net}§7/分钟
+    taxes-collected: §7税收：§e{taxes} ✦
+nation-statusbar: 
+  enabled: §a国家状态栏已开启！
+  disabled: §c国家状态栏已关闭！
+  mode-changed: §e状态栏模式已切换为：§f{0}
+  refreshed: §a状态栏已刷新！
+  not-in-nation: §c你还没有加入任何国家！
+statusbar-help: 
+  header: §6========== §e国家状态栏帮助 §6==========
+  true: §e/nsb on §7- 开启状态栏
+  false: §e/nsb off §7- 关闭状态栏
+  toggle: §e/nsb toggle §7- 切换状态栏开关
+  mode: §e/nsb mode [模式] §7- 设置显示模式
+  list: §e/nsb list §7- 查看所有模式
+  refresh: §e/nsb refresh §7- 刷新状态栏
+  reputation: §e/nsb reputation §7- 查看声望信息
+  footer: §6================================
+achievement: 
+  categories: 
+    collection: §a收集
+    combat: §c战斗
+    economy: §6经济
+    exploration: §9探索
+    social: §b社交
+    special: §5特殊
+  details: 
+    progress: §7进度：§e{current}§7/§e{target}
+    rarity-common: §7普通
+    rarity-epic: §5史诗
+    rarity-legendary: §6传说
+    rarity-rare: §9稀有
+    reward: §7奖励：§e{reward}
+  unlock: 
+    notification: §6§l★ 成就解锁！★
+    progress: §e{progress}% §7已完成
+animations: 
+  loading: 
+    frames: '["§e§l★ 加载中", "§e★§l● ", "§e★●§l★", "§e●§l★★", "§l★§e★★", "§l● §e★★",
+      "§l★ §e★★"]'
+    message: §7请稍候{frames}...
+  processing: 
+    frames: '["§b○●●●●", "§b●○●●●", "§b●●○●●", "§b●●●○●", "§b●●●●○"]'
+    message: §7处理中{frames}
+anticheat: 
+  notification: 
+    auto-kick: §c因可疑行为已被自动踢出。
+    player-warning: §e请停止该行为，否则你可能被踢出。
+    staff-alert: §c[管理员] §e{player} §c可能在使用作弊程序！
+  violation: 
+    combat: §c§l[战斗] §7检测到非法战斗模式
+    fly: §c§l[飞行] §7检测到飞行违规
+    packet: §c§l[网络] §7检测到可疑数据包活动
+    speed: §c§l[移动] §7检测到速度违规
+backpack: 
+  actions: 
+    deposit: §a存入全部
+    open: §e打开背包
+    upgrade: §a升级背包
+    withdraw: §e取出全部
+  info: 
+    empty: §7空
+    full: §c已满
+    slots: §7格位：§e{used}§7/§e{max}
+bounty: 
+  actions: 
+    cancel: §c取消悬赏
+    claim: §a领取悬赏
+    list: §6活跃悬赏
+    post: §e发布悬赏
+  events: 
+    claimed: §6对 §e{target} §6的悬赏已被 §e{killer}§6 领取！
+    expired: §7对 §e{target} §7的悬赏已过期。
+  info: 
+    expires: §7过期时间：§e{time}
+    posted-by: §7发布者：§e{player}
+    reward: §7赏金：§6{reward} ✦
+    target: §7目标：§e{player}
+broadcasts: 
+  admin: 
+    announcement: §6[公告] §e{message}
+    broadcast: §c[管理员] §e{message}
+    warning: §c⚠ {message}
+  events: 
+    event-end: §6§l★ 活动结束！★§r §7{event} 已结束。
+    event-start: §6§l★ 活动开始！★§r §7{event} 现在开始！
+    lottery-end: §6§l★ 抽奖结束！★§r §7中奖者：§e{winner}
+    lottery-start: §6§l★ 抽奖开始！★§r §7快来购买奖券！
+    sale-start: §a§l★ 大甩卖！★§r §7所有商品 {discount}% off！
+  welcome: 
+    first-join: §6欢迎 §e{player} §6加入服务器！
+    player-join: §a✦ §e{player} §6加入了服务器！
+    player-quit: §7✦ §e{player} §7离开了服务器。
+debug: 
+  disabled: §e调试模式已关闭！
+  enabled: §e调试模式已开启！
+  error: §c调试错误：{error}
+  info: §7调试：{info}
+  warning: §e调试警告：{warning}
+eastereggs: 
+  developer: 
+    hint: §7只有开发者才有这个...
+    message: §b✧ §c开发者物品 §b✧
+  rare: 
+    hint: §7（嘘...这很稀有！）
+    message: §k§l魔法§r §6你发现了特别的东西！
+  secret: 
+    hint: §7（嘘，别告诉任何人）
+    message: §5§k秘密§r §d不错的发现！
+errors: 
+  economy: 
+    amount-too-high: §c金额超过最大限制！
+    amount-too-low: §c金额低于最低要求！
+    balance-too-low: §c你的余额不足！
+    insufficient-funds: §c资金不足！
+    transaction-failed: §c交易失败！
+    transfer-cooldown: §c转账冷却中！请等待 {time} 秒。
+  generic: 
+    coming-soon: §e此功能即将推出！
+    invalid-input: §c输入无效！请检查你的输入。
+    not-implemented: §c此功能尚未实现！
+    operation-failed: §c操作失败！请联系管理员。
+    timeout: §c请求超时！请重试。
+    unknown: §c发生未知错误！请重试。
+  item: 
+    already-exists: §c物品已存在！
+    invalid-quantity: §c无效的数量！
+    item-disabled: §c此物品已禁用！
+    max-stack: §c已达到最大堆叠数量！
+    no-space: §c背包空间不足！
+    not-found: §c未找到物品！
+  permission: 
+    insufficient-rank: §c你的等级不足以执行此操作！
+    no-permission: §c你没有权限执行此操作！
+    requires-admin: §c此操作需要管理员权限！
+    requires-mod: §c此操作需要主持人权限！
+    requires-premium: §c此操作需要高级会员权限！
+    requires-vip: §c此操作需要 VIP 权限！
+  player: 
+    blocked-by-target: §c你被该玩家拉黑了！
+    not-found: §c未找到玩家！
+    not-in-guild: §c玩家不在你的公会中！
+    not-in-party: §c玩家不在你的队伍中！
+    not-online: §c玩家不在线！
+    self-action: §c你不能对自己执行此操作！
+    target-blocked: §c你已拉黑该玩家！
+  world: 
+    cannot-teleport: §c无法传送到此位置！
+    not-found: §c未找到世界！
+    not-loaded: §c世界未加载！
+    spawn-disabled: §c此世界已禁用出生点！
+    world-disabled: §c此世界已禁用！
+helpsystem: 
+  categories: 
+    admin: §4管理员命令
+    combat: §c战斗命令
+    economy: §e经济命令
+    general: §6通用命令
+    nation: §a国家命令
+    social: §b社交命令
+  format: 
+    command: §e{command} §7- {description}
+    example: §7示例：§f{command}
+    footer: §6================================
+    header: §6========== §e{title} §6==========
+    subcommand: §7  §e{subcommand} §7- {description}
+  tips: 
+    contact-support: §7需要更多帮助？在 Discord 上联系工作人员！
+    helpful-link: §7更多帮助，请访问：§e{link}
+    tip-header: §e§l★ 提示 ★
+home: 
+  list: 
+    empty: §7你还没有设置家！
+    header: §6========== §e你的家 §6==========
+    item: §e{name} §7- §f{world} ({x}, {y}, {z})
+  management: 
+    already-exists: §c此名称的家已存在！
+    delete: §a家 §e{name} §a已删除！
+    limit: §7家数量上限：§e{current}§7/§e{max}
+    limit-reached: §c已达到家的数量上限！请先删除一个现有的家。
+    not-found: §c未找到家 §e{name}§c！
+    set: §a家 §e{name} §a已设置！
+keybinds: 
+  bindings: 
+    compass: 指南针菜单
+    map: 切换地图
+    primary-skill: 主技能
+    quick-inventory: 快速背包
+    scoreboard: 切换计分板
+    secondary-skill: 副技能
+  messages: 
+    bound: §a按键已绑定至 §e{action}
+    conflict: §c此按键已绑定至 §e{action}
+    reset: §a按键绑定已重置为默认值
+    unbound: §c按键已从 §e{action} 解绑
+language: 
+  available: §7可用语言：
+  changed: §a语言已切换为 §e{locale}§a！
+  current: §7当前语言：§e{locale}
+  not-available: §c语言 §e{locale} §c不可用！
+  reload-success: §a语言文件已重新加载！
+  set-by-admin: §a玩家 §e{player}§a 的语言已设为 §e{locale}§a！
+  system-default: §7系统默认：§e{locale}
+lottery: 
+  actions: 
+    buy: §a购买奖券
+    ticket-cost: §7费用：§e{cost} ✦
+    winner-announcement: §6§l★ 抽奖中奖者！★
+    your-ticket: §e你的奖券中奖了！
+  info: 
+    draw-date: §7下次开奖：§e{draw}
+    odds: §7中奖概率：§e{odds}%
+    pot: §6当前奖池：§e{pot} ✦
+    tickets: §7你的奖券：§e{count}
+mail: 
+  action: 
+    claim: §a领取
+    delete: §c删除
+    forward: §b转发
+    mark-read: §a标记为已读
+    reply: §e回复
+  status: 
+    attachment: §a有附件
+    expired: §c已过期
+    read: §7已读
+    unread: §e未读
+  types: 
+    gift: §d礼物
+    package: §a包裹
+    player: §e玩家
+    system: §6系统
+military: 
+  army: 
+    health: §7生命值：§e{health}%
+    morale: §7士气：§e{morale}%
+    position: §7位置：§f{x}, {y}, {z}
+    soldiers: §7士兵：§e{count}
+    strength: §7实力：§e{strength}
+    title: §6§l军队管理
+  combat: 
+    casualties: §7伤亡：§c{count}
+    defeated: §c战败！
+    engaged: §c正在战斗中！
+    preparing: §e准备战斗中...
+    retreated: §e撤至安全地带。
+    victorious: §a胜利！
+  commander-skills: 
+    blockade: §5封锁
+    blockade-desc: §7切断敌方补给线
+    fortify: §a筑防
+    fortify-desc: §7设置防御阵地
+    inspire: §e鼓舞
+    inspire-desc: §7提升附近军队战斗力
+    raid: §c突袭
+    raid-desc: §7快速袭击敌方资源
+    rally: §6集结
+    rally-desc: §7提升所有军队士气
+    scout: §9侦察
+    scout-desc: §7收集敌军位置情报
+  attack.usage: §e/sc army attack <军队ID> §7- 攻击敌军
+  battle.defeat: §c§l战败！§r §c你的军队输了。
+  battle.draw: §e§l平局！§r §e双方军队幸存。
+  battle.header: §6§l===== 战斗报告 =====
+  battle.mutual: §c§l同归于尽！§r §c双方军队被消灭！
+  battle.started: §c⚔ 战斗开始！
+  battle.under-attack: §c⚔ 你的军队正在被攻击！
+  battle.victory: §a§l胜利！§r §a你的军队赢了！
+  battle.you-attacked.defeat: §c你攻击了 §e{0}§c 并失败。
+  battle.you-attacked.draw: §e你攻击了 §e{0}§e — 平局。
+  battle.you-attacked.mutual: §c你攻击了 §e{0}§c — 同归于尽！
+  battle.you-attacked.victory: §a你攻击了 §e{0}§a 并获胜！
+  battle.you-defended.defeat: §c你防御了 §e{0}§c 并失败。
+  battle.you-defended.draw: §e你防御了 §e{0}§e — 平局。
+  battle.you-defended.mutual: §c你防御了 §e{0}§c — 同归于尽！
+  battle.you-defended.victory: §a你防御了 §e{0}§a 并获胜！
+  create.button.cancel: §c§l取消
+  create.button.confirm: §a§l确认
+  create.cancelled: §e军队创建已取消。
+  create.click-to-select: §7点击选择类型
+  create.confirm-desc: §a点击确认以创建
+  create.cost-breakdown: §7({0} ✦/单位 × {1} 士兵 = §e{2} ✦§7)
+  create.quick-soldiers: §7快速选择：§e10 / 50 / 100
+  create.selected: §a已选择：§e{0}
+  create.selected-type: §7类型：§e{0}
+  create.soldiers: §e士兵数：§f{0}
+  create.soldiers-range: §7数量：§e{0} §7- §e{1}
+  create.stats.attack: §7攻击：§c{0}
+  create.stats.cost: §7单位花费：§6{0} ✦
+  create.stats.defense: §7防御：§b{0}
+  create.stats.health: §7生命：§a{0}
+  create.stats.mobility: §7机动：§d{0}
+  create.title: §6§l创建军队
+  create.total-cost: §6总花费：§e{0} ✦
+  create.usage: §e/sc army create <类型> <士兵数> §7- 创建军队
+  created: §a军队已创建：§e{0} §7(类型：§f{1}§7)
+  disband.usage: §e/sc army disband <军队ID> §7- 解散你的军队
+  disbanded: §a军队 §e{0} §7已被解散。
+  gui.army.name: §e{0} §7(§f{1}§7 士兵)
+  gui.attack.cannot-fight: §c暂时无法攻击此军队！
+  gui.button.attack: §c§l攻击
+  gui.button.attack.desc: §7选择一个敌军进行攻击
+  gui.button.back: §e§l← 返回
+  gui.button.cancel: §c§l取消
+  gui.button.click-to-create: §7点击创建军队
+  gui.button.close: §c§l关闭
+  gui.button.create: §a§l创建军队
+  gui.button.create.desc: §7为你的国家创建新军队
+  gui.button.disband: §c§l解散
+  gui.button.disband.warning: §c§l警告：此操作无法撤销！
+  gui.button.help: §b§l帮助
+  gui.button.move: §e§l移动
+  gui.button.move.desc: §7将军队移动到目标坐标
+  gui.button.recall: §b§l召回
+  gui.button.recall.desc: §7将军队召回本国领土
+  gui.button.supply: §a§l补给
+  gui.button.supply-all: §a§l补给全部
+  gui.button.supply-all.desc: §7一次性补给所有军队
+  gui.button.supply.desc: §7为该军队运送补给
+  gui.cancelled: §e军队操作已取消。
+  gui.click-to-manage: §7点击管理此军队
+  gui.click-to-select: §7点击选择
+  gui.move.cannot-move: §c此军队暂时无法移动！
+  gui.move.select-target: §e在聊天中输入目标坐标 (x,y,z)
+  gui.title: §6§l军队管理
+  help.header: §6§l===== 军队指令 =====
+  info.header: §6§l===== 军队信息 =====
+  invalid-number: §c无效数字：§e{0}
+  invalid-type: §c无效军队类型：§e{0}
+  list.entry: §7- §f{0}§7(§e{1}§7 士兵，§a{2}§7 生命)
+  list.header: §6§l===== 你的军队 =====
+  move.usage: §e/sc army move <军队ID> <x> <y> <z> §7- 将军队移动到坐标
+  moved: §a军队 §e{0}§7 已移动到 §f({1}, {2}, {3})§a。
+  no-armies: §7你没有军队。
+  not-found: §c未找到军队：§e{0}
+  not-in-nation: §c你必须加入国家才能管理军队！
+  predict.usage: §e/sc army predict <军队1ID> <军队2ID> §7- 预测战斗结果
+  recall.usage: §e/sc army recall <军队ID> §7- 将军队召回本国领土
+  siege.usage: §e/sc army siege <城市ID> §7- 围攻城市
+  supplied: §a军队 §e{0}§7 已补给 (§e{1}§7 单位)。
+  supply.usage: §e/sc army supply <军队ID> §7- 为你的军队补给
+  war.ended: §a⚔ 战争结束，军队 §e{0}§7 可以休整。
+  war.started: §c⚔ 战争开始，军队 §e{0}§7 进入战斗模式！
+war: 
+  common: 
+    already-at-war: §c{nation1} 和 §e{nation2} §c已经在交战！
+    nation-not-found: §c未找到国家：§e{name}
+    not-at-war: §e{nation1} §c和 §e{nation2} §c没有交战！
+    player-only: §c此命令只能由玩家执行！
+  declare: 
+    allied-nation: §c无法向结盟国家宣战！
+    broadcast: §c§l[战争]§e{0} §c向 §e{1}§c 宣战！
+    cannot-self: §c不能向自己的国家宣战！
+    failed: §c宣战失败！请检查是否已有进行中的战争。
+    success: §a已向 §e{1}§a 宣战！
+  end: 
+    broadcast: §a§l[和平]§e{0} §a与 §e{1}§a 达成停火！
+    failed: §c停战失败！
+    success: §a已与 §e{1}§a 达成停火！
+  help: 
+    declare: §e/war declare <国家1> <国家2> §7- 宣战
+    end: §e/war end <国家1> <国家2> §7- 停战
+    gui: §e/war gui §7- 打开战争菜单
+    header: §6========== §e战争命令 §6==========
+    info: §e/war info <国家1> <国家2> §7- 战争详情
+    list: §e/war list §7- 列出所有战争
+    status: §e/war status §7- 查看战争状态
+  menu: 
+    unavailable: §c战争菜单暂时不可用！
+  permission: 
+    declare: §c你没有宣战权限！
+    end: §c你没有停战权限！
+  status: 
+    at-war-with: §c你的国家正在与 §e{count} §c个国家交战
+    global-wars: §c全球活跃战争：§e{count}
+    header: §6========== §e战争状态 §6==========
+    not-at-war: §a你的国家目前处于和平状态。
+    your-nation: §e你的国家：§f{nation}
+  usage: 
+    declare: §e用法：/war declare <国家1> <国家2>
+    end: §e用法：/war end <国家1> <国家2>
+    info: §e用法：/war info <国家1> <国家2>
+trade: 
+  market: 
+    ask: §c卖价
+    bid: §a买价
+    last-price: §7最新价格：§e{price}
+    spread: §7价差：§e{spread}%
+    volume: §7成交量：§e{volume}
+  player-trade: 
+    accepted: §a交易已接受！
+    expired: §7交易已过期
+    incoming: §6收到交易请求
+    new-trade: §a新建交易
+    no-requests: §7暂无请求
+    outgoing: §e发出交易请求
+    pending: §e待处理：{count}
+    quick-buy: §a快速购买
+    quick-sell: §c快速出售
+    rejected: §c交易被拒绝
+  route: 
+    destination: §7目的地：§e{name}
+    distance: §7距离：§e{distance} 格
+    duration: §7耗时：§e{time}
+    profit: §7预期利润：§a+{profit} ✦
+    risk: §7风险：§e{risk}%
+    title: §6§l贸易路线
+research: 
+  categories: 
+    agriculture: §a农业
+    commerce: §6商业
+    culture: §d文化
+    magic: §b魔法
+    military: §c军事
+    mining: §e采矿
+  states: 
+    available: §a可研究
+    complete: §a研究完成！
+    locked: §c已锁定（前置条件未满足）
+    max-level: §6已达到最高等级
+    researching: §e研究中...
+  tech: 
+    cost: §7费用：§e{cost} ✦
+    level: §7等级：§e{level}§7/§e{max}
+    progress: §7进度：§a{progress}%
+    researchers: §7研究员：§e{count}
+    time-remaining: §7剩余时间：§e{time}
+sounds: 
+  combat: 
+    death: entity.player.death
+    hit: entity.player.attack
+    kill: entity.wither.death
+  economy: 
+    coin: entity.item.pickup
+    transaction: block.note_block.bell
+  ui: 
+    click: ui.button.click
+    close: ui.cartography_table.close
+    error: entity.villager.no
+    notification: entity.experience_orb.pickup
+    open: ui.cartography_table.open
+    success: entity.player.levelup
+spawn: 
+  nation: 
+    not-leader: §c只有国家领袖才能设置出生点！
+    set: §a国家出生点已设置！
+    teleport: §a正在传送到国家出生点...
+    unauthorized: §c你不能传送到国家出生点！
+  personal: 
+    deleted: §a家出生点已删除！
+    not-set: §c未设置家出生点！
+    set: §a家出生点已设置！
+    teleport: §a正在传送到家出生点...
+  server: 
+    not-set: §c服务器出生点未配置！
+    teleport: §a正在传送到服务器出生点...
+territory: 
+  errors: 
+    insufficient-funds: §c资金不足！
+    max-claims: §c已达到认领上限！
+    no-permission: §c你没有权限！
+    not-in-nation: §c你必须在国家中！
+    not-in-territory: §c你不在你国家的领土内！
+  manage: 
+    claims: §7认领数：§e{count}
+    expand: §a扩展领土
+    settings: §e领土设置
+    tax: §7领土税率：§e{tax}%
+    title: §6领土管理
+    value: §7领土价值：§e{value}
+  menu: 
+    back: §c返回
+    info: §e领土信息
+    info-desc: §7查看领土信息
+    manage: §e管理领土
+    manage-desc: §7管理你的国家领土
+    permissions: §e权限设置
+    permissions-desc: §7设置领土权限
+    title: §6§l★ 领土 ★
+  permissions: 
+    access: §7使用容器：§e{status}
+    break: §7破坏：§e{status}
+    build: §7建造：§e{status}
+    disabled: §c已禁用
+    enabled: §a已启用
+    interact: §7交互：§e{status}
+    member: §e成员权限
+    outsider: §c外来者权限
+    title: §6领土权限
+technology: 
+  errors: 
+    already-complete: §c该科技已完成研究！
+    insufficient-funds: §c资金不足！
+    not-in-nation: §c你必须在国家中！
+    prerequisites-not-met: §c前置条件未满足！
+    research-in-progress: §c研究已在进行中！
+  menu: 
+    back: §c返回
+    progress: §e研究进度
+    progress-desc: §7查看当前研究进度
+    research: §e研究
+    research-desc: §7查看并研究科技
+    title: §6§l★ 科技树 ★
+  research: 
+    available: §e⏳ 可研究
+    click-continue: §e点击继续
+    click-research: §e点击开始研究
+    complete: §a✓ 已完成
+    cost: §7费用：§e{amount}
+    insufficient-resources: §c资源不足！
+    level: §7等级：§e{level}
+    locked: §c🔒 已锁定
+    prerequisites: §7前置条件：§c{list}
+    progress: §7进度：§a{progress}%
+    requirements: §7需求：
+    researching: §e🔄 研究中
+    time-remaining: §7剩余时间：§e{time}
+    title: §6科技研究
+teleport-queue: 
+  cancelled: §c传送已取消！
+  estimated: §7预计等待：§e{time}
+  expired: §7传送请求已过期！
+  position: §7队列位置：§e{position}
+  your-turn: §a轮到你了！
+tooltips: 
+  common: 
+    click: §7点击：§e{action}
+    cost: §7费用：§e{amount}
+    hover: §7悬停：§e{info}
+    left-click: §7左键点击：§e{action}
+    requirement: §7需求：§e{requirement}
+    reward: §7奖励：§e{reward}
+    right-click: §7右键点击：§e{action}
+    shift-click: §7Shift+点击：§e{action}
+  item: 
+    damage: §7伤害：§c{damage}
+    defense: §7防御：§9{defense}
+    durability: §7耐久度：§e{current}§7/§e{maximum}
+    enchantment: §7附魔：§b{enchantment} §7（{level}级）
+    lore: §8{lore}
+    rarity: §7稀有度：{rarity}
+    unbreakable: §c§l无法破坏
+  player: 
+    deaths: §7死亡：§c{deaths}
+    kdr: §7击杀/死亡比：§e{kdr}
+    kills: §7击杀：§a{kills}
+    last-seen: §7最后在线：§e{time}
+    level: §7等级：§e{level}
+    online-time: §7在线时长：§e{time}
+    rank: §7排名：§e{rank}
+version: 
+  info: 
+    api-version: §7API 版本：§e{version}
+    authors: §7作者：§e{authors}
+    plugin-version: §7插件版本：§e{version}
+    server-version: §7服务器版本：§e{version}
+    support: §7支持：§e{support}
+    website: §7网站：§e{website}
+combat-extended: 
+  armor: 
+    boots: §3靴子
+    chestplate: §6胸甲
+    helmet: §e头盔
+    leggings: §a护腿
+  damage: 
+    blocked: §7格挡伤害：§9{damage}
+    critical: §6暴击！ §c{damage} 点伤害！
+    dealt: §7造成伤害：§c{damage}
+    legendary: §d§l传奇！ §r §6{damage} 点伤害！
+    taken: §7受到伤害：§c{damage}
+  effects: 
+    bleeding: §c流血
+    burning: §c燃烧
+    frozen: §b冰冻
+    poison: §a中毒
+    stunned: §e眩晕
+    wither: §8凋零
+  enchantments: 
+    fire-aspect: §6火焰附加
+    looting: §a抢夺
+    power: §9力量
+    protection: §9保护
+    sharpness: §c锋利
+    thorns: §d荆棘
+  weapons: 
+    axe: §e斧头
+    bow: §9弓
+    crossbow: §5弩
+    staff: §d法杖
+    sword: §c剑
+    trident: §b三叉戟
+notifications: 
+  achievement: 
+    complete: §a§l成就完成！
+    progress: §7进度：§e{progress}%
+    unlocked: §6§l★ 成就解锁！ ★
+  daily: 
+    bonus: §e{double}X 加成今日生效！
+    reset: §6每日任务已重置！
+    streak: §7当前连续天数：§e{days} §7天
+  levelup: 
+    bonus: §7奖励：§a{reward}
+    new-level: §e你现在是 §6{level}§e 级了！
+    title: §6§l★ 升级！ ★
+  milestone: 
+    reached: §7你达到了：§6{milestone}
+    reward: §7奖励：§a{reward}
+    title: §e§l★ 里程碑！ ★
+  server: 
+    backup: §7备份完成！
+    maintenance: §c⚠ 服务器维护将在 {time} 后进行！
+    restart: §c⚠ 服务器将在 {time} 后重启！
+    update: §6★ 服务器有可用更新！
+punishment: 
+  appeal: 
+    status-accepted: §a申诉已通过
+    status-pending: §e申诉待审核
+    status-rejected: §c申诉被拒绝
+    submit: §e提交申诉
+  info: 
+    duration: §7时长：§e{duration}
+    expires: §7过期：§e{date}
+    issued: §7发布时间：§e{date}
+    reason: §7原因：§e{reason}
+    staff: §7执行人：§e{staff}
+  types: 
+    ban: §4永久封禁
+    blacklist: §5黑名单
+    kick: §c已被踢出
+    mute: §e禁言
+    tempban: §c临时封禁
+    warn: §6警告
+report: 
+  actions: 
+    appeal: §b申诉决定
+    submit: §a提交举报
+    view: §e查看举报
+  status: 
+    dismissed: §c已驳回
+    investigating: §9调查中
+    pending: §e待处理
+    resolved: §a已解决
+  types: 
+    bug: §e漏洞报告
+    complaint: §6投诉
+    player-report: §c玩家举报
+    suggestion: §a建议
+performance: 
+  player: 
+    packet-loss: §7丢包率：§e{packet-loss}%
+    ping: §7延迟：§e{ping}ms
+  server: 
+    chunks: §7区块：§e{chunks}
+    cpu: §7CPU：§e{cpu}%
+    entities: §7实体：§e{entities}
+    ram: §7内存：§e{ram}%
+    tps: §7TPS：{tps}
+tabcomplete: 
+  hints: 
+    amount: §7<数量>
+    coordinates: §7<x> <y> <z>
+    duration: §7<时长>
+    player-name: §7<玩家名>
+    reason: §7<原因>
+    world: §7<世界名>
+quest: 
+  bankruptcy-recovery: 
+    chat-message: §a[国家] §e{nation} §a已从破产中恢复！
+    subtitle: §7你的国家已不再破产
+    title: §a§l✓ 国家破产已清除 ✓
+  bankruptcy: 
+    chat-message: §c[国家破产] §e{nation} §c面临破产！
+    subtitle: §7如果未补足资金，你的国家将在 §e{days} §7天后被解散
+    title: §c§l⚠ 国家破产警告 ⚠
+  budget: 
+    insufficient: §c国家预算不足：§e{amount}
+  gui: 
+    button: 
+      back: §e← 返回
+      click-to-adjust: §e点击调整
+      click-to-change: §e点击更改
+      click-to-disband: §e点击解散
+      click-to-invite: §e点击邀请
+      click-to-manage: §e点击管理
+      click-to-open: §e点击打开
+      click-to-research: §e点击研究
+      click-to-view: §e点击查看
+      close: §c✕ 关闭
+      diplomacy: §a外交
+      diplomacy-allies: §7盟友：{count}
+      diplomacy-wars: §7战争：{count}
+      disband: §c解散
+      disband-warning: §c⚠ 此操作不可撤销
+      government: §6政体
+      government-current: §7当前：{type}
+      help: §b❓ 帮助
+      invite: §a邀请
+      invite-desc: §7邀请玩家加入你的国家
+      members: §6成员
+      members-count: §7{count} 名成员
+      no-nation: §7---
+      permissions: §b权限
+      permissions-desc: §7管理国家权限
+      policies: §9政策
+      policies-active: §7{count} 个生效中
+      settings: §e⚙ 设置
+      settings-desc: §7国家设置
+      tax: §6税率
+      tax-rate: §7税率：{rate}%
+      technology: §d科技
+      technology-unlocked: §7已解锁：{count}
+      territories: §b领土
+      territories-count: §7{count} 个区块
+      treasury: §6国库
+      treasury-balance: §7余额：§e{balance}
+    help: 
+      line1: §7/nation create §e<名称> §7- 创建新国家
+      line2: §7/nation claim §7- 为你的国家认领领土
+      line3: §7/nation gui §7- 打开国家管理面板
+      title: §6§l国家帮助
+    info: 
+      founded: §7成立时间：§e{date}
+      government: §7政体：§e{type}
+      members: §7成员：§e{count}
+      territories: §7领土：§e{count}
+      treasury: §7国库：§e{balance}
+    invite-hint: §e点击玩家头像邀请他们
+    member: 
+      click-info: §e点击查看信息
+      click-to-manage: §e点击管理
+      joined: §7加入时间：§e{date}
+      offline: §7最后在线：§e{days} 天前
+      online: §a● 在线
+      rank: §7等级：§e{rank}
+    no-permission: §c你没有此操作的权限
+    not-in-nation: §c你不在任何国家中
+    visitor-title: §6§l★ 国家访客 ★
+  not-found: §c未找到国家：{nation_id}
+  rewards: 
+    coins: §6+{amount} ✦
+    experience: §b+{amount} 经验
+    items: §e{item}
+    reputation: §d+{amount} 声望
+  service: 
+    action-claim: §a正在为你的国家认领 {count} 个区块...
+    action-create-city-state: §a正在创建城邦...
+    action-create-nation: §a正在创建国家...
+    already-in-nation-create: §c你已在一个国家中，无法创建新国家
+    can-claim: §a国家认领可用
+    city-parent-required: §c创建城邦需要有母国
+    claim-limit: §c已达到认领上限：{max}
+    duplicate-name: §c该国家名称已被使用
+    explain: 
+      biome-price-driver: §7  - 生物群系（{biome}）影响价格
+      capacity: §7  - 当前：{current} / 预计：{projected} / 最大：{max}
+      claim-limit: §7  - 当前：{current}，已选：{selection}，预计：{projected}，上限：
+      distance-price-driver: §7  - 距离（{distance} 格）影响价格
+      external-protection-conflict: §7  - 外部保护冲突：{provider}
+      highest-priced-chunk: §7  - 世界中最高价区块：{world}
+      insufficient-claim-balance: §7  - 价格：{price}，余额：{balance}
+      leader-claim-only: §7  - 只有创始人可以认领
+      no-nation: §7  - 你必须在国家中才能认领
+      overlap: §7  - {overlap} 个区块与现有认领重叠（共 {total} 个）
+      price-summary: §7  - 总价：§e{price}
+      unlimited: §7  - 认领上限：§e无限制
+    external-protection-conflict: §c无法认领：与外部保护 {provider} 冲突
+    insufficient-action-balance: §c余额不足，无法执行 {action}：{cost}
+    insufficient-claim-balance: §c余额不足，无法认领：{price}
+    leader-city-only: §c只有国家领袖可以创建城邦
+    leader-claim-only: §c只有国家领袖可以认领领土
+    leader-unclaim-only: §c只有国家领袖可以解除领土认领
+    max-city-states-nation: §c该国家已达到城邦上限（{max}）
+    max-city-states-player: §c你已达到每个玩家的城邦上限（{max}）
+    max-nations: §c你已达到每个玩家的国家上限（{max}）
+    no-nation: §c你不在任何国家中
+    not-own-current: §c你不拥有当前领土
+    overlap: §c{count} 个区块与现有认领重叠
+    overlap-during-claim: §c认领操作期间检测到重叠
+    resource-district-unclaim-blocked: §c无法解除资源区领土的认领
+    state-changed: §a国家状态已更改
+  status: 
+    available: §a可接取
+    completed: §7✓ 已完成
+    failed: §c✗ 失败
+    in-progress: §e进行中
+    locked: §c🔒 已锁定
+  statusbar: 
+    disabled: §7国家状态栏已§c禁用
+    enabled: §7国家状态栏已§a启用
+    mode-changed: §7状态栏模式已更改为 §e{mode}
+    not-in-nation: §c你不在任何国家中
+    refreshed: §7国家状态栏已§a刷新
+  types: 
+    daily: §6日常任务
+    side: §a支线任务
+    story: §d主线任务
+    weekly: §b每周任务
+shop: 
+  browse: 
+    buy: §a点击购买
+    out-of-stock: §c缺货
+    price: §7价格：§e{price}
+    stock: §7库存：§f{amount}
+    title: §6浏览物品
+    unlimited: §7无限库存
+  errors: 
+    inventory-full: §c你的背包已满！
+    no-items: §c你没有此物品！
+    no-money: §c金钱不足！
+    price-too-high: §c价格太高！
+    price-too-low: §c价格太低！
+  menu: 
+    back: §c返回
+    browse: §e浏览物品
+    browse-desc: §7浏览所有可用物品
+    history: §e交易历史
+    history-desc: §7查看过往交易
+    sell: §e出售物品
+    sell-desc: §7出售你的物品
+    title: §6§l★ 商店 ★
+  sell: 
+    click-sell: §e点击出售
+    no-items: §c背包中没有可出售的物品
+    sell-price: §7出售价格：§a{price}
+    title: §6出售物品
+shop-menu: 
+  back: §c返回
+  buy: §a购买
+  insufficient-funds: §c资金不足！
+  insufficient-stock: §c库存不足！
+  price: §7价格：§e{price} ✦
+  quantity: §7数量：§e{amount}
+  sell: §e出售
+  title: §6§l★ 资源市场 ★
+  transaction-success: §a交易成功！
+resource-menu: 
+  back: §c返回
+  market: §e市场
+  market-desc: §7交易资源
+  processing: §b加工
+  processing-desc: §7加工原材料
+  reserve: §a储备
+  reserve-desc: §7管理储备
+  statistics: §d统计
+  statistics-desc: §7查看生产统计
+  stockpile: §6库存
+  stockpile-desc: §7查看资源库存
+  title: §6§l★ 资源管理 ★
+guicomponents: 
+  buttons: 
+    cancel: §c✗ 取消
+    close: §c✖ 关闭
+    confirm: §a✓ 确认
+    delete: §c🗑 删除
+    edit: §e✏ 编辑
+    next: §a▶ 下一页
+    previous: §e◀ 上一页
+    refresh: §e🔄 刷新
+    save: §a💾 保存
+  forms: 
+    filter-placeholder: §7筛选...
+    input-placeholder: §7输入值...
+    search-placeholder: §7搜索...
+    select-option: §7选择一个选项...
+  info: 
+    error: §c⚠ 数据加载错误
+    loading: §e⏳ 加载中...
+    no-data: §7暂无数据
+    success: §a✓ 成功！
+  labels: 
+    active: §a● 活跃
+    disabled: §c○ 已禁用
+    enabled: §a● 已启用
+    inactive: §c○ 未激活
+    locked: §c🔒 已锁定
+    unlocked: §a🔓 已解锁
+tech-menu: 
+  back: §c返回
+  cost: §7费用：§e{cost} ✦
+  locked: §c§l已锁定
+  requirements: §7需求：
+  research: §a研究
+  research-desc: §7研究此科技
+  researched: §a§l已研究
+  researching: §e§l研究中
+  time: §7时间：§e{time}
+  title: §6§l★ 科技树 ★
+territory-menu: 
+  back: §c返回
+  claims: §e认领管理
+  claims-desc: §7管理领土认领
+  protections: §a保护设置
+  protections-desc: §7管理保护设置
+  title: §6§l★ 领土管理 ★
+  upgrades: §b升级
+  upgrades-desc: §7领土升级
+weather: 
+  control: 
+    duration: §7持续时间：§e{duration} 分钟
+    set-clear: §a设为晴朗
+    set-rain: §9设为下雨
+    set-thunder: §6设为雷暴
+    title: §6天气控制面板
+  current: 
+    clear: §a晴朗
+    duration: §7持续时间：§e{time}
+    effects: §7效果：§f{effects}
+    rain: §9下雨
+    thunder: §6雷暴
+    title: §6当前天气
+    type: §7天气：§e{type}
+  errors: 
+    cooldown: §c天气控制正在冷却中！
+    no-permission: §c你没有天气控制权限！
+    not-in-territory: §c你必须在受控领土中！
+  forecast: 
+    confidence: §7置信度：§e{percent}%
+    day: §7第 {num} 天：§e{weather}
+    title: §6天气预报
+  menu: 
+    back: §c返回
+    control: §e天气控制
+    control-desc: §7控制当地天气
+    current: §e当前天气
+    forecast: §e天气预报
+    forecast-desc: §7查看天气预报
+    title: §6§l★ 天气控制 ★
+army: 
+  attack: 
+    usage: §e/sc army attack <army_id> §7- 攻击敌军
+  battle: 
+    defeat: §c§l战败！§r §c你的军队输了。
+    draw: §e§l平局！§r §e两军都存活了下来。
+    header: §6§l===== 战斗报告 =====
+    mutual: §c§l同归于尽！§r §c两军都被消灭！
+    started: §c⚔ 战斗开始！
+    under-attack: §c⚔ 你的军队正在被攻击！
+    victory: §a§l胜利！§r §a你的军队获胜！
+    you-attacked: 
+      defeat: §c你攻击了 §e{0}§c，输了。
+      draw: §e你攻击了 §e{0}§e —— 平局。
+      mutual: §c你攻击了 §e{0}§c —— 同归于尽！
+      victory: §a你攻击了 §e{0}§a，赢了！
+    you-defended: 
+      defeat: §c你防守了 §e{0}§c 的攻击，输了。
+      draw: §e你防守了 §e{0}§e 的攻击 —— 平局。
+      mutual: §c你防守了 §e{0}§c 的攻击 —— 同归于尽！
+      victory: §a你防守了 §e{0}§a 的攻击，赢了！
+  created: §a军队已创建：§e{0} §7（类型：§f{1}§7）
+  create: 
+    usage: §e/sc army create <类型> <士兵数> §7- 创建军队
+  disband: 
+    usage: §e/sc army disband <army_id> §7- 解散你的军队
+  disbanded: §a军队 §e{0} §7已被解散。
+  gui: 
+    army: 
+      name: §e{0} §7（§f{1}§7 名士兵）
+    attack: 
+      cannot-fight: §c此时无法攻击此军队！
+    button: 
+      attack: §7选择一个敌军进行攻击
+      attack.desc: §7选择一个敌军进攻
+      back: §e§l← 返回
+      cancel: §c§l取消
+      click-to-create: §7点击创建军队
+      close: §c§l关闭
+      create: §7为你的国家创建新军队
+      create.desc: §7为你的国家创建新军队
+      disband: §c§l警告：此操作不可撤销！
+      disband.warning: §c§l警告：此操作不可撤销！
+      help: §b§l帮助
+      move: §7将军队移动到目标坐标
+      move.desc: §7将军队移至目标坐标
+      recall: §7将军队召回国家
+      recall.desc: §7将军队召回本国
+      supply: §7向此军队运送补给
+      supply-all: §7一次性补给所有军队
+      supply-all.desc: §7一次性补给所有军队
+      supply.desc: §7向此军队运送补给
+    cancelled: §e军队操作已取消。
+    click-to-manage: §7点击管理此军队
+    click-to-select: §7点击选择
+    create: 
+      button: 
+        cancel: §c§l取消
+        confirm: §a§l确认
+      cancelled: §e军队创建已取消。
+      click-to-select: §7点击一种类型以选择
+      confirm-desc: §a点击确认创建
+      cost-breakdown: §7({0} ✦/单位 × {1} 名士兵 = §e{2} ✦§7)
+      quick-soldiers: §7快速选择：§e10 / 50 / 100
+      selected: §a已选：§e{0}
+      selected-type: §7类型：§e{0}
+      soldiers: §e士兵：§f{0}
+      soldiers-range: §7数量：§e{0} §7- §e{1}
+      stats: 
+        attack: §7攻击力：§c{0}
+        cost: §7单位费用：§6{0} ✦
+        defense: §7防御力：§b{0}
+        health: §7生命值：§a{0}
+        mobility: §7机动性：§d{0}
+      title: §6§l创建军队
+      total-cost: §6总费用：§e{0} ✦
+    move: 
+      cannot-move: §c此军队此时无法移动！
+      select-target: §e在聊天中输入目标坐标（x,y,z）
+      title: §6§l移动军队
+    page: 
+      next: §7前往下一页
+      next.desc: §7转到下一页
+      number: §7第 §f{0}§7 / §f{1} 页
+      prev: §7返回上一页
+      prev.desc: §7转到上一页
+    state: 
+      changed: §a军队状态已更改为 §e{0}§a。
+    supplied-all: §a已补给 §e{0} §7支军队。
+    title: §6§l军队管理
+  help: §e§l帮助
+  info: 
+    header: §6§l===== 军队信息 =====
+    health: §7生命值：§e{0}%
+    id: §7ID：§f{0}
+    morale: §7士气：§e{0}
+    soldiers: §7士兵：§e{0}
+    state: §7状态：§e{0}
+    supply: §7补给：§e{0}
+    type: §7类型：§e{0}
+    usage: §e/sc army info [army_id] §7- 查看军队详情
+  invalid-number: §c无效数字：§e{0}
+  invalid-type: §c无效军队类型：§e{0}
+  list: 
+    entry: §7- §f{0}§7（§e{1}§7 名士兵，§a{2}§7 生命）
+    header: §6§l===== 你的军队 =====
+  move: 
+    usage: §e/sc army move <army_id> <x> <y> <z> §7- 将军队移至坐标
+  moved: §a军队 §e{0} §7已移至 §f({1}, {2}, {3})§a。
+  no-armies: §7你没有军队。
+  not-found: §c未找到军队：§e{0}
+  not-in-nation: §c你必须在国家中才能管理军队！
+  predict: 
+    header: §6§l===== 战斗预测 =====
+    usage: §e/sc army predict <army_id> <target_id> §7- 预测战斗结果
+  recall: 
+    failed: §c召回军队 §e{0}§c 失败。
+    no-armies: §7没有可召回的军队。
+    success: §a军队 §e{0} §7已被召回本国。
+    usage: §e/sc army recall <army_id> §7- 将军队召回本国
+  siege: 
+    failed: §c对 §e{0}§c 的围攻失败。
+    started: §c⚔ 对军队 §e{0}§c 的围攻已开始！
+    success: §a对 §e{0}§a 的围攻成功！
+  supplied: §a军队 §e{0} §7已补给（§e{1} §7单位）。
+  supply: 
+    usage: §e/sc army supply <army_id> §7- 给军队补给
+  war: 
+    ended: §a⚔ 战争结束，军队 §e{0} §7可以休整了。
+    started: §c⚔ 战争开始，军队 §e{0} §7进入战斗状态！
+  help.header: §6§l=== 军队帮助 ===
+navy: 
+  create: 
+    created: §a海军 §e{0} §a（类型：§6{1}§a），含 §f{2} §a艘舰船创建成功！ §7ID：§f{3}
+    usage: §e用法：/navy create <名称> <类型> <舰船数>
+  disband: 
+    disbanded: §e海军 §6{0} §e已被解散。
+    usage: §e用法：/navy disband <id>
+  disembark: 
+    disembarked: §a§f{0} §a个单位已登陆。
+    usage: §e用法：/navy disembark <navyId> [单位数]
+  embark: 
+    embarked: §a§f{0} §a个单位已登上海军 §e{1}§a。
+    failed: §c无法登船。请检查海军容量或单位可用性。
+    usage: §e用法：/navy embark <navyId> <单位数>
+  engage: 
+    header: §6========== 海战 ==========
+    usage: §e用法：/navy engage <id> [目标]
+  help: 
+    create: §e/navy create <名称> <类型> <舰船数> §7- 创建海军
+    disband: §e/navy disband <id> §7- 解散海军
+    disembark: §e/navy disembark <id> [单位数] §7- 登陆陆军单位
+    embark: §e/navy embark <id> <单位数> §7- 让陆军单位登船
+    engage: §e/navy engage <id> [目标] §7- 加入海战
+    header: §6========== 海军命令 ==========
+    info: §e/navy info <id> §7- 查看海军详情
+    list: §e/navy list §7- 列出所有海军
+    move: §e/navy move <id> <x> <z> §7- 移动海军
+    rename: §e/navy rename <id> <名称> §7- 重命名海军
+    supply: §e/navy supply <id> §7- 补给海军
+  info: 
+    embarked: §7已登船：§f{0}§7/§f{1}
+    header: §6========== 海军信息 ==========
+    health: §7生命值：§f{0}
+    id: §7ID：§f{0}
+    morale: §7士气：§f{0}
+    name: §7名称：§f{0}
+    ships: §7舰船：§f{0}
+    state: §7状态：§f{0}
+    supply: §7补给：§f{0}
+    type: §7类型：§f{0}
+    usage: §e用法：/navy info <id>
+  invalid-number: §c无效数字：§e{0}
+  invalid-type: §c无效海军类型：§e{0}
+  list: 
+    entry: §e{0} §7| 类型：§f{1} §7| 舰船：§f{2} §7| 状态：§e{3}
+    header: §6========== 海军列表 ==========
+  move: 
+    moved: §a海军 §e{0} §a已移至（§e{1}§a, §e{2}§a）。
+    usage: §e用法：/navy move <id> <x> <z>
+  no-navies: §7你的国家没有海军。
+  not-found: §c未找到海军：§e{0}
+  not-in-nation: §c你必须在国家中才能使用此命令！
+  predict: 
+    header: §6========== 战斗预测 ==========
+    usage: §e用法：/navy predict <id>
+  rename: 
+    renamed: §a海军已重命名为 §e{0}§a。
+    usage: §e用法：/navy rename <id> <新名称>
+  state: 
+    invalid-state: §c无效状态：§e{0}
+    state-set: §a海军状态已设为 §e{0}§a（之前：§f{1}§a）。
+    usage: §e用法：/navy state <id> <状态>
+  supply: 
+    supplied: §a海军 §e{0} §a已补给！
+    usage: §e用法：/navy supply <id>
+exercise: 
+  battle: 
+    defeat: §c§l[失败] §7下次好运。 §c损失：§f{0}
+    draw: §6§l[平局] §7战斗以平局告终。 §c损失：§f{0}
+    victory: §6§l[胜利] §a干得漂亮！奖励经验已发放。 §c损失：§f{0}
+  broadcast: 
+    battle: §c§l[演习战斗] §e{0} §c获胜！损失：§f{1} 名士兵
+    death: §c§l[牺牲] §e{0} §c在演习中阵亡！奖励已发放。
+    disconnect: §e国家 §6{0} §e断开连接，已被移出演习。
+    ended: §a§l[演习] §e{0} §a已结束！最终结果已可查看。
+    joined: §a{0} §7已加入演习，带来 §e{1} §7名士兵！
+    started: §6§l[演习] §e{0} §6已开始！所有参与者报到！
+  cancel: 
+    cancelled: §e演习 §6{0} §e已被取消。
+    usage: §e用法：/exercise cancel <id>
+  create: 
+    created: §a演习 §e{0} §a（类型：§6{1}§a）创建成功！
+    usage: §e用法：/exercise create <名称> <类型> [士兵数]
+  help: 
+    cancel: §e/exercise cancel <id> §7- 取消演习
+    create: §e/exercise create <名称> <类型> [士兵数] §7- 创建演习
+    header: §6========== 演习命令 ==========
+    join: §e/exercise join <id> <士兵数> §7- 加入演习
+    list: §e/exercise list §7- 列出所有演习
+    pending: §e/exercise pending §7- 显示待开始的演习
+    start: §e/exercise start <id> §7- 开始演习
+  info: 
+    battles: §7战斗：§f{0}
+    header: §6========== §e{0} §6==========
+    id: §7ID：§f{0}
+    participant-entry: '  §f{0} §7- §f{1} 名士兵 §7- {2}'
+    participants: §7参与者：§f{0}§7/§f{1}
+    participants-list: §e参与者列表：
+    remaining: §7剩余：§e{0} 分钟
+    soldiers: §7总士兵：§f{0}
+    state: §7状态：{0}
+    type: §7类型：§e{0}
+    usage: §e用法：/exercise info <id>
+  join-hint: §7使用 §e/exercise join §7带领士兵加入
+  join: 
+    invalid-number: §c无效数字：§e{0}
+    joined: §a来自国家 §6{0}§a 的 §e{1} §a名士兵已加入演习！
+    usage: §e用法：/exercise join <id> <士兵数>
+  leave: 
+    failed: §c离开演习失败。你不在任何演习中。
+    left: §a你离开了演习。
+    usage: §e用法：/exercise leave
+  list: 
+    entry: §e{0} §7| §f{1} §7| {2} §7| {3} §7| 士兵：§f{4} §7| 时间：§e{5}分钟
+    header: §6========== 演习列表 ==========
+  no-active: §c没有找到进行中的演习。
+  not-in-nation: §c你必须在国家中才能使用此命令！
+  not-leader: §c只有国家领袖才能管理演习！
+  pending: 
+    entry: §e{0} §7| §f{1} §7| §7组织者：§f{2} §7| §7参与者：§f{3}
+    header: §6========== 待开始的演习 ==========
+    no-pending: §7没有待开始的演习。
+  result: 
+    entry: '  §f{0} §7| 得分：§e{1} §7| 损失：§c{2} §7| 排名：§6{3}'
+    header: §6========== 演习结果：{0} ==========
+    no-results: §7暂无结果。
+    usage: §e用法：/exercise result <id>
+  start: 
+    failed: §c开始演习失败。请检查是否满足所有条件。
+    not-found: §c未找到演习：§e{0}
+    not-organizer: §c只有组织者才能开始演习！
+    started: §a演习 §e{0} §a已开始！准备好了吗！
+    usage: §e用法：/exercise start <id>
+fatigue: 
+  admin: 
+    add: 
+      invalid-amount: §c无效数值：§e{0}
+      player-not-found: §c未找到玩家：§e{0}
+      success: §a已为玩家 §e{1}§a 增加 §e{0}%% §a疲劳。
+      usage: §e用法：/fatigue admin add <玩家> <数值>
+    reduce: 
+      success: §a已为玩家 §e{1}§a 减少 §e{0}%% §a疲劳。
+      usage: §e用法：/fatigue admin reduce <玩家> <数值>
+  check: 
+    fatigue: §7疲劳：§e{0}%% §7（等级：§f{1}§7）
+    penalty: §7当前惩罚：§c{0}%%
+    player-not-found: §c未找到玩家：§e{0}
+    title: §6========== §e{0} §6疲劳 ==========
+  critical-warning: §c⚠ 你已严重疲劳！请尽快休息，否则将被强制休息。
+  effects: 
+    attack: §7攻击力：§c{0}%%
+    critical-warning: §c⚠ 严重疲劳警告已激活！
+    defense: §7防御力：§c{0}%%
+    exp: §7经验获取：§c{0}%%
+    forced-rest-warning: §c⚠ 如继续将强制休息！
+    speed: §7移动速度：§c{0}%%
+    title: §6========== 疲劳效果 ==========
+  forced-rest: §c⚠ 你被强制休息 §e{0} §c分钟！
+  help: 
+    admin-add: §e/fatigue admin add <玩家> <数值> §7- 增加疲劳（管理员）
+    admin-reduce: §e/fatigue admin reduce <玩家> <数值> §7- 减少疲劳（管理员）
+    admin-title: §6[管理员命令]
+    check: §e/fatigue check [玩家] §7- 检查玩家疲劳
+    effects: §e/fatigue effects §7- 查看疲劳对属性的影响
+    reset: §e/fatigue reset <玩家> §7- 重置玩家疲劳（管理员）
+    rest: §e/fatigue rest [类型] §7- 休息以减少疲劳
+    status: §e/fatigue status §7- 查看你的疲劳状态
+    title: §6========== 疲劳命令 ==========
+  level-change: 
+    critical: §4[危险] §4你已达到极限！ §4所有属性 -{0}%%，即将强制休息。
+    energetic: §a[精力充沛] §f你充满活力！ §a所有属性 +{0}%%。
+    exhausted: §c[精疲力竭] §c你已精疲力竭。 §c速度 -{0}%%，攻击 -{0}%%。
+    fresh: §a[神清气爽] §f你感觉完全恢复了！所有惩罚已消除。
+    normal: §e[正常] §7你状态正常。没有加成或惩罚。
+    tired: §6[疲惫] §e你感觉有点累。 §6速度 -{0}%%。
+  reset: 
+    player-not-found: §c未找到玩家：§e{0}
+    success: §a玩家 §e{0}§a 的疲劳已重置。
+    usage: §e用法：/fatigue reset <玩家>
+  rest: 
+    all: §a充分休息！ §7所有疲劳已消除：§e{0}%%
+    success: §a成功休息 §6{0}§a！ §7消除了 {1} 疲劳。
+    usage: §e用法：/fatigue rest [physical|mental|all]
+  stats: §7系统统计：{0}
+  status: 
+    combat: §7战斗：§e{0}%%
+    level: §7等级：{0}
+    mental: §7精神：§e{0}%%
+    overall: §7总体疲劳：§e{0}%%
+    physical: §7身体：§e{0}%%
+    playtime: §7本次在线：§f{0} §7分钟
+    title: §6{0} §7疲劳状态
+    travel: §7行军：§e{0}%%
+resource: 
+  history: 
+    amount: §7数量：§f{amount}
+    empty: §7无交易记录
+    page: §7第 {current} / {total} 页
+    price: §7价格：§f{price}
+    resource: §7资源：§f{resource}
+    time: §7时间：§f{time}
+    title: §6交易历史
+    total-label: §7总计：§e{amount}
+    type-buy: §a买入
+    type-sell: §c卖出
+  market: 
+    buy: §a买入
+    change: §7变化：{color}{change}%
+    click-view: §7点击查看订单簿
+    price: §7价格：§e{price}
+    sell: §c卖出
+    title: §6资源市场
+    trend-down: §c↓
+    trend-stable: §7-
+    trend-up: §a↑
+  menu: 
+    back: §c返回
+    close: §c关闭
+    history: §e交易历史
+    history-desc: §7查看你的交易记录
+    loading: §7加载中...
+    market: §e资源市场
+    market-desc: §7查看市场价格波动
+    no-nation: §c加入一个国家才能使用此功能！
+    orderbook: §e市场订单簿
+    orderbook-desc: §7查看和管理市场订单
+    player-trade: §e玩家交易
+    player-trade-desc: §7与其他玩家交易资源
+    reserve: §e战略储备
+    reserve-desc: §7管理国家战略储备
+    status-joined: §a已加入国家
+    status-not-joined: §c未加入国家
+    stockpile: §e资源库存
+    stockpile-desc: §7查看国家资源库存
+    title: §6§l★ 资源管理 ★
+    total-stockpile: §7总库存：§f{amount} §7单位
+  orderbook: 
+    amount: §7数量：§f{amount}
+    ask: §c卖单
+    bid: §a买单
+    cancel: §c取消
+    my-orders: §e我的订单
+    price: §7价格：§f{price}
+    title: §6市场订单簿 - {resource}
+    total: §7总计：§e{amount}
+  player-trade: 
+    received: §e收到的交易请求
+    sent: §e发出的交易请求
+    title: §6玩家交易
+  reserve: 
+    completed: §a✓ 已完成
+    current: §7当前储备：§f{amount}
+    deposit: §7左键点击：存入储备
+    deposit-cmd: §e用法：/reserve deposit {resource} <数量>
+    goal: §7目标：§f{amount}
+    in-progress: §e⏳ 进行中
+    not-started: §c✗ 未开始
+    overall-progress: §e总体进度
+    strategic-tip: §7战略储备用于紧急资源调配
+    title: §6战略储备
+    unmet-goals: §7未达标目标：§f{count}
+    withdraw: §7右键点击：从储备中取出
+    withdraw-cmd: §e用法：/reserve withdraw {resource} <数量>
+  stockpile: 
+    capacity-warning: §c存储即将满！
+    click-detail: §7点击查看详情
+    consumption: §7消耗：§c-{rate}/小时
+    net: §7净增：{sign}{amount}/小时
+    production: §7产出：§a+{rate}/小时
+    storage: §7存储：§e{current}/{max}
+    title: §6资源库存
+    total: §7总计：§f{amount}
+
+# ===============================================
+# 联盟系统消息
+# ===============================================
+alliance: 
+  # 前缀 (使用 common.prefix)
+
+  # 通用
+  player-only: "§c此命令只能由玩家使用！"
+  not-in-nation: "§c你不在任何国家中！"
+  nation-not-in-alliance: "§c你的国家不在任何联盟中，使用 §e/alliance list §c查看所有联盟"
+  not-leader: "§c只有盟主可以执行此操作！"
+  not-in-alliance: "§c你的国家不在任何联盟中！"
+  already-in-alliance: "§c你的国家已在联盟中，需要先离开当前联盟！"
+  no-pending-invite: "§c你没有待处理的联盟邀请！"
+  nation-already-invited: "§c你的国家已有待处理的邀请！"
+
+  # 创建
+  create: 
+    usage: "§c用法: §e/alliance create <联盟名称>"
+    success: "§a联盟 §e{name} §a创建成功！"
+    failed: "§c创建联盟失败: §e{reason}"
+    name-too-short: "§c联盟名称至少需要 {min} 个字符！"
+    name-too-long: "§c联盟名称最多 {max} 个字符！"
+    name-exists: "§c该名称的联盟已存在！"
+
+  # 解散
+  disband: 
+    success: "§a联盟 §e{name} §a已解散！"
+    failed: "§c解散联盟失败: §e{reason}"
+
+  # 信息
+  info: 
+    header: "§6§l═══ §e{alliance} §6═══"
+    leader: "  §7盟主: §f{leader}"
+    created: "  §7创建时间: §f{date}"
+    members: "  §7成员数: §f{count}"
+    emblem: "  §7徽章: §f{emblem}"
+    announcement: "  §7公告: §e{content}"
+    friendly-alliances: "  §a友好联盟: §f{list}"
+    hostile-alliances: "  §c敌对联盟: §f{list}"
+    not-found: "§c找不到联盟: §e{name}"
+    no-alliance: "§c你的国家不在任何联盟中，使用 §e/alliance list §c查看所有联盟"
+
+  # 邀请
+  invite: 
+    usage: "§c用法: §e/alliance invite <国家名称>"
+    success: "§a已向 §e{nation} §a发送邀请！"
+    failed: "§c发送邀请失败: §e{reason}"
+    nation-not-found: "§c找不到国家: §e{name}"
+
+  # 接受
+  accept: 
+    success: "§a成功加入联盟 §e{name}§a！"
+    failed: "§c加入联盟失败: §e{reason}"
+    no-invites: "§c你没有待处理的联盟邀请"
+    no-invite-from: "§c没有收到该联盟的邀请"
+    multiple-invites: "§e你有多个邀请，请指定联盟名称:"
+    invite-list: "  §e- {name}"
+    usage: "§7用法: /alliance accept <联盟名称>"
+    notify-members: "§a{nation} §e加入了联盟！"
+
+  # 拒绝
+  reject: 
+    success: "§7已拒绝来自 §e{name}§7的邀请"
+    no-invites: "§c你没有待处理的联盟邀请"
+    no-invite-from: "§c没有收到该联盟的邀请"
+
+  # 离开
+  leave: 
+    success: "§a成功离开联盟 §e{name}§a！"
+    failed: "§c离开联盟失败: §e{reason}"
+
+  # 踢出
+  kick: 
+    usage: "§c用法: §e/alliance kick <国家名称>"
+    success: "§a已将 §e{nation} §a踢出联盟！"
+    failed: "§c踢出成员失败: §e{reason}"
+    nation-not-found: "§c找不到国家: §e{name}"
+
+  # 成员
+  members: 
+    header: "§6§l═══ 联盟成员 ({count}) ═══"
+    alliance: "  §7联盟: §b{name}"
+    member: "  {role}: {nation} §7({joined})"
+    role-leader: "§6盟主"
+    role-officer: "§d官员"
+    role-member: "§7成员"
+
+  # 转让领导权
+  transfer: 
+    usage: "§c用法: §e/alliance transferleadership <国家名称>"
+    success: "§a已将领导权转让给 §e{nation}§a！"
+    failed: "§c转让领导权失败: §e{reason}"
+    nation-not-found: "§c找不到国家: §e{name}"
+
+  # 重命名
+  rename: 
+    usage: "§c用法: §e/alliance rename <新名称>"
+    success: "§a联盟已更名为 §e{name}§a！"
+    failed: "§c重命名联盟失败: §e{reason}"
+    name-exists: "§c该名称的联盟已存在！"
+
+  # 关系
+  relation: 
+    usage: "§c用法: §e/alliance relation <联盟名称> <friendly|neutral|hostile>"
+    success: "§a已与 §e{name} §a的关系设置为 §b{type}§a！"
+    failed: "§c设置关系失败: §e{reason}"
+    alliance-not-found: "§c找不到联盟: §e{name}"
+    invalid-type: "§c无效的关系类型: §e{type}"
+    available-types: "§7可用类型: friendly, neutral, hostile"
+
+  # 公告
+  announcement: 
+    usage: "§c用法: §e/alliance announcement <内容>"
+    prompt: "§6请输入公告内容:"
+    success: "§a公告已更新！"
+    failed: "§c更新公告失败: §e{reason}"
+    empty: "§7使用 §e/alliance announcement <内容> §7来设置公告"
+
+  # 列表
+  list: 
+    header: "§6§l═══ 所有联盟 ({count}) ═══"
+    empty: "§7  暂无联盟"
+    item: "{prefix}- {name} §7({members} 成员)"
+    current: "§b*"
+    other: "§7 "
+
+  # 待处理
+  pending: 
+    header: "§6§l═══ 待处理邀请 ═══"
+    empty: "§7  暂无待处理的邀请"
+    item: "  §e- §b{name} §7(剩余 {hours} 小时)"
+    usage: "§7使用 §e/alliance accept [联盟名称] §7接受邀请"
+    announce: "§e{from} §a邀请你加入 §b[{alliance}]"
+
+  # 帮助
+  help: 
+    header: "§6§l═══ 联盟系统帮助 ═══"
+    cmd-create: "  §e/alliance create <名称> §7- 创建联盟"
+    cmd-disband: "  §e/alliance disband §7- 解散联盟"
+    cmd-info: "  §e/alliance info [联盟] §7- 查看联盟信息"
+    cmd-list: "  §e/alliance list §7- 列出所有联盟"
+    cmd-members: "  §e/alliance members [联盟] §7- 查看成员"
+    cmd-invite: "  §e/alliance invite <国家> §7- 邀请国家"
+    cmd-accept: "  §e/alliance accept [联盟] §7- 接受邀请"
+    cmd-reject: "  §e/alliance reject [联盟] §7- 拒绝邀请"
+    cmd-leave: "  §e/alliance leave §7- 离开联盟"
+    cmd-kick: "  §e/alliance kick <国家> §7- 踢出成员"
+    cmd-transfer: "  §e/alliance transferleadership <国家> §7- 转让领导权"
+    cmd-rename: "  §e/alliance rename <新名称> §7- 重命名联盟"
+    cmd-relation: "  §e/alliance relation <联盟> <类型> §7- 设置关系"
+    cmd-announcement: "  §e/alliance announcement <内容> §7- 发布公告"
+    cmd-pending: "  §e/alliance pending §7- 查看待处理邀请"
+
+  # 未知命令
+  unknown: "§c未知子命令: §e{cmd}"
+
+# ===============================================
+# 纪念日系统消息
+# ===============================================
+anniversary: 
+  help: 
+    header: "§6§l═══ 纪念日系统帮助 ═══"
+    cmd-create: "  §e/anniversary create <名称> <日期> <类型> §7- 创建纪念日"
+    cmd-list: "  §e/anniversary list §7- 列出纪念日"
+    cmd-info: "  §e/anniversary info [id] §7- 查看纪念日详情"
+    cmd-today: "  §e/anniversary today §7- 今日纪念日"
+    cmd-upcoming: "  §e/anniversary upcoming §7- 即将到来的纪念日"
+    cmd-delete: "  §e/anniversary delete <id> §7- 删除纪念日"
+    cmd-celebrate: "  §e/anniversary celebrate <id> §7- 庆祝纪念日"
+    cmd-setmessage: "  §e/anniversary setmessage <消息> §7- 设置庆祝消息"
+
+  create: 
+    usage: "§c用法: §e/anniversary create <名称> <日期> <类型>"
+    success: "§a纪念日 §e{name} §a创建成功！"
+    failed: "§c创建纪念日失败: §e{reason}"
+
+  list: 
+    header: "§6§l═══ 纪念日列表 ═══"
+    empty: "§7未找到任何纪念日"
+
+  info: 
+    header: "§6§l═══ 纪念日详情 ═══"
+    id: "  §7ID: §f{id}"
+    name: "  §7名称: §e{name}"
+    date: "  §7日期: §f{date}"
+    type: "  §7类型: §f{type}"
+    milestone: "  §7里程碑: §e{milestone}"
+    description: "  §7描述: §f{description}"
+    year: "  §7年数: §e{years}"
+    days-until: "  §7距今天数: §e{days}"
+    today: "  §7状态: §a§l今日! §7✨"
+
+  today: 
+    header: "§6§l═══ 今日纪念日 ═══"
+    none: "§7今日无纪念日"
+
+  upcoming: 
+    header: "§6§l═══ 即将到来的纪念日 ═══"
+    none: "§7没有即将到来的纪念日"
+
+  delete: 
+    usage: "§c用法: §e/anniversary delete <id>"
+    success: "§a纪念日删除成功！"
+    no-permission: "§c你没有权限删除此纪念日！"
+    not-found: "§c找不到纪念日: §e{id}"
+
+  celebrate: 
+    usage: "§c用法: §e/anniversary celebrate <id>"
+    success: "§a{name} §a庆祝 {years} 周年纪念日！ §e✨"
+    not-found: "§c找不到纪念日: §e{id}"
+
+  setmessage: 
+    usage: "§c用法: §e/anniversary setmessage <消息>"
+    success: "§a庆祝消息设置成功！"
+
+  not-found: "§c找不到纪念日: §e{name}"
+  not-in-nation: "§c你必须加入一个国家才能使用此命令！"
+  invalid-date: "§c日期格式错误！请使用 §eyyyy-MM-dd §c格式"
+  invalid-type: "§c无效的纪念日类型: §e{type}"
+  days-must-be-number: "§c天数必须是数字！"
+
+# ===============================================
+# 仲裁系统消息
+# ===============================================
+arbitration: 
+  help: 
+    header: "§6§l═══ 领土仲裁命令 ═══"
+    cmd-submit: "  §e/arb submit <被告> <类型> [费用] §7- 提交案件"
+    cmd-list: "  §e/arb list §7- 列出你国家的案件"
+    cmd-pending: "  §e/arb pending §7- 查看待处理案件"
+    cmd-info: "  §e/arb info <案件ID> §7- 查看案件详情"
+    cmd-evidence: "  §e/arb evidence <案件ID> <内容> §7- 添加证据"
+    cmd-defense: "  §e/arb defense <案件ID> <内容> §7- 提交辩护"
+    cmd-rule: "  §e/arb rule <案件ID> <结果> [文本] §7- 做出裁决"
+    cmd-withdraw: "  §e/arb withdraw <案件ID> §7- 撤回案件"
+
+  commands: 
+    list: "=== 仲裁案件 ==="
+    pending: "=== 待处理案件 ==="
+    details: "=== 案件详情 ==="
+
+  submit: 
+    success: "§a仲裁案件提交成功！"
+    failed: "§c提交案件失败: §e{reason}"
+    fee-invalid: "§c无效的费用: §e{fee}"
+    nation-not-found: "§c找不到国家: §e{name}"
+
+  list: 
+    header: "§6§l═══ 你国家的案件 ═══"
+    empty: "§7你国家没有仲裁案件"
+
+  pending: 
+    header: "§6§l═══ 待处理案件 ═══"
+    empty: "§7没有待处理案件"
+
+  info: 
+    header: "§6§l═══ 案件详情 ═══"
+    id: "  §7ID: §f{id}"
+    claimant: "  §7原告: §f{name}"
+    respondent: "  §7被告: §f{name}"
+    arbitrator: "  §7仲裁员: §f{name}"
+    type: "  §7类型: §f{type}"
+    fee: "  §7费用: §f{fee}"
+    result: "  §7结果: §f{result}"
+    case-type: "  §7案件类型: boundary, invasion, ownership, resource, military, diplomatic, trade, other"
+
+  evidence: 
+    success: "§a证据添加成功！"
+    failed: "§c添加证据失败。你必须是案件当事人。"
+
+  defense: 
+    success: "§a辩护提交成功！"
+    failed: "§c提交辩护失败。你可能不是被告或辩护已提交。"
+
+  rule: 
+    success: "§a裁决已做出！"
+    failed: "§c做出裁决失败。你可能不是指定的仲裁员。"
+    results: "§7结果: claimant, respondent, split, neutral, partial, settled, invalid, dismissed"
+    result-invalid: "§c无效的结果: §e{result}"
+
+  withdraw: 
+    success: "§a案件已撤回！"
+    failed: "§c撤回案件失败。"
+
+  case-not-found: "§c找不到案件: §e{id}"
+  type-invalid: "§c无效的案件类型: §e{type}"
+
+# ===============================================
+# 旗帜系统消息
+# ===============================================
+banner: 
+  help: 
+    header: "§6========== §e国家旗帜命令 §6=========="
+    cmd-base: "  §e/sc banner base <颜色> §7- 设置底色"
+    cmd-color: "  §e/sc banner color <颜色> §7- 设置图案色"
+    cmd-pattern: "  §e/sc banner pattern <样式> §7- 设置旗帜样式"
+    cmd-design: "  §e/sc banner design <样式> <底色> <图案色> §7- 设置完整设计"
+    cmd-list: "  §e/sc banner list §7- 查看可用样式"
+    cmd-view: "  §e/sc banner view §7- 查看你的国家旗帜"
+    cmd-reset: "  §e/sc banner reset §7- 重置为默认"
+    cmd-cost: "  §e/sc banner cost §7- 查看样式费用"
+    cmd-previewcolors: "  §e/sc banner previewcolors §7- 预览可用颜色"
+
+  nation: "§7国家: §f{name}"
+  base-color: "§7底色: §f{color}"
+  pattern-color: "§7图案色: §f{color}"
+  style: "§7样式: §f{style}"
+  status: "§7状态: §a已自定义"
+
+  colors-header: "§6========== §e可用颜色 §6=========="
+  colors-available: "§7可用颜色:"
+  pattern-color-set: "§a图案色已更新为: §e{color}"
+
+  patterns-header: "§6========== §e旗帜样式 §6=========="
+  patterns-available: "§7可用样式:"
+  pattern-style-set: "§a旗帜样式已更新为: §f{style}"
+
+  design-updated: "§a旗帜设计已更新！"
+
+  reset-success: "§a旗帜已重置为默认样式"
+
+  list-header: "§6========== §e国家旗帜列表 §6=========="
+  cost-header: "§6========== §e样式费用表 §6=========="
+  more-banners: "§7...还有更多旗帜"
+  total: "§7总计: §f{count}"
+
+  preview-header: "§6§l§n旗帜预览:§r"
+
+  player-only: "§c此命令只能由玩家使用！"
+  not-in-nation: "§c你还没有加入任何国家！"
+  not-leader: "§c只有国家创始人可以更改旗帜！"
+  not-founder: "§c只有国家创始人可以重置旗帜！"
+  usage: "§c用法: §e/sc banner {子命令}"
+
+# ===============================================
+# 副本系统消息
+# ===============================================
+dungeon: 
+  command: 
+    player-only: "§c只有玩家才能使用此命令！"
+    no-permission: "§c你没有权限使用此命令！"
+    dungeon-not-found: "§c找不到副本: §e{id}"
+    no-dungeons: "§c暂无可用副本！"
+    already-in-dungeon: "§c你已在副本中！"
+    not-in-dungeon: "§c你不在任何副本中！"
+    player-not-found: "§c找不到玩家: §e{name}"
+    usage: "§c用法: §e/dungeon {子命令}"
+
+  help: 
+    header: "§6========== §e副本系统 §6=========="
+    cmd-enter: "  §e/dungeon enter <id> §7- 进入副本"
+    cmd-list: "  §e/dungeon list §7- 查看可用副本"
+    cmd-info: "  §e/dungeon info <id> §7- 查看副本信息"
+    cmd-leave: "  §e/dungeon leave §7- 离开当前副本"
+    cmd-history: "  §e/dungeon history §7- 查看通关历史"
+    cmd-gui: "  §e/dungeon gui §7- 打开副本选择界面"
+    cmd-reload: "  §e/dungeon reload §7- 重载配置"
+    cmd-admin: "  §e/dungeon admin <操作> §7- 管理员操作"
+
+  admin: 
+    header: "§c=== 管理员命令 ==="
+    usage: "§c用法: /dungeon admin <closeall|status|forceexit <玩家>>"
+    closeall: "§a已关闭所有副本实例！"
+
+  enter: 
+    success: "§a正在进入副本: §e{name}"
+    failed-cooldown: "§c请等待 {time} 秒后再进入！"
+    failed-fee: "§c金币不足，无法进入副本！"
+
+  exit: 
+    button: "§c离开副本"
+    success: "§a你已离开副本！"
+
+  info: 
+    header: "§6========== §e副本信息 §6=========="
+    rewards-header: "§6========== §e副本奖励 §6=========="
+    status-header: "§6========== §e副本状态 §6=========="
+    rewards-exp: "§7  - 经验: §f{exp}"
+    rewards-coins: "§7  - 金币: §f{coins}"
+
+  list: 
+    header: "§6========== §e可用副本 §6=========="
+    empty: "§7暂无可用副本"
+
+  status: 
+    respawn-available: "§7复活: §a可用"
+
+  history: 
+    header: "§6========== §e通关历史 §6=========="
+    empty: "§7你还没有通关任何副本！"
+
+  error: 
+    instance-create: "§c创建副本实例失败！"
+
+# ===============================================
+# 城市系统消息
+# ===============================================
+city: 
+  help: 
+    header: "§6==== §e城市命令帮助 §6===="
+    cmd-create: "  §e/city create <名称> §7- 创建城市"
+    cmd-info: "  §e/city info [名称] §7- 查看城市信息"
+    cmd-list: "  §e/city list §7- 列出所有城市"
+    cmd-join: "  §e/city join <城市> §7- 加入城市"
+    cmd-leave: "  §e/city leave §7- 离开当前城市"
+    cmd-invite: "  §e/city invite <玩家> §7- 邀请玩家"
+    cmd-kick: "  §e/city kick <玩家> §7- 踢出玩家"
+    cmd-promote: "  §e/city promote <玩家> §7- 任命官员"
+    cmd-demote: "  §e/city demote <玩家> §7- 降级官员"
+    cmd-transfer: "  §e/city transfer <玩家> §7- 转让市长"
+    cmd-delete: "  §e/city delete §7- 删除城市（仅市长）"
+    cmd-spawn: "  §e/city spawn §7- 传送到城市出生点"
+    cmd-setspawn: "  §e/city setspawn §7- 设置城市出生点"
+    cmd-deposit: "  §e/city deposit <金额> §7- 存款到城市国库"
+    cmd-withdraw: "  §e/city withdraw <金额> §7- 从城市国库取款"
+    cmd-announcement: "  §e/city announcement [内容|clear] §7- 设置/查看公告"
+    cmd-accept: "  §e/city accept §7- 接受邀请"
+    cmd-decline: "  §e/city decline §7- 拒绝邀请"
+    cmd-top: "  §e/city top §7- 查看排行榜"
+
+  create: 
+    success: "§a城市 §e{name} §a创建成功！"
+    failed: "§c创建城市失败: §e{reason}"
+    must-be-in-nation: "§c你必须先加入一个国家才能创建城市！"
+
+  info: 
+    header: "§6==== §e城市信息 §6===="
+    spawn: "§7出生点: §f{location}"
+    announcement: "§7公告: §e{text}"
+    public-recruit: "§7公开招募: §f{status}"
+    treasury: "§7国库: §f{balance}"
+    members: "§7成员: §f{count}"
+    mayor: "§7市长: §f{name}"
+
+  list: 
+    header: "§6==== §e城市列表 §6===="
+    empty: "§7暂无可用城市"
+
+  join: 
+    success: "§a你已加入城市 §e{name}§a！"
+    already-in-city: "§c你已在某城市中，请先离开！"
+    invited-only: "§c你需要邀请才能加入此城市！"
+
+  leave: 
+    success: "§a你已离开城市 §e{name}§a！"
+    must-transfer: "§c作为市长，你必须先转让职位或删除城市！"
+
+  invite: 
+    success: "§a已向 §e{player} §a发送邀请！"
+    already-in-city: "§c该玩家已在另一个城市！"
+
+  kick: 
+    success: "§a已将玩家 §e{name} §a踢出城市！"
+    not-member: "§c该玩家不在你的城市中！"
+
+  promote: 
+    success: "§a玩家 §e{name} §a已升职为官员！"
+    already-officer: "§c该玩家已是官员！"
+
+  demote: 
+    success: "§a玩家 §e{name} §a已从官员降级！"
+    not-officer: "§c该玩家不是官员！"
+
+  transfer: 
+    success: "§a市长职位已转让给 §e{name}§a！"
+
+  delete: 
+    success: "§a城市 §e{name} §a已删除！"
+    not-mayor: "§c只有市长可以删除城市！"
+
+  spawn: 
+    teleporting: "§a正在传送到城市出生点..."
+    not-set: "§c城市出生点未设置！"
+
+  setspawn: 
+    success: "§a城市出生点已设置！"
+    no-permission: "§c你没有权限设置出生点！"
+
+  deposit: 
+    success: "§a已存入 §e{amount} §a到城市国库！"
+    insufficient: "§c余额不足！"
+
+  withdraw: 
+    success: "§a已取出 §e{amount} §a从城市国库！"
+    no-permission: "§c只有市长可以取款！"
+    insufficient: "§c城市国库余额不足！"
+
+  announcement: 
+    success: "§a公告已设置为: §e{text}"
+    cleared: "§7公告已清除"
+    too-long: "§c公告内容过长！（最多100字符）"
+
+  accept: 
+    success: "§a你已接受邀请，加入了城市！"
+
+  decline: 
+    success: "§7你已拒绝邀请"
+
+  top: 
+    header: "§6==== §e城市排行榜 §6===="
+
+  not-in-city: "§c你不在任何城市中！"
+  not-mayor: "§c只有市长可以执行此操作！"
+  not-officer: "§c你不是官员！"
+  teleport-failed: "§c传送失败"
+
+# ===============================================
+# 王朝系统消息
+# ===============================================
+dynasty: 
+  help: 
+    header: "§6==== §e王朝系统 §6===="
+    cmd-info: "  §e/dynasty info [国家] §7- 查看王朝信息"
+    cmd-heir: "  §e/dynasty heir §7- 查看继承人列表"
+    cmd-addheir: "  §e/dynasty addheir <玩家> §7- 添加继承人"
+    cmd-removeheir: "  §e/dynasty removeheir <玩家> §7- 移除继承人"
+    cmd-inherit: "  §e/dynasty inherit §7- 继承王位"
+    cmd-claim: "  §e/dynasty claim §7- 索取王位"
+    cmd-abdicate: "  §e/dynasty abdicate <玩家> [原因] §7- 禅让王位"
+    cmd-type: "  §e/dynasty type <类型> §7- 设置继承类型"
+    cmd-list: "  §e/dynasty list §7- 列出所有空缺王位"
+
+  info: 
+    header: "§6==== §e王朝信息 §6===="
+    nation: "  §7国家: §f{name}"
+    monarch: "  §7君主: §f{name}"
+    dynasty-name: "  §7王朝名: §f{name}"
+    succession-type: "  §7继承类型: §f{type}"
+    reign-time: "  §7在位时间: §f{time}"
+    heir-count: "  §7继承人数量: §f{count}"
+    heir-list: "  §7继承人列表:"
+    no-heirs: "§7  暂无继承人"
+    succession-types: "  §7类型: primogeniture, elective, appointment, hereditary, absolute, parliamentary"
+
+  vacant: 
+    header: "§6==== §e空缺王位 §6===="
+    empty: "§7目前没有空缺王位"
+    nation: "  §7国家: §f{name}"
+    vacant-days: "  §7空缺天数: §e{days}"
+    vacant-time: "  §7空缺时间: §e{time}"
+
+  inherit: 
+    success: "§a继承成功！你现在是 §e{nation} §a的统治者！"
+    failed: "§c继承失败: §e{reason}"
+    no-throne: "§c该国没有空缺王位！"
+
+  claim: 
+    success: "§a你成功索取 §e{nation} §a的王位！"
+    failed: "§c索取王位失败: §e{reason}"
+    no-vacancy: "§c该王位不是空缺的！"
+
+  abdicate: 
+    success: "§a禅让成功！新君主: §e{name}"
+    failed: "§c禅让失败: §e{reason}"
+    no-heir: "§c禅让时必须指定继承人！"
+
+  addheir: 
+    success: "§a继承人添加成功"
+    failed: "§c添加继承人失败: §e{reason}"
+    already-heir: "§c该玩家已是继承人！"
+
+  removeheir: 
+    success: "§a继承人移除成功"
+    failed: "§c移除继承人失败: §e{reason}"
+    not-heir: "§c该玩家不是继承人！"
+
+  type: 
+    success: "§a继承类型已设置为: §e{type}"
+    failed: "§c设置继承类型失败: §e{reason}"
+    invalid-type: "§c无效的继承类型: §e{type}"
+    available-types: "§7可用类型: primogeniture, elective, appointment, hereditary, absolute, parliamentary"
+
+  heir: 
+    header: "§6==== §e继承人列表 §6===="
+    empty: "§7暂无指定的继承人"
+    order: "§7继承人顺序:"
+    list-item: "  §e{index}. §f{name}"
+
+  not-in-nation: "§c你不在任何国家中！"
+  not-monarch: "§c你不是该国的君主！"
+  not-found: "§c未找到该国家的王朝信息！"
+  succession-type-unknown: "§c未知继承类型: §e{type}"
+
+# ===============================================
+# 租约系统消息
+# ===============================================
+lease: 
+  help: 
+    header: "§6==== §e租约系统 §6===="
+    cmd-create: "  §e/lease create <类型> <区域> <租金> <天数> §7- 创建租约"
+    cmd-list: "  §e/lease list [出租方|承租方|待处理] §7- 查看租约列表"
+    cmd-info: "  §e/lease info <id> §7- 查看租约详情"
+    cmd-sign: "  §e/lease sign <id> §7- 签署租约"
+    cmd-accept: "  §e/lease accept <id> §7- 接受租约"
+    cmd-reject: "  §e/lease reject <id> §7- 拒绝租约"
+    cmd-pay: "  §e/lease pay <id> [月数] §7- 支付租金"
+    cmd-renew: "  §e/lease renew <id> <天数> §7- 续租"
+    cmd-terminate: "  §e/lease terminate <id> [原因] §7- 终止租约"
+
+  create: 
+    success: "§6§l§n=== 租约已创建 ==="
+    failed: "§c创建租约失败: §e{reason}"
+    type-invalid: "§c无效的租约类型: §e{type}"
+    rent-invalid: "§c无效的租金金额: §e{amount}"
+    days-invalid: "§c无效的天数: §e{days}"
+    days-must-be-positive: "§c天数必须大于0！"
+
+  list: 
+    header: "§6==== §e租约列表 ===="
+    empty: "§7暂无租约"
+    id: "  §7ID: §f{id}"
+    lessor: "§7出租方: §f{name}"
+    tenant: "§7承租方: §f{name}"
+    region: "§7区域: §f{name}"
+    monthly-rent: "§7月租金: §f{amount}"
+    remaining-days: "§7剩余天数: §f{days}"
+    next-payment: "§7下次付款: §f{date}"
+    start-date: "§7开始日期: §f{date}"
+    status: "§7状态: §f{status}"
+    total-value: "§7总价值: §f{amount}"
+    term: "§7租期: §f{days} 天"
+
+  info: 
+    header: "§6==== §e租约详情 §6===="
+
+  sign: 
+    success: "§a租约已生效！"
+    failed: "§c签署租约失败: §e{reason}"
+    usage: "§c用法: /lease sign <租约ID>"
+
+  accept: 
+    usage: "§c用法: /lease accept <租约ID>"
+    success: "§a租约已接受并签署！"
+
+  reject: 
+    success: "§7租约已拒绝"
+    failed: "§c拒绝失败，租约可能不存在或无法拒绝。"
+    usage: "§c用法: /lease reject <租约ID>"
+
+  pay: 
+    success: "§a已支付 §e{amount}§a！"
+    failed: "§c支付失败，资金不足或你不是承租方。"
+
+  renew: 
+    success: "§a租约已续 §e{days} 天！"
+    failed: "§c续租失败: §e{reason}"
+    days-invalid: "§c无效的天数: §e{days}"
+    usage: "§c用法: /lease renew <租约ID> <天数>"
+
+  terminate: 
+    success: "§a租约已终止"
+    failed: "§c终止租约失败: §e{reason}"
+    usage: "§c用法: /lease terminate <租约ID> [原因]"
+
+  not-found: "§c租约不存在: §e{id}"
+  not-in-nation: "§c你必须加入一个国家才能使用此命令！"
+  player-only: "§c此命令只能由玩家使用！"
+
+# ===============================================
+# 锦标赛系统消息
+# ===============================================
+tournament: 
+  help: 
+    header: "§6§l§n===== 锦标赛帮助 ====="
+    cmd-create: "  §e/tournament create <类型> <名称> §7- 创建锦标赛"
+    cmd-join: "  §e/tournament join <id> §7- 加入锦标赛"
+    cmd-leave: "  §e/tournament leave §7- 离开锦标赛"
+    cmd-start: "  §e/tournament start <id> §7- 开始锦标赛"
+    cmd-spectate: "  §e/tournament spectate <id> §7- 观战"
+    cmd-list: "  §e/tournament list §7- 列出锦标赛"
+    cmd-info: "  §e/tournament info <id> §7- 锦标赛信息"
+    cmd-killfeed: "  §e/tournament killfeed §7- 查看击杀榜"
+
+  types: 
+    header: "§7比赛类型:"
+    pvp1v1: "  §bpvp1v1 §7- PvP单挑"
+    pvpffa: "  §cpvpffa §7- PvP乱斗"
+    team: "  §9team §7- 团队赛"
+    speedrun: "  §aspeedrun §7- 速通挑战"
+    parkour: "  §eparkour §7- 跑酷挑战"
+
+  create: 
+    success: "§a比赛已创建: §e{name}"
+    failed: "§c创建比赛失败: §e{reason}"
+    usage: "§c用法: /tournament create <类型> <名称>"
+    type-invalid: "§c未知类型: §e{type}"
+
+  join: 
+    success: "§a成功加入比赛: §e{name}"
+    failed: "§c加入失败: §e{reason}"
+    already-joined: "§c请先离开当前比赛: §e/tournament leave"
+    full: "§c比赛已满员！"
+    already-started: "§c比赛已开始或已结束，无法加入！"
+    spectate-hint: "§7使用 §e/tournament spectate §7以观战者身份加入"
+
+  leave: 
+    not-in-tournament: "§c你不在任何比赛中"
+    success: "§a成功离开比赛"
+
+  start: 
+    success: "§a比赛已开始！"
+    failed: "§c无法开始比赛: §e{reason}"
+    not-creator: "§c只有创建者可以开始比赛"
+    not-enough-players: "§c需要至少2名玩家才能开始比赛！"
+
+  spectate: 
+    success: "§a正在传送到观战区域: §e{name}"
+    not-started: "§c比赛尚未开始，无法观战"
+    ended: "§c比赛已结束，无法观战"
+    hint: "§b请使用命令 §e/tournament spectate §7来观战"
+    moving: "§b正在前往观战区域..."
+    leave-success: "§a已离开观战区域"
+    leave-spectate: "§7使用 §e/tournament leave §7离开观战"
+
+  list: 
+    header: "§6§l§n===== 比赛列表 ====="
+    waiting-header: "§6§l等待中的比赛:"
+    empty-waiting: "§7当前没有等待中的比赛"
+    empty-active: "§7当前没有进行中的比赛"
+    item-type: "  §7类型: §f{type}"
+    item-status: "  §7状态: "
+    item-players: "  §7玩家: §f{count}"
+    spectate: " §b进入观战"
+
+  info: 
+    header: "§6§l§n===== 比赛信息 ====="
+
+  killfeed: 
+    header: "§6§l击杀榜第"
+    rank: "§6§l"
+
+  rewards: 
+    header: "§6§l§n===== 比赛奖励 ====="
+    item: "§6物品: §e{name}"
+
+  player-joined: "§a{player} §e加入了比赛！"
+  player-left: "§c{player} §e离开了比赛！"
+  player-killed: "§c{player} §e被 §a{killer}§e 淘汰了！"
+  player-won: "§6§l{player} §a赢得了比赛！ §e🎉"
+
+  results: 
+    winner: "§a§l冠军: §e{player}"
+    kills: "§7总击杀: §f{count}"
+
+  not-found: "§c比赛不存在: §e{id}"
+  player-only: "§c只有玩家可以使用此命令！"
+  cancelled: "§c比赛已取消"
+  eliminated: "§c你已被淘汰！"
+  lost: "§c你输掉了比赛！"
+
+# ===============================================
+# 蓝图系统消息
+# ===============================================
+blueprint: 
+  help: 
+    header: "§6==== §e蓝图命令 §6===="
+    cmd-save: "  §e/bp save <名称> [描述] §7- 保存选区为蓝图"
+    cmd-load: "  §e/bp load <名称|id> §7- 加载蓝图"
+    cmd-list: "  §e/bp list [页码] §7- 列出你的蓝图"
+    cmd-info: "  §e/bp info <名称|id> §7- 查看蓝图信息"
+    cmd-delete: "  §e/bp delete <名称|id> §7- 删除蓝图"
+    cmd-paste: "  §e/bp paste [air] [entities] §7- 粘贴蓝图"
+    cmd-copy: "  §e/bp copy <名称> <新名称> §7- 复制蓝图"
+    cmd-rename: "  §e/bp rename <旧名> <新名> §7- 重命名蓝图"
+    cmd-rotate: "  §e/bp rotate [90|180|270] §7- 旋转剪贴板"
+    cmd-mirror: "  §e/bp mirror <x|y|z> §7- 镜像剪贴板"
+    cmd-undo: "  §e/bp undo §7- 撤销上次粘贴"
+    cmd-redo: "  §e/bp redo §7- 重做上次撤销"
+    cmd-clipboard: "  §e/bp clipboard §7- 查看剪贴板信息"
+    cmd-sel: "  §e/bp sel <pos1|pos2|info|clear> §7- 选区工具"
+    cmd-search: "  §e/bp search <关键词> §7- 搜索蓝图"
+    cmd-stats: "  §e/bp stats §7- 查看统计"
+    cmd-export: "  §e/bp export <名称> <文件> [格式] §7- 导出蓝图"
+    cmd-import: "  §e/bp import <文件> [格式] §7- 导入蓝图"
+    cmd-cat: "  §e/bp cat create <名称> §7- 创建分类"
+    cmd-cat-list: "  §e/bp cat list §7- 列出分类"
+
+  categories: 
+    header: "§6==== §e蓝图分类 §6===="
+    created: "§a分类已创建: §e{name}"
+    names: "§7分类: §f{list}"
+
+  clipboard: 
+    header: "§6==== §e剪贴板 §6===="
+
+  save: 
+    success: "§a蓝图 §e{name} §a保存成功！"
+    failed: "§c保存蓝图失败: §e{reason}"
+    no-selection: "§c未选择区域！使用 §e/bp sel pos1 §7和 §e/bp sel pos2 §7来选择"
+    name-exists: "§c该名称的蓝图已存在！"
+
+  load: 
+    success: "§a蓝图 §e{name} §a已加载到剪贴板！"
+    failed: "§c加载蓝图失败: §e{reason}"
+    not-found: "§c找不到蓝图: §e{name}"
+
+  list: 
+    header: "§6==== §e你的蓝图 §6===="
+    empty: "§7未保存任何蓝图"
+    item: "  §e{id}. §f{name} §7- {desc}"
+    page: " §7(第 {current}/{total} 页)"
+
+  info: 
+    header: "§6==== §e蓝图信息 §6===="
+    name: "  §7名称: §e{name}"
+    author: "  §7作者: §f{author}"
+    created: "  §7创建时间: §f{date}"
+    description: "  §7描述: §f{desc}"
+    blocks: "  §7方块数: §f{count}"
+    materials: "  §7材料数: §f{count}"
+    categories: "  §7分类: §f{list}"
+
+  delete: 
+    success: "§a已删除蓝图: §e{name}"
+    failed: "§c删除蓝图失败。"
+    not-found: "§c找不到蓝图: §e{name}"
+
+  paste: 
+    success: "§a蓝图粘贴成功！"
+    failed: "§c粘贴蓝图失败: §e{reason}"
+
+  copy: 
+    success: "§a蓝图已复制为: §e{name}"
+    failed: "§c复制失败: §e{reason}"
+
+  rename: 
+    success: "§a蓝图已更名为: §e{name}"
+    failed: "§c重命名蓝图失败。"
+    not-found: "§c找不到蓝图: §e{name}"
+
+  rotate: 
+    success: "§a剪贴板已旋转 {degrees} 度"
+
+  mirror: 
+    success: "§a剪贴板已在 {axis} 轴上镜像"
+
+  undo: 
+    success: "§a已撤销上次粘贴"
+    no-action: "§c没有可撤销的操作"
+
+  redo: 
+    success: "§a已重做上次撤销"
+    no-action: "§c没有可重做的操作"
+
+  sel: 
+    pos1: "§a第一点已设置: §e{x}, {y}, {z}"
+    pos2: "§a第二点已设置: §e{x}, {y}, {z}"
+    info: "§6==== §e选区信息 §6===="
+    no-selection: "§c未选择任何区域！"
+    cleared: "§7选区已清除"
+    axis: "§7  坐标: §f{x}, {y}, {z}"
+    size: "§7  大小: §f{size}"
+
+  search: 
+    header: "§6==== §e搜索结果 ({count}) §6===="
+    empty: "§7未找到匹配的蓝图: §e{query}"
+
+  stats: 
+    header: "§6==== §e蓝图统计 §6===="
+    total: "  §7蓝图总数: §f{count}"
+    total-blocks: "  §7方块总数: §f{count}"
+    storage-used: "  §7存储使用: §f{size}"
+
+  export: 
+    success: "§a蓝图已导出到: §e{file}"
+    failed: "§c导出蓝图失败。"
+    error: "§c导出错误: §e{reason}"
+
+  import: 
+    success: "§a蓝图导入成功！"
+    failed: "§c导入蓝图失败。请查看控制台了解详情。"
+    error: "§c导入错误: §e{reason}"
+
+  error: "§c发生错误: §e{reason}"
+
+# ===============================================
+# 繁荣度系统消息
+# ===============================================
+prosperity: 
+  help: 
+    header: "§6==== §e繁荣度系统 §6===="
+    cmd-info: "  §e/prosperity info [国家] §7- 查看繁荣度信息"
+    cmd-rank: "  §e/prosperity rank §7- 查看繁荣度排行榜"
+    cmd-bonus: "  §e/prosperity bonus [国家] §7- 查看繁荣度加成"
+    cmd-history: "  §e/prosperity history [国家] [数量] §7- 查看历史"
+    cmd-set: "  §e/prosperity set <国家> <数值> §7- 设置繁荣度(管理员)"
+    cmd-boost: "  §e/prosperity boost <国家> <数值> §7- 增加繁荣度(管理员)"
+    cmd-decay: "  §e/prosperity decay §7- 处理所有衰减(管理员)"
+    cmd-reload: "  §e/prosperity reload §7- 重载配置(管理员)"
+
+  info: 
+    header: " §6§l§n繁荣度 ====="
+    nation: "  §7国家: §e{name}"
+    level: "§e繁荣度等级: §fLv.{level}"
+    prosperity: "§e繁荣度: §f{value}"
+    last-active: "§e最后活跃: §f{time}"
+    activity: "§e活跃度: §f{value}%"
+    bonuses-header: "§6==== §e繁荣度加成 ===="
+    tax-bonus: "§e税收加成: §a+{value}%"
+    resource-bonus: "§e资源加成: §a+{value}%"
+    resource-output-bonus: "§e资源产出加成: §a+{value}%"
+    total-bonus: "§e总加成: §a×{value}"
+    overall-bonus: "§e整体加成: §a×{value}"
+
+  history: 
+    header: "§6==== §e繁荣度历史 ===="
+    empty: "§7暂无历史记录"
+    date: "§e{date}: §f{old} §7-> §f{new} §7(§a+{change}§7)"
+    change-positive: "§a"
+    change-negative: "§c"
+
+  bonuses: 
+    header: "§6==== §e繁荣度加成 ===="
+    tax: "§e税收加成: §a+{value}%"
+    resource: "§e资源加成: §a+{value}%"
+    output: "§e资源产出: §a+{value}%"
+
+  rank: 
+    header: "§6==== §e繁荣度排行榜 ===="
+    empty: "§7暂无数据"
+    item: " §7- {rank}. §e{nation} §7- §f{value}"
+
+  admin: 
+    set-success: "§a已将 §e{nation} §a的繁荣度设置为 {value}"
+    boost-success: "§a已为 §e{nation} §a增加繁荣度 {value}"
+    decay-processing: "§e正在处理所有国家的繁荣度衰减..."
+    decay-complete: "§a繁荣度衰减处理完成"
+    reload-success: "§e繁荣度配置已重新加载..."
+
+  not-in-nation: "§c你还未加入任何国家！"
+  no-permission: "§c你没有权限执行此命令！"
+  nation-not-found: "§c未找到国家: §e{name}"
+  value-invalid: "§c无效的数值: §e{value}"
+  usage-set: "§c用法: /prosperity set <国家名> <数值>"
+  usage-boost: "§c用法: /prosperity boost <国家名> <数值>"
+  specify-nation: "§c请指定国家名称: /prosperity {command} <国家名>"
+  description: "§7说明: 繁荣度越高，获得的加成越多"
+
+# ===============================================
+# 事件系统消息
+# ===============================================
+event: 
+  help: 
+    header: "§6==== §e事件系统 §6===="
+    cmd-list: "  §e/event list §7- 列出活动事件"
+    cmd-info: "  §e/event info <id> §7- 事件详情"
+    cmd-join: "  §e/event join <id> §7- 参加事件"
+    cmd-leave: "  §e/event leave §7- 离开事件"
+
+  list: 
+    header: "§6==== §e活动事件 ===="
+    empty: "§7当前没有活动事件"
+    item: "  §e{id}. §f{name} §7- {desc}"
+
+  info: 
+    header: "§6==== §e事件详情 ===="
+    id: "  §7ID: §f{id}"
+    name: "  §7名称: §f{name}"
+    description: "  §7描述: §f{desc}"
+    start: "  §7开始: §f{time}"
+    end: "  §7结束: §f{time}"
+    rewards: "  §7奖励: §f{rewards}"
+    participants: "  §7参与者: §f{count}"
+
+  join: 
+    success: "§a已参加事件: §e{name}"
+    failed: "§c参加事件失败: §e{reason}"
+    not-found: "§c找不到事件: §e{id}"
+    already-joined: "§c你已经参加了此事件！"
+    event-ended: "§c此事件已结束！"
+
+  leave: 
+    success: "§a已离开事件: §e{name}"
+    not-joined: "§c你没有参加任何事件！"
+
+  started: "§6§l事件开始: §e{name}"
+  ending-soon: "§e事件 §e{name} §c即将结束！"
+  ended: "§c事件 §e{name} §c已结束！"
+  reward-claimed: "§a已领取事件奖励: §e{reward}"
+
+  player-only: "§c此命令只能由玩家使用！"
+
+# ===============================================
+# 围攻系统消息
+# ===============================================
+siege: 
+  help: 
+    header: "§6==== §e围攻系统帮助 §6===="
+    cmd-start: "  §e/siege start <国家> §7- 开始围攻"
+    cmd-info: "  §e/siege info [围攻] §7- 围攻信息"
+    cmd-attack: "  §e/siege attack §7- 进攻"
+    cmd-defend: "  §e/siege defend §7- 防守"
+    cmd-surrender: "  §e/siege surrender §7- 投降"
+    cmd-withdraw: "  §e/siege withdraw §7- 撤回部队"
+
+  start: 
+    success: "§6§l已对 §e{nation} §6§l发起围攻！"
+    failed: "§c开始围攻失败: §e{reason}"
+    already-under-siege: "§c该国正在被围攻！"
+    insufficient-troops: "§c你的部队不足以发起围攻！"
+
+  info: 
+    header: "§6==== §e围攻信息 §6===="
+    attacker: "  §7攻击方: §c{name}"
+    defender: "  §7防守方: §a{name}"
+    status: "  §7状态: §e{status}"
+    time-remaining: "  §7剩余时间: §f{hours}小时"
+    troops-attacker: "  §7攻击方部队: §c{count}"
+    troops-defender: "  §7防守方部队: §a{count}"
+
+  status: 
+    preparing: "§e准备中"
+    in-progress: "§6进行中"
+    defending: "§a防守中"
+    attacking: "§c进攻中"
+    won-attacker: "§c攻击方获胜！"
+    won-defender: "§a防守方获胜！"
+
+  attack: 
+    success: "§a你加入了进攻！"
+    already-joined: "§c你已经加入此围攻！"
+    siege-not-active: "§c没有进行中的围攻！"
+
+  defend: 
+    success: "§a你加入了防守！"
+    already-joined: "§c你已经加入此围攻！"
+    siege-not-active: "§c没有进行中的围攻！"
+
+  surrender: 
+    success: "§a你投降了围攻！"
+    failed: "§c投降失败: §e{reason}"
+
+  withdraw: 
+    success: "§a已从围攻中撤回部队！"
+    failed: "§c撤回失败: §e{reason}"
+    no-troops: "§c你在此围攻中没有部队！"
+
+  attacker-victory: "§6§l§n胜利！ §r§c攻击方赢得了围攻！"
+  defender-victory: "§6§l§n胜利！ §r§a防守方赢得了围攻！"
+
+  rewards: 
+    header: "§6==== §e围攻奖励 §6===="
+    plunder: "§7战利品: §e{amount}"
+    captured-land: "§7占领土地: §f{count} 区块"
+
+  not-in-siege: "§c你没有参与任何围攻！"
+  siege-not-found: "§c找不到围攻: §e{name}"
+  not-enough-time: "§c围攻时间已到期！"
+  already-ended: "§c此围攻已结束！"
+
+# ===============================================
+# 附庸系统消息
+# ===============================================
+vassal: 
+  help: 
+    header: "§6==== §e附庸系统帮助 §6===="
+    cmd-offer: "  §e/vassal offer <国家> <贡品> §7- 提供附庸"
+    cmd-accept: "  §e/vassal accept §7- 接受附庸"
+    cmd-reject: "  §e/vassal reject §7- 拒绝附庸"
+    cmd-independence: "  §e/vassal independence §7- 宣布独立"
+    cmd-release: "  §e/vassal release <国家> §7- 释放附庸"
+    cmd-tribute: "  §e/vassal tribute <金额> §7- 设置贡品"
+    cmd-info: "  §e/vassal info [国家] §7- 查看附庸信息"
+    cmd-list: "  §e/vassal list §7- 列出附庸关系"
+
+  offer: 
+    success: "§a已向 §e{nation} §a发送附庸提议！"
+    failed: "§c发送提议失败: §e{reason}"
+    already-vassal: "§c该国已是附庸！"
+    already-suzerain: "§c该国已有附庸！"
+    tribute-invalid: "§c无效的贡品金额: §e{amount}"
+
+  accept: 
+    success: "§a你现在是 §e{nation} §a的附庸！"
+    failed: "§c接受失败: §e{reason}"
+    no-offer: "§c你没有附庸提议！"
+
+  reject: 
+    success: "§7已拒绝附庸提议"
+    no-offer: "§c你没有附庸提议！"
+
+  independence: 
+    success: "§a§l宣布独立！ §r§a你现在是独立的了！"
+    failed: "§c宣布独立失败: §e{reason}"
+    not-vassal: "§c你的国家不是附庸！"
+    war-declared: "§6§l独立战争已打响！"
+
+  release: 
+    success: "§a已释放 §e{nation} §a的附庸地位！"
+    failed: "§c释放失败: §e{reason}"
+    not-suzerain: "§c你的国家没有任何附庸！"
+
+  tribute: 
+    success: "§a贡品已设置为 §e{amount}"
+    failed: "§c设置贡品失败: §e{reason}"
+    not-vassal: "§c你不是附庸国家！"
+    not-suzerain: "§c你不是宗主国！"
+    tribute-paid: "§a已支付 §e{amount} §a的贡品！"
+    tribute-collected: "§a已从 §e{vassal} §a收取 §e{amount} §a的贡品！"
+
+  info: 
+    header: "§6==== §e附庸信息 §6===="
+    suzerain: "  §7宗主国: §e{name}"
+    vassals: "  §7附庸国: §f{list}"
+    tribute: "  §7贡品: §e{amount}"
+    status: "  §7状态: §f{status}"
+
+  list: 
+    header: "§6==== §e附庸关系 §6===="
+    empty: "§7没有附庸关系"
+    suzerain-header: "§7宗主国:"
+    vassal-header: "§7附庸国:"
+
+  events: 
+    established: "§6§l附庸关系已建立！ §e{vassal} §6现在是 §e{suzerain}§6 的附庸！"
+    released: "§a附庸关系结束！ §e{vassal} §a现在独立了！"
+    tribute-paid-event: "§a§e{vassal} §a向 §e{suzerain}§a 支付了 §e{amount} §a的贡品！"
+    independence-declared: "§c§l宣布独立！ §r§e{vassal} §c不再是附庸！"
+
+  not-in-nation: "§c你必须加入一个国家才能使用此命令！"
+  nation-not-found: "§c找不到国家: §e{name}"
+  player-only: "§c此命令只能由玩家使用！"
+
+# ===============================================
+# 商业系统消息
+# ===============================================
+business: 
+  help: 
+    header: "§6==== §e商业系统帮助 §6===="
+    cmd-create: "  §e/business create <类型> <名称> §7- 创建商业"
+    cmd-info: "  §e/business info [id] §7- 商业信息"
+    cmd-list: "  §e/business list §7- 列出商业"
+    cmd-invest: "  §e/business invest <id> <金额> §7- 投资"
+    cmd-withdraw: "  §e/business withdraw <id> <金额> §7- 取出"
+    cmd-transfer: "  §e/business transfer <id> <玩家> <股份> §7- 转让股份"
+
+  create: 
+    success: "§a商业 §e{name} §a创建成功！"
+    failed: "§c创建商业失败: §e{reason}"
+    type-invalid: "§c无效的商业类型: §e{type}"
+
+  info: 
+    header: "§6==== §e商业信息 §6===="
+    name: "  §7名称: §e{name}"
+    type: "  §7类型: §f{type}"
+    owner: "  §7所有者: §f{owner}"
+    value: "  §7价值: §e{value}"
+    shares-total: "  §7总股份: §f{shares}"
+    your-shares: "  §7你的股份: §f{shares}"
+
+  list: 
+    header: "§6==== §e商业列表 §6===="
+    empty: "§7暂无可用商业"
+
+  invest: 
+    success: "§a已向 §e{name} §a投资 §e{amount}§a！"
+    failed: "§c投资失败: §e{reason}"
+    insufficient-funds: "§c资金不足！"
+
+  withdraw: 
+    success: "§a已从 §e{name} §a取出 §e{amount}§a！"
+    failed: "§c取出失败: §e{reason}"
+    not-owner: "§c你不是此商业的所有者！"
+    insufficient-shares: "§c股份不足！"
+
+  transfer: 
+    success: "§a已向 §e{player} §a转让 §e{shares} §a股！"
+    failed: "§c转让失败: §e{reason}"
+
+  not-found: "§c找不到商业: §e{id}"
+  not-in-nation: "§c你必须加入一个国家才能使用此命令！"
+  player-only: "§c此命令只能由玩家使用！"
+# codex-generated-i18n-fallbacks:start
+# Referenced message keys that did not have curated text yet. Replace with polished copy as modules are localized.
+anniversary.celebrate.default-message: "§7Anniversary Celebrate Default Message: {0} {1} {2}"
+anniversary.celebrate.not-today: "§7Anniversary Celebrate Not Today: {0}"
+anniversary.celebrated: "§7Anniversary Celebrated: {0}"
+anniversary.created: "§7Anniversary Created: {0} {1}"
+anniversary.days-until: "§7Anniversary Days Until: {0}"
+anniversary.deleted: "§7Anniversary Deleted: {0}"
+anniversary.help.celebrate: "§7Anniversary Help Celebrate"
+anniversary.help.create: "§7Anniversary Help Create"
+anniversary.help.delete: "§7Anniversary Help Delete"
+anniversary.help.info: "§7Anniversary Help Info"
+anniversary.help.list: "§7Anniversary Help List"
+anniversary.help.today: "§7Anniversary Help Today"
+anniversary.help.upcoming: "§7Anniversary Help Upcoming"
+anniversary.info.usage: "§7Anniversary Info Usage"
+anniversary.message.set: "§7Anniversary Message Set"
+anniversary.no-anniversaries: "§7Anniversary No Anniversaries"
+anniversary.status.passed: "§7Anniversary Status Passed: {0}"
+anniversary.status.today: "§7Anniversary Status Today"
+anniversary.status.upcoming: "§7Anniversary Status Upcoming: {0}"
+anniversary.year.format: "§7Anniversary Year Format: {0}"
+army.gui.attack.title: "§7Army GUI Attack Title"
+
+# 军队溃散通知
+army.disbanded.notification: "§c⚠ 军队溃散：{0}（{1}名士兵）因士气过低已解散"
+
+command.policy.tree-title: "§7Command Policy Tree Title: {0}"
+command.policy.unlocked-label: "§7Command Policy Unlocked Label"
+command.resolution.cancel-failed: "§7Command Resolution Cancel Failed"
+command.resolution.cancelled: "§7Command Resolution Cancelled"
+command.resolution.disabled-service: "§7Command Resolution Disabled Service"
+command.resolution.enacted: "§7Command Resolution Enacted"
+command.resolution.gui-action: "§7Command Resolution GUI Action: {0}"
+command.resolution.gui-empty: "§7Command Resolution GUI Empty"
+command.resolution.gui-expires: "§7Command Resolution GUI Expires: {0}"
+command.resolution.gui-id: "§7Command Resolution GUI ID: {0}"
+command.resolution.gui-overview-lore: "§7Command Resolution GUI Overview Lore: {0}"
+command.resolution.gui-overview-name: "§7Command Resolution GUI Overview Name"
+command.resolution.gui-proposer: "§7Command Resolution GUI Proposer: {0}"
+command.resolution.gui-signatures: "§7Command Resolution GUI Signatures: {0} {1}"
+command.resolution.gui-state: "§7Command Resolution GUI State: {0}"
+command.resolution.gui-title: "§7Command Resolution GUI Title: {0}"
+command.resolution.gui-type: "§7Command Resolution GUI Type: {0}"
+command.resolution.history-empty: "§7Command Resolution History Empty"
+command.resolution.history-title: "§7Command Resolution History Title: {0}"
+command.resolution.invalid-uuid: "§7Command Resolution Invalid UUID"
+command.resolution.list-empty: "§7Command Resolution List Empty"
+command.resolution.list-title: "§7Command Resolution List Title"
+command.resolution.sign-failed: "§7Command Resolution Sign Failed"
+command.resolution.signatures-detail: "§7Command Resolution Signatures Detail: {0}"
+command.resolution.signed: "§7Command Resolution Signed"
+command.resource.amount-positive-integer: "§7Command Resource Amount Positive Integer"
+command.resource.consume-failed: "§7Command Resource Consume Failed"
+command.resource.consumed: "§7Command Resource Consumed: {0} {1} {2}"
+command.resource.disabled-service: "§7Command Resource Disabled Service"
+command.resource.district-count: "§7Command Resource District Count"
+command.resource.district-count-value: "§7Command Resource District Count Value: {0} {1}"
+command.resource.district-not-found: "§7Command Resource District Not Found: {0}"
+command.resource.district-service-disabled: "§7Command Resource District Service Disabled"
+command.resource.districts-empty: "§7Command Resource Districts Empty"
+command.resource.districts-title: "§7Command Resource Districts Title: {0}"
+command.resource.granted: "§7Command Resource Granted: {0} {1} {2}"
+command.resource.inspect-beacon: "§7Command Resource Inspect Beacon: {0} {1} {2}"
+command.resource.inspect-biome: "§7Command Resource Inspect Biome: {0} {1}"
+command.resource.inspect-city-states: "§7Command Resource Inspect City States: {0} {1}"
+command.resource.inspect-claims: "§7Command Resource Inspect Claims: {0} {1}"
+command.resource.inspect-cycle-experience: "§7Command Resource Inspect Cycle Experience: {0}"
+command.resource.inspect-cycle-resources: "§7Command Resource Inspect Cycle Resources: {0}"
+command.resource.inspect-district-capacity: "§7Command Resource Inspect District Capacity: {0} {1}"
+command.resource.inspect-force-migration: "§7Command Resource Inspect Force Migration: {0}"
+command.resource.inspect-forecast-window: "§7Command Resource Inspect Forecast Window: {0}"
+command.resource.inspect-founder: "§7Command Resource Inspect Founder: {0}"
+command.resource.inspect-government: "§7Command Resource Inspect Government: {0}"
+command.resource.inspect-hourly-experience: "§7Command Resource Inspect Hourly Experience: {0}"
+command.resource.inspect-hourly-resources: "§7Command Resource Inspect Hourly Resources: {0}"
+command.resource.inspect-members: "§7Command Resource Inspect Members: {0}"
+command.resource.inspect-migration: "§7Command Resource Inspect Migration: {0}"
+command.resource.inspect-nation: "§7Command Resource Inspect Nation: {0}"
+command.resource.inspect-nation-level: "§7Command Resource Inspect Nation Level: {0} {1}"
+command.resource.inspect-nation-level-progress: "§7Command Resource Inspect Nation Level Progress: {0}"
+command.resource.inspect-next-refresh: "§7Command Resource Inspect Next Refresh: {0}"
+command.resource.inspect-pending-target: "§7Command Resource Inspect Pending Target: {0}"
+command.resource.inspect-refresh-cycle: "§7Command Resource Inspect Refresh Cycle: {0}"
+command.resource.inspect-resources: "§7Command Resource Inspect Resources: {0} {1}"
+command.resource.inspect-title: "§7Command Resource Inspect Title: {0}"
+command.resource.invalid-coordinate: "§7Command Resource Invalid Coordinate"
+command.resource.migrate-followup: "§7Command Resource Migrate Followup: {0} {1}"
+command.resource.nation-not-found: "§7Command Resource Nation Not Found"
+command.resource.no-admin: "§7Command Resource No Admin"
+command.resource.none: "§7Command Resource None"
+command.resource.stock-line: "§7Command Resource Stock Line: {0}"
+command.resource.stock-title: "§7Command Resource Stock Title"
+command.resource.time-ready: "§7Command Resource Time Ready: {0}"
+command.resource.time-with-remaining: "§7Command Resource Time With Remaining: {0} {1}"
+command.resource.unknown-type: "§7Command Resource Unknown Type: {0}"
+command.status.compatibility: "§7Command Status Compatibility"
+command.status.external-protection: "§7Command Status External Protection"
+command.status.external-protection-detail: "§7Command Status External Protection Detail: {0} {1} {2}"
+command.status.locale: "§7Command Status Locale"
+command.status.services: "§7Command Status Services"
+command.status.time-sync: "§7Command Status Time Sync"
+command.technology.available-label: "§7Command Technology Available Label"
+command.technology.disabled-service: "§7Command Technology Disabled Service"
+command.technology.nation-not-found: "§7Command Technology Nation Not Found"
+command.technology.none: "§7Command Technology None"
+command.technology.revoke-failed: "§7Command Technology Revoke Failed"
+command.technology.revoke-no-permission: "§7Command Technology Revoke No Permission"
+command.technology.revoked-success: "§7Command Technology Revoked Success"
+command.technology.status-title: "§7Command Technology Status Title"
+command.technology.tree-command: "§7Command Technology Tree Command: {0} {1}"
+command.technology.tree-empty: "§7Command Technology Tree Empty"
+command.technology.tree-key: "§7Command Technology Tree Key: {0}"
+command.technology.tree-overview-lore: "§7Command Technology Tree Overview Lore: {0} {1}"
+command.technology.tree-overview-name: "§7Command Technology Tree Overview Name"
+command.technology.tree-resource-cost: "§7Command Technology Tree Resource Cost: {0}"
+command.technology.tree-state-locked: "§7Command Technology Tree State Locked"
+command.technology.tree-state-unlocked: "§7Command Technology Tree State Unlocked"
+command.technology.tree-title: "§7Command Technology Tree Title: {0}"
+command.technology.tree-treasury-cost: "§7Command Technology Tree Treasury Cost: {0}"
+command.technology.unknown: "§7Command Technology Unknown: {0}"
+command.technology.unlock-no-permission: "§7Command Technology Unlock No Permission"
+command.technology.unlocked-label: "§7Command Technology Unlocked Label"
+command.technology.unlocked-success: "§7Command Technology Unlocked Success"
+command.time-sync.disabled: "§7Command Time Sync Disabled"
+command.time-sync.disabled-service: "§7Command Time Sync Disabled Service"
+command.time-sync.enabled: "§7Command Time Sync Enabled"
+command.time-sync.status-label: "§7Command Time Sync Status Label"
+command.time-sync.summary: "§7Command Time Sync Summary"
+command.time-sync.title: "§7Command Time Sync Title"
+command.treasury.amount-non-negative: "§7Command Treasury Amount Non Negative"
+command.treasury.deposited: "§7Command Treasury Deposited"
+command.treasury.disabled-service: "§7Command Treasury Disabled Service"
+command.treasury.income-all-settled: "§7Command Treasury Income All Settled: {0} {1}"
+command.treasury.income-detail: "§7Command Treasury Income Detail: {0} {1} {2} {3} {4}"
+command.treasury.income-settled: "§7Command Treasury Income Settled"
+command.treasury.income-zero: "§7Command Treasury Income Zero"
+command.treasury.insufficient: "§7Command Treasury Insufficient"
+command.treasury.nation-not-found: "§7Command Treasury Nation Not Found"
+command.treasury.no-admin: "§7Command Treasury No Admin"
+command.treasury.rewarded: "§7Command Treasury Rewarded"
+command.treasury.status-title: "§7Command Treasury Status Title"
+command.treasury.tax-all-settled: "§7Command Treasury Tax All Settled: {0} {1} {2} {3}"
+command.treasury.tax-detail: "§7Command Treasury Tax Detail: {0} {1} {2} {3}"
+command.treasury.tax-disabled: "§7Command Treasury Tax Disabled"
+command.treasury.tax-settled: "§7Command Treasury Tax Settled"
+command.treasury.tax-zero: "§7Command Treasury Tax Zero"
+command.treasury.withdraw-no-permission: "§7Command Treasury Withdraw No Permission"
+command.treasury.withdrawn: "§7Command Treasury Withdrawn"
+command.war.active-title: "§7Command War Active Title"
+command.war.declare-failed: "§7Command War Declare Failed"
+command.war.declare-no-permission: "§7Command War Declare No Permission"
+command.war.declared-success: "§7Command War Declared Success"
+command.war.disabled-service: "§7Command War Disabled Service"
+command.war.end-failed: "§7Command War End Failed"
+command.war.end-no-permission: "§7Command War End No Permission"
+command.war.ended-success: "§7Command War Ended Success"
+command.war.nation-not-found: "§7Command War Nation Not Found"
+command.war.none: "§7Command War None"
+command.war.since: "§7Command War Since: {0}"
+command.war.status-title: "§7Command War Status Title"
+command.war.target-not-found: "§7Command War Target Not Found"
+commander.experience.gained: "§7Commander Experience Gained: {0}"
+common.no: "§7Common No"
+common.yes: "§7Common Yes"
+donation.reward.unclaimed: "§7Donation Reward Unclaimed: {0}"
+dungeon.admin.reload: "§7Dungeon Admin Reload"
+dungeon.command.already_in_dungeon: "§7Dungeon Command Already In Dungeon"
+dungeon.command.dungeon_not_found: "§7Dungeon Command Dungeon Not Found"
+dungeon.command.no_dungeons: "§7Dungeon Command No Dungeons"
+dungeon.command.no_permission: "§7Dungeon Command No Permission"
+dungeon.command.not_in_dungeon: "§7Dungeon Command Not In Dungeon"
+dungeon.command.player_not_found: "§7Dungeon Command Player Not Found"
+dungeon.enter.failed_cooldown: "§7Dungeon Enter Failed Cooldown"
+dungeon.enter.failed_fee: "§7Dungeon Enter Failed Fee"
+dungeon.error.instance_create: "§7Dungeon Error Instance Create"
+dungeon.exit.exit: "§7Dungeon Exit Exit"
+dungeon.room.unlock: "§7Dungeon Room Unlock"
+dungeon.status.completed: "§7Dungeon Status Completed"
+dungeon.status.failed: "§7Dungeon Status Failed"
+dungeon.status.respawn_available: "§7Dungeon Status Respawn Available"
+emergency.extended: "§7Emergency Extended: {0}"
+error.generic: "§7Error Generic"
+exercise.cancelled: "§7Exercise Cancelled: {0}"
+exercise.created: "§7Exercise Created: {0} {1}"
+exercise.invalid-number: "§7Exercise Invalid Number: {0}"
+exercise.invalid-type: "§7Exercise Invalid Type: {0}"
+exercise.joined: "§7Exercise Joined: {0} {1}"
+exercise.leave-failed: "§7Exercise Leave Failed"
+exercise.left: "§7Exercise Left"
+exercise.no-pending: "§7Exercise No Pending"
+exercise.no-results: "§7Exercise No Results"
+exercise.not-found: "§7Exercise Not Found: {0}"
+exercise.not-organizer: "§7Exercise Not Organizer"
+exercise.start-failed: "§7Exercise Start Failed"
+exercise.started: "§7Exercise Started: {0}"
+exercise.started.notify: "§7Exercise Started Notify: {0}"
+fatigue.admin.invalid-amount: "§7Fatigue Admin Invalid Amount: {0}"
+fatigue.admin.player-not-found: "§7Fatigue Admin Player Not Found: {0}"
+fatigue.status-title: "§7Fatigue Status Title"
+friend.player-not-found: "§7Friend Player Not Found: {0}"
+friend.request-received-hint: "§7Friend Request Received Hint: {0} {1}"
+mercenary.accept.contract-not-found: "§7Mercenary Accept Contract Not Found"
+mercenary.accept.insufficient-funds: "§7Mercenary Accept Insufficient Funds"
+mercenary.accept.mercenary-notified: "§7Mercenary Accept Mercenary Notified: {0} {1}"
+mercenary.accept.no-request: "§7Mercenary Accept No Request"
+mercenary.accept.success: "§7Mercenary Accept Success: {0}"
+mercenary.decline.mercenary-notified: "§7Mercenary Decline Mercenary Notified: {0}"
+mercenary.decline.no-request: "§7Mercenary Decline No Request"
+mercenary.decline.success: "§7Mercenary Decline Success"
+mercenary.help.accept: "§7Mercenary Help Accept"
+mercenary.help.decline: "§7Mercenary Help Decline"
+mercenary.info.header.other: "§7Mercenary Info Header Other: {0}"
+mercenary.info.other-not-mercenary: "§7Mercenary Info Other Not Mercenary: {0}"
+mercenary.renew-employer-notified: "§7Mercenary Renew Employer Notified"
+mercenary.renew-employer-offline: "§7Mercenary Renew Employer Offline"
+merge.cancelled: "§7Merge Cancelled"
+merge.proposed: "§7Merge Proposed: {0} {1} {2}"
+nation.bankruptcy-recovery.chat-message: "§7Nation Bankruptcy Recovery Chat Message: {0}"
+nation.bankruptcy-recovery.subtitle: "§7Nation Bankruptcy Recovery Subtitle"
+nation.bankruptcy-recovery.title: "§7Nation Bankruptcy Recovery Title"
+nation.bankruptcy.chat-message: "§7Nation Bankruptcy Chat Message: {0} {1} {2} {3}"
+nation.bankruptcy.subtitle: "§7Nation Bankruptcy Subtitle: {0}"
+nation.bankruptcy.title: "§7Nation Bankruptcy Title: {0}"
+nation.budget.insufficient: "§7Nation Budget Insufficient: {0} {1}"
+nation.gui.button.back: "§7Nation GUI Button Back"
+nation.gui.button.click-to-adjust: "§7Nation GUI Button Click To Adjust"
+nation.gui.button.click-to-change: "§7Nation GUI Button Click To Change"
+nation.gui.button.click-to-disband: "§7Nation GUI Button Click To Disband"
+nation.gui.button.click-to-invite: "§7Nation GUI Button Click To Invite"
+nation.gui.button.click-to-manage: "§7Nation GUI Button Click To Manage"
+nation.gui.button.click-to-open: "§7Nation GUI Button Click To Open"
+nation.gui.button.click-to-research: "§7Nation GUI Button Click To Research"
+nation.gui.button.click-to-view: "§7Nation GUI Button Click To View"
+nation.gui.button.close: "§7Nation GUI Button Close"
+nation.gui.button.diplomacy: "§7Nation GUI Button Diplomacy"
+nation.gui.button.diplomacy.allies: "§7Nation GUI Button Diplomacy Allies: {0}"
+nation.gui.button.diplomacy.wars: "§7Nation GUI Button Diplomacy Wars: {0}"
+nation.gui.button.disband: "§7Nation GUI Button Disband"
+nation.gui.button.disband.warning: "§7Nation GUI Button Disband Warning"
+nation.gui.button.government: "§7Nation GUI Button Government"
+nation.gui.button.government.current: "§7Nation GUI Button Government Current: {0}"
+nation.gui.button.help: "§7Nation GUI Button Help"
+nation.gui.button.invite: "§7Nation GUI Button Invite"
+nation.gui.button.invite.desc: "§7Nation GUI Button Invite Desc"
+nation.gui.button.members: "§7Nation GUI Button Members"
+nation.gui.button.members.count: "§7Nation GUI Button Members Count: {0}"
+nation.gui.button.no-nation: "§7Nation GUI Button No Nation"
+nation.gui.button.permissions: "§7Nation GUI Button Permissions"
+nation.gui.button.permissions.desc: "§7Nation GUI Button Permissions Desc"
+nation.gui.button.policies: "§7Nation GUI Button Policies"
+nation.gui.button.policies.active: "§7Nation GUI Button Policies Active: {0}"
+nation.gui.button.settings: "§7Nation GUI Button Settings"
+nation.gui.button.settings.desc: "§7Nation GUI Button Settings Desc"
+nation.gui.button.tax: "§7Nation GUI Button Tax"
+nation.gui.button.tax.rate: "§7Nation GUI Button Tax Rate: {0}"
+nation.gui.button.technology: "§7Nation GUI Button Technology"
+nation.gui.button.technology.unlocked: "§7Nation GUI Button Technology Unlocked: {0}"
+nation.gui.button.territories: "§7Nation GUI Button Territories"
+nation.gui.button.territories.count: "§7Nation GUI Button Territories Count: {0}"
+nation.gui.button.treasury: "§7Nation GUI Button Treasury"
+nation.gui.button.treasury.balance: "§7Nation GUI Button Treasury Balance: {0}"
+nation.gui.help.line1: "§7Nation GUI Help Line1"
+nation.gui.help.line2: "§7Nation GUI Help Line2"
+nation.gui.help.line3: "§7Nation GUI Help Line3"
+nation.gui.help.title: "§7Nation GUI Help Title"
+nation.gui.info.founded: "§7Nation GUI Info Founded: {0}"
+nation.gui.info.government: "§7Nation GUI Info Government: {0}"
+nation.gui.info.members: "§7Nation GUI Info Members: {0}"
+nation.gui.info.territories: "§7Nation GUI Info Territories: {0}"
+nation.gui.info.treasury: "§7Nation GUI Info Treasury: {0}"
+nation.gui.invite.hint: "§7Nation GUI Invite Hint"
+nation.gui.member.click-info: "§7Nation GUI Member Click Info"
+nation.gui.member.click-to-manage: "§7Nation GUI Member Click To Manage"
+nation.gui.member.joined: "§7Nation GUI Member Joined: {0}"
+nation.gui.member.offline: "§7Nation GUI Member Offline: {0}"
+nation.gui.member.online: "§7Nation GUI Member Online"
+nation.gui.member.rank: "§7Nation GUI Member Rank: {0}"
+nation.gui.no-permission: "§7Nation GUI No Permission"
+nation.gui.not-in-nation: "§7Nation GUI Not In Nation"
+nation.gui.visitor-title: "§7Nation GUI Visitor Title"
+nation.not-found: "§7Nation Not Found: {0}"
+nation.service.action-claim: "§7Nation Service Action Claim"
+nation.service.action-create-city-state: "§7Nation Service Action Create City State"
+nation.service.action-create-nation: "§7Nation Service Action Create Nation"
+nation.service.already-in-nation-create: "§7Nation Service Already In Nation Create"
+nation.service.can-claim: "§7Nation Service Can Claim"
+nation.service.city-parent-required: "§7Nation Service City Parent Required"
+nation.service.claim-limit: "§7Nation Service Claim Limit: {0}"
+nation.service.duplicate-name: "§7Nation Service Duplicate Name"
+nation.service.explain.biome-price-driver: "§7Nation Service Explain Biome Price Driver: {0} {1}"
+nation.service.explain.capacity: "§7Nation Service Explain Capacity: {0} {1} {2}"
+nation.service.explain.claim-limit: "§7Nation Service Explain Claim Limit: {0} {1} {2}"
+nation.service.explain.distance-price-driver: "§7Nation Service Explain Distance Price Driver: {0} {1}"
+nation.service.explain.external-protection-conflict: "§7Nation Service Explain External Protection Conflict: {0} {1} {2}"
+nation.service.explain.highest-priced-chunk: "§7Nation Service Explain Highest Priced Chunk: {0} {1} {2} {3}"
+nation.service.explain.insufficient-claim-balance: "§7Nation Service Explain Insufficient Claim Balance: {0} {1} {2}"
+nation.service.explain.leader-claim-only: "§7Nation Service Explain Leader Claim Only"
+nation.service.explain.no-nation: "§7Nation Service Explain No Nation"
+nation.service.explain.overlap: "§7Nation Service Explain Overlap: {0}"
+nation.service.explain.price-summary: "§7Nation Service Explain Price Summary: {0} {1} {2}"
+nation.service.explain.unlimited: "§7Nation Service Explain Unlimited"
+nation.service.external-protection-conflict: "§7Nation Service External Protection Conflict: {0} {1} {2}"
+nation.service.insufficient-action-balance: "§7Nation Service Insufficient Action Balance: {0} {1}"
+nation.service.insufficient-claim-balance: "§7Nation Service Insufficient Claim Balance: {0}"
+nation.service.leader-city-only: "§7Nation Service Leader City Only"
+nation.service.leader-claim-only: "§7Nation Service Leader Claim Only"
+nation.service.leader-unclaim-only: "§7Nation Service Leader Unclaim Only"
+nation.service.max-city-states-nation: "§7Nation Service Max City States Nation: {0}"
+nation.service.max-city-states-player: "§7Nation Service Max City States Player: {0}"
+nation.service.max-nations: "§7Nation Service Max Nations: {0}"
+nation.service.no-nation: "§7Nation Service No Nation"
+nation.service.not-own-current: "§7Nation Service Not Own Current"
+nation.service.overlap: "§7Nation Service Overlap: {0}"
+nation.service.overlap-during-claim: "§7Nation Service Overlap During Claim"
+nation.service.resource-district-unclaim-blocked: "§7Nation Service Resource District Unclaim Blocked"
+nation.service.state-changed: "§7Nation Service State Changed"
+nation.statusbar.disabled: "§7Nation Statusbar Disabled"
+nation.statusbar.enabled: "§7Nation Statusbar Enabled"
+nation.statusbar.mode-changed: "§7Nation Statusbar Mode Changed: {0}"
+nation.statusbar.not-in-nation: "§7Nation Statusbar Not In Nation"
+nation.statusbar.refreshed: "§7Nation Statusbar Refreshed"
+navy.battle.header: "§7Navy Battle Header"
+navy.created: "§7Navy Created: {0} {1} {2} {3}"
+navy.disbanded: "§7Navy Disbanded: {0}"
+navy.disembarked: "§7Navy Disembarked: {0} {1}"
+navy.embark-failed: "§7Navy Embark Failed"
+navy.embarked: "§7Navy Embarked: {0} {1}"
+navy.invalid-state: "§7Navy Invalid State: {0}"
+navy.moved: "§7Navy Moved: {0} {1} {2}"
+navy.renamed: "§7Navy Renamed: {0} {1}"
+navy.state-set: "§7Navy State Set: {0} {1}"
+navy.supplied: "§7Navy Supplied: {0}"
+raid.info.event: "§7Raid Info Event: {0} {1}"
+resource.district.beacon-open-denied: "§7Resource District Beacon Open Denied"
+resource.district.beacon-protected: "§7Resource District Beacon Protected"
+resource.district.menu.cancel-lore: "§7Resource District Menu Cancel Lore"
+resource.district.menu.cancel-name: "§7Resource District Menu Cancel Name"
+resource.district.menu.confirm-title: "§7Resource District Menu Confirm Title"
+resource.district.menu.operation.next-step-ask-leader: "§7Resource District Menu Operation Next Step Ask Leader"
+resource.district.menu.operation.next-step-check-state: "§7Resource District Menu Operation Next Step Check State"
+resource.district.menu.operation.next-step-go-online: "§7Resource District Menu Operation Next Step Go Online"
+resource.district.menu.operation.next-step-own-district: "§7Resource District Menu Operation Next Step Own District"
+resource.district.menu.operation.next-step-ready: "§7Resource District Menu Operation Next Step Ready"
+resource.district.menu.operation.next-step-select-target: "§7Resource District Menu Operation Next Step Select Target"
+resource.district.menu.operation.next-step-top-up: "§7Resource District Menu Operation Next Step Top Up"
+resource.district.menu.operation.next-step-wait-depletion: "§7Resource District Menu Operation Next Step Wait Depletion"
+resource.district.menu.operation.restriction-district-missing: "§7Resource District Menu Operation Restriction District Missing"
+resource.district.menu.operation.restriction-need-balance: "§7Resource District Menu Operation Restriction Need Balance"
+resource.district.menu.operation.restriction-need-leader: "§7Resource District Menu Operation Restriction Need Leader"
+resource.district.menu.operation.restriction-need-own-nation: "§7Resource District Menu Operation Restriction Need Own Nation"
+resource.district.menu.operation.restriction-none: "§7Resource District Menu Operation Restriction None"
+resource.district.menu.operation.restriction-online-only: "§7Resource District Menu Operation Restriction Online Only"
+resource.district.menu.operation.restriction-unknown: "§7Resource District Menu Operation Restriction Unknown"
+resource.district.menu.operation.stage-awaiting-target: "§7Resource District Menu Operation Stage Awaiting Target"
+resource.district.menu.operation.stage-blocked: "§7Resource District Menu Operation Stage Blocked"
+resource.district.menu.operation.stage-ready: "§7Resource District Menu Operation Stage Ready"
+resource.district.menu.operation.stage-unknown: "§7Resource District Menu Operation Stage Unknown"
+resource.district.menu.operation.stage-waiting-depletion: "§7Resource District Menu Operation Stage Waiting Depletion"
+resource.district.menu.title: "§7Resource District Menu Title"
+resource.district.migration.already-waiting: "§7Resource District Migration Already Waiting"
+resource.district.migration.awaiting-target: "§7Resource District Migration Awaiting Target"
+resource.district.migration.core-invalid: "§7Resource District Migration Core Invalid"
+resource.district.migration.core-received: "§7Resource District Migration Core Received"
+resource.district.migration.insufficient-balance: "§7Resource District Migration Insufficient Balance: {0}"
+resource.district.migration.item-district: "§7Resource District Migration Item District: {0}"
+resource.district.migration.leader-only: "§7Resource District Migration Leader Only"
+resource.district.migration.none: "§7Resource District Migration None"
+resource.district.migration.not-found: "§7Resource District Migration Not Found"
+resource.district.migration.player-offline: "§7Resource District Migration Player Offline"
+resource.district.migration.target-already-district: "§7Resource District Migration Target Already District"
+resource.district.migration.target-leader-only: "§7Resource District Migration Target Leader Only"
+resource.district.migration.target-must-own: "§7Resource District Migration Target Must Own"
+resource.district.migration.target-not-awaiting: "§7Resource District Migration Target Not Awaiting"
+resource.district.mined: "§7Resource District Mined: {0}"
+resource.district.none: "§7Resource District None"
+resource.district.stale-menu: "§7Resource District Stale Menu"
+resource.district.unknown-nation: "§7Resource District Unknown Nation"
+shop.not-found: "§7Shop Not Found"
+shop.npc.no-shop: "§7Shop NPC No Shop"
+shop.unknown-command: "§7Shop Unknown Command: {0}"
+siege.not-in-nation: "§7Siege Not In Nation"
+teleport.already-teleporting: "§7Teleport Already Teleporting"
+teleport.cancelled-moved: "§7Teleport Cancelled Moved"
+teleport.cooldown: "§7Teleport Cooldown: {0}"
+teleport.countdown: "§7Teleport Countdown: {0}"
+teleport.insufficient-funds: "§7Teleport Insufficient Funds: {0}"
+teleport.not-in-nation: "§7Teleport Not In Nation"
+teleport.specify-town: "§7Teleport Specify Town"
+teleport.success: "§7Teleport Success: {0}"
+teleport.town-not-found: "§7Teleport Town Not Found: {0}"
+teleport.warmup: "§7Teleport Warmup: {0}"
+territory.protection.denied: "§7Territory Protection Denied: {0} {1}"
+territory.protection.unknown-owner: "§7Territory Protection Unknown Owner"
+territory.tool.cancelled: "§7Territory Tool Cancelled"
+territory.tool.confirm-hint: "§7Territory Tool Confirm Hint"
+territory.tool.confirmed: "§7Territory Tool Confirmed: {0} {1} {2}"
+territory.tool.disabled: "§7Territory Tool Disabled"
+territory.tool.incomplete-selection: "§7Territory Tool Incomplete Selection"
+territory.tool.need-block: "§7Territory Tool Need Block"
+territory.tool.no-selection: "§7Territory Tool No Selection"
+territory.tool.received: "§7Territory Tool Received"
+war.event.declared.subtitle: "§7War Event Declared Subtitle: {0} {1}"
+war.event.declared.title: "§7War Event Declared Title: {0} {1}"
+war.event.ended.subtitle: "§7War Event Ended Subtitle: {0}"
+war.event.ended.title: "§7War Event Ended Title: {0} {1}"
+war.event.enemy.declared: "§7War Event Enemy Declared: {0}"
+war.event.enemy.ended: "§7War Event Enemy Ended: {0} {1}"
+war.event.enemy.started: "§7War Event Enemy Started: {0}"
+war.event.started.subtitle: "§7War Event Started Subtitle"
+war.event.started.title: "§7War Event Started Title: {0} {1}"
+war.event.your-nation.declared: "§7War Event Your Nation Declared: {0}"
+war.event.your-nation.ended: "§7War Event Your Nation Ended: {0} {1}"
+war.event.your-nation.started: "§7War Event Your Nation Started: {0}"
+war.reason.admin-force: "§7War Reason Admin Force"
+war.reason.max-duration: "§7War Reason Max Duration"
+war.reason.peace-treaty: "§7War Reason Peace Treaty"
+war.reason.surrender: "§7War Reason Surrender"
+war.reason.timeout: "§7War Reason Timeout"
+war.reason.unknown: "§7War Reason Unknown"
+# codex-generated-i18n-fallbacks:end

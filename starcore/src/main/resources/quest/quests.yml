@@ -1,0 +1,568 @@
+# 任务系统配置文件
+# StarCore Quest System Configuration
+
+# 任务系统设置
+settings:
+  # 每个玩家最多同时接取的任务数量
+  max_active_quests: 20
+
+  # 每个玩家每日任务数量上限
+  max_daily_quests: 10
+
+  # 每日任务刷新时间（小时，24小时制）
+  daily_refresh_hour: 4
+
+  # 是否启用个性化每日任务
+  personalized_daily_quests: true
+
+  # 每日任务数量
+  daily_quest_count: 5
+
+  # 任务超时自动失败
+  auto_fail_expired: true
+
+# 委托系统设置
+commission:
+  # 委托发布基础费用
+  creation_cost: 100.0
+
+  # 委托税率（0.1 = 10%）
+  tax_rate: 0.1
+
+  # 每个玩家最多发布的委托数
+  max_commissions_per_player: 3
+
+  # 每个玩家最多接取的委托数
+  max_accepted_commissions: 5
+
+  # 委托过期时间（天）
+  expire_days: 7
+
+# 主线任务（30个任务示例）
+main_quests:
+  # 第一章：新手村
+  main_001:
+    id: "main_001"
+    name: "初来乍到"
+    description: "熟悉这个世界，完成新手引导"
+    type: MAIN
+    difficulty: EASY
+    category: "tutorial"
+    min_level: 0
+    objectives:
+      - type: TALK_NPC
+        description: "与村长对话"
+        amount: 1
+        target: "village_chief"
+      - type: COLLECT_ITEM
+        description: "收集木材"
+        amount: 10
+        target: "OAK_LOG"
+    rewards:
+      money: 50.0
+      experience: 100
+      items:
+        - material: WOODEN_SWORD
+          amount: 1
+        - material: BREAD
+          amount: 5
+
+  main_002:
+    id: "main_002"
+    name: "建造庇护所"
+    description: "建造你的第一个家"
+    type: MAIN
+    difficulty: EASY
+    category: "tutorial"
+    min_level: 0
+    prerequisites:
+      - "main_001"
+    objectives:
+      - type: PLACE_BLOCK
+        description: "放置木板"
+        amount: 50
+        target: "OAK_PLANKS"
+      - type: CRAFT_ITEM
+        description: "合成工作台"
+        amount: 1
+        target: "CRAFTING_TABLE"
+    rewards:
+      money: 100.0
+      experience: 150
+      items:
+        - material: BED
+          amount: 1
+
+  main_003:
+    id: "main_003"
+    name: "采矿入门"
+    description: "学习采矿技能"
+    type: MAIN
+    difficulty: EASY
+    category: "tutorial"
+    min_level: 5
+    prerequisites:
+      - "main_002"
+    objectives:
+      - type: CRAFT_ITEM
+        description: "制作石镐"
+        amount: 1
+        target: "STONE_PICKAXE"
+      - type: BREAK_BLOCK
+        description: "挖掘石头"
+        amount: 30
+        target: "STONE"
+      - type: COLLECT_ITEM
+        description: "收集铁矿石"
+        amount: 5
+        target: "IRON_ORE"
+    rewards:
+      money: 200.0
+      experience: 250
+      items:
+        - material: IRON_PICKAXE
+          amount: 1
+
+  main_004:
+    id: "main_004"
+    name: "狩猎试炼"
+    description: "证明你的战斗能力"
+    type: MAIN
+    difficulty: NORMAL
+    category: "combat"
+    min_level: 10
+    prerequisites:
+      - "main_003"
+    objectives:
+      - type: KILL_ENTITY
+        description: "击杀僵尸"
+        amount: 10
+        target: "ZOMBIE"
+      - type: KILL_ENTITY
+        description: "击杀骷髅"
+        amount: 5
+        target: "SKELETON"
+    rewards:
+      money: 300.0
+      experience: 400
+      items:
+        - material: IRON_SWORD
+          amount: 1
+        - material: IRON_HELMET
+          amount: 1
+
+  main_005:
+    id: "main_005"
+    name: "农耕生活"
+    description: "学习种植作物"
+    type: MAIN
+    difficulty: EASY
+    category: "farming"
+    min_level: 8
+    prerequisites:
+      - "main_002"
+    objectives:
+      - type: CRAFT_ITEM
+        description: "制作木锄"
+        amount: 1
+        target: "WOODEN_HOE"
+      - type: PLACE_BLOCK
+        description: "种植小麦"
+        amount: 20
+        target: "WHEAT"
+      - type: COLLECT_ITEM
+        description: "收获小麦"
+        amount: 20
+        target: "WHEAT"
+    rewards:
+      money: 150.0
+      experience: 200
+      items:
+        - material: IRON_HOE
+          amount: 1
+        - material: WHEAT_SEEDS
+          amount: 64
+
+  main_006:
+    id: "main_006"
+    name: "探索地下城"
+    description: "深入地下寻找宝藏"
+    type: MAIN
+    difficulty: HARD
+    category: "exploration"
+    min_level: 15
+    prerequisites:
+      - "main_004"
+    objectives:
+      - type: REACH_LOCATION
+        description: "到达地下城入口"
+        amount: 1
+        target: "dungeon_entrance"
+      - type: COLLECT_ITEM
+        description: "收集钻石"
+        amount: 3
+        target: "DIAMOND"
+      - type: KILL_ENTITY
+        description: "击败地下城守卫"
+        amount: 1
+        target: "IRON_GOLEM"
+    rewards:
+      money: 500.0
+      experience: 800
+      items:
+        - material: DIAMOND_SWORD
+          amount: 1
+        - material: ENCHANTED_BOOK
+          amount: 1
+
+  main_007:
+    id: "main_007"
+    name: "附魔大师"
+    description: "学习附魔技艺"
+    type: MAIN
+    difficulty: NORMAL
+    category: "crafting"
+    min_level: 20
+    prerequisites:
+      - "main_006"
+    objectives:
+      - type: CRAFT_ITEM
+        description: "制作附魔台"
+        amount: 1
+        target: "ENCHANTING_TABLE"
+      - type: COLLECT_ITEM
+        description: "收集青金石"
+        amount: 20
+        target: "LAPIS_LAZULI"
+      - type: ENCHANT
+        description: "附魔任意物品"
+        amount: 3
+    rewards:
+      money: 400.0
+      experience: 600
+      items:
+        - material: BOOKSHELF
+          amount: 15
+        - material: LAPIS_LAZULI
+          amount: 64
+
+  main_008:
+    id: "main_008"
+    name: "下界之旅"
+    description: "前往下界探险"
+    type: MAIN
+    difficulty: HARD
+    category: "exploration"
+    min_level: 25
+    prerequisites:
+      - "main_007"
+    objectives:
+      - type: CRAFT_ITEM
+        description: "制作打火石"
+        amount: 1
+        target: "FLINT_AND_STEEL"
+      - type: REACH_LOCATION
+        description: "进入下界"
+        amount: 1
+        target: "nether_portal"
+      - type: COLLECT_ITEM
+        description: "收集下界疣"
+        amount: 10
+        target: "NETHER_WART"
+      - type: KILL_ENTITY
+        description: "击杀烈焰人"
+        amount: 5
+        target: "BLAZE"
+    rewards:
+      money: 800.0
+      experience: 1200
+      items:
+        - material: BLAZE_ROD
+          amount: 10
+        - material: FIRE_CHARGE
+          amount: 16
+
+  main_009:
+    id: "main_009"
+    name: "酿造入门"
+    description: "学习酿造药水"
+    type: MAIN
+    difficulty: NORMAL
+    category: "crafting"
+    min_level: 28
+    prerequisites:
+      - "main_008"
+    objectives:
+      - type: CRAFT_ITEM
+        description: "制作酿造台"
+        amount: 1
+        target: "BREWING_STAND"
+      - type: CUSTOM
+        description: "酿造3瓶药水"
+        amount: 3
+    rewards:
+      money: 500.0
+      experience: 700
+      items:
+        - material: POTION
+          amount: 10
+        - material: GLASS_BOTTLE
+          amount: 64
+
+  main_010:
+    id: "main_010"
+    name: "末地征途"
+    description: "寻找末地传送门"
+    type: MAIN
+    difficulty: EXPERT
+    category: "exploration"
+    min_level: 35
+    prerequisites:
+      - "main_009"
+    objectives:
+      - type: COLLECT_ITEM
+        description: "收集末影珍珠"
+        amount: 12
+        target: "ENDER_PEARL"
+      - type: CRAFT_ITEM
+        description: "制作末影之眼"
+        amount: 12
+        target: "ENDER_EYE"
+      - type: REACH_LOCATION
+        description: "找到要塞"
+        amount: 1
+        target: "stronghold"
+    rewards:
+      money: 1000.0
+      experience: 1500
+      items:
+        - material: DIAMOND_CHESTPLATE
+          amount: 1
+        - material: ENDER_PEARL
+          amount: 16
+
+# 支线任务（10个）
+side_quests:
+  side_001:
+    id: "side_001"
+    name: "渔夫的请求"
+    description: "帮助渔夫钓鱼"
+    type: SIDE
+    difficulty: EASY
+    category: "fishing"
+    min_level: 5
+    objectives:
+      - type: FISH
+        description: "钓鱼"
+        amount: 20
+    rewards:
+      money: 100.0
+      experience: 150
+      items:
+        - material: FISHING_ROD
+          amount: 1
+
+  side_002:
+    id: "side_002"
+    name: "商人的货物"
+    description: "为商人运送货物"
+    type: SIDE
+    difficulty: NORMAL
+    category: "delivery"
+    min_level: 10
+    objectives:
+      - type: DELIVER_ITEM
+        description: "运送羊毛"
+        amount: 64
+        target: "WHITE_WOOL"
+      - type: REACH_LOCATION
+        description: "到达目的地"
+        amount: 1
+        target: "merchant_shop"
+    rewards:
+      money: 250.0
+      experience: 300
+
+  side_003:
+    id: "side_003"
+    name: "牧羊人的羊群"
+    description: "帮助牧羊人繁殖羊"
+    type: SIDE
+    difficulty: EASY
+    category: "farming"
+    min_level: 8
+    objectives:
+      - type: BREED
+        description: "繁殖羊"
+        amount: 10
+        target: "SHEEP"
+    rewards:
+      money: 150.0
+      experience: 200
+      items:
+        - material: WHEAT
+          amount: 64
+
+  side_004:
+    id: "side_004"
+    name: "建筑师的设计"
+    description: "帮助建筑师建造房屋"
+    type: SIDE
+    difficulty: NORMAL
+    category: "building"
+    min_level: 12
+    objectives:
+      - type: PLACE_BLOCK
+        description: "放置石砖"
+        amount: 100
+        target: "STONE_BRICKS"
+      - type: PLACE_BLOCK
+        description: "放置玻璃"
+        amount: 20
+        target: "GLASS"
+    rewards:
+      money: 300.0
+      experience: 400
+
+  side_005:
+    id: "side_005"
+    name: "炼金术士的实验"
+    description: "为炼金术士收集材料"
+    type: SIDE
+    difficulty: HARD
+    category: "collection"
+    min_level: 25
+    objectives:
+      - type: COLLECT_ITEM
+        description: "收集地狱疣"
+        amount: 20
+        target: "NETHER_WART"
+      - type: COLLECT_ITEM
+        description: "收集烈焰粉"
+        amount: 10
+        target: "BLAZE_POWDER"
+      - type: COLLECT_ITEM
+        description: "收集恶魂之泪"
+        amount: 3
+        target: "GHAST_TEAR"
+    rewards:
+      money: 600.0
+      experience: 900
+      items:
+        - material: POTION
+          amount: 5
+
+  side_006:
+    id: "side_006"
+    name: "铁匠的订单"
+    description: "为铁匠制作武器"
+    type: SIDE
+    difficulty: NORMAL
+    category: "crafting"
+    min_level: 15
+    objectives:
+      - type: CRAFT_ITEM
+        description: "制作铁剑"
+        amount: 5
+        target: "IRON_SWORD"
+      - type: CRAFT_ITEM
+        description: "制作铁盔甲"
+        amount: 1
+        target: "IRON_CHESTPLATE"
+    rewards:
+      money: 400.0
+      experience: 500
+
+  side_007:
+    id: "side_007"
+    name: "驯兽师的挑战"
+    description: "驯服野生动物"
+    type: SIDE
+    difficulty: NORMAL
+    category: "taming"
+    min_level: 18
+    objectives:
+      - type: TAME
+        description: "驯服狼"
+        amount: 3
+        target: "WOLF"
+      - type: TAME
+        description: "驯服猫"
+        amount: 2
+        target: "CAT"
+    rewards:
+      money: 350.0
+      experience: 450
+      items:
+        - material: BONE
+          amount: 64
+
+  side_008:
+    id: "side_008"
+    name: "图书管理员的藏书"
+    description: "收集稀有书籍"
+    type: SIDE
+    difficulty: HARD
+    category: "collection"
+    min_level: 22
+    objectives:
+      - type: COLLECT_ITEM
+        description: "收集附魔书"
+        amount: 5
+        target: "ENCHANTED_BOOK"
+      - type: CRAFT_ITEM
+        description: "制作书架"
+        amount: 20
+        target: "BOOKSHELF"
+    rewards:
+      money: 500.0
+      experience: 700
+
+  side_009:
+    id: "side_009"
+    name: "探险家的地图"
+    description: "探索未知区域"
+    type: SIDE
+    difficulty: EXPERT
+    category: "exploration"
+    min_level: 30
+    objectives:
+      - type: REACH_LOCATION
+        description: "找到沙漠神殿"
+        amount: 1
+        target: "desert_temple"
+      - type: REACH_LOCATION
+        description: "找到丛林神庙"
+        amount: 1
+        target: "jungle_temple"
+      - type: REACH_LOCATION
+        description: "找到海底神殿"
+        amount: 1
+        target: "ocean_monument"
+    rewards:
+      money: 800.0
+      experience: 1000
+
+  side_010:
+    id: "side_010"
+    name: "末影龙的传说"
+    description: "挑战末影龙"
+    type: SIDE
+    difficulty: LEGENDARY
+    category: "boss"
+    min_level: 40
+    prerequisites:
+      - "main_010"
+    objectives:
+      - type: KILL_ENTITY
+        description: "击败末影龙"
+        amount: 1
+        target: "ENDER_DRAGON"
+    rewards:
+      money: 2000.0
+      experience: 3000
+      items:
+        - material: ELYTRA
+          amount: 1
+        - material: DRAGON_HEAD
+          amount: 1

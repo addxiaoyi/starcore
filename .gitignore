@@ -1,0 +1,18 @@
+# StarCore - GitHub 仓库精简配置
+# 只保留 starcore/src 源码，删除其他所有文件
+
+# 排除根目录所有内容
+/*
+
+# 保留必要的仓库文件
+!.gitignore
+!.github/
+!CLAUDE.md
+!LICENSE
+!README.md
+
+# 只保留 starcore/src 目录（核心源码）
+starcore/
+!starcore/pom.xml
+!starcore/.mvn/
+!starcore/src/

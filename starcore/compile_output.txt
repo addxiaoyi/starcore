@@ -1,0 +1,283 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------< dev.starcore:starcore >------------------------
+[INFO] Building STARCORE 0.1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] The POM for org.mockito:mockito-inline:jar:5.14.2 is missing, no dependency information available
+[INFO] 
+[INFO] --- jacoco:0.8.12:prepare-agent (default) @ starcore ---
+[INFO] argLine set to -javaagent:C:\\Users\\l\\.m2\\repository\\org\\jacoco\\org.jacoco.agent\\0.8.12\\org.jacoco.agent-0.8.12-runtime.jar=destfile=D:\\qwq\\项目\\mapadd\\starcore\\target\\jacoco.exec
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ starcore ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] Copying 58 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ starcore ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1105 source files with javac [debug parameters release 21] to target\classes
+[INFO] 由于在类路径中发现了一个或多个处理程序，因此启用了
+  批注处理。未来发行版的 javac 可能会禁用批注处理，
+  除非至少按名称指定了一个处理程序 (-processor)，
+  或指定了搜索路径 (--processor-path, --processor-module-path)，
+  或显式启用了批注处理 (-proc:only, -proc:full)。
+  可使用 -Xlint:-options 隐藏此消息。
+  可使用 -proc:none 禁用批注处理。
+[INFO] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/event/random/RandomEventService.java: 某些输入文件使用或覆盖了已过时的 API。
+[INFO] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/event/random/RandomEventService.java: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+[INFO] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/crossserver/CrossServerNationSync.java: 某些输入文件使用了未经检查或不安全的操作。
+[INFO] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/crossserver/CrossServerNationSync.java: 有关详细信息, 请使用 -Xlint:unchecked 重新编译。
+[INFO] 某些消息已经过简化; 请使用 -Xdiags:verbose 重新编译以获得完整输出
+[INFO] -------------------------------------------------------------
+[WARNING] COMPILATION WARNING : 
+[INFO] -------------------------------------------------------------
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/foundation/animation/SoundFeedbackManager.java:[155,25] org.bukkit.Sound 中的 valueOf(java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/foundation/animation/SoundFeedbackManager.java:[160,29] org.bukkit.Sound 中的 valueOf(java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/foundation/feedback/BukkitInGameFeedbackService.java:[157,37] org.bukkit.Sound 中的 valueOf(java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/foundation/feedback/BukkitInGameFeedbackService.java:[162,41] org.bukkit.Sound 中的 valueOf(java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonWorldManager.java:[67,18] org.bukkit.World 中的 setGameRuleValue(java.lang.String,java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonWorldManager.java:[68,18] org.bukkit.World 中的 setGameRuleValue(java.lang.String,java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonWorldManager.java:[69,18] org.bukkit.World 中的 setGameRuleValue(java.lang.String,java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonWorldManager.java:[70,18] org.bukkit.World 中的 setGameRuleValue(java.lang.String,java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonWorldManager.java:[71,18] org.bukkit.World 中的 setGameRuleValue(java.lang.String,java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/technology/TechnologyEffectRegistry.java:[103,25] org.bukkit.attribute.AttributeModifier 中的 getUniqueId() 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/technology/TechnologyEffectRegistry.java:[262,42] org.bukkit.attribute.AttributeModifier 中的 AttributeModifier(java.util.UUID,java.lang.String,double,org.bukkit.attribute.AttributeModifier.Operation) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/technology/TechnologyEffectRegistry.java:[279,42] org.bukkit.attribute.AttributeModifier 中的 AttributeModifier(java.util.UUID,java.lang.String,double,org.bukkit.attribute.AttributeModifier.Operation) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/technology/TechnologyEffectRegistry.java:[292,22] org.bukkit.attribute.AttributeInstance 中的 removeModifier(java.util.UUID) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/technology/TechnologyEffectRegistry.java:[295,35] org.bukkit.attribute.AttributeModifier 中的 AttributeModifier(java.util.UUID,java.lang.String,double,org.bukkit.attribute.AttributeModifier.Operation) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/technology/TechnologyEffectRegistry.java:[343,22] org.bukkit.attribute.AttributeInstance 中的 removeModifier(java.util.UUID) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/technology/TechnologyEffectRegistry.java:[346,35] org.bukkit.attribute.AttributeModifier 中的 AttributeModifier(java.util.UUID,java.lang.String,double,org.bukkit.attribute.AttributeModifier.Operation) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/weather/gui/WeatherMenu.java:[480,17] org.bukkit.inventory.meta.ItemMeta 中的 getLocalizedName() 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/weather/gui/WeatherMenu.java:[480,53] org.bukkit.inventory.meta.ItemMeta 中的 getLocalizedName() 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/weather/gui/WeatherMenu.java:[481,34] org.bukkit.inventory.meta.ItemMeta 中的 getLocalizedName() 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/weather/gui/WeatherMenu.java:[630,21] org.bukkit.inventory.meta.ItemMeta 中的 setLocalizedName(java.lang.String) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/nation/tax/TaxCollectionService.java:[319,24] 未使用 @Deprecated 对已过时的项目进行注释
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/pet/PetService.java:[193,17] org.bukkit.inventory.meta.SpawnEggMeta 中的 setSpawnedType(org.bukkit.entity.EntityType) 已过时, 且标记为待删除
+[WARNING] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/pet/PetModule.java:[108,37] org.bukkit.plugin 中的 org.bukkit.plugin.SimplePluginManager 已过时, 且标记为待删除
+[INFO] 23 warnings 
+[INFO] -------------------------------------------------------------
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/blueprint/BlueprintModule.java:[89,5] 方法不会覆盖或实现超类型的方法
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonRoom.java:[35,89] 找不到符号
+  符号:   变量 SURVIVE
+  位置: 类 dev.starcore.starcore.module.dungeon.DungeonRoomClearCondition
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonRoom.java:[42,56] 找不到符号
+  符号:   变量 SURVIVE
+  位置: 类 dev.starcore.starcore.module.dungeon.DungeonRoomClearCondition
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[270,44] 找不到符号
+  符号:   方法 get(java.lang.String,java.lang.String)
+  位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[378,40] 找不到符号
+  符号:   方法 get(java.lang.String,java.lang.String)
+  位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[384,40] 找不到符号
+  符号:   方法 get(java.lang.String,java.lang.String)
+  位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[393,78] 不兼容的类型: int无法转换为java.math.BigDecimal
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[394,44] 找不到符号
+  符号:   方法 get(java.lang.String,java.lang.String)
+  位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[398,78] 不兼容的类型: int无法转换为java.math.BigDecimal
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[404,40] 找不到符号
+  符号:   方法 get(java.lang.String,java.lang.String)
+  位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[414,81] 不兼容的类型: int无法转换为java.math.BigDecimal
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[416,40] 找不到符号
+  符号:   方法 get(java.lang.String,java.lang.String)
+  位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[432,36] 找不到符号
+  符号:   方法 get(java.lang.String,java.lang.String)
+  位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[457,40] 找不到符号
+  符号:   方法 get(java.lang.String,java.lang.String)
+  位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[488,36] 找不到符号
+  符号:   方法 get(java.lang.String,java.lang.String)
+  位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[531,14] 找不到符号
+  符号:   方法 handleDeath()
+  位置: 类型为dev.starcore.starcore.module.dungeon.PlayerDungeonState的变量 state
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[549,44] 找不到符号
+  符号:   方法 get(java.lang.String,java.lang.String)
+  位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[571,14] 找不到符号
+  符号:   方法 handleRespawn()
+  位置: 类型为dev.starcore.starcore.module.dungeon.PlayerDungeonState的变量 state
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[654,51] 找不到符号
+  符号:   方法 get(java.lang.String,java.lang.String)
+  位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[786,47] 找不到符号
+  符号:   方法 get(java.lang.String,java.lang.String)
+  位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[799,47] 找不到符号
+  符号:   方法 get(java.lang.String,java.lang.String)
+  位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonRepository.java:[56,27] 找不到符号
+  符号:   方法 runAsyncVoid(this::save)
+  位置: 类型为dev.starcore.starcore.core.persistence.PersistenceService的变量 persistenceService
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonRepository.java:[167,18] 找不到符号
+  符号:   方法 addDeath()
+  位置: 类型为dev.starcore.starcore.module.dungeon.DungeonStatistics的变量 stats
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonRewardService.java:[121,54] 不兼容的类型: int无法转换为java.math.BigDecimal
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonRewardService.java:[169,69] 找不到符号
+  符号:   方法 toUpperCase()
+  位置: 类 org.bukkit.Material
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonInstance.java:[154,16] 不兼容的类型: java.util.UUID无法转换为java.lang.String
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonInstance.java:[161,30] 不兼容的类型: java.lang.String无法转换为java.util.UUID
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/PlayerDungeonState.java:[74,44] 找不到符号
+  符号:   方法 forEach((index,ite[...]; } })
+  位置: 类 org.bukkit.inventory.ItemStack[]
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/PlayerDungeonState.java:[82,49] 找不到符号
+  符号:   方法 forEach((index,ite[...]; } })
+  位置: 类 org.bukkit.inventory.ItemStack[]
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/PlayerDungeonState.java:[119,43] 无法推断java.util.HashMap<>的类型参数
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/PlayerDungeonState.java:[129,43] 无法推断java.util.HashMap<>的类型参数
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/command/DungeonCommand.java:[42,28] 找不到符号
+  符号:   方法 handleJoin(org.bukkit.command.CommandSender,java.lang.String[])
+  位置: 类 dev.starcore.starcore.module.dungeon.command.DungeonCommand
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/command/DungeonCommand.java:[83,40] 找不到符号
+  符号:   方法 get(java.lang.String,java.lang.String)
+  位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/command/DungeonCommand.java:[115,40] 找不到符号
+  符号:   方法 get(java.lang.String,java.lang.String)
+  位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/command/DungeonCommand.java:[239,13] 找不到符号
+  符号:   类 DungeonGui
+  位置: 类 dev.starcore.starcore.module.dungeon.command.DungeonCommand
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/command/DungeonCommand.java:[247,40] 找不到符号
+  符号:   方法 get(java.lang.String,java.lang.String)
+  位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/command/DungeonCommand.java:[252,36] 找不到符号
+  符号:   方法 get(java.lang.String,java.lang.String)
+  位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/command/DungeonCommand.java:[260,40] 找不到符号
+  符号:   方法 get(java.lang.String,java.lang.String)
+  位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/command/DungeonCommand.java:[290,48] 找不到符号
+  符号:   方法 get(java.lang.String,java.lang.String)
+  位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/gui/DungeonGui.java:[118,37] 找不到符号
+  符号:   变量 DungeonDifficulty
+  位置: 类 dev.starcore.starcore.module.dungeon.gui.DungeonGui
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/shop/service/NpcShopServiceImpl.java:[281,77] 不兼容的类型: java.util.Map<java.util.UUID,java.util.Map<java.util.UUID,java.lang.Object>>无法转换为java.util.Map<java.util.UUID,java.util.Map<java.util.UUID,dev.starcore.starcore.module.shop.service.NpcShopServiceImpl.TradeRecord>>
+[INFO] 41 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  11.631 s
+[INFO] Finished at: 2026-06-25T18:58:22+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project starcore: Compilation failure: Compilation failure: 
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/blueprint/BlueprintModule.java:[89,5] 方法不会覆盖或实现超类型的方法
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonRoom.java:[35,89] 找不到符号
+[ERROR]   符号:   变量 SURVIVE
+[ERROR]   位置: 类 dev.starcore.starcore.module.dungeon.DungeonRoomClearCondition
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonRoom.java:[42,56] 找不到符号
+[ERROR]   符号:   变量 SURVIVE
+[ERROR]   位置: 类 dev.starcore.starcore.module.dungeon.DungeonRoomClearCondition
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[270,44] 找不到符号
+[ERROR]   符号:   方法 get(java.lang.String,java.lang.String)
+[ERROR]   位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[378,40] 找不到符号
+[ERROR]   符号:   方法 get(java.lang.String,java.lang.String)
+[ERROR]   位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[384,40] 找不到符号
+[ERROR]   符号:   方法 get(java.lang.String,java.lang.String)
+[ERROR]   位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[393,78] 不兼容的类型: int无法转换为java.math.BigDecimal
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[394,44] 找不到符号
+[ERROR]   符号:   方法 get(java.lang.String,java.lang.String)
+[ERROR]   位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[398,78] 不兼容的类型: int无法转换为java.math.BigDecimal
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[404,40] 找不到符号
+[ERROR]   符号:   方法 get(java.lang.String,java.lang.String)
+[ERROR]   位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[414,81] 不兼容的类型: int无法转换为java.math.BigDecimal
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[416,40] 找不到符号
+[ERROR]   符号:   方法 get(java.lang.String,java.lang.String)
+[ERROR]   位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[432,36] 找不到符号
+[ERROR]   符号:   方法 get(java.lang.String,java.lang.String)
+[ERROR]   位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[457,40] 找不到符号
+[ERROR]   符号:   方法 get(java.lang.String,java.lang.String)
+[ERROR]   位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[488,36] 找不到符号
+[ERROR]   符号:   方法 get(java.lang.String,java.lang.String)
+[ERROR]   位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[531,14] 找不到符号
+[ERROR]   符号:   方法 handleDeath()
+[ERROR]   位置: 类型为dev.starcore.starcore.module.dungeon.PlayerDungeonState的变量 state
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[549,44] 找不到符号
+[ERROR]   符号:   方法 get(java.lang.String,java.lang.String)
+[ERROR]   位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[571,14] 找不到符号
+[ERROR]   符号:   方法 handleRespawn()
+[ERROR]   位置: 类型为dev.starcore.starcore.module.dungeon.PlayerDungeonState的变量 state
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[654,51] 找不到符号
+[ERROR]   符号:   方法 get(java.lang.String,java.lang.String)
+[ERROR]   位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[786,47] 找不到符号
+[ERROR]   符号:   方法 get(java.lang.String,java.lang.String)
+[ERROR]   位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonServiceImpl.java:[799,47] 找不到符号
+[ERROR]   符号:   方法 get(java.lang.String,java.lang.String)
+[ERROR]   位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonRepository.java:[56,27] 找不到符号
+[ERROR]   符号:   方法 runAsyncVoid(this::save)
+[ERROR]   位置: 类型为dev.starcore.starcore.core.persistence.PersistenceService的变量 persistenceService
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonRepository.java:[167,18] 找不到符号
+[ERROR]   符号:   方法 addDeath()
+[ERROR]   位置: 类型为dev.starcore.starcore.module.dungeon.DungeonStatistics的变量 stats
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonRewardService.java:[121,54] 不兼容的类型: int无法转换为java.math.BigDecimal
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonRewardService.java:[169,69] 找不到符号
+[ERROR]   符号:   方法 toUpperCase()
+[ERROR]   位置: 类 org.bukkit.Material
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonInstance.java:[154,16] 不兼容的类型: java.util.UUID无法转换为java.lang.String
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/DungeonInstance.java:[161,30] 不兼容的类型: java.lang.String无法转换为java.util.UUID
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/PlayerDungeonState.java:[74,44] 找不到符号
+[ERROR]   符号:   方法 forEach((index,ite[...]; } })
+[ERROR]   位置: 类 org.bukkit.inventory.ItemStack[]
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/PlayerDungeonState.java:[82,49] 找不到符号
+[ERROR]   符号:   方法 forEach((index,ite[...]; } })
+[ERROR]   位置: 类 org.bukkit.inventory.ItemStack[]
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/PlayerDungeonState.java:[119,43] 无法推断java.util.HashMap<>的类型参数
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/PlayerDungeonState.java:[129,43] 无法推断java.util.HashMap<>的类型参数
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/command/DungeonCommand.java:[42,28] 找不到符号
+[ERROR]   符号:   方法 handleJoin(org.bukkit.command.CommandSender,java.lang.String[])
+[ERROR]   位置: 类 dev.starcore.starcore.module.dungeon.command.DungeonCommand
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/command/DungeonCommand.java:[83,40] 找不到符号
+[ERROR]   符号:   方法 get(java.lang.String,java.lang.String)
+[ERROR]   位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/command/DungeonCommand.java:[115,40] 找不到符号
+[ERROR]   符号:   方法 get(java.lang.String,java.lang.String)
+[ERROR]   位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/command/DungeonCommand.java:[239,13] 找不到符号
+[ERROR]   符号:   类 DungeonGui
+[ERROR]   位置: 类 dev.starcore.starcore.module.dungeon.command.DungeonCommand
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/command/DungeonCommand.java:[247,40] 找不到符号
+[ERROR]   符号:   方法 get(java.lang.String,java.lang.String)
+[ERROR]   位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/command/DungeonCommand.java:[252,36] 找不到符号
+[ERROR]   符号:   方法 get(java.lang.String,java.lang.String)
+[ERROR]   位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/command/DungeonCommand.java:[260,40] 找不到符号
+[ERROR]   符号:   方法 get(java.lang.String,java.lang.String)
+[ERROR]   位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/command/DungeonCommand.java:[290,48] 找不到符号
+[ERROR]   符号:   方法 get(java.lang.String,java.lang.String)
+[ERROR]   位置: 类型为dev.starcore.starcore.foundation.message.MessageService的变量 messages
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/dungeon/gui/DungeonGui.java:[118,37] 找不到符号
+[ERROR]   符号:   变量 DungeonDifficulty
+[ERROR]   位置: 类 dev.starcore.starcore.module.dungeon.gui.DungeonGui
+[ERROR] /D:/qwq/项目/mapadd/starcore/src/main/java/dev/starcore/starcore/module/shop/service/NpcShopServiceImpl.java:[281,77] 不兼容的类型: java.util.Map<java.util.UUID,java.util.Map<java.util.UUID,java.lang.Object>>无法转换为java.util.Map<java.util.UUID,java.util.Map<java.util.UUID,dev.starcore.starcore.module.shop.service.NpcShopServiceImpl.TradeRecord>>
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

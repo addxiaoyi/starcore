@@ -1,0 +1,166 @@
+# ===============================================
+# STARCORE 死亡消息配置
+# ===============================================
+# 完全可自定义的死亡提示系统
+# 支持占位符: {victim} {killer}
+# ===============================================
+
+# 是否启用自定义死亡消息
+enabled: true
+
+# 死亡消息模板
+# 每种死亡类型可以有多条消息，随机选择一条
+death-messages:
+  # ========== PvP死亡 ==========
+  pvp:
+    - "{victim} 被 {killer} 击败了"
+    - "{victim} 在与 {killer} 的战斗中阵亡"
+    - "{killer} 终结了 {victim}"
+    - "{victim} 被 {killer} 送回了重生点"
+    - "{killer} 证明了自己比 {victim} 更强"
+    - "{victim} 成为了 {killer} 的手下败将"
+    - "{killer} 让 {victim} 见识到了真正的实力"
+    - "{victim} 的连杀被 {killer} 终结了"
+    - "{killer} 在决斗中击败了 {victim}"
+    - "{victim} 不敌 {killer} 的攻势"
+
+  # ========== 坠落死亡 ==========
+  fall:
+    - "{victim} 从高处坠落身亡"
+    - "{victim} 忘记了方块的重要性"
+    - "{victim} 体验了一次自由落体"
+    - "{victim} 落地成盒"
+    - "{victim} 发现重力确实存在"
+    - "{victim} 摔成了肉酱"
+    - "{victim} 尝试飞行失败了"
+    - "{victim} 以为自己会飞"
+    - "{victim} 高估了自己的降落伞"
+    - "{victim} 验证了牛顿定律"
+
+  # ========== 岩浆死亡 ==========
+  lava:
+    - "{victim} 在岩浆中游泳"
+    - "{victim} 发现岩浆很烫"
+    - "{victim} 被岩浆吞噬了"
+    - "{victim} 变成了烤肉"
+    - "{victim} 试图在岩浆中泡澡"
+    - "{victim} 以为岩浆是温泉"
+    - "{victim} 融化在了岩浆中"
+    - "{victim} 跳进了岩浆池"
+
+  # ========== 溺水 ==========
+  drowning:
+    - "{victim} 溺水了"
+    - "{victim} 忘记了如何游泳"
+    - "{victim} 在水下待太久了"
+    - "{victim} 需要学习潜水"
+    - "{victim} 被水淹没了"
+    - "{victim} 忘记了呼吸"
+    - "{victim} 在水下迷路了"
+
+  # ========== 爆炸 ==========
+  explosion:
+    - "{victim} 被炸飞了"
+    - "{victim} 体验了一次爆炸艺术"
+    - "{victim} 被TNT送上了天"
+    - "{victim} 成为了爆炸的牺牲品"
+    - "轰！{victim} 消失了"
+    - "{victim} 以为能拆弹"
+    - "{victim} 变成了烟花"
+
+  # ========== 苦力怕 ==========
+  creeper:
+    - "{victim} 被苦力怕炸飞了"
+    - "{victim} 听到了嘶嘶声..."
+    - "苦力怕：那是我送给 {victim} 的礼物！"
+    - "{victim} 被绿色的朋友拥抱了"
+    - "{victim} 没有及时逃离苦力怕"
+    - "{victim} 收到了苦力怕的拥抱"
+    - "Ssssss...{victim} 不在了"
+
+  # ========== 虚空 ==========
+  void:
+    - "{victim} 坠入了虚空"
+    - "{victim} 发现了世界的边界"
+    - "{victim} 消失在虚空中"
+    - "{victim} 前往了异次元"
+    - "{victim} 离开了这个世界"
+    - "{victim} 掉出了世界"
+
+  # ========== 火焰 ==========
+  fire:
+    - "{victim} 被烧成了灰烬"
+    - "{victim} 走进火焰里了"
+    - "{victim} 在火中挣扎"
+    - "{victim} 变成了烤肉"
+    - "{victim} 被火焰吞噬"
+    - "{victim} 玩火自焚"
+    - "{victim} 发现火很烫"
+
+  # ========== 饥饿 ==========
+  starvation:
+    - "{victim} 饿死了"
+    - "{victim} 忘记吃饭了"
+    - "{victim} 应该带些食物"
+    - "{victim} 死于饥饿"
+    - "{victim} 需要学会做饭"
+    - "{victim} 饿到虚脱了"
+
+  # ========== 凋零 ==========
+  wither:
+    - "{victim} 被凋零效果杀死"
+    - "{victim} 凋零成灰了"
+    - "{victim} 被凋零之力吞噬"
+    - "{victim} 抵挡不住凋零的力量"
+    - "{victim} 被凋零侵蚀了"
+
+  # ========== 其他实体 ==========
+  entity:
+    - "{victim} 被 {killer} 杀死了"
+    - "{victim} 被 {killer} 击败"
+    - "{killer} 终结了 {victim}"
+    - "{victim} 成为了 {killer} 的猎物"
+    - "{victim} 被 {killer} 消灭了"
+
+  # ========== 未知原因 ==========
+  unknown:
+    - "{victim} 死了"
+    - "{victim} 莫名其妙地死了"
+    - "{victim} 的死因不明"
+    - "{victim} 以某种方式死亡了"
+    - "{victim} 不知道发生了什么"
+
+# ===============================================
+# 特殊死亡消息（高级配置）
+# ===============================================
+
+# 连杀终结消息
+killstreak-ended:
+  enabled: true
+  messages:
+    - "{victim} 的 {streak}连杀被 {killer} 终结了！"
+    - "{killer} 终结了 {victim} 的 {streak}连杀！"
+    - "{victim} 的统治结束了！({streak}连杀)"
+
+# 复仇消息
+revenge:
+  enabled: true
+  messages:
+    - "{killer} 成功复仇了 {victim}！"
+    - "{killer} 对 {victim} 展开了复仇！"
+
+# 支配消息（连续击杀同一玩家）
+domination:
+  enabled: true
+  messages:
+    - "{killer} 正在支配 {victim}！"
+    - "{victim} 被 {killer} 完全压制了！"
+
+# ===============================================
+# 死亡消息颜色配置
+# ===============================================
+colors:
+  victim: "§c"      # 受害者名字颜色（红色）
+  killer: "§e"      # 击杀者名字颜色（黄色）
+  message: "§7"     # 消息主体颜色（灰色）
+  special: "§6"     # 特殊消息颜色（金色）

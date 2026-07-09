@@ -1,0 +1,75 @@
+# 区域标题显示配置
+# Region Title Display Configuration
+
+# 是否启用区域标题显示
+enabled: true
+
+# 默认显示配置
+default:
+  # 淡入时间（毫秒）
+  fade-in: 500
+  # 停留时间（毫秒）
+  stay: 3000
+  # 淡出时间（毫秒）
+  fade-out: 500
+  # 标题颜色（十六进制RGB）
+  title-color: "#FFD700"
+  # 是否显示标题
+  show-title: true
+  # 是否显示副标题
+  show-subtitle: true
+  # 音效（留空则不播放）
+  sound-effect: ""
+
+# 自定义区域配置
+# 格式: region-key (如 biome:plains, territory:uuid, subregion:uuid)
+custom-regions:
+  # 生物群系示例
+  "biome:plains":
+    fade-in: 500
+    stay: 2000
+    fade-out: 500
+    title-color: "#90EE90"
+    show-title: true
+    show-subtitle: true
+    sound-effect: ""
+
+  "biome:desert":
+    fade-in: 500
+    stay: 2000
+    fade-out: 500
+    title-color: "#F4A460"
+    show-title: true
+    show-subtitle: true
+    sound-effect: ""
+
+  "biome:cherry_grove":
+    fade-in: 800
+    stay: 3500
+    fade-out: 800
+    title-color: "#FFB7C5"
+    show-title: true
+    show-subtitle: true
+    sound-effect: "minecraft:block.note_block.harp"
+
+# 区域类型默认配置
+type-defaults:
+  # 王国区域
+  kingdom:
+    title-color: "#FFD700"
+    sound-effect: "minecraft:block.note_block.bell"
+
+  # 领土区域
+  territory:
+    title-color: "#87CEEB"
+    sound-effect: ""
+
+  # 子区域
+  sub-region:
+    title-color: "#DDA0DD"
+    sound-effect: ""
+
+  # 生物群系
+  biome:
+    title-color: "#98FB98"
+    sound-effect: ""
