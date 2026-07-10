@@ -1,5 +1,6 @@
 package dev.starcore.starcore.death;
 
+import dev.starcore.starcore.foundation.util.RandomProvider;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextReplacementConfig;
 import org.bukkit.entity.Entity;
@@ -175,7 +176,7 @@ public final class DeathMessageService {
         }
 
         // 随机选择一条消息
-        String template = messages.get(new Random().nextInt(messages.size()));
+        String template = messages.get(RandomProvider.nextInt(messages.size()));
 
         // 替换占位符
         String message = template
