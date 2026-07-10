@@ -1,5 +1,6 @@
 package dev.starcore.starcore.territory;
 
+import dev.starcore.starcore.foundation.economy.EconomyService;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -17,6 +18,7 @@ public class TerritoryLeaseService {
 
     private final JavaPlugin plugin;
     private final TerritoryService territoryService;
+    private final EconomyService economyService;
 
     // 租约存储 - ID -> Lease
     private final Map<UUID, TerritoryLease> leases = new ConcurrentHashMap<>();
@@ -45,9 +47,17 @@ public class TerritoryLeaseService {
     private boolean autoRenew = true;
     private int evictionGraceDays = 3;
 
-    public TerritoryLeaseService(JavaPlugin plugin, TerritoryService territoryService) {
+    public TerritoryLeaseService(JavaPlugin plugin, TerritoryService territoryService, EconomyService economyService) {
         this.plugin = plugin;
         this.territoryService = territoryService;
+        this.economyService = economyService;
+    }
+
+    /**
+     * 兼容旧构造函数（无 EconomyService）
+     */
+    public TerritoryLeaseService(JavaPlugin plugin, TerritoryService territoryService) {
+        this(plugin, territoryService, null);
     }
 
     // ==================== 启动和关闭 ====================
@@ -236,8 +246,21 @@ public class TerritoryLeaseService {
         // 计算支付金额
         BigDecimal amount = BigDecimal.valueOf(lease.getNextPaymentAmount());
 
-        // TODO audit A-051: 需接入 economyService.withdraw(payerId, amount) 真实扣款
-        // TODO audit A-051: 需接入 economyService.deposit(landlordId, amount) 真实入账
+        // 审计 A-051: 接入 economyService 真实扣款和入账
+        if (economyService != null) {
+            // 先扣租客房款（同步写入确保扣款成功）
+            if (!economyService.withdraw(payerId, amount)) {
+                plugin.getLogger().warning("租客房款不足，支付失败: " + payerId);
+                return null;
+            }
+            // 再给房东入账
+            UUID landlordId = lease.getLandlordId();
+            economyService.deposit(landlordId, amount);
+            plugin.getLogger().info(String.format("真实经济交易: 租客=%s 扣除 %.2f, 房东=%s 入账 %.2f",
+                payerId, amount, landlordId, amount));
+        } else {
+            plugin.getLogger().warning("EconomyService 未注入，模拟支付成功: " + leaseId);
+        }
 
         // 创建支付记录
         long periodStart = lease.getNextPaymentTime() == 0 ?
