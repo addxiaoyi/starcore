@@ -5,6 +5,7 @@ import dev.starcore.starcore.module.technology.model.TechnologyDefinition;
 import dev.starcore.starcore.module.technology.model.TechnologyEffect;
 import dev.starcore.starcore.module.treasury.TreasuryService;
 import dev.starcore.starcore.module.resource.ResourceService;
+import dev.starcore.starcore.foundation.message.MessageService;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public final class TechnologyValidator {
     private final Supplier<TreasuryService> treasuryServiceSupplier;
     private final Supplier<ResourceService> resourceServiceSupplier;
     private final TechnologyDefinitionLoader definitionLoader;
+    private final MessageService messageService;
 
     /**
      * Result of a validation check with details about any failures.
@@ -64,10 +66,44 @@ public final class TechnologyValidator {
             Supplier<TreasuryService> treasuryServiceSupplier,
             Supplier<ResourceService> resourceServiceSupplier,
             TechnologyDefinitionLoader definitionLoader) {
+        this(technologyService, treasuryServiceSupplier, resourceServiceSupplier, definitionLoader, null);
+    }
+
+    public TechnologyValidator(
+            TechnologyService technologyService,
+            Supplier<TreasuryService> treasuryServiceSupplier,
+            Supplier<ResourceService> resourceServiceSupplier,
+            TechnologyDefinitionLoader definitionLoader,
+            MessageService messageService) {
         this.technologyService = technologyService;
         this.treasuryServiceSupplier = treasuryServiceSupplier;
         this.resourceServiceSupplier = resourceServiceSupplier;
         this.definitionLoader = definitionLoader;
+        this.messageService = messageService;
+    }
+
+    /**
+     * 获取国际化消息（兼容旧代码，无 MessageService 时使用默认消息）
+     */
+    private String getMessage(String key, Object... args) {
+        if (messageService != null) {
+            try {
+                return messageService.format(key, args);
+            } catch (Exception e) {
+                // Fallback to default messages
+            }
+        }
+        // 默认消息（未国际化时的后备）
+        return switch (key) {
+            case "tech.error.insufficient_treasury" -> String.format("国库资金不足：需要 %s，当前 %s", args);
+            case "tech.error.insufficient_resource" -> String.format("资源不足：需要 %s %s，当前 %s", args);
+            case "tech.error.already_unlocked" -> String.format("科技已解锁：%s", args);
+            case "tech.error.missing_prerequisites" -> "缺少前置科技";
+            case "tech.error.conflicts" -> "与已解锁科技冲突";
+            case "tech.error.treasury_unavailable" -> "国库服务不可用，无法验证资金";
+            case "tech.error.resource_unavailable" -> "资源服务不可用，无法验证资源需求";
+            default -> key;
+        };
     }
 
     /**
@@ -93,21 +129,21 @@ public final class TechnologyValidator {
 
         // Check if already unlocked
         if (technologyService.hasTechnology(nationId, normalized)) {
-            return ValidationResult.failure("Technology already unlocked: " + definition.displayName());
+            return ValidationResult.failure(getMessage("tech.error.already_unlocked", definition.displayName()));
         }
 
         // Check prerequisites
         List<String> missing = checkPrerequisites(nationId, definition);
         if (!missing.isEmpty()) {
             missingPrereqs.addAll(missing);
-            errors.add("Missing prerequisites: " + String.join(", ", missing));
+            errors.add(getMessage("tech.error.missing_prerequisites") + ": " + String.join(", ", missing));
         }
 
         // Check mutual exclusivity
         List<String> conflicting = checkMutualExclusivity(nationId, definition);
         if (!conflicting.isEmpty()) {
             conflicts.addAll(conflicting);
-            errors.add("Conflicts with unlocked technologies: " + String.join(", ", conflicting));
+            errors.add(getMessage("tech.error.conflicts") + ": " + String.join(", ", conflicting));
         }
 
         // Check treasury cost
@@ -117,12 +153,10 @@ public final class TechnologyValidator {
             if (treasuryService != null) {
                 BigDecimal balance = treasuryService.balance(nationId);
                 if (balance.compareTo(treasuryCost) < 0) {
-                    // TODO i18n: use MessageService to format localized error
-                    // e.g., messages.get("tech.error.insufficient_treasury", treasuryCost, balance)
-                    errors.add("Insufficient treasury funds: need " + treasuryCost + ", have " + balance);
+                    errors.add(getMessage("tech.error.insufficient_treasury", treasuryCost, balance));
                 }
             } else {
-                errors.add("Treasury service unavailable, cannot verify treasury cost");
+                errors.add(getMessage("tech.error.treasury_unavailable"));
             }
         }
 
@@ -137,12 +171,11 @@ public final class TechnologyValidator {
                     long required = entry.getValue();
                     long available = resourceService.amount(nationId, resourceType);
                     if (available < required) {
-                        // TODO i18n: use MessageService to format localized error
-                        errors.add("Insufficient " + resourceType + ": need " + required + ", have " + available);
+                        errors.add(getMessage("tech.error.insufficient_resource", required, resourceType, available));
                     }
                 }
             } else {
-                errors.add("Resource service unavailable, cannot verify resource costs");
+                errors.add(getMessage("tech.error.resource_unavailable"));
             }
         }
 

@@ -20,10 +20,11 @@ import java.util.UUID;
 /**
  * Simplified policy GUI menu
  *
- * audit B-164 (partial): 占位实现，activeCount 恒 0、无 click 监听器、"New Policy" 项看似可创建政策但 PolicyModule 无创建逻辑。
+ * audit B-164 (partial): 修正 activeCount 恒 0 的占位 bug，真正查询活跃政策表
  * 本菜单目前没有任何调用方，仅保留类型骨架。完整菜单（点击展示已激活政策、可激活列表与冷却）
- * 需新增 InventoryHolder + InventoryClickEvent 监听器；为避免与未来 GUI 改造冲突，暂以 TODO 形式占位，
- * TODO: 后续接入 InventoryHolder/Listener 完善玩家可见菜单。
+ * 政策创建功能已由 PolicyCreationMenu 和 PolicyMenuListener 实现。
+ *
+ * @deprecated 请使用 PolicyCreationMenu 和 PolicyMenuListener
  */
 public class PolicyMenu {
 

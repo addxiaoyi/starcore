@@ -4,14 +4,17 @@ import dev.starcore.starcore.module.policy.model.PolicyCategory;
 import dev.starcore.starcore.module.policy.model.PolicyDefinition;
 import dev.starcore.starcore.module.policy.model.PolicyEffect;
 import dev.starcore.starcore.module.policy.model.PolicyEffectScope;
+import dev.starcore.starcore.StarCorePlugin;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +33,22 @@ public class YamlPolicyDefinitionLoader {
     public YamlPolicyDefinitionLoader(Plugin plugin) {
         this.plugin = plugin;
         this.logger = plugin.getLogger();
+    }
+
+    /**
+     * 无参构造函数 - 使用 JavaPlugin.getPlugin 获取插件实例
+     */
+    public YamlPolicyDefinitionLoader() {
+        this.plugin = JavaPlugin.getPlugin(dev.starcore.starcore.StarCorePlugin.class);
+        this.logger = this.plugin.getLogger();
+    }
+
+    /**
+     * 加载所有政策定义
+     * @return 政策定义列表
+     */
+    public List<PolicyDefinition> loadAllDefinitions() {
+        return new ArrayList<>(load().values());
     }
 
     /**

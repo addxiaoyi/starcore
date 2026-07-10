@@ -1,7 +1,15 @@
 package dev.starcore.starcore.module.officer.gui;
 
 import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +19,14 @@ import java.util.Map;
  * 从 officer-gui.yml 加载配置
  */
 public final class OfficerGuiConfig {
+
+    // 配置文件
+    private static final String CONFIG_FILE = "officer-gui.yml";
+
+    // 配置文件实例
+    private FileConfiguration config;
+    private File configFile;
+    private JavaPlugin plugin;
 
     // 主菜单标题
     private String mainTitle = "§6{nation_name} §7| §6官员管理";
@@ -130,16 +146,160 @@ public final class OfficerGuiConfig {
         "§c确定要移除此官员吗？"
     );
 
+    // 主菜单配置路径
+    private String mainMenuTitle = "officer-main.title";
+    private int mainMenuRows = 5;
+    // 官职列表配置路径
+    private String listMenuTitle = "officer-list.title";
+    private int listMenuRows = 6;
+
+    /**
+     * 从默认配置创建
+     */
+    public static OfficerGuiConfig createDefault() {
+        return new OfficerGuiConfig();
+    }
+
     /**
      * 从 YAML 配置加载
-     * TODO audit C-033: 实现从 officer-gui.yml 加载配置 —— 当前 load() 无 File/Plugin 参数，
-     * 改签名需联动调用方（属 Manager/Service 边界），按任务约束不在本次修复范围。
-     * 后续应在 OfficerModule 初始化处传入 Plugin 与 File，再解析 YAML 覆盖默认值。
+     * @param plugin 插件实例
+     * @return 加载的配置
      */
-    public static OfficerGuiConfig load() {
+    public static OfficerGuiConfig load(JavaPlugin plugin) {
         OfficerGuiConfig config = new OfficerGuiConfig();
-        // 目前使用默认配置，后续可以从 YAML 加载
+        config.plugin = plugin;
+        config.loadFromYaml();
         return config;
+    }
+
+    /**
+     * 从 YAML 文件加载配置
+     */
+    private void loadFromYaml() {
+        if (plugin == null) {
+            return;
+        }
+
+        // 获取配置文件夹
+        File dataFolder = plugin.getDataFolder();
+        if (!dataFolder.exists()) {
+            dataFolder.mkdirs();
+        }
+
+        configFile = new File(dataFolder, CONFIG_FILE);
+
+        // 如果配置文件不存在，从 jar 包中复制
+        if (!configFile.exists()) {
+            try (InputStream in = plugin.getResource(CONFIG_FILE)) {
+                if (in != null) {
+                    Files.copy(in, configFile.toPath());
+                }
+            } catch (IOException e) {
+                plugin.getLogger().warning("无法创建 " + CONFIG_FILE + ": " + e.getMessage());
+            }
+        }
+
+        // 加载配置文件
+        config = YamlConfiguration.loadConfiguration(configFile);
+
+        // 读取主菜单配置
+        if (config.contains("officer-main.title")) {
+            mainMenuTitle = config.getString("officer-main.title", mainMenuTitle);
+            mainMenuRows = config.getInt("officer-main.rows", mainMenuRows);
+        }
+
+        // 读取官职列表配置
+        if (config.contains("officer-list.title")) {
+            listMenuTitle = config.getString("officer-list.title", listMenuTitle);
+            listMenuRows = config.getInt("officer-list.rows", listMenuRows);
+        }
+
+        // 读取帮助按钮配置
+        if (config.contains("help.material")) {
+            helpMaterial = Material.valueOf(config.getString("help.material", "BOOK"));
+            helpDisplayName = config.getString("help.display-name", helpDisplayName);
+            helpLore = config.getStringList("help.lore");
+        }
+
+        // 读取关闭按钮配置
+        if (config.contains("close.material")) {
+            closeMaterial = Material.valueOf(config.getString("close.material", "BARRIER"));
+            closeDisplayName = config.getString("close.display-name", closeDisplayName);
+            closeLore = config.getStringList("close.lore");
+        }
+
+        // 读取返回按钮配置
+        if (config.contains("back.material")) {
+            backMaterial = Material.valueOf(config.getString("back.material", "ARROW"));
+            backDisplayName = config.getString("back.display-name", backDisplayName);
+            backLore = config.getStringList("back.lore");
+        }
+
+        // 读取确认按钮配置
+        if (config.contains("confirm.material")) {
+            confirmMaterial = Material.valueOf(config.getString("confirm.material", "LIME_STAINED_GLASS_PANE"));
+            confirmDisplayName = config.getString("confirm.display-name", confirmDisplayName);
+            confirmLore = config.getStringList("confirm.lore");
+        }
+
+        // 读取取消按钮配置
+        if (config.contains("cancel.material")) {
+            cancelMaterial = Material.valueOf(config.getString("cancel.material", "RED_STAINED_GLASS_PANE"));
+            cancelDisplayName = config.getString("cancel.display-name", cancelDisplayName);
+            cancelLore = config.getStringList("cancel.lore");
+        }
+
+        // 读取确认信息配置
+        if (config.contains("confirm-info.material")) {
+            confirmInfoMaterial = Material.valueOf(config.getString("confirm-info.material", "BARRIER"));
+            confirmInfoDisplayName = config.getString("confirm-info.display-name", confirmInfoDisplayName);
+        }
+
+        // 读取填充物配置
+        if (config.contains("filler.material")) {
+            fillerMaterial = Material.valueOf(config.getString("filler.material", "GRAY_STAINED_GLASS_PANE"));
+            fillerDisplayName = config.getString("filler.display-name", fillerDisplayName);
+        }
+
+        // 读取空槽角色配置
+        if (config.contains("vacant-role.material")) {
+            vacantRoleMaterial = Material.valueOf(config.getString("vacant-role.material", "PLAYER_HEAD"));
+            vacantRoleDisplayNamePrefix = config.getString("vacant-role.display-name-prefix", vacantRoleDisplayNamePrefix);
+            vacantRoleLore = config.getStringList("vacant-role.lore");
+        }
+
+        // 读取已任命角色配置
+        if (config.contains("occupied-role.material")) {
+            occupiedRoleMaterial = Material.valueOf(config.getString("occupied-role.material", "PLAYER_HEAD"));
+            occupiedRoleDisplayNamePrefix = config.getString("occupied-role.display-name-prefix", occupiedRoleDisplayNamePrefix);
+            occupiedRoleLore = config.getStringList("occupied-role.lore");
+        }
+
+        // 读取国家信息配置
+        if (config.contains("nation-info.material")) {
+            nationInfoMaterial = Material.valueOf(config.getString("nation-info.material", "NETHER_STAR"));
+            nationInfoDisplayNamePrefix = config.getString("nation-info.display-name-prefix", nationInfoDisplayNamePrefix);
+            nationInfoLore = config.getStringList("nation-info.lore");
+        }
+
+        // 读取选中角色配置
+        if (config.contains("selected-role.display-name")) {
+            selectedRoleDisplayName = config.getString("selected-role.display-name", selectedRoleDisplayName);
+            selectedRoleLore = config.getStringList("selected-role.lore");
+        }
+
+        // 读取成员配置
+        if (config.contains("member.free-lore")) {
+            memberFreeLore = config.getStringList("member.free-lore");
+            memberOtherRoleLore = config.getStringList("member.other-role-lore");
+        }
+
+        // 读取确认移除配置
+        if (config.contains("confirm-remove.lore")) {
+            confirmRemoveLore = config.getStringList("confirm-remove.lore");
+        }
+
+        plugin.getLogger().info("成功加载 " + CONFIG_FILE + " 配置");
     }
 
     // Getter 方法
@@ -147,6 +307,10 @@ public final class OfficerGuiConfig {
     public String getMainTitle() { return mainTitle; }
     public String getSelectTitle() { return selectTitle; }
     public String getConfirmTitle() { return confirmTitle; }
+    public String getMainMenuTitle() { return mainMenuTitle; }
+    public int getMainMenuRows() { return mainMenuRows; }
+    public String getListMenuTitle() { return listMenuTitle; }
+    public int getListMenuRows() { return listMenuRows; }
 
     public Material getHelpMaterial() { return helpMaterial; }
     public String getHelpDisplayName() { return helpDisplayName; }

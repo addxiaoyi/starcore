@@ -3,6 +3,7 @@ import java.util.Optional;
 
 import dev.starcore.starcore.foundation.economy.InternalEconomyService;
 import dev.starcore.starcore.foundation.player.OnlinePlayerDirectory;
+import dev.starcore.starcore.module.business.BusinessService;
 import dev.starcore.starcore.module.nation.NationService;
 import dev.starcore.starcore.module.nation.model.Nation;
 import dev.starcore.starcore.module.nation.model.NationId;
@@ -41,6 +42,7 @@ public class TaxCommand implements CommandExecutor, TabCompleter {
     private final OnlinePlayerDirectory onlinePlayerDirectory;
     private final NationPermissionChecker permissionChecker;
     private final ResourceTradeService resourceTradeService;
+    private final BusinessService businessService;
 
     public TaxCommand(
             TreasuryService treasuryService,
@@ -48,7 +50,8 @@ public class TaxCommand implements CommandExecutor, TabCompleter {
             NationService nationService,
             InternalEconomyService economyService,
             OnlinePlayerDirectory onlinePlayerDirectory,
-            ResourceTradeService resourceTradeService
+            ResourceTradeService resourceTradeService,
+            BusinessService businessService
     ) {
         this.treasuryService = treasuryService;
         this.taxCollectionService = taxCollectionService;
@@ -57,6 +60,7 @@ public class TaxCommand implements CommandExecutor, TabCompleter {
         this.onlinePlayerDirectory = onlinePlayerDirectory;
         this.permissionChecker = new NationPermissionChecker();
         this.resourceTradeService = resourceTradeService;
+        this.businessService = businessService;
     }
 
     @Override
@@ -190,10 +194,16 @@ public class TaxCommand implements CommandExecutor, TabCompleter {
             totalTradeValue = resourceTradeService.calculateTradeVolume(nationId, Duration.ofDays(30));
         }
 
+        // 计算真实商业活跃商家数（从 BusinessService 获取最近30天数据）
+        int businessCount = 0;
+        if (businessService != null) {
+            businessCount = businessService.getActiveBusinessCount(nationId, 30);
+        }
+
         TaxContext context = new TaxContext(
             Math.max(0, nationService.claimCount(nationId)),
             nation.members().size(),
-            0,  // businessCount - BusinessService 尚未实现，暂设为0
+            businessCount,
             totalTradeValue,
             playerIncomes
         );

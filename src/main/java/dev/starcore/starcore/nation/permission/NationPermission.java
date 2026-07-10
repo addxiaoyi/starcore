@@ -247,6 +247,18 @@ public enum NationPermission {
         "修改设置",
         PermissionLevel.LEADER
     ),
+
+    // ==================== 政策权限 (2) ====================
+    POLICY_CREATE(
+        "starcore.nation.policy.create",
+        "创建政策",
+        PermissionLevel.LEADER
+    ),
+    POLICY_ACTIVATE(
+        "starcore.nation.policy.activate",
+        "激活政策",
+        PermissionLevel.LEADER
+    ),
     RANK_CREATE(
         "starcore.nation.rank.create",
         "创建职位",
