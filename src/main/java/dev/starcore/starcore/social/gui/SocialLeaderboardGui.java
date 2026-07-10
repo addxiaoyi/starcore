@@ -1,5 +1,6 @@
 package dev.starcore.starcore.social.gui;
 
+import dev.starcore.starcore.social.friend.FriendService;
 import dev.starcore.starcore.social.simulation.*;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -15,6 +16,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 社交排行榜 GUI
@@ -28,6 +30,8 @@ public final class SocialLeaderboardGui implements InventoryHolder {
     private final SocialInfluenceService influenceService;
     private final InfluenceLeaderboardService leaderboardService;
     private final FriendRecommendationService recommendationService;
+    private final FriendService friendService;
+    private final RelationshipNetwork relationshipNetwork;
 
     private final Inventory inventory;
     private LeaderboardType currentType = LeaderboardType.INFLUENCE;
@@ -35,11 +39,15 @@ public final class SocialLeaderboardGui implements InventoryHolder {
 
     public SocialLeaderboardGui(Player player, SocialInfluenceService influenceService,
                                InfluenceLeaderboardService leaderboardService,
-                               FriendRecommendationService recommendationService) {
+                               FriendRecommendationService recommendationService,
+                               FriendService friendService,
+                               RelationshipNetwork relationshipNetwork) {
         this.player = player;
         this.influenceService = influenceService;
         this.leaderboardService = leaderboardService;
         this.recommendationService = recommendationService;
+        this.friendService = friendService;
+        this.relationshipNetwork = relationshipNetwork;
         this.inventory = Bukkit.createInventory(this, SIZE, Component.text("社交排行榜", NamedTextColor.GOLD));
         buildMenu();
     }
@@ -357,75 +365,198 @@ public final class SocialLeaderboardGui implements InventoryHolder {
     }
 
     private List<LeaderboardEntry> getActivityLeaderboard() {
-        // 简化的活跃度排行榜
+        // 活跃度排行榜：根据玩家互动频率、社交活动参与度计算
         List<LeaderboardEntry> entries = new ArrayList<>();
 
-        var analysis = recommendationService.analyzeSocialCircle(player.getUniqueId());
-        entries.add(new LeaderboardEntry(
-                1,
-                player.getUniqueId(),
-                player.getName(),
-                analysis.totalFriends(),
+        // 获取所有玩家的活跃度数据
+        Map<UUID, Integer> activityScores = calculateAllPlayersActivity();
+
+        // 排序并取前50名
+        List<Map.Entry<UUID, Integer>> sorted = activityScores.entrySet().stream()
+            .sorted(Map.Entry.<UUID, Integer>comparingByValue().reversed())
+            .limit(50)
+            .toList();
+
+        for (int i = 0; i < sorted.size(); i++) {
+            Map.Entry<UUID, Integer> entry = sorted.get(i);
+            String playerName = getPlayerName(entry.getKey());
+            entries.add(new LeaderboardEntry(
+                i + 1,
+                entry.getKey(),
+                playerName,
+                entry.getValue(),
                 0,
-                "社交活跃度基于好友互动"
-        ));
+                "社交活跃度"
+            ));
+        }
 
         return entries;
     }
 
+    /**
+     * 计算所有玩家的活跃度分数
+     */
+    private Map<UUID, Integer> calculateAllPlayersActivity() {
+        Map<UUID, Integer> scores = new HashMap<>();
+
+        // 通过影响力服务获取所有玩家数据
+        // 活跃度 = 好友数 + 社交圈大小 + 影响力变化
+        if (friendService != null) {
+            for (UUID playerId : getAllPlayerIds()) {
+                int friendCount = friendService.getFriendCount(playerId);
+                int socialCircleSize = 0;
+                if (relationshipNetwork != null) {
+                    socialCircleSize = relationshipNetwork.getSocialCircle(playerId, 10).size();
+                }
+                // 影响力服务提供的活跃度数据
+                int influenceBonus = 0;
+                if (influenceService != null) {
+                    influenceBonus = (int) influenceService.getInfluence(playerId);
+                }
+                // 活跃度 = 好友数 * 2 + 社交圈 * 1 + 影响力 / 10
+                scores.put(playerId, friendCount * 2 + socialCircleSize + influenceBonus / 10);
+            }
+        }
+
+        return scores;
+    }
+
     private List<LeaderboardEntry> getFriendsLeaderboard() {
-        // 好友数量排行榜需要遍历所有玩家
-        // 这里简化处理，返回一个占位
+        // 好友数量排行榜：遍历所有玩家并排序
         List<LeaderboardEntry> entries = new ArrayList<>();
 
-        int friends = recommendationService.analyzeSocialCircle(player.getUniqueId()).totalFriends();
-        entries.add(new LeaderboardEntry(
-                1,
-                player.getUniqueId(),
-                player.getName(),
-                friends,
-                0,
-                "好友数量"
-        ));
+        if (friendService != null) {
+            // 获取所有玩家的好友数量
+            List<Map.Entry<UUID, Integer>> sorted = getAllPlayerIds().stream()
+                .map(id -> Map.entry(id, friendService.getFriendCount(id)))
+                .sorted(java.util.Comparator.<Map.Entry<UUID, Integer>>comparingInt(Map.Entry::getValue).reversed())
+                .limit(50)
+                .toList();
+
+            for (int i = 0; i < sorted.size(); i++) {
+                Map.Entry<UUID, Integer> entry = sorted.get(i);
+                String playerName = getPlayerName(entry.getKey());
+                entries.add(new LeaderboardEntry(
+                    i + 1,
+                    entry.getKey(),
+                    playerName,
+                    entry.getValue(),
+                    0,
+                    "好友数量"
+                ));
+            }
+        }
 
         return entries;
     }
 
     private List<LeaderboardEntry> getReputationLeaderboard() {
+        // 声望排行榜：使用影响力作为综合声望指标
         List<LeaderboardEntry> entries = new ArrayList<>();
 
-        // 获取影响力作为声望指标
-        int influence = influenceService.getInfluence(player.getUniqueId());
-        entries.add(new LeaderboardEntry(
-                1,
-                player.getUniqueId(),
-                player.getName(),
-                influence,
-                0,
-                "综合声望值"
-        ));
+        if (influenceService != null) {
+            // 获取所有玩家的声望数据（影响力作为综合声望）
+            List<Map.Entry<UUID, Integer>> sorted = getAllPlayerIds().stream()
+                .map(id -> Map.entry(id, (int) Math.min(influenceService.getInfluence(id), Integer.MAX_VALUE)))
+                .sorted(java.util.Comparator.<Map.Entry<UUID, Integer>>comparingInt(Map.Entry::getValue).reversed())
+                .limit(50)
+                .toList();
+
+            for (int i = 0; i < sorted.size(); i++) {
+                Map.Entry<UUID, Integer> entry = sorted.get(i);
+                String playerName = getPlayerName(entry.getKey());
+                entries.add(new LeaderboardEntry(
+                    i + 1,
+                    entry.getKey(),
+                    playerName,
+                    entry.getValue(),
+                    0,
+                    "综合声望值"
+                ));
+            }
+        }
 
         return entries;
     }
 
     private List<LeaderboardEntry> getRelationshipLeaderboard() {
+        // 社交关系排行榜：基于社交圈覆盖人数
         List<LeaderboardEntry> entries = new ArrayList<>();
 
-        // 基于社交圈大小
-        var analysis = recommendationService.analyzeSocialCircle(player.getUniqueId());
-        entries.add(new LeaderboardEntry(
-                1,
-                player.getUniqueId(),
-                player.getName(),
-                analysis.socialCircle().size(),
-                0,
-                "社交圈覆盖人数"
-        ));
+        if (relationshipNetwork != null) {
+            List<Map.Entry<UUID, Integer>> sorted = getAllPlayerIds().stream()
+                .map(id -> Map.entry(id, relationshipNetwork.getSocialCircle(id, 10).size()))
+                .sorted(java.util.Comparator.<Map.Entry<UUID, Integer>>comparingInt(Map.Entry::getValue).reversed())
+                .limit(50)
+                .toList();
+
+            for (int i = 0; i < sorted.size(); i++) {
+                Map.Entry<UUID, Integer> entry = sorted.get(i);
+                String playerName = getPlayerName(entry.getKey());
+                entries.add(new LeaderboardEntry(
+                    i + 1,
+                    entry.getKey(),
+                    playerName,
+                    entry.getValue(),
+                    0,
+                    "社交圈覆盖人数"
+                ));
+            }
+        }
 
         return entries;
     }
 
     // ==================== 辅助方法 ====================
+
+    /**
+     * 获取所有已知玩家的 UUID 列表（包括在线和离线）
+     */
+    private Set<UUID> getAllPlayerIds() {
+        Set<UUID> allPlayers = new HashSet<>();
+
+        // 添加在线玩家
+        Bukkit.getOnlinePlayers().forEach(p -> allPlayers.add(p.getUniqueId()));
+
+        // 尝试从各服务获取历史玩家
+        if (friendService != null) {
+            // FriendService 使用 ConcurrentHashMap，keySet() 可以获取所有玩家
+            try {
+                var friendships = (java.util.Map<?, ?>) friendService.getClass()
+                    .getDeclaredField("friendships")
+                    .get(friendService);
+                if (friendships != null) {
+                    friendships.keySet().forEach(k -> {
+                        if (k instanceof UUID) {
+                            allPlayers.add((UUID) k);
+                        }
+                    });
+                }
+            } catch (Exception ignored) {}
+        }
+
+        return allPlayers;
+    }
+
+    /**
+     * 获取玩家名称（支持离线玩家）
+     */
+    private String getPlayerName(UUID playerId) {
+        // 首先检查在线玩家
+        Player online = Bukkit.getPlayer(playerId);
+        if (online != null) {
+            return online.getName();
+        }
+
+        // 检查离线玩家
+        OfflinePlayer offline = Bukkit.getOfflinePlayer(playerId);
+        if (offline.hasPlayedBefore()) {
+            return offline.getName();
+        }
+
+        // 最后的备选方案：显示 UUID 前8位
+        return playerId.toString().substring(0, 8);
+    }
 
     /**
      * 获取按钮对应的操作

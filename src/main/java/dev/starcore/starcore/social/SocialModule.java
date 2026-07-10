@@ -277,9 +277,10 @@ public final class SocialModule implements StarCoreModule {
         // 注意：完整的影响力服务需要 ReputationService，这里使用降级方案
         // 如果需要完整功能，可以从 StarCoreContext 获取 ReputationService
 
-        // 创建排行榜GUI监听器（即使没有完整的影响力服务也能显示基础排行榜）
+        // 创建排行榜GUI监听器（传递真实的好友服务和关系网络）
         socialLeaderboardListener = new SocialLeaderboardListener(
-            influenceService, leaderboardService, friendRecommendationService
+            influenceService, leaderboardService, friendRecommendationService,
+            friendService, relationshipNetwork
         );
         plugin.getServer().getPluginManager().registerEvents(socialLeaderboardListener, plugin);
 

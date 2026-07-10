@@ -1,5 +1,6 @@
 package dev.starcore.starcore.social.gui;
 
+import dev.starcore.starcore.social.friend.FriendService;
 import dev.starcore.starcore.social.simulation.*;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -22,16 +23,22 @@ public final class SocialLeaderboardListener implements Listener {
     private final SocialInfluenceService influenceService;
     private final InfluenceLeaderboardService leaderboardService;
     private final FriendRecommendationService recommendationService;
+    private final FriendService friendService;
+    private final RelationshipNetwork relationshipNetwork;
 
     // 跟踪打开的排行榜菜单
     private final WeakHashMap<Player, SocialLeaderboardGui> openMenus = new WeakHashMap<>();
 
     public SocialLeaderboardListener(SocialInfluenceService influenceService,
                                     InfluenceLeaderboardService leaderboardService,
-                                    FriendRecommendationService recommendationService) {
+                                    FriendRecommendationService recommendationService,
+                                    FriendService friendService,
+                                    RelationshipNetwork relationshipNetwork) {
         this.influenceService = influenceService;
         this.leaderboardService = leaderboardService;
         this.recommendationService = recommendationService;
+        this.friendService = friendService;
+        this.relationshipNetwork = relationshipNetwork;
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -124,7 +131,9 @@ public final class SocialLeaderboardListener implements Listener {
                 player,
                 influenceService,
                 leaderboardService,
-                recommendationService
+                recommendationService,
+                friendService,
+                relationshipNetwork
         );
         openMenus.put(player, menu);
         player.openInventory(menu.getInventory());
