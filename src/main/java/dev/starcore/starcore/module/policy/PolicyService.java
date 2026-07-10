@@ -45,5 +45,14 @@ public interface PolicyService {
 
     boolean clearActivePolicy(NationId nationId);
 
+    /**
+     * 获取某国家某政策的冷却剩余秒数
+     * @param nationId 国家ID
+     * @param policyKey 政策键
+     * @param now 当前时间
+     * @return 冷却剩余秒数，如果不在冷却中则返回0
+     */
+    long cooldownRemaining(NationId nationId, String policyKey, Instant now);
+
     String summary();
 }

@@ -416,6 +416,19 @@ public final class PolicyModule implements StarCoreModule, PolicyService {
     }
 
     @Override
+    public long cooldownRemaining(NationId nationId, String policyKey, Instant now) {
+        String normalized = normalizePolicy(policyKey);
+        Instant cooldownEndsAt = cooldowns.getOrDefault(nationId, new ConcurrentHashMap<>()).get(normalized);
+        if (cooldownEndsAt == null) {
+            return 0L;
+        }
+        if (!cooldownEndsAt.isAfter(now)) {
+            return 0L;
+        }
+        return cooldownEndsAt.getEpochSecond() - now.getEpochSecond();
+    }
+
+    @Override
     public String summary() {
         long unlockedCount = unlockedPolicies.values().stream().mapToLong(Set::size).sum();
         long cooldownCount = cooldowns.values().stream().mapToLong(Map::size).sum();

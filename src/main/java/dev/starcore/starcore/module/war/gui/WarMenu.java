@@ -40,6 +40,7 @@ public final class WarMenu {
 
     private final WarService warService;
     private final NationService nationService;
+    private final DiplomacyService diplomacyService;
     private final GuiAnimationManager animationManager;
     private final SoundFeedbackManager soundManager;
 
@@ -54,11 +55,13 @@ public final class WarMenu {
     public WarMenu(
             WarService warService,
             NationService nationService,
+            DiplomacyService diplomacyService,
             GuiAnimationManager animationManager,
             SoundFeedbackManager soundManager
     ) {
         this.warService = warService;
         this.nationService = nationService;
+        this.diplomacyService = diplomacyService;
         this.animationManager = animationManager;
         this.soundManager = soundManager;
     }
@@ -594,16 +597,18 @@ public final class WarMenu {
     }
 
     private int countNationMembers(NationId nationId) {
-        return (int) nationService.nations().stream()
-            .filter(n -> n.id().equals(nationId))
-            .findFirst()
-            .map(n -> 1) // 简化，实际应该从国家成员服务获取
+        return nationService.nationById(nationId)
+            .map(n -> n.members().size())
             .orElse(1);
     }
 
     private boolean isAlly(NationId nation1, NationId nation2) {
-        // 简化实现，实际应该从 diplomacyService 获取
-        return false;
+        // 检查两个国家是否是盟国关系
+        if (diplomacyService == null) {
+            return false;
+        }
+        DiplomacyRelation relation = diplomacyService.relationBetween(nation1, nation2);
+        return relation == DiplomacyRelation.ALLIED;
     }
 
     private Optional<WarSnapshot> findWar(NationId nation1, NationId nation2) {

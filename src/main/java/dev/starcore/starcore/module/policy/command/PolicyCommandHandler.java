@@ -268,11 +268,8 @@ public class PolicyCommandHandler {
      * audit B-157: 用于在 list/status 中显示冷却剩余时间
      */
     private long getPolicyCooldownRemaining(NationId nationId, PolicyDefinition def) {
-        Optional<PolicyRuntimeState> stateOpt = policyService.activePolicyState(nationId);
-        // 仅当政策当前未激活时显示冷却，从 cooldowns 表推断
-        // PolicyService 没有暴露冷却接口，这里使用近似：基于激活状态的 cooldownEndsAt
-        // audit B-157 (partial): PolicyService 未暴露冷却查询 API，缺接口；TODO 在 PolicyService 增加 cooldownRemaining 方法
-        return 0L;
+        // 使用 PolicyService 新增的 cooldownRemaining API 获取精确冷却时间
+        return policyService.cooldownRemaining(nationId, def.key(), Instant.now());
     }
 
     /**

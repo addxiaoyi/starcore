@@ -353,6 +353,7 @@ public final class WarModule implements StarCoreModule, WarService {
         this.warMenu = new WarMenu(
             this,                    // WarService (this class implements WarService)
             nationService,
+            diplomacyService,
             animationManager,
             soundManager
         );
