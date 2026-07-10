@@ -10,6 +10,7 @@ import dev.starcore.starcore.module.weather.model.WorldWeatherState;
 import dev.starcore.starcore.module.weather.model.NationWeatherPermission;
 import dev.starcore.starcore.module.weather.storage.WeatherStateStorage;
 import dev.starcore.starcore.core.StarCoreContext;
+import dev.starcore.starcore.foundation.util.RandomProvider;
 import dev.starcore.starcore.core.event.StarCoreEventBus;
 import dev.starcore.starcore.core.scheduler.StarCoreScheduler;
 import dev.starcore.starcore.core.service.ServiceRegistry;
@@ -680,7 +681,7 @@ public final class WeatherControlServiceImpl implements WeatherControlService {
      */
     private void applyNaturalWeatherChange(World world, WorldWeatherState state, long currentTime) {
         long timeSinceChange = currentTime - state.getLastWeatherChange();
-        long naturalChangeTime = 20L * 60 * (10 + new Random().nextInt(20)); // 10-30分钟
+        long naturalChangeTime = 20L * 60 * (10 + RandomProvider.nextInt(20)); // 10-30分钟
 
         if (timeSinceChange > naturalChangeTime) {
             WeatherType[] naturalWeathers = {
@@ -688,7 +689,7 @@ public final class WeatherControlServiceImpl implements WeatherControlService {
                 WeatherType.RAIN, WeatherType.RAIN,
                 WeatherType.THUNDER
             };
-            WeatherType newWeather = naturalWeathers[new Random().nextInt(naturalWeathers.length)];
+            WeatherType newWeather = naturalWeathers[RandomProvider.nextInt(naturalWeathers.length)];
 
             applyWeatherToWorld(world, newWeather);
             state.setCurrentWeather(newWeather);
@@ -821,7 +822,7 @@ public final class WeatherControlServiceImpl implements WeatherControlService {
      * 根据概率选择天气
      */
     private WeatherType selectWeatherByProbability(Map<WeatherType, Double> probabilities) {
-        double rand = new Random().nextDouble();
+        double rand = RandomProvider.nextDouble();
         double cumulative = 0.0;
 
         for (Map.Entry<WeatherType, Double> entry : probabilities.entrySet()) {

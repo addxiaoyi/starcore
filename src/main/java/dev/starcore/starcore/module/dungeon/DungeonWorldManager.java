@@ -1,5 +1,6 @@
 package dev.starcore.starcore.module.dungeon;
 
+import dev.starcore.starcore.foundation.util.RandomProvider;
 import org.bukkit.Bukkit;
 import org.bukkit.GameRules;
 import org.bukkit.Location;
@@ -132,7 +133,7 @@ public class DungeonWorldManager {
             return;
         }
 
-        MobSpawnConfig config = eligibleMobs.get(new Random().nextInt(eligibleMobs.size()));
+        MobSpawnConfig config = eligibleMobs.get(RandomProvider.nextInt(eligibleMobs.size()));
 
         // 在玩家附近生成
         for (Player player : world.getPlayers()) {
@@ -154,9 +155,8 @@ public class DungeonWorldManager {
      * 获取随机生成位置
      */
     private Location getRandomSpawnLocation(Location center, double minDist, double maxDist) {
-        Random random = new Random();
-        double angle = random.nextDouble() * 2 * Math.PI;
-        double distance = minDist + random.nextDouble() * (maxDist - minDist);
+        double angle = RandomProvider.nextDouble() * 2 * Math.PI;
+        double distance = minDist + RandomProvider.nextDouble() * (maxDist - minDist);
 
         double x = center.getX() + distance * Math.cos(angle);
         double z = center.getZ() + distance * Math.sin(angle);

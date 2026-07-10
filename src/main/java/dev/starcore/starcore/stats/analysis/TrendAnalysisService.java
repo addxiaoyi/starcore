@@ -1,5 +1,6 @@
 package dev.starcore.starcore.stats.analysis;
 
+import dev.starcore.starcore.foundation.util.RandomProvider;
 import dev.starcore.starcore.ranking.RankPeriod;
 import dev.starcore.starcore.ranking.RankingService;
 
@@ -441,10 +442,9 @@ public class TrendAnalysisService {
         data.activePlayers = rankingService.getTopPlayers("kills", 100, RankPeriod.DAILY).size();
 
         // 生成趋势数据
-        Random random = new Random();
         for (int i = 0; i < 30; i++) {
-            data.playerCountHistory.add((long) (50 + random.nextInt(30)));
-            data.killCountHistory.add((long) (500 + random.nextInt(500)));
+            data.playerCountHistory.add((long) (50 + RandomProvider.nextInt(30)));
+            data.killCountHistory.add((long) (500 + RandomProvider.nextInt(500)));
         }
 
         // 计算趋势

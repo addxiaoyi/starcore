@@ -3,6 +3,8 @@ package dev.starcore.starcore.module.war.gui;
 import dev.starcore.starcore.foundation.animation.GuiAnimationManager;
 import dev.starcore.starcore.foundation.animation.SoundFeedbackManager;
 import dev.starcore.starcore.foundation.gui.ButtonFactory;
+import dev.starcore.starcore.module.diplomacy.DiplomacyRelation;
+import dev.starcore.starcore.module.diplomacy.DiplomacyService;
 import dev.starcore.starcore.module.nation.NationService;
 import dev.starcore.starcore.module.nation.model.Nation;
 import dev.starcore.starcore.module.nation.model.NationId;

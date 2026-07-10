@@ -1,6 +1,7 @@
 package dev.starcore.starcore.social.simulation;
 
 import java.util.concurrent.ThreadLocalRandom;
+import dev.starcore.starcore.foundation.util.RandomProvider;
 import dev.starcore.starcore.module.nation.model.Nation;
 import dev.starcore.starcore.module.nation.model.NationId;
 import dev.starcore.starcore.util.ColorCodes;
@@ -473,9 +474,9 @@ public class SocialEventScheduler {
 
     private void updateTrends() {
         // 随机流行趋势
-        if (ThreadLocalRandom.current().nextDouble() < 0.2) {
+        if (RandomProvider.nextDouble() < 0.2) {
             String[] trends = {"复古风", "高科技", "极简主义", "自然主义", "赛博朋克", "古典风"};
-            String trend = trends[new Random().nextInt(trends.length)];
+            String trend = trends[RandomProvider.nextInt(trends.length)];
 
             SocialEvent event = new SocialEvent(
                 "trend_" + System.currentTimeMillis(),

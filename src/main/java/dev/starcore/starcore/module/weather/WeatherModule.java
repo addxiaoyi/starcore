@@ -1,5 +1,6 @@
 package dev.starcore.starcore.module.weather;
 
+import dev.starcore.starcore.foundation.util.RandomProvider;
 import dev.starcore.starcore.module.weather.model.NationWeatherSettings;
 import dev.starcore.starcore.module.weather.model.WeatherEffect;
 import dev.starcore.starcore.module.weather.model.WeatherForecastEntry;
@@ -385,12 +386,12 @@ public final class WeatherModule implements StarCoreModule, WeatherControlServic
     private void applyNaturalWeather(World world, WorldWeatherState state, long currentTime) {
         // 自然天气每10-30分钟变化一次
         long timeSinceChange = currentTime - state.getLastWeatherChange();
-        long naturalChangeTime = 20L * 60 * (10 + new Random().nextInt(20)); // 10-30分钟
+        long naturalChangeTime = 20L * 60 * (10 + RandomProvider.nextInt(20)); // 10-30分钟
 
         if (timeSinceChange > naturalChangeTime) {
             // 随机改变天气
             WeatherType[] naturalWeathers = {WeatherType.CLEAR, WeatherType.CLEAR, WeatherType.RAIN, WeatherType.RAIN, WeatherType.THUNDER};
-            WeatherType newWeather = naturalWeathers[new Random().nextInt(naturalWeathers.length)];
+            WeatherType newWeather = naturalWeathers[RandomProvider.nextInt(naturalWeathers.length)];
 
             applyWeatherToWorld(world, newWeather, state);
             state.setCurrentWeather(newWeather);
@@ -481,7 +482,7 @@ public final class WeatherModule implements StarCoreModule, WeatherControlServic
      * 根据概率选择天气
      */
     private WeatherType selectWeatherByProbability(Map<WeatherType, Double> probabilities) {
-        double rand = new Random().nextDouble();
+        double rand = RandomProvider.nextDouble();
         double cumulative = 0.0;
 
         for (Map.Entry<WeatherType, Double> entry : probabilities.entrySet()) {

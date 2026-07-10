@@ -1,5 +1,6 @@
 package dev.starcore.starcore.stats.dashboard;
 
+import dev.starcore.starcore.foundation.util.RandomProvider;
 import dev.starcore.starcore.pvp.stats.PvPStats;
 import dev.starcore.starcore.pvp.stats.PvPStatsService;
 import dev.starcore.starcore.ranking.RankPeriod;
@@ -378,18 +379,16 @@ public class StatsDashboardService {
     private List<Long> generateTrendData(String statType, int days) {
         // 简化实现：返回模拟数据
         List<Long> data = new ArrayList<>();
-        Random random = new Random();
         for (int i = 0; i < days; i++) {
-            data.add((long) (50 + random.nextInt(100)));
+            data.add((long) (50 + RandomProvider.nextInt(100)));
         }
         return data;
     }
 
     private List<Long> generatePlayerTrendData(int days) {
         List<Long> data = new ArrayList<>();
-        Random random = new Random();
         for (int i = 0; i < days; i++) {
-            data.add((long) (20 + random.nextInt(30)));
+            data.add((long) (20 + RandomProvider.nextInt(30)));
         }
         return data;
     }

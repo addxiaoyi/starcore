@@ -1,5 +1,6 @@
 package dev.starcore.starcore.foundation.hud;
 
+import dev.starcore.starcore.foundation.util.RandomProvider;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;
@@ -14,6 +15,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * 现代 HUD 菜单事件监听器
@@ -214,17 +216,15 @@ public class ModernHudListener implements org.bukkit.event.Listener {
      * 闪烁粒子效果
      */
     private void spawnSparkleParticles(Player player, Location loc, int count) {
-        Random random = new Random();
-
         for (int i = 0; i < count; i++) {
-            double x = (random.nextDouble() - 0.5) * 2.5;
-            double y = random.nextDouble() * 2.0;
-            double z = (random.nextDouble() - 0.5) * 2.5;
+            double x = (RandomProvider.nextDouble() - 0.5) * 2.5;
+            double y = RandomProvider.nextDouble() * 2.0;
+            double z = (RandomProvider.nextDouble() - 0.5) * 2.5;
 
             Location particleLoc = loc.clone().add(x, y, z);
 
             // 彩色闪烁
-            int colorIndex = random.nextInt(5);
+            int colorIndex = RandomProvider.nextInt(5);
             Color[] colors = {Color.WHITE, Color.fromRGB(255, 215, 0), Color.fromRGB(0, 255, 255),
                 Color.fromRGB(255, 182, 193), Color.fromRGB(173, 255, 47)};
 
@@ -234,9 +234,9 @@ public class ModernHudListener implements org.bukkit.event.Listener {
         }
 
         // 添加一些星光粒子
-        if (random.nextInt(5) == 0) {
+        if (RandomProvider.nextInt(5) == 0) {
             player.spawnParticle(Particle.END_ROD,
-                loc.clone().add(0, 2.0 + random.nextDouble(), 0),
+                loc.clone().add(0, 2.0 + RandomProvider.nextDouble(), 0),
                 1, 0.1, 0.1, 0.1, 0.01);
         }
     }
@@ -245,12 +245,10 @@ public class ModernHudListener implements org.bukkit.event.Listener {
      * 萤火虫粒子效果
      */
     private void spawnFireflyParticles(Player player, Location loc, int count) {
-        Random random = new Random();
-
         for (int i = 0; i < count; i++) {
-            double angle = random.nextDouble() * Math.PI * 2;
-            double radius = 1.0 + random.nextDouble() * 1.0;
-            double height = random.nextDouble() * 2.5;
+            double angle = RandomProvider.nextDouble() * Math.PI * 2;
+            double radius = 1.0 + RandomProvider.nextDouble() * 1.0;
+            double height = RandomProvider.nextDouble() * 2.5;
 
             double x = Math.cos(angle) * radius;
             double z = Math.sin(angle) * radius;
@@ -267,12 +265,10 @@ public class ModernHudListener implements org.bukkit.event.Listener {
      * 极光粒子效果
      */
     private void spawnAuroraParticles(Player player, Location loc, int count) {
-        Random random = new Random();
-
         for (int i = 0; i < count; i++) {
-            double angle = random.nextDouble() * Math.PI * 2;
+            double angle = RandomProvider.nextDouble() * Math.PI * 2;
             double radius = 1.5;
-            double height = 0.5 + random.nextDouble() * 1.5;
+            double height = 0.5 + RandomProvider.nextDouble() * 1.5;
 
             double x = Math.cos(angle) * radius;
             double z = Math.sin(angle) * radius;
@@ -280,7 +276,7 @@ public class ModernHudListener implements org.bukkit.event.Listener {
             Location particleLoc = loc.clone().add(x, height, z);
 
             // 彩虹色极光
-            float hue = (float) (random.nextDouble() * 0.3 + 0.5);
+            float hue = (float) (RandomProvider.nextDouble() * 0.3 + 0.5);
             // 简单地从预定义颜色中选择
             Color color = switch ((int)(hue * 6) % 6) {
                 case 0 -> Color.RED;
@@ -301,12 +297,10 @@ public class ModernHudListener implements org.bukkit.event.Listener {
      * 星尘粒子效果
      */
     private void spawnStardustParticles(Player player, Location loc, int count) {
-        Random random = new Random();
-
         for (int i = 0; i < count; i++) {
-            double x = (random.nextDouble() - 0.5) * 3.0;
-            double y = random.nextDouble() * 3.0;
-            double z = (random.nextDouble() - 0.5) * 3.0;
+            double x = (RandomProvider.nextDouble() - 0.5) * 3.0;
+            double y = RandomProvider.nextDouble() * 3.0;
+            double z = (RandomProvider.nextDouble() - 0.5) * 3.0;
 
             Location particleLoc = loc.clone().add(x, y, z);
 
@@ -322,12 +316,10 @@ public class ModernHudListener implements org.bukkit.event.Listener {
      * 气泡粒子效果
      */
     private void spawnBubbleParticles(Player player, Location loc, int count) {
-        Random random = new Random();
-
         for (int i = 0; i < count; i++) {
-            double x = (random.nextDouble() - 0.5) * 2.0;
-            double y = random.nextDouble() * 2.5;
-            double z = (random.nextDouble() - 0.5) * 2.0;
+            double x = (RandomProvider.nextDouble() - 0.5) * 2.0;
+            double y = RandomProvider.nextDouble() * 2.5;
+            double z = (RandomProvider.nextDouble() - 0.5) * 2.0;
 
             Location particleLoc = loc.clone().add(x, y, z);
 
@@ -336,7 +328,7 @@ public class ModernHudListener implements org.bukkit.event.Listener {
                 0.05, 0.05, 0.05, particleSpeed);
 
             // 偶尔添加水花
-            if (random.nextInt(10) == 0) {
+            if (RandomProvider.nextInt(10) == 0) {
                 player.spawnParticle(Particle.SPLASH, particleLoc, 2,
                     0.02, 0.02, 0.02, 0.01);
             }

@@ -33,6 +33,7 @@
 
 ```bash
 # 构建
+cd starcore
 mvn clean package
 
 # 生成: target/starcore-0.1.0-SNAPSHOT.jar
@@ -56,11 +57,16 @@ mvn clean package
 ## 📁 项目结构
 
 ```
-src/main/java/dev/starcore/starcore/
-├── foundation/        # 基础设施（经济、存储、反馈）
-├── module/           # 核心业务模块
-├── integration/      # 插件集成
-└── api/             # 公开API
+starcore/
+├── src/main/java/dev/starcore/starcore/
+│   ├── foundation/        # 基础设施（经济、存储、反馈）
+│   ├── module/           # 核心业务模块
+│   ├── integration/      # 插件集成
+│   └── api/             # 公开API
+└── src/main/resources/
+    ├── config.yml         # 主配置
+    ├── lang/              # 语言文件
+    └── db/migration/       # 数据库迁移
 ```
 
 ---

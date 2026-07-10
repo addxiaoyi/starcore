@@ -1,5 +1,6 @@
 package dev.starcore.starcore.module.technology.listener;
 
+import dev.starcore.starcore.foundation.util.RandomProvider;
 import dev.starcore.starcore.module.nation.NationService;
 import dev.starcore.starcore.module.technology.TechnologyModule;
 import dev.starcore.starcore.module.technology.TechnologyService;
@@ -49,7 +50,6 @@ public final class TechnologyEventListener implements Listener {
     private static final long GROWTH_CHECK_COOLDOWN_MS = 1000; // 1 second cooldown per location
 
     // Random for probabilistic bonuses
-    private final Random random = new Random();
 
     public TechnologyEventListener(TechnologyModule technologyModule, NationService nationService) {
         this.technologyModule = technologyModule;
@@ -237,7 +237,7 @@ public final class TechnologyEventListener implements Listener {
 
         // 10% chance per 0.1 bonus to spawn a bonus crop (max 50%)
         double chance = Math.min(growthBonus * 0.1, 0.5);
-        if (random.nextDouble() > chance) return;
+        if (RandomProvider.nextDouble() > chance) return;
 
         // Find an adjacent air block
         Block[] adjacent = {
@@ -267,7 +267,7 @@ public final class TechnologyEventListener implements Listener {
 
         // 5% chance per 0.1 bonus to trigger instant growth (max 25%)
         double chance = Math.min(cropGrowthBonus * 0.05, 0.25);
-        if (random.nextDouble() < chance) {
+        if (RandomProvider.nextDouble() < chance) {
             // Trigger bone meal effect for faster growth
             crop.getWorld().playEffect(crop.getLocation(), org.bukkit.Effect.BONE_MEAL_USE, 1);
         }
@@ -337,7 +337,7 @@ public final class TechnologyEventListener implements Listener {
 
         // Bonus treasure drop chance
         double treasureChance = Math.min(fishingBonus * 0.05, 0.3); // Max 30% bonus
-        if (treasureChance > 0 && random.nextDouble() < treasureChance) {
+        if (treasureChance > 0 && RandomProvider.nextDouble() < treasureChance) {
             // Spawn a bonus treasure item
             Location catchLocation = event.getCaught().getLocation();
             ItemStack[] treasures = {
@@ -348,7 +348,7 @@ public final class TechnologyEventListener implements Listener {
                 new ItemStack(Material.BOW, 1),
                 new ItemStack(Material.FISHING_ROD, 1)
             };
-            ItemStack bonus = treasures[random.nextInt(treasures.length)].clone();
+            ItemStack bonus = treasures[RandomProvider.nextInt(treasures.length)].clone();
             catchLocation.getWorld().dropItemNaturally(catchLocation, bonus);
         }
     }

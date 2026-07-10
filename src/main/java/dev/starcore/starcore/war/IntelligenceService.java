@@ -1,5 +1,6 @@
 package dev.starcore.starcore.war;
 import java.util.concurrent.ThreadLocalRandom;
+import dev.starcore.starcore.foundation.util.RandomProvider;
 import java.util.Optional;
 
 import dev.starcore.starcore.module.nation.model.NationId;
@@ -66,7 +67,7 @@ public final class IntelligenceService {
         }
 
         // 创建间谍
-        int initialSkill = 3 + new Random().nextInt(3); // 3-5
+        int initialSkill = 3 + RandomProvider.nextInt(3); // 3-5
         Spy spy = new Spy(
             UUID.randomUUID(),
             ownerNation,

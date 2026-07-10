@@ -1,5 +1,6 @@
 package dev.starcore.starcore.social.simulation.command;
 
+import dev.starcore.starcore.foundation.util.RandomProvider;
 import dev.starcore.starcore.social.SocialSimulationModule;
 import dev.starcore.starcore.social.simulation.*;
 import org.bukkit.Bukkit;
@@ -313,7 +314,7 @@ public class SocialSimCommand implements CommandExecutor, TabCompleter {
         String action = args[1].toLowerCase();
         if (action.equals("create") && args.length >= 3) {
             String content = args[2];
-            gossipService.createGossip(player.getUniqueId(), content, GossipService.GossipTopic.values()[new Random().nextInt(GossipService.GossipTopic.values().length)]);
+            gossipService.createGossip(player.getUniqueId(), content, GossipService.GossipTopic.values()[RandomProvider.nextInt(GossipService.GossipTopic.values().length)]);
             player.sendMessage("§a八卦已发布！");
         } else if (action.equals("history")) {
             var history = gossipService.getPlayerGossipHistory(player.getUniqueId());

@@ -3,6 +3,7 @@ package dev.starcore.starcore.social.simulation;
 import java.util.concurrent.ThreadLocalRandom;
 import dev.starcore.starcore.event.player.PlayerAttackPlayerEvent;
 import dev.starcore.starcore.event.player.PlayerHelpPlayerEvent;
+import dev.starcore.starcore.foundation.util.RandomProvider;
 import dev.starcore.starcore.social.simulation.SocialEventScheduler.EventEffects;
 import org.bukkit.*;
 import org.bukkit.entity.*;
@@ -750,7 +751,7 @@ public class SocialSimulationListener implements Listener {
         }
 
         if (onlineFriends.isEmpty()) return null;
-        return onlineFriends.get(new Random().nextInt(onlineFriends.size()));
+        return onlineFriends.get(RandomProvider.nextInt(onlineFriends.size()));
     }
 
     /**

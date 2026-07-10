@@ -1,5 +1,6 @@
 package dev.starcore.starcore.module.dungeon;
 
+import dev.starcore.starcore.foundation.util.RandomProvider;
 import java.util.concurrent.ThreadLocalRandom;
 import dev.starcore.starcore.foundation.economy.EconomyService;
 import org.bukkit.Bukkit;
@@ -231,7 +232,7 @@ public class DungeonRewardService {
             return rewardPools.values().iterator().next();
         }
 
-        int random = new Random().nextInt(totalWeight);
+        int random = RandomProvider.nextInt(totalWeight);
         int cumulative = 0;
 
         for (RewardPool pool : rewardPools.values()) {
@@ -311,7 +312,7 @@ public class DungeonRewardService {
                 .filter(Objects::nonNull)
                 .toList();
             if (validItems.isEmpty()) return null;
-            return validItems.get(new Random().nextInt(validItems.size()));
+            return validItems.get(RandomProvider.nextInt(validItems.size()));
         }
     }
 }

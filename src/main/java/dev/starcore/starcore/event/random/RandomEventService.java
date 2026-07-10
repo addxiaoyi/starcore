@@ -5,6 +5,7 @@ import dev.starcore.starcore.event.random.effect.*;
 import dev.starcore.starcore.event.random.trigger.*;
 import dev.starcore.starcore.foundation.economy.EconomyService;
 import dev.starcore.starcore.foundation.economy.InternalEconomyService;
+import dev.starcore.starcore.foundation.util.RandomProvider;
 import dev.starcore.starcore.module.diplomacy.DiplomacyService;
 import dev.starcore.starcore.module.nation.NationService;
 import dev.starcore.starcore.module.resource.ResourceService;
@@ -43,7 +44,6 @@ public class RandomEventService {
     private final Map<String, RandomEvent> events;
     private final EventChain eventChain;
     private final Map<String, Long> lastTriggerTimes;
-    private final Random random;
     private final Map<UUID, PersistentEffect> persistentEffects;
     private final Map<String, Long> pendingChainTriggers;
     private RandomEventResponseMenuListener menuListener;
@@ -85,7 +85,6 @@ public class RandomEventService {
         this.eventChain = new EventChain(this);
         this.eventChain.setPlugin(plugin);  // 设置插件引用用于调度
         this.lastTriggerTimes = new ConcurrentHashMap<>();  // Bug修复 #5: 线程安全
-        this.random = new Random();
         this.persistentEffects = new ConcurrentHashMap<>();  // Bug修复 #5: 线程安全
         this.pendingChainTriggers = new ConcurrentHashMap<>();  // Bug修复 #5: 线程安全
         this.pluginConfig = plugin.getConfig();

@@ -1,10 +1,9 @@
 package dev.starcore.starcore.event.random.trigger;
 
 import dev.starcore.starcore.event.random.EventTrigger;
+import dev.starcore.starcore.foundation.util.RandomProvider;
 import org.bukkit.entity.Player;
 import org.bukkit.Location;
-
-import java.util.Random;
 
 /**
  * 概率触发器
@@ -13,7 +12,6 @@ import java.util.Random;
 public class ProbabilityTrigger implements EventTrigger {
 
     private final double probability;
-    private final Random random;
 
     /**
      * 创建概率触发器
@@ -22,12 +20,11 @@ public class ProbabilityTrigger implements EventTrigger {
      */
     public ProbabilityTrigger(double probability) {
         this.probability = Math.max(0.0, Math.min(1.0, probability));
-        this.random = new Random();
     }
 
     @Override
     public boolean check(Player player, Location location) {
-        return random.nextDouble() <= probability;
+        return RandomProvider.nextDouble() <= probability;
     }
 
     @Override

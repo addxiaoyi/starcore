@@ -2,6 +2,7 @@ package dev.starcore.starcore.social.simulation;
 import java.util.Optional;
 
 import dev.starcore.starcore.core.service.ServiceRegistry;
+import dev.starcore.starcore.foundation.util.RandomProvider;
 import dev.starcore.starcore.module.diplomacy.DiplomacyRelation;
 import dev.starcore.starcore.module.diplomacy.DiplomacyService;
 import dev.starcore.starcore.module.nation.model.NationId;
@@ -490,7 +491,7 @@ public class CultureConflictService {
         int successThreshold = Math.max(5, difficulty - (conflict.reconciliationAttempts() * 5));
 
         // 随机判定
-        int roll = new Random().nextInt(100);
+        int roll = RandomProvider.nextInt(100);
         boolean success = roll < successThreshold;
 
         if (success) {
@@ -556,7 +557,7 @@ public class CultureConflictService {
             .filter(c -> c.tension() <= 10) // 紧张度很低
             .forEach(conflict -> {
                 // 随机判定是否融合
-                if (new Random().nextInt(100) < 10) {
+                if (RandomProvider.nextInt(100) < 10) {
                     performCulturalFusion(conflict);
                 }
             });
@@ -571,14 +572,14 @@ public class CultureConflictService {
         List<CultureService.CultureTrait> traits2 = cultureService.getTraits(conflict.nation2());
 
         // 随机选择一个对方的特质
-        if (!traits2.isEmpty() && new Random().nextBoolean()) {
-            CultureService.CultureTrait inherited = traits2.get(new Random().nextInt(traits2.size()));
+        if (!traits2.isEmpty() && RandomProvider.nextBoolean()) {
+            CultureService.CultureTrait inherited = traits2.get(RandomProvider.nextInt(traits2.size()));
             // 通过文化点数形式让特质可传递
             cultureService.addCulturePoints(conflict.nation1(), 50, inherited.category());
         }
 
-        if (!traits1.isEmpty() && new Random().nextBoolean()) {
-            CultureService.CultureTrait inherited = traits1.get(new Random().nextInt(traits1.size()));
+        if (!traits1.isEmpty() && RandomProvider.nextBoolean()) {
+            CultureService.CultureTrait inherited = traits1.get(RandomProvider.nextInt(traits1.size()));
             cultureService.addCulturePoints(conflict.nation2(), 50, inherited.category());
         }
 
