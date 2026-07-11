@@ -6,7 +6,7 @@
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.21.11-green.svg)](https://www.minecraft.net/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Build](https://github.com/addxiaoyi/starcore/workflows/Build/badge.svg)](https://github.com/addxiaoyi/starcore/actions)
-[![Tests](https://img.shields.io/badge/Tests-220%20passed-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/Tests-220%20%E9%80%89%E9%AA%8C%E9%80%9A%E8%BF%87-brightgreen.svg)]()
 
 ---
 
@@ -101,5 +101,6 @@ mvn test
 
 ## 🔗 链接
 
-- [文档](starcore/README.md)
+- [StarCore 文档](starcore/README.md)
 - [问题反馈](https://github.com/addxiaoyi/starcore/issues)
+- [提交规范](https://www.conventionalcommits.org/)
