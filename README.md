@@ -71,14 +71,6 @@ starcore/
 
 ---
 
-## 📊 统计数据
-
-- **677+** 个 Java 类文件
-- **13** 个核心模块
-- **6** 个集成插件
-
----
-
 ## 📄 许可证
 
 [MIT License](LICENSE)
@@ -87,5 +79,4 @@ starcore/
 
 ## 🔗 链接
 
-- [文档](docs/)
 - [问题反馈](https://github.com/addxiaoyi/starcore/issues)

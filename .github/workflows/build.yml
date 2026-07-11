@@ -2,7 +2,7 @@ name: Build and Release
 
 on:
   push:
-    branches: [ main, master, clean-only-starcore, clean-branch ]
+    branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
 
@@ -22,14 +22,16 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Build with Maven
-        run: mvn clean package -DskipTests
+      - name: Build StarCore
+        run: |
+          cd starcore
+          mvn clean package -DskipTests
 
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
         with:
           name: starcore-jar
-          path: target/starcore-*.jar
+          path: starcore/target/starcore-*.jar
           retention-days: 7
 
   release:
