@@ -1,0 +1,260 @@
+# ============================================================
+# STARCORE 国库系统 GUI 配置
+# ============================================================
+
+# --- 国库主菜单 ---
+treasury-main:
+  title: "&6&l💰 国库管理 &7| &f主菜单"
+  rows: 5
+
+  items:
+    # 余额显示
+    balance-display:
+      slot: 4
+      material: GOLD_INGOT
+      display-name: "&6&l💰 当前余额"
+      glow: true
+      lore:
+        - ""
+        - "&7国库余额: &e✦ {balance}"
+        - "&7今日收入: &a+{daily_income}"
+        - "&7今日支出: &c-{daily_expense}"
+        - ""
+        - "&7总收入: &a+{weekly_income}"
+        - "&7总支出: &c-{weekly_expense}"
+
+    # 存款
+    deposit:
+      slot: 20
+      material: GREEN_STAINED_GLASS
+      display-name: "&a&l⬆ 存款"
+      glow: false
+      lore:
+        - ""
+        - "&7将个人金币存入国库"
+        - "&7存款比例: &a100%"
+        - ""
+        - "&e▶ 点击存款"
+
+    # 取款
+    withdraw:
+      slot: 22
+      material: RED_STAINED_GLASS
+      display-name: "&c&l⬇ 取款"
+      glow: false
+      lore:
+        - ""
+        - "&7从国库取款到个人"
+        - "&7取款比例: &c100%"
+        - ""
+        - "&e▶ 点击取款"
+
+    # 税务管理
+    tax:
+      slot: 24
+      material: PAPER
+      display-name: "&e&l📋 税务管理"
+      glow: false
+      lore:
+        - ""
+        - "&7当前税率: &e{tax_rate}%"
+        - "&7预计收入: &a+{estimated_income}"
+        - "&7纳税人数: &e{tax_payers}"
+        - ""
+        - "&e▶ 管理税务"
+
+    # 交易记录
+    transactions:
+      slot: 31
+      material: BOOK
+      display-name: "&f&l📜 交易记录"
+      glow: false
+      lore:
+        - ""
+        - "&7最近交易: &e{recent_count} &7笔"
+        - "&7本月收入: &a+{monthly_income}"
+        - "&7本月支出: &c-{monthly_expense}"
+        - ""
+        - "&e▶ 查看记录"
+
+    # 预算设置
+    budget:
+      slot: 33
+      material: COMPARATOR
+      display-name: "&f&l⚙ 预算设置"
+      glow: false
+      lore:
+        - ""
+        - "&7自动拨款: &e{budget_status}"
+        - "&7预算余额: &6{budget_remaining}"
+        - ""
+        - "&e▶ 设置预算"
+
+  border:
+    enabled: true
+    material: BLACK_STAINED_GLASS_PANE
+    display-name: " "
+
+# --- 存款菜单 ---
+deposit:
+  title: "&a&l⬆ 存款"
+  rows: 3
+
+  items:
+    # 金额输入
+    amount-input:
+      slot: 13
+      material: GOLD_INGOT
+      display-name: "&e&l输入金额"
+      glow: false
+      lore:
+        - ""
+        - "&7输入要存款的金额"
+        - "&7当前余额: &6{player_balance}"
+        - ""
+        - "&e输入金额..."
+
+    # 快捷按钮: 100
+    quick-100:
+      slot: 20
+      material: PAPER
+      display-name: "&a&l100 金币"
+      glow: false
+      lore:
+        - ""
+        - "&e▶ 点击存款100"
+
+    # 快捷按钮: 1000
+    quick-1000:
+      slot: 22
+      material: PAPER
+      display-name: "&a&l1,000 金币"
+      glow: false
+      lore:
+        - ""
+        - "&e▶ 点击存款1,000"
+
+    # 快捷按钮: 10000
+    quick-10000:
+      slot: 24
+      material: PAPER
+      display-name: "&a&l10,000 金币"
+      glow: false
+      lore:
+        - ""
+        - "&e▶ 点击存款10,000"
+
+    # 全部
+    all-in:
+      slot: 26
+      material: GREEN_STAINED_GLASS
+      display-name: "&a&l全部存入"
+      glow: true
+      lore:
+        - ""
+        - "&7当前可存: &6{player_balance}"
+        - ""
+        - "&e▶ 全部存入"
+
+  border:
+    enabled: true
+    material: BLACK_STAINED_GLASS_PANE
+    display-name: " "
+
+# --- 税务设置菜单 ---
+tax-settings:
+  title: "&e&l📋 税务设置"
+  rows: 4
+
+  items:
+    # 当前税率
+    current-tax:
+      slot: 4
+      material: PAPER
+      display-name: "&e&l当前税率"
+      glow: false
+      lore:
+        - ""
+        - "&7税率: &e{tax_rate}%"
+        - "&7预计收入: &a+{estimated}"
+        - ""
+
+    # 提高税率
+    increase-tax:
+      slot: 20
+      material: GREEN_STAINED_GLASS
+      display-name: "&a&l⬆ 提高税率"
+      glow: false
+      lore:
+        - ""
+        - "&7当前: &e{tax_rate}%"
+        - "&7+1% 税率"
+        - ""
+        - "&e▶ 点击提高"
+
+    # 降低税率
+    decrease-tax:
+      slot: 24
+      material: RED_STAINED_GLASS
+      display-name: "&c&l⬇ 降低税率"
+      glow: false
+      lore:
+        - ""
+        - "&7当前: &e{tax_rate}%"
+        - "&7-1% 税率"
+        - ""
+        - "&e▶ 点击降低"
+
+  border:
+    enabled: true
+    material: BLACK_STAINED_GLASS_PANE
+    display-name: " "
+
+# --- 交易记录菜单 ---
+transactions:
+  title: "&f&l📜 交易记录"
+  rows: 6
+
+  items:
+    # 收入记录
+    income:
+      slot: 18
+      material: GREEN_WOOL
+      display-name: "&a&l💚 收入"
+      glow: false
+      lore:
+        - ""
+        - "&7收入笔数: &a{income_count}"
+        - "&7收入总额: &a+{income_total}"
+        - ""
+        - "&e▶ 查看收入"
+
+    # 支出记录
+    expense:
+      slot: 26
+      material: RED_WOOL
+      display-name: "&c&l💔 支出"
+      glow: false
+      lore:
+        - ""
+        - "&7支出笔数: &c{expense_count}"
+        - "&7支出总额: &c-{expense_total}"
+        - ""
+        - "&e▶ 查看支出"
+
+    # 页码
+    page-info:
+      slot: 49
+      material: BOOK
+      display-name: "&e&l交易记录"
+      glow: false
+      lore:
+        - ""
+        - "&7共 &e{total_count} &7笔"
+        - "&7当前页: &e{current_page}&7/&e{total_pages}"
+        - ""
+
+  border:
+    enabled: true
+    material: BLACK_STAINED_GLASS_PANE
+    display-name: " "

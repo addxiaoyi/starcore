@@ -1,0 +1,206 @@
+# ========================================
+# StarCore 繁荣度系统配置
+# ========================================
+# 繁荣度系统管理国家的经济发展水平
+# 繁荣度越高，国家获得的税收和资源加成越多
+# ========================================
+
+prosperity:
+  # 初始繁荣度 (0-100)
+  initial-prosperity: 50.0
+
+  # 最大繁荣度
+  max-prosperity: 100.0
+
+  # 最小繁荣度
+  min-prosperity: 0.0
+
+  # 每日衰减率 (百分比)
+  # 每天自动降低的繁荣度百分比
+  daily-decay-rate: 0.5
+
+  # 衰减阈值
+  # 繁荣度低于此值时不进行衰减（保护弱小国家）
+  decay-threshold: 30.0
+
+  # 达到10级所需的繁荣度值
+  prosperity-to-level-10: 100.0
+
+  # 活动提升量
+  # 每次活跃操作增加的繁荣度
+  activity-boost-amount: 2.0
+
+  # 建筑提升量
+  # 每次建筑增加的繁荣度贡献
+  building-boost-amount: 3.0
+
+  # 交易提升量
+  # 每次交易增加的繁荣度
+  trade-boost-amount: 1.5
+
+  # 战争惩罚倍率
+  # 处于战争状态时衰减加速的倍数
+  war-penalty-multiplier: 5.0
+
+  # 不活跃惩罚倍率
+  # 超过24小时不活跃时衰减加速的倍数
+  inactivity-penalty-multiplier: 2.0
+
+  # 每级税收加成
+  # 每级繁荣度增加的税收百分比 (0.02 = +2%)
+  tax-bonus-per-level: 0.02
+
+  # 每级资源加成
+  # 每级繁荣度增加的资源产出百分比 (0.05 = +5%)
+  resource-bonus-per-level: 0.05
+
+  # 衰减检查间隔 (游戏刻)
+  # 72000刻 = 1小时 (20 ticks/秒 * 60秒 * 60分钟)
+  decay-check-interval-ticks: 72000
+
+# ========================================
+# 活动类型配置
+# ========================================
+# 定义不同活动的繁荣度贡献值
+# ========================================
+
+activities:
+  build:
+    # 建筑活动增加分数
+    score-increment: 3
+    # 繁荣度提升系数
+    prosperity-boost: 0.3
+
+  trade:
+    # 交易活动增加分数
+    score-increment: 2
+    # 繁荣度提升系数
+    prosperity-boost: 0.2
+
+  combat:
+    # 战斗活动增加分数
+    score-increment: 2
+    # 繁荣度提升系数
+    prosperity-boost: 0.2
+
+  interact:
+    # 交互活动增加分数
+    score-increment: 1
+    # 繁荣度提升系数
+    prosperity-boost: 0.1
+
+  explore:
+    # 探索活动增加分数
+    score-increment: 1
+    # 繁荣度提升系数
+    prosperity-boost: 0.05
+
+# ========================================
+# 等级配置
+# ========================================
+# 定义繁荣度等级和对应的加成
+# ========================================
+
+levels:
+  1:
+    name: "衰败"
+    color: "&c"
+    tax-bonus: 0
+    resource-bonus: 0
+  2:
+    name: "凋敝"
+    color: "&c"
+    tax-bonus: 0
+    resource-bonus: 0
+  3:
+    name: "低迷"
+    color: "&e"
+    tax-bonus: 0.02
+    resource-bonus: 0.05
+  4:
+    name: "平淡"
+    color: "&e"
+    tax-bonus: 0.04
+    resource-bonus: 0.10
+  5:
+    name: "平稳"
+    color: "&a"
+    tax-bonus: 0.06
+    resource-bonus: 0.15
+  6:
+    name: "发展"
+    color: "&a"
+    tax-bonus: 0.08
+    resource-bonus: 0.20
+  7:
+    name: "兴盛"
+    color: "&2"
+    tax-bonus: 0.10
+    resource-bonus: 0.25
+  8:
+    name: "繁荣"
+    color: "&2"
+    tax-bonus: 0.12
+    resource-bonus: 0.30
+  9:
+    name: "鼎盛"
+    color: "&6"
+    tax-bonus: 0.14
+    resource-bonus: 0.35
+  10:
+    name: "巅峰"
+    color: "&6"
+    tax-bonus: 0.20
+    resource-bonus: 0.50
+
+# ========================================
+# 事件配置
+# ========================================
+
+events:
+  # 繁荣度危机阈值
+  crisis-threshold: 20.0
+  # 繁荣度峰值阈值
+  peak-threshold: 95.0
+  # 严重危机阈值
+  severe-crisis-threshold: 10.0
+  # 是否在达到峰值时全服广播
+  broadcast-on-peak: true
+  # 是否在进入危机时全服广播
+  broadcast-on-crisis: true
+  # 是否在等级变化时通知国家成员
+  notify-on-level-change: true
+
+# ========================================
+# 历史记录配置
+# ========================================
+
+history:
+  # 最大历史记录数
+  max-records: 50
+  # 是否持久化历史记录
+  persist: true
+
+# ========================================
+# 冷却配置
+# ========================================
+
+cooldown:
+  # 活动冷却时间（秒）
+  activity: 30
+  # 建筑冷却时间（秒）
+  block-place: 5
+  # 击杀冷却时间（秒）
+  kill: 60
+
+# ========================================
+# 通知配置
+# ========================================
+
+notifications:
+  # 启用通知
+  enabled: true
+  # 通知方式: ACTIONBAR, CHAT, TITLE
+  type: "CHAT"
+  # 通知持续时间（秒）
+  duration: 5

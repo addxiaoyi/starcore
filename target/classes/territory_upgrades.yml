@@ -1,0 +1,337 @@
+# Territory Upgrade System Configuration
+# 领地升级系统配置
+
+# 默认升级路径定义
+upgrade-paths:
+  # 基础发展路径
+  basic:
+    name: "基础发展"
+    description: "提升国家基础能力"
+    color: "&a"
+    tiers:
+      - level: 1
+        name: "新手领地"
+        exp_required: 0
+        benefits:
+          claim_limit: 25
+          tax_rate_modifier: 1.0
+        unlock_permissions:
+          - "starcore.claim.basic"
+        description: "国家初始领地等级"
+
+      - level: 2
+        name: "发展领地"
+        exp_required: 1000
+        benefits:
+          claim_limit: 50
+          tax_rate_modifier: 0.95
+          resource_bonus: 1.1
+        unlock_permissions:
+          - "starcore.claim.basic"
+          - "starcore.teleport.nation"
+        prerequisites: []
+        description: "提升资源产出和税收效率"
+
+      - level: 3
+        name: "繁荣领地"
+        exp_required: 3000
+        benefits:
+          claim_limit: 100
+          tax_rate_modifier: 0.9
+          resource_bonus: 1.2
+          defense_bonus: 1.1
+        unlock_permissions:
+          - "starcore.claim.basic"
+          - "starcore.teleport.nation"
+          - "starcore.war.declare"
+        prerequisites: []
+        description: "解锁战争权限，提升防御"
+
+      - level: 4
+        name: "强盛领地"
+        exp_required: 7000
+        benefits:
+          claim_limit: 200
+          tax_rate_modifier: 0.85
+          resource_bonus: 1.3
+          defense_bonus: 1.2
+          army_capacity: 5
+        unlock_permissions:
+          - "starcore.claim.basic"
+          - "starcore.teleport.nation"
+          - "starcore.war.declare"
+          - "starcore.alliance.create"
+        prerequisites: []
+        description: "大幅提升综合实力"
+
+      - level: 5
+        name: "辉煌领地"
+        exp_required: 15000
+        benefits:
+          claim_limit: 400
+          tax_rate_modifier: 0.8
+          resource_bonus: 1.5
+          defense_bonus: 1.3
+          army_capacity: 10
+          technology_research_speed: 1.2
+        unlock_permissions:
+          - "starcore.claim.basic"
+          - "starcore.teleport.nation"
+          - "starcore.war.declare"
+          - "starcore.alliance.create"
+          - "starcore.embassy.build"
+        prerequisites: []
+        description: "最高等级领地，解锁大使馆"
+
+  # 军事强化路径
+  military:
+    name: "军事强化"
+    description: "提升国家军事实力"
+    color: "&c"
+    tiers:
+      - level: 1
+        name: "民兵编制"
+        exp_required: 0
+        benefits:
+          army_capacity: 2
+          defense_bonus: 1.05
+        unlock_permissions:
+          - "starcore.army.create"
+        description: "允许组建民兵"
+
+      - level: 2
+        name: "正规军队"
+        exp_required: 2000
+        benefits:
+          army_capacity: 4
+          defense_bonus: 1.1
+          attack_bonus: 1.05
+        unlock_permissions:
+          - "starcore.army.create"
+          - "starcore.war.offensive"
+        prerequisites: []
+        description: "解锁进攻能力"
+
+      - level: 3
+        name: "精锐部队"
+        exp_required: 5000
+        benefits:
+          army_capacity: 6
+          defense_bonus: 1.15
+          attack_bonus: 1.1
+          war_exhaustion_modifier: 0.9
+        unlock_permissions:
+          - "starcore.army.create"
+          - "starcore.war.offensive"
+          - "starcore.siege.enabled"
+        prerequisites: []
+        description: "解锁攻城能力"
+
+      - level: 4
+        name: "帝国军团"
+        exp_required: 10000
+        benefits:
+          army_capacity: 10
+          defense_bonus: 1.2
+          attack_bonus: 1.15
+          war_exhaustion_modifier: 0.8
+          recruitment_speed: 1.2
+        unlock_permissions:
+          - "starcore.army.create"
+          - "starcore.war.offensive"
+          - "starcore.siege.enabled"
+          - "starcore.conquest.enabled"
+        prerequisites: []
+        description: "解锁征服模式"
+
+      - level: 5
+        name: "战争帝国"
+        exp_required: 25000
+        benefits:
+          army_capacity: 20
+          defense_bonus: 1.3
+          attack_bonus: 1.25
+          war_exhaustion_modifier: 0.7
+          recruitment_speed: 1.5
+          plunder_enabled: true
+        unlock_permissions:
+          - "starcore.army.create"
+          - "starcore.war.offensive"
+          - "starcore.siege.enabled"
+          - "starcore.conquest.enabled"
+          - "starcore.war.empire"
+        prerequisites: []
+        description: "战争最高形态"
+
+  # 经济繁荣路径
+  economy:
+    name: "经济繁荣"
+    description: "促进国家经济发展"
+    color: "&6"
+    tiers:
+      - level: 1
+        name: "贸易起步"
+        exp_required: 0
+        benefits:
+          trade_bonus: 1.1
+          market_fee_reduction: 0.05
+        unlock_permissions:
+          - "starcore.trade.basic"
+        description: "开始贸易活动"
+
+      - level: 2
+        name: "商业繁荣"
+        exp_required: 1500
+        benefits:
+          trade_bonus: 1.2
+          market_fee_reduction: 0.1
+          loan_interest_reduction: 0.1
+        unlock_permissions:
+          - "starcore.trade.basic"
+          - "starcore.market.build"
+        prerequisites: []
+        description: "解锁市场建设"
+
+      - level: 3
+        name: "商业帝国"
+        exp_required: 4000
+        benefits:
+          trade_bonus: 1.3
+          market_fee_reduction: 0.15
+          loan_interest_reduction: 0.2
+          tax_income_bonus: 1.15
+        unlock_permissions:
+          - "starcore.trade.basic"
+          - "starcore.market.build"
+          - "starcore.bank.enabled"
+        prerequisites: []
+        description: "解锁银行功能"
+
+      - level: 4
+        name: "经济霸权"
+        exp_required: 8000
+        benefits:
+          trade_bonus: 1.5
+          market_fee_reduction: 0.2
+          loan_interest_reduction: 0.3
+          tax_income_bonus: 1.25
+          economy_war_enabled: true
+        unlock_permissions:
+          - "starcore.trade.basic"
+          - "starcore.market.build"
+          - "starcore.bank.enabled"
+          - "starcore.economy.sanction"
+        prerequisites: []
+        description: "解锁经济制裁"
+
+      - level: 5
+        name: "世界银行"
+        exp_required: 20000
+        benefits:
+          trade_bonus: 2.0
+          market_fee_reduction: 0.3
+          loan_interest_reduction: 0.5
+          tax_income_bonus: 1.5
+          economy_war_enabled: true
+          currency_control: true
+        unlock_permissions:
+          - "starcore.trade.basic"
+          - "starcore.market.build"
+          - "starcore.bank.enabled"
+          - "starcore.economy.sanction"
+          - "starcore.world.economy"
+        prerequisites: []
+        description: "经济最高形态"
+
+# 经验值获取配置
+exp-sources:
+  # 领地贡献经验
+  territory_claim:
+    exp_per_chunk: 10
+    description: "每拥有一个区块获得的经验"
+
+  # 资源采集经验
+  resource_gathering:
+    enabled: true
+    exp_per_resource: 1
+    multiplier_by_rarity:
+      common: 1.0
+      uncommon: 2.0
+      rare: 5.0
+      epic: 10.0
+      legendary: 25.0
+    description: "资源采集获得的经验"
+
+  # 战斗经验
+  combat:
+    kill_enemy_player: 50
+    win_battle: 200
+    capture_territory: 100
+    defend_successfully: 150
+    description: "战斗活动获得的经验"
+
+  # 经济发展经验
+  economy:
+    trade_complete: 5
+    tax_collected: 0.01  # 每金币0.01经验
+    building_constructed: 20
+    description: "经济活动获得的经验"
+
+  # 科技研发经验
+  technology:
+    research_complete: 50
+    per_level: 10  # 每级额外10点
+    description: "科技研发获得的经验"
+
+  # 每日奖励
+  daily_reward:
+    base_exp: 100
+    streak_bonus: 10  # 连续登录每日额外奖励
+    max_streak_days: 7
+    description: "每日活跃奖励的经验"
+
+# 升级设置
+upgrade_settings:
+  # 最大等级
+  max_level: 5
+
+  # 是否允许同时升级多个路径
+  allow_parallel_paths: true
+
+  # 升级时是否消耗资源
+  consume_on_upgrade: true
+
+  # 降级设置
+  downgrade:
+    enabled: false
+    exp_loss_percent: 0.5
+    description: "国家解散或重大失败时的降级设置"
+
+  # 升级通知设置
+  notifications:
+    level_up_broadcast: true
+    benefit_unlock_broadcast: false
+    progress_milestone_percent: [25, 50, 75]
+    description: "升级系统通知设置"
+
+# GUI设置
+gui_settings:
+  # 菜单标题
+  title: "&8&l领地升级系统"
+
+  # 每页显示数量
+  items_per_page: 9
+
+  # 边框物品
+  border_item: "BLACK_STAINED_GLASS_PANE"
+
+  # 导航按钮
+  prev_button: "ARROW"
+  next_button: "ARROW"
+  close_button: "BARRIER"
+
+  # 状态图标
+  current_level_icon: "NETHER_STAR"
+  locked_icon: "BARRIER"
+  available_icon: "EXPERIENCE_BOTTLE"
+  maxed_icon: "GOLD_INGOT"

@@ -1,0 +1,120 @@
+# 工厂类型配置文件
+# 定义不同类型工厂的属性
+
+factories:
+  SMELTER:
+    name: "冶炼厂"
+    description: "用于冶炼矿石的基础工厂"
+    base_cost: 5000.0
+    base_upgrade_cost: 1000.0
+    max_level: 10
+    base_efficiency: 1.0
+    compatible_recipes:
+      - "smelt_iron"
+      - "smelt_copper"
+      - "smelt_aluminum"
+      - "smelt_titanium"
+
+  PROCESSING_PLANT:
+    name: "加工厂"
+    description: "用于加工农业和基础资源"
+    base_cost: 4000.0
+    base_upgrade_cost: 800.0
+    max_level: 10
+    base_efficiency: 1.0
+    compatible_recipes:
+      - "process_cotton"
+      - "process_coffee"
+      - "craft_medical"
+
+  CHEMICAL_PLANT:
+    name: "化工厂"
+    description: "用于化学工业生产"
+    base_cost: 8000.0
+    base_upgrade_cost: 1500.0
+    max_level: 10
+    base_efficiency: 1.0
+    compatible_recipes:
+      - "produce_explosives"
+      - "produce_rubber"
+      - "refine_oil"
+
+  ASSEMBLY_PLANT:
+    name: "装配厂"
+    description: "用于组装复杂产品"
+    base_cost: 10000.0
+    base_upgrade_cost: 2000.0
+    max_level: 10
+    base_efficiency: 1.0
+    compatible_recipes:
+      - "craft_ammunition"
+      - "craft_weapons"
+      - "advanced_alloy"
+
+  REFINERY:
+    name: "精炼厂"
+    description: "用于精炼能源资源"
+    base_cost: 12000.0
+    base_upgrade_cost: 2500.0
+    max_level: 10
+    base_efficiency: 1.0
+    compatible_recipes:
+      - "refine_oil"
+      - "coal_to_energy"
+      - "uranium_processing"
+
+  INTEGRATED_FACTORY:
+    name: "综合工厂"
+    description: "可以处理所有类型的资源"
+    base_cost: 25000.0
+    base_upgrade_cost: 5000.0
+    max_level: 10
+    base_efficiency: 1.2
+    compatible_recipes:
+      - "smelt_iron"
+      - "smelt_copper"
+      - "smelt_aluminum"
+      - "smelt_titanium"
+      - "process_cotton"
+      - "process_coffee"
+      - "produce_explosives"
+      - "produce_rubber"
+      - "refine_oil"
+      - "craft_ammunition"
+      - "craft_weapons"
+      - "craft_medical"
+      - "advanced_alloy"
+      - "coal_to_energy"
+      - "uranium_processing"
+      - "polish_gems"
+      - "luxury_goods"
+
+# 工厂升级收益
+upgrade_benefits:
+  level_2:
+    efficiency_bonus: 0.05
+    description: "效率提升5%"
+  level_3:
+    efficiency_bonus: 0.10
+    description: "效率提升10%"
+  level_4:
+    efficiency_bonus: 0.15
+    description: "效率提升15%"
+  level_5:
+    efficiency_bonus: 0.25
+    description: "效率提升25%，解锁高级配方"
+  level_6:
+    efficiency_bonus: 0.35
+    description: "效率提升35%"
+  level_7:
+    efficiency_bonus: 0.45
+    description: "效率提升45%"
+  level_8:
+    efficiency_bonus: 0.55
+    description: "效率提升55%"
+  level_9:
+    efficiency_bonus: 0.70
+    description: "效率提升70%"
+  level_10:
+    efficiency_bonus: 1.0
+    description: "效率翻倍，最高等级"

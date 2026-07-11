@@ -1,5 +1,9 @@
+# ==========================================
+# StarCore - GitIgnore
+# ==========================================
+
 # Maven
-target/
+starcore/target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -13,6 +17,8 @@ buildNumber.properties
 .idea/
 *.iml
 .vscode/
+*.swp
+*.swo
 
 # OS
 .DS_Store
@@ -22,27 +28,30 @@ Thumbs.db
 *.log
 logs/
 
-# Temporary
-*.tmp
-*.swp
-*~
-
 # Build
 *.jar
+starcore/target/
 
 # Claude Code
 .claude/
 
-# Build Scripts
-*.sh
-*.ps1
-*.bat
-
 # Test
 test-results/
 
-# Error files
+# Error/Debug
 errors.txt
 *.local.yml
 config.local.yml
 sqlite_mcp_server.db
+
+# Graphify
+.graphify_*
+
+# Playwright
+.playwright-mcp/
+
+# Archives
+.archive/
+*.zip
+*.tar.gz
+*.rar

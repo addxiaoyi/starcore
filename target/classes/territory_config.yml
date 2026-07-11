@@ -1,0 +1,208 @@
+# 领土系统配置文件
+
+territory:
+  # 子区域配置
+  subregion:
+    max_depth: 3              # 最大嵌套层数
+    min_size: 5               # 最小尺寸（方块）
+    allow_overlap: false      # 是否允许同级子区域重叠
+    auto_priority: true       # 自动调整优先级（体积小的优先级高）
+
+  # 临时权限配置
+  temporary_permission:
+    enabled: true
+    max_duration: 604800      # 最长持续时间（秒），7天
+    check_interval: 300       # 过期检查间隔（秒），5分钟
+    allow_renewal: true       # 是否允许续期
+
+  # 租赁配置
+  lease:
+    enabled: true
+    min_rent: 100             # 最低日租金
+    max_duration: 30          # 最长租期（天）
+    auto_renew: true          # 默认自动续租
+    eviction_grace: 3         # 欠租宽限期（天）
+    require_deposit: false    # 是否需要押金
+    deposit_multiplier: 2.0   # 押金倍数（租金的倍数）
+    late_fee_rate: 0.1        # 滞纳金比例（每天）
+
+  # 权限模板配置
+  templates:
+    visitor:
+      name: "访客"
+      description: "只允许基本的移动和观看"
+      permissions:
+        TELEPORT: VISITOR
+        BUILD: NONE
+        BREAK: NONE
+        INTERACT: NONE
+        CONTAINER: NONE
+        PVP: NONE
+        ITEM_USE: NONE
+        HURT_ANIMALS: NONE
+        REDSTONE: NONE
+        ITEM_FRAME: NONE
+        FARMLAND: NONE
+        VEHICLE: NONE
+        SPAWN_MOBS: OWNER
+        EXPLOSION: NONE
+
+    trusted:
+      name: "信任"
+      description: "可以使用门、按钮等交互，但不能建造"
+      permissions:
+        TELEPORT: TRUSTED
+        BUILD: MEMBER
+        BREAK: MEMBER
+        INTERACT: TRUSTED
+        CONTAINER: MEMBER
+        PVP: NONE
+        ITEM_USE: MEMBER
+        HURT_ANIMALS: ADMIN
+        REDSTONE: TRUSTED
+        ITEM_FRAME: MEMBER
+        FARMLAND: MEMBER
+        VEHICLE: TRUSTED
+        SPAWN_MOBS: OWNER
+        EXPLOSION: NONE
+
+    builder:
+      name: "建筑者"
+      description: "拥有建造和破坏权限"
+      permissions:
+        TELEPORT: MEMBER
+        BUILD: MEMBER
+        BREAK: MEMBER
+        INTERACT: MEMBER
+        CONTAINER: ADMIN
+        PVP: NONE
+        ITEM_USE: MEMBER
+        HURT_ANIMALS: ADMIN
+        REDSTONE: MEMBER
+        ITEM_FRAME: MEMBER
+        FARMLAND: MEMBER
+        VEHICLE: MEMBER
+        SPAWN_MOBS: OWNER
+        EXPLOSION: NONE
+
+    member:
+      name: "成员"
+      description: "完整的居住和使用权限"
+      permissions:
+        TELEPORT: MEMBER
+        BUILD: MEMBER
+        BREAK: MEMBER
+        INTERACT: MEMBER
+        CONTAINER: MEMBER
+        PVP: NONE
+        ITEM_USE: MEMBER
+        HURT_ANIMALS: MEMBER
+        REDSTONE: MEMBER
+        ITEM_FRAME: MEMBER
+        FARMLAND: MEMBER
+        VEHICLE: MEMBER
+        SPAWN_MOBS: ADMIN
+        EXPLOSION: NONE
+
+    admin:
+      name: "管理员"
+      description: "拥有除所有权以外的所有权限"
+      permissions:
+        TELEPORT: ADMIN
+        BUILD: ADMIN
+        BREAK: ADMIN
+        INTERACT: ADMIN
+        CONTAINER: ADMIN
+        PVP: ADMIN
+        ITEM_USE: ADMIN
+        HURT_ANIMALS: ADMIN
+        REDSTONE: ADMIN
+        ITEM_FRAME: ADMIN
+        FARMLAND: ADMIN
+        VEHICLE: ADMIN
+        SPAWN_MOBS: OWNER
+        EXPLOSION: ADMIN
+
+    shop:
+      name: "商店"
+      description: "适合商业区"
+      permissions:
+        TELEPORT: VISITOR
+        BUILD: MEMBER
+        BREAK: MEMBER
+        INTERACT: VISITOR
+        CONTAINER: VISITOR
+        PVP: NONE
+        ITEM_USE: VISITOR
+        HURT_ANIMALS: ADMIN
+        REDSTONE: MEMBER
+        ITEM_FRAME: MEMBER
+        FARMLAND: MEMBER
+        VEHICLE: VISITOR
+        SPAWN_MOBS: NONE
+        EXPLOSION: NONE
+
+    farm:
+      name: "农场"
+      description: "允许耕种和养殖"
+      permissions:
+        TELEPORT: TRUSTED
+        BUILD: MEMBER
+        BREAK: MEMBER
+        INTERACT: TRUSTED
+        CONTAINER: MEMBER
+        PVP: NONE
+        ITEM_USE: TRUSTED
+        HURT_ANIMALS: TRUSTED
+        REDSTONE: MEMBER
+        ITEM_FRAME: MEMBER
+        FARMLAND: TRUSTED
+        VEHICLE: TRUSTED
+        SPAWN_MOBS: TRUSTED
+        EXPLOSION: NONE
+
+    arena:
+      name: "竞技场"
+      description: "PvP战斗区域"
+      permissions:
+        TELEPORT: VISITOR
+        BUILD: ADMIN
+        BREAK: ADMIN
+        INTERACT: VISITOR
+        CONTAINER: NONE
+        PVP: VISITOR
+        ITEM_USE: VISITOR
+        HURT_ANIMALS: VISITOR
+        REDSTONE: ADMIN
+        ITEM_FRAME: ADMIN
+        FARMLAND: NONE
+        VEHICLE: VISITOR
+        SPAWN_MOBS: ADMIN
+        EXPLOSION: NONE
+
+# 通知配置
+notifications:
+  enter_territory: true       # 进入领土时提示
+  leave_territory: true       # 离开领土时提示
+  permission_denied: true     # 权限拒绝时提示
+  lease_expiring: true        # 租约即将到期提示
+  lease_expiring_days: 3      # 提前几天提醒
+  payment_reminder: true      # 租金支付提醒
+
+# 数据库配置（可选）
+database:
+  enabled: false
+  type: "sqlite"              # sqlite, mysql
+  host: "localhost"
+  port: 3306
+  database: "starcore"
+  username: "root"
+  password: ""
+  table_prefix: "territory_"
+
+# 集成配置
+integration:
+  worldedit: true             # 使用WorldEdit选区
+  vault: true                 # 使用Vault经济系统
+  dynmap: false               # 在Dynmap显示领土
+  bluemap: false              # 在BlueMap显示领土

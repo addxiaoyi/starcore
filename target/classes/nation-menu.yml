@@ -1,0 +1,593 @@
+# ============================================================
+# STARCORE 国家菜单配置文件 v3.0
+# ============================================================
+# 现代化设计：
+# - 渐变色Lore
+# - 现代化边框设计
+# - 优化槽位排列
+#
+# ⚠️ 重要: config-version 用于配置迁移校验，请勿随意修改
+config-version: "1.0"
+#
+# 注意: audit C-063/C-068:
+#   - TriumphNationMenu 与 NationManagementMenu 存在功能重叠
+#   - 当前 TriumphNationMenu 已以本文件为配置源
+#   - 后续需统一迁移，移除 NationManagementMenu 硬编码路径
+# ============================================================
+
+# --- 主菜单（成员模式）---
+main-member:
+  title: "&6&l⚔ &e{nation_name} &7| &f国家管理"
+  rows: 6
+
+  items:
+    # 国家信息 - 中心位置
+    info:
+      slot: 22
+      material: NETHER_STAR
+      display-name: "&f&l✦ &6国家信息 &f✦"
+      glow: true
+      lore:
+        - ""
+        - "&7═══════════════════════════"
+        - "&f  国家名称: &e{nation_name}"
+        - "&f  政体类型: &b{government_type}"
+        - "&f  国家等级: &aLv.{nation_level}"
+        - "&f  成员数量: &a{member_count} &7人"
+        - "&f  领土数量: &a{claim_count} &7区块"
+        - "&7═══════════════════════════"
+        - ""
+        - "&e▶ &7点击查看详细信息"
+      command: "sc nation info"
+      permission: ""
+
+    # 成员管理 - 左上
+    members:
+      slot: 10
+      material: PLAYER_HEAD
+      skull-owner: "{player_name}"
+      display-name: "&f&l👥 成员管理"
+      glow: false
+      lore:
+        - ""
+        - "&7当前成员: &a{member_count} &7人"
+        - "&7在线人数: &a{online_count} &7人"
+        - ""
+        - "&7═══════════════════════"
+        - "&e▶ &7点击管理成员"
+        - "&7═══════════════════════"
+      command: "submenu:members"
+      permission: ""
+
+    # 领土管理 - 中上
+    territory:
+      slot: 12
+      material: MAP
+      display-name: "&f&l🗺 领土管理"
+      glow: false
+      lore:
+        - ""
+        - "&7已占领: &a{claim_count} &7区块"
+        - "&7本周收入: &6+1,234 &7星尘"
+        - ""
+        - "&7═══════════════════════"
+        - "&e▶ &7点击管理领土"
+        - "&7═══════════════════════"
+      command: "submenu:territory"
+      permission: ""
+
+    # 国库管理 - 右上
+    treasury:
+      slot: 14
+      material: GOLD_INGOT
+      display-name: "&f&l💰 国库管理"
+      glow: false
+      lore:
+        - ""
+        - "&7国库余额: &6✦ {balance}"
+        - "&7本周税收: &a+5,000"
+        - "&7本周支出: &c-2,000"
+        - ""
+        - "&7═══════════════════════"
+        - "&e▶ &7点击管理国库"
+        - "&7═══════════════════════"
+      command: "submenu:treasury"
+      permission: ""
+
+    # 外交关系 - 左中
+    diplomacy:
+      slot: 19
+      material: EMBER_ROLL
+      display-name: "&f&l🤝 外交关系"
+      glow: false
+      lore:
+        - ""
+        - "&a盟友数量: &f{ally_count} &7个"
+        - "&c敌对国家: &f{hostile_count} &7个"
+        - ""
+        - "&7═══════════════════════"
+        - "&e▶ &7点击管理外交"
+        - "&7═══════════════════════"
+      command: "submenu:diplomacy"
+      permission: ""
+
+    # 科技树 - 中中
+    technology:
+      slot: 21
+      material: ENCHANTING_TABLE
+      display-name: "&f&l🔬 科技树"
+      glow: false
+      lore:
+        - ""
+        - "&7已解锁: &a{tech_unlocked} &7/ &e{tech_total}"
+        - "&7研究进度: &b████████░░ &780%"
+        - ""
+        - "&7═══════════════════════"
+        - "&e▶ &7点击查看科技"
+        - "&7═══════════════════════"
+      command: "submenu:technology"
+      permission: ""
+
+    # 国策 - 右中
+    policy:
+      slot: 23
+      material: BOOK
+      display-name: "&f&l📜 国家政策"
+      glow: false
+      lore:
+        - ""
+        - "&7当前政策: &e税收优惠"
+        - "&7政策效果: &a+15% 收入"
+        - ""
+        - "&7═══════════════════════"
+        - "&e▶ &7点击管理政策"
+        - "&7═══════════════════════"
+      command: "submenu:policy"
+      permission: ""
+
+    # 每日任务 - 中下
+    daily-quest:
+      slot: 25
+      material: CHEST_MINECART
+      display-name: "&f&l📋 每日任务"
+      glow: true
+      lore:
+        - ""
+        - "&7今日任务: &e3/5 &7完成"
+        - "&7任务奖励: &6+500 ✦ &7星尘"
+        - "&7剩余时间: &c23:45:12"
+        - ""
+        - "&7═══════════════════════"
+        - "&e▶ &7点击查看任务"
+        - "&7═══════════════════════"
+      command: "daily"
+      permission: ""
+
+    # 官职管理 - 左下
+    officer:
+      slot: 28
+      material: NAME_TAG
+      display-name: "&f&l⭐ 官职管理"
+      glow: false
+      lore:
+        - ""
+        - "&7当前官职: &e{player_rank}"
+        - "&7可用职位: &a5 &7个"
+        - ""
+        - "&7═══════════════════════"
+        - "&e▶ &7点击管理官职"
+        - "&7═══════════════════════"
+      command: "sc officer"
+      permission: ""
+
+    # 国家改名 - 中下左
+    rename:
+      slot: 30
+      material: ANVIL
+      display-name: "&f&l✏ 国家改名"
+      glow: true
+      lore:
+        - ""
+        - "&7当前名称: &e{nation_name}"
+        - "&c⚠ 需要管理员权限"
+        - ""
+        - "&7═══════════════════════"
+        - "&e▶ &7点击修改国家名称"
+        - "&7═══════════════════════"
+      command: "anvil_rename"
+      permission: "admin"
+
+    # 国家设置 - 中下中
+    settings:
+      slot: 32
+      material: COMPARATOR
+      display-name: "&f&l⚙ 国家设置"
+      glow: false
+      lore:
+        - ""
+        - "&7政体: &e{government_type}"
+        - "&7等级: &eLv.{nation_level}"
+        - ""
+        - "&7═══════════════════════"
+        - "&e▶ &7点击查看设置"
+        - "&7═══════════════════════"
+      command: "submenu:settings"
+      permission: ""
+
+    # 新手引导 - 右下
+    tutorial:
+      slot: 34
+      material: NETHER_STAR
+      display-name: "&f&l📖 新手引导"
+      glow: true
+      lore:
+        - ""
+        - "&7学习国家系统基础操作"
+        - "&7了解各种玩法机制"
+        - ""
+        - "&7═══════════════════════"
+        - "&a▶ 点击开始教程"
+        - "&7═══════════════════════"
+      command: "tutorial start"
+      permission: ""
+
+    # 快速帮助 - 底部左
+    help:
+      slot: 46
+      material: BOOK
+      display-name: "&f&l❓ 快速帮助"
+      glow: false
+      lore:
+        - ""
+        - "&7查看常用指令"
+        - "&7了解操作方法"
+        - ""
+        - "&e▶ 点击获取帮助"
+      command: "sc help nation"
+      permission: ""
+
+    # 关闭按钮 - 底部中间
+    close:
+      slot: 49
+      material: BARRIER
+      display-name: "&c✖ 关闭菜单"
+      glow: false
+      lore:
+        - ""
+        - "&7点击关闭菜单"
+        - ""
+      command: "close"
+      permission: ""
+
+  # 边框装饰配置 - 现代化设计
+  border:
+    enabled: true
+    material: BLACK_STAINED_GLASS_PANE
+    display-name: " "
+    slots:
+      top-row: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+      bottom-row: [45, 46, 47, 48, 49, 50, 51, 52, 53]
+      left-column: [9, 18, 27, 36]
+      right-column: [17, 26, 35, 44]
+
+# --- 主菜单（访客/未加入国家模式）---
+main-visitor:
+  title: "&6&l⚔ &f国家系统 &7| &e访客模式"
+  rows: 5
+  show-all-icons: true
+
+  items:
+    # 访客引导提示 - 顶部中心
+    guide-info:
+      slot: 4
+      material: PLAYER_HEAD
+      skull-owner: "{player_name}"
+      display-name: "&f&l✦ &e欢迎, {player_name} &f✦"
+      glow: true
+      lore:
+        - ""
+        - "&7═══════════════════════════"
+        - "&f  在这里你可以创建或加入国家"
+        - "&f  与其他玩家一起管理和扩展"
+        - "&f  你的王国！"
+        - "&7═══════════════════════════"
+        - ""
+        - "&e选择一个选项开始吧！"
+        - ""
+      command: ""
+      type: "info"
+
+    # 创建国家 - 第一排
+    create:
+      slot: 11
+      material: NETHER_STAR
+      display-name: "&f&l🌟 创建国家"
+      glow: true
+      lore:
+        - ""
+        - "&7════════════════════════"
+        - "&f  消耗: &6500 &7星尘"
+        - "&7  前置: 无"
+        - "&7════════════════════════"
+        - ""
+        - "&e▶ 点击创建国家"
+        - ""
+      command: "anvil_create_nation"
+      type: "create"
+
+    # 加入国家 - 第一排
+    join:
+      slot: 15
+      material: ENDER_EYE
+      display-name: "&f&l🚪 加入国家"
+      glow: false
+      lore:
+        - ""
+        - "&7════════════════════════"
+        - "&f  向心仪的国家发送申请"
+        - "&f  等待批准后加入"
+        - "&7════════════════════════"
+        - ""
+        - "&e▶ 点击申请加入"
+        - ""
+      command: "sc nation list"
+      type: ""
+
+    # 访客教程入口 - 第二排
+    tutorial:
+      slot: 22
+      material: GOLDEN_HORSE_ARMOR
+      display-name: "&f&l📖 快速入门"
+      glow: true
+      lore:
+        - ""
+        - "&7════════════════════════"
+        - "&f  学习如何创建或加入国家"
+        - "&f  了解国家系统基础操作"
+        - "&7════════════════════════"
+        - ""
+        - "&e▶ 点击开始教程"
+        - ""
+      command: "tutorial start visitor"
+      type: ""
+
+    # 浏览国家 - 第二排
+    browse:
+      slot: 24
+      material: MAP
+      display-name: "&f&l🗺 浏览国家"
+      glow: false
+      lore:
+        - ""
+        - "&7════════════════════════"
+        - "&f  查看所有国家列表"
+        - "&f  了解各国家详情"
+        - "&7════════════════════════"
+        - ""
+        - "&e▶ 点击查看"
+        - ""
+      command: "sc nation list"
+      type: ""
+
+    # 外交总览 - 第三排
+    diplomacy:
+      slot: 31
+      material: EMBER_ROLL
+      display-name: "&f&l🤝 外交总览"
+      glow: false
+      lore:
+        - ""
+        - "&7════════════════════════"
+        - "&f  查看所有国家的外交关系"
+        - "&f  了解当前国际局势"
+        - "&7════════════════════════"
+        - ""
+        - "&e▶ 点击查看"
+        - ""
+      command: "sc diplomacy"
+      type: ""
+
+    # 科技预览 - 第三排
+    technology:
+      slot: 33
+      material: ENCHANTING_TABLE
+      display-name: "&f&l🔬 科技预览"
+      glow: false
+      lore:
+        - ""
+        - "&7════════════════════════"
+        - "&f  查看所有可用科技"
+        - "&f  了解科技升级路线"
+        - "&7════════════════════════"
+        - ""
+        - "&e▶ 点击查看"
+        - ""
+      command: "sc technology"
+      type: ""
+
+    # 关闭按钮
+    close:
+      slot: 40
+      material: BARRIER
+      display-name: "&c✖ 关闭"
+      glow: false
+      lore:
+        - ""
+        - "&e▶ 点击关闭"
+        - ""
+      command: "close"
+      type: ""
+
+  border:
+    enabled: true
+    material: BLACK_STAINED_GLASS_PANE
+    display-name: " "
+    slots:
+      top-row: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+      bottom-row: [36, 37, 38, 39, 40, 41, 42, 43, 44]
+      left-column: [9, 18, 27, 36]
+      right-column: [8, 17, 26, 35, 44]
+
+# ============================================================
+# 子菜单配置
+# ============================================================
+
+# --- 成员列表子菜单 ---
+submenus:
+  members:
+    title: "&6&l👥 &e{nation_name} &7| &f成员列表"
+    rows: 6
+    type: member_paginated
+    page-size: 28
+
+    items:
+      # 上一页按钮
+      prev-page:
+        slot: 45
+        material: ARROW
+        display-name: "&e◀ 上一页"
+        glow: false
+        lore:
+          - ""
+          - "&7第 &e{current_page} &7/ &e{total_pages} &7页"
+          - ""
+          - "&e▶ 点击上一页"
+        command: "submenu:members:prev"
+
+      # 页码显示
+      page-info:
+        slot: 49
+        material: BOOK
+        display-name: "&e&l成员列表"
+        glow: false
+        lore:
+          - ""
+          - "&7总成员数: &a{member_count}"
+          - "&7当前页: &e{current_page}&7/&e{total_pages}"
+          - ""
+        command: ""
+
+      # 下一页按钮
+      next-page:
+        slot: 53
+        material: ARROW
+        display-name: "&e下一页 ▶"
+        glow: false
+        lore:
+          - ""
+          - "&7第 &e{current_page} &7/ &e{total_pages} &7页"
+          - ""
+          - "&e▶ 点击下一页"
+        command: "submenu:members:next"
+
+      # 返回主菜单
+      back:
+        slot: 48
+        material: BARRIER
+        display-name: "&c✖ 返回主菜单"
+        glow: false
+        lore:
+          - ""
+          - "&e▶ 点击返回"
+        command: "submenu:main"
+
+    border:
+      enabled: true
+      material: BLACK_STAINED_GLASS_PANE
+      display-name: " "
+      slots:
+        top-row: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        bottom-row: [45, 46, 47, 48, 49, 50, 51, 52, 53]
+        left-column: [9, 18, 27, 36, 45]
+        right-column: [8, 17, 26, 35, 44, 53]
+
+  # --- 领土列表子菜单 ---
+  territory:
+    title: "&6&l🗺 &e{nation_name} &7| &f领土管理"
+    rows: 5
+    type: territory_list
+
+    items:
+      # 返回主菜单
+      back:
+        slot: 49
+        material: BARRIER
+        display-name: "&c✖ 返回主菜单"
+        glow: false
+        lore:
+          - ""
+          - "&e▶ 点击返回"
+        command: "submenu:main"
+
+    border:
+      enabled: true
+      material: BLACK_STAINED_GLASS_PANE
+      display-name: " "
+      slots:
+        top-row: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        bottom-row: [36, 37, 38, 39, 40, 41, 42, 43, 44]
+        left-column: [9, 18, 27, 36]
+        right-column: [8, 17, 26, 35, 44]
+
+  # --- 国家设置子菜单 ---
+  settings:
+    title: "&6&l⚙ &e{nation_name} &7| &f国家设置"
+    rows: 5
+    type: settings_list
+
+    items:
+      # 返回主菜单
+      back:
+        slot: 49
+        material: BARRIER
+        display-name: "&c✖ 返回主菜单"
+        glow: false
+        lore:
+          - ""
+          - "&e▶ 点击返回"
+        command: "submenu:main"
+
+    border:
+      enabled: true
+      material: BLACK_STAINED_GLASS_PANE
+      display-name: " "
+      slots:
+        top-row: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        bottom-row: [36, 37, 38, 39, 40, 41, 42, 43, 44]
+        left-column: [9, 18, 27, 36]
+        right-column: [8, 17, 26, 35, 44]
+
+# ============================================================
+# 辅助信息
+# ============================================================
+#
+# 占位符说明:
+#   {nation_name} - 国家名称
+#   {nation_level} - 国家等级
+#   {member_count} - 成员数量
+#   {claim_count} - 领土数量
+#   {balance} - 国库余额
+#   {ally_count} - 盟友数量
+#   {hostile_count} - 敌对数量
+#   {tech_unlocked} - 已解锁科技
+#   {tech_total} - 科技总数
+#   {government_type} - 政体类型
+#   {player_name} - 玩家名称
+#   {current_page} - 当前页码
+#   {total_pages} - 总页数
+#
+# 命令类型:
+#   submenu:xxx - 打开子菜单 (members/territory/diplomacy/technology/policy/treasury/settings)
+#   anvil_rename - 改名输入
+#   anvil_create_nation - 创建国家输入
+#   close - 关闭菜单
+#   sc xxx - 执行命令
+#
+# Lore 格式:
+#   &0-9,a-f - 颜色代码
+#   &l - 粗体
+#   &o - 斜体
+#   &n - 下划线
+#   &m - 删除线
+#   &k - 魔法字
+#   &r - 重置

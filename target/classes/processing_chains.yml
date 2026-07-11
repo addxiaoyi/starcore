@@ -1,0 +1,140 @@
+# 产业链配置文件
+# 定义完整的资源加工产业链
+
+processing_chains:
+  # 钢铁产业链
+  steel_chain:
+    name: "钢铁产业链"
+    description: "从铁矿石到高级合金的完整产业链"
+    steps:
+      - recipe: "smelt_iron"
+        description: "第一步：冶炼钢铁"
+      - recipe: "advanced_alloy"
+        description: "第二步：制造高级合金"
+    final_product: "titanium"
+    chain_bonus: 0.1
+
+  # 军工产业链
+  military_chain:
+    name: "军工产业链"
+    description: "从原材料到武器弹药的军事产业链"
+    steps:
+      - recipe: "smelt_iron"
+        description: "第一步：冶炼钢铁"
+      - recipe: "smelt_copper"
+        description: "第二步：冶炼铜锭"
+      - recipe: "produce_explosives"
+        description: "第三步：生产炸药"
+      - recipe: "craft_ammunition"
+        description: "第四步：制造弹药"
+    final_product: "ammunition"
+    chain_bonus: 0.15
+
+  # 高级武器产业链
+  advanced_weapons_chain:
+    name: "高级武器产业链"
+    description: "生产先进武器装备"
+    steps:
+      - recipe: "smelt_iron"
+        description: "第一步：冶炼钢铁"
+      - recipe: "smelt_titanium"
+        description: "第二步：冶炼钛合金"
+      - recipe: "refine_oil"
+        description: "第三步：精炼石油产品"
+      - recipe: "craft_weapons"
+        description: "第四步：制造武器"
+    final_product: "weapons"
+    chain_bonus: 0.2
+
+  # 石油化工产业链
+  petrochemical_chain:
+    name: "石油化工产业链"
+    description: "石油的深度加工"
+    steps:
+      - recipe: "refine_oil"
+        description: "第一步：原油精炼"
+      - recipe: "produce_rubber"
+        description: "第二步：生产橡胶"
+    final_product: "rubber"
+    chain_bonus: 0.12
+
+  # 医疗产业链
+  medical_chain:
+    name: "医疗产业链"
+    description: "生产医疗用品"
+    steps:
+      - recipe: "process_cotton"
+        description: "第一步：加工棉布"
+      - recipe: "refine_oil"
+        description: "第二步：精炼石油产品"
+      - recipe: "craft_medical"
+        description: "第三步：生产医疗用品"
+    final_product: "medical_supplies"
+    chain_bonus: 0.1
+
+  # 奢侈品产业链
+  luxury_chain:
+    name: "奢侈品产业链"
+    description: "生产高端奢侈品"
+    steps:
+      - recipe: "process_cotton"
+        description: "第一步：加工丝绸"
+      - recipe: "polish_gems"
+        description: "第二步：打磨宝石"
+      - recipe: "luxury_goods"
+        description: "第三步：制造奢侈品"
+    final_product: "ivory"
+    chain_bonus: 0.25
+
+  # 能源产业链
+  energy_chain:
+    name: "能源产业链"
+    description: "传统能源转换"
+    steps:
+      - recipe: "coal_to_energy"
+        description: "第一步：煤炭发电"
+    final_product: "natural_gas"
+    chain_bonus: 0.05
+
+  # 核能产业链
+  nuclear_chain:
+    name: "核能产业链"
+    description: "核能利用"
+    steps:
+      - recipe: "smelt_iron"
+        description: "第一步：冶炼钢铁"
+      - recipe: "uranium_processing"
+        description: "第二步：核燃料处理"
+    final_product: "natural_gas"
+    chain_bonus: 0.3
+
+# 产业链奖励
+chain_rewards:
+  complete_chain:
+    experience: 1000
+    description: "完成完整产业链获得经验"
+
+  efficiency_bonus:
+    description: "完成产业链后的效率加成"
+
+  unlock_advanced:
+    description: "解锁高级产业链需要完成基础产业链"
+
+# 产业链依赖关系
+dependencies:
+  advanced_weapons_chain:
+    requires:
+      - "steel_chain"
+      - "military_chain"
+    description: "需要先完成钢铁和军工产业链"
+
+  luxury_chain:
+    requires:
+      - "steel_chain"
+    description: "需要先完成钢铁产业链"
+
+  nuclear_chain:
+    requires:
+      - "steel_chain"
+      - "energy_chain"
+    description: "需要先完成钢铁和能源产业链"

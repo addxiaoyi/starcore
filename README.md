@@ -32,7 +32,6 @@
 ## 🚀 快速开始
 
 ```bash
-# 构建
 cd starcore
 mvn clean package
 
@@ -62,12 +61,20 @@ starcore/
 │   ├── foundation/        # 基础设施（经济、存储、反馈）
 │   ├── module/           # 核心业务模块
 │   ├── integration/      # 插件集成
-│   └── api/             # 公开API
+│   └── api/              # 公开API
 └── src/main/resources/
-    ├── config.yml         # 主配置
-    ├── lang/              # 语言文件
-    └── db/migration/       # 数据库迁移
+    ├── config.yml        # 主配置
+    ├── lang/             # 语言文件
+    └── db/migration/     # 数据库迁移
 ```
+
+---
+
+## 📊 统计数据
+
+- **677+** 个 Java 类文件
+- **13** 个核心模块
+- **6** 个集成插件
 
 ---
 
@@ -79,4 +86,5 @@ starcore/
 
 ## 🔗 链接
 
+- [文档](starcore/README.md)
 - [问题反馈](https://github.com/addxiaoyi/starcore/issues)

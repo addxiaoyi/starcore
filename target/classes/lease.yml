@@ -1,0 +1,164 @@
+# StarCore 契约制度配置
+# 契约制度允许国家间租借领土、资源、建筑等
+
+lease:
+  # 是否启用契约制度
+  enabled: true
+
+  # 每个国家最大同时有效契约数
+  max-contracts-per-nation: 10
+
+  # 每个国家最大同时作为出租方的契约数
+  max-contracts-as-lessor: 20
+
+  # 最短契约期限（天）
+  min-contract-duration-days: 1
+
+  # 最长契约期限（天）
+  max-contract-duration-days: 365
+
+  # 最大租借面积（区块数）
+  max-lease-area-chunks: 100
+
+  economy:
+    # 创建契约是否收取手续费
+    creation-fee-enabled: true
+    # 创建手续费比例（按租金的比例）
+    creation-fee-rate: 0.05
+
+    # 最低租金（每天每区块）
+    min-rent-per-chunk-per-day: 10.0
+
+    # 最高租金（每天每区块）
+    max-rent-per-chunk-per-day: 10000.0
+
+    # 续约折扣
+    renewal-discount-rate: 0.10
+
+    # 违约罚款比例（未到期终止）
+    early-termination-penalty-rate: 0.25
+
+  notifications:
+    # 契约到期提醒（天）
+    expiration-warning-days: [3, 1]
+
+    # 是否通知双方
+    notify-both-parties: true
+
+    # 是否发送标题通知
+    send-title-notification: true
+
+  protection:
+    # 租借方是否可以在租借领土建设
+    lessee-can-build: true
+
+    # 租借方是否可以使用容器
+    lessee-can-use-containers: true
+
+    # 租借方是否可以破坏方块
+    lessee-can-break-blocks: true
+
+    # 原所有者是否保留权限
+    lessor-retains-permissions: true
+
+  renewal:
+    # 是否允许自动续约
+    auto-renewal-enabled: true
+
+    # 自动续约提前天数
+    auto-renewal-advance-days: 5
+
+    # 自动续约最大次数
+    max-auto-renewal-count: 3
+
+  # 逾期配置
+  overdue:
+    # 逾期宽限期（天数）
+    grace-period-days: 3
+    # 逾期后状态变更延迟（天数）
+    status-change-delay-days: 7
+    # 是否自动终止逾期租约
+    auto-terminate: false
+    # 逾期每日通知
+    daily-notify: true
+
+  # 默认租约配置
+  defaults:
+    # 默认月租金基数
+    base-monthly-rent: 100.0
+    # 默认租期天数
+    default-duration-days: 30
+    # 最小租期天数
+    min-duration-days: 7
+    # 最大租期天数
+    max-duration-days: 365
+    # 最大同时生效的租约数量（每个国家）
+    max-active-leases-per-nation: 10
+    # 最大同时生效的租约数量（每个玩家）
+    max-active-leases-per-player: 5
+
+  # 续租配置
+  renewal-config:
+    # 是否允许提前续租
+    allow-early-renewal: true
+    # 提前续租最小天数
+    early-renewal-min-days: 7
+    # 最大续租天数
+    max-renewal-days: 365
+
+  # 租金配置（按类型）
+  rent-by-type:
+    # 领土租约
+    territory:
+      base-rent: 100.0
+      price-multiplier: 1.0
+    # 资源点租约
+    resource-node:
+      base-rent: 150.0
+      price-multiplier: 1.5
+    # 建筑租约
+    building:
+      base-rent: 120.0
+      price-multiplier: 1.2
+    # 军事基地租约
+    military-base:
+      base-rent: 200.0
+      price-multiplier: 2.0
+    # 港口租约
+    port:
+      base-rent: 180.0
+      price-multiplier: 1.8
+    # 贸易站租约
+    trade-post:
+      base-rent: 130.0
+      price-multiplier: 1.3
+    # 农田租约
+    farm:
+      base-rent: 80.0
+      price-multiplier: 0.8
+    # 矿场租约
+    mine:
+      base-rent: 140.0
+      price-multiplier: 1.4
+
+  # 权限配置
+  permissions:
+    # 创建租约所需权限
+    create: "starcore.lease.create"
+    # 签署租约所需权限
+    sign: "starcore.lease.sign"
+    # 终止租约所需权限
+    terminate: "starcore.lease.terminate"
+    # 查看他人租约所需权限
+    view-others: "starcore.lease.view.others"
+    # 管理所有租约所需权限
+    admin: "starcore.lease.admin"
+
+  # 定时任务配置
+  scheduler:
+    # 租约到期检查间隔（分钟）
+    expiry-check-interval-minutes: 60
+    # 逾期检查间隔（分钟）
+    overdue-check-interval-minutes: 30
+    # 提醒发送间隔（分钟）
+    reminder-interval-minutes: 60
