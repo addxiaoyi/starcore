@@ -1,4 +1,4 @@
-# 🌟 StarCore
+# StarCore
 
 **Paper/Nukkit 原生国家战略与政策引擎** — 完整的多人王国管理、领土系统、外交战争、财政科技玩法。
 
@@ -6,11 +6,10 @@
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.21.11-green.svg)](https://www.minecraft.net/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Build](https://github.com/addxiaoyi/starcore/workflows/Build/badge.svg)](https://github.com/addxiaoyi/starcore/actions)
-[![Tests](https://img.shields.io/badge/Tests-220%20%E9%80%89%E9%AA%8C%E9%80%9A%E8%BF%87-brightgreen.svg)]()
 
 ---
 
-## ✨ 核心功能
+## 核心功能
 
 | 模块 | 功能 |
 |------|------|
@@ -25,19 +24,15 @@
 | **Technology** | 科技研发、赛季科技树 |
 | **Resolution** | 投票决议、公投系统 |
 | **Resource** | 资源区块、采集、加工 |
-| **Event** | 事件记录、查询、统计 |
-| **Government** | 政体类型（君主/共和/独裁） |
+| **Social** | 社交系统、影响力、排行榜 |
+| **Zone** | 经济区管理、特效系统 |
 
 ---
 
-## 🚀 快速开始
+## 快速开始
 
 ```bash
-# 克隆项目
-git clone https://github.com/addxiaoyi/starcore.git
 cd starcore
-
-# 构建
 mvn clean package
 
 # 生成: target/starcore-0.1.0-SNAPSHOT.jar
@@ -58,49 +53,38 @@ mvn clean package
 
 ---
 
-## 📁 项目结构
+## 项目结构
 
 ```
-src/main/java/dev/starcore/starcore/
-├── foundation/        # 基础设施（经济、存储、反馈）
-├── module/           # 核心业务模块
-├── integration/      # 插件集成
-└── api/              # 公开API
-src/main/resources/
-├── config.yml        # 主配置
-├── lang/             # 语言文件
-└── db/migration/     # 数据库迁移
-```
-
----
-
-## 📊 统计数据
-
-| 指标 | 数量 |
-|------|------|
-| Java 类文件 | 1700+ |
-| 单元测试 | 220 |
-| 核心模块 | 13 |
-| 集成插件 | 6 |
-
----
-
-## 🧪 测试
-
-```bash
-mvn test
+starcore/
+├── src/main/java/dev/starcore/starcore/
+│   ├── foundation/        # 基础设施（经济、消息、权限）
+│   ├── module/           # 核心业务模块
+│   ├── integration/      # 插件集成
+│   └── api/              # 公开API
+└── src/main/resources/
+    ├── config.yml         # 主配置
+    ├── lang/              # 语言文件
+    └── db/migration/       # 数据库迁移
 ```
 
 ---
 
-## 📄 许可证
+## 统计数据
+
+- **677+** 个 Java 类文件
+- **13+** 个核心模块
+- **6** 个集成插件
+
+---
+
+## 许可证
 
 [MIT License](LICENSE)
 
 ---
 
-## 🔗 链接
+## 链接
 
-- [StarCore 文档](starcore/README.md)
 - [问题反馈](https://github.com/addxiaoyi/starcore/issues)
-- [提交规范](https://www.conventionalcommits.org/)
+- [Actions](https://github.com/addxiaoyi/starcore/actions)
