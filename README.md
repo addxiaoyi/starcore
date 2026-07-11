@@ -32,7 +32,6 @@
 ## 🚀 快速开始
 
 ```bash
-cd starcore
 mvn clean package
 
 # 生成: target/starcore-0.1.0-SNAPSHOT.jar
@@ -56,16 +55,15 @@ mvn clean package
 ## 📁 项目结构
 
 ```
-starcore/
-├── src/main/java/dev/starcore/starcore/
-│   ├── foundation/        # 基础设施（经济、存储、反馈）
-│   ├── module/           # 核心业务模块
-│   ├── integration/      # 插件集成
-│   └── api/              # 公开API
-└── src/main/resources/
-    ├── config.yml        # 主配置
-    ├── lang/             # 语言文件
-    └── db/migration/     # 数据库迁移
+src/main/java/dev/starcore/starcore/
+├── foundation/        # 基础设施（经济、存储、反馈）
+├── module/           # 核心业务模块
+├── integration/      # 插件集成
+└── api/             # 公开API
+src/main/resources/
+├── config.yml        # 主配置
+├── lang/             # 语言文件
+└── db/migration/     # 数据库迁移
 ```
 
 ---
@@ -86,5 +84,5 @@ starcore/
 
 ## 🔗 链接
 
-- [文档](starcore/README.md)
+- [文档](docs/)
 - [问题反馈](https://github.com/addxiaoyi/starcore/issues)
