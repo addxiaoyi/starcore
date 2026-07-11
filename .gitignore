@@ -33,6 +33,11 @@ logs/
 # Claude Code
 .claude/
 
+# Build Scripts
+*.sh
+*.ps1
+*.bat
+
 # Test
 test-results/
 
