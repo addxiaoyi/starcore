@@ -505,14 +505,9 @@ public final class StarCorePlugin extends JavaPlugin {
         if (context.configuration().moduleEnabled("mail", true)) {
             modules.register(new dev.starcore.starcore.module.mail.MailModule());
         }
-        // 领土升级模块
-        if (context.configuration().moduleEnabled("territory_upgrade", true)) {
-            modules.register(new dev.starcore.starcore.module.territory.upgrade.TerritoryUpgradeModule());
-        }
-        // 领土租借模块
-        if (context.configuration().moduleEnabled("territory_rent", true)) {
-            modules.register(new dev.starcore.starcore.module.territory.rent.TerritoryRentModule());
-        }
+        // 领土升级模块 (已在第449行注册)
+        // 领土租借模块 (已在第481行注册)
+        // 攻城器械模块（已在第517行注册）
     }
 
     private void registerCommands() {
