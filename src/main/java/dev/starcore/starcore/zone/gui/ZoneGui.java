@@ -31,6 +31,9 @@ public class ZoneGui {
     private final Player player;
     private final NationId nationId;
 
+    // 当前查看的经济区ID（用于返回）
+    private UUID currentZoneId = null;
+
     // 等待输入状态
     private static final Map<UUID, InputWaitingState> waitingForInput = new java.util.concurrent.ConcurrentHashMap<>();
 
@@ -100,6 +103,9 @@ public class ZoneGui {
             return;
         }
 
+        // 保存当前查看的经济区ID（用于返回）
+        this.currentZoneId = zone.id();
+
         Inventory gui = Bukkit.createInventory(null, 36, ZONE_INFO_TITLE + " - " + zone.name());
 
         // 经济区信息
@@ -160,7 +166,7 @@ public class ZoneGui {
         }
 
         // 返回按钮
-        gui.setItem(31, createButton(Material.ARROW, "§f§l返回", "§7返回上一页"));
+        gui.setItem(31, createButton(Material.ARROW, "§f§l返回", "§7返回上一页", "§a从主菜单进入"));
 
         player.openInventory(gui);
     }
@@ -175,6 +181,9 @@ public class ZoneGui {
         }
 
         ZoneSnapshot zone = zoneOpt.get();
+        // 保存当前查看的经济区ID（用于返回）
+        this.currentZoneId = zone.id();
+
         Inventory gui = Bukkit.createInventory(null, 54, EFFECTS_MENU_TITLE + " - " + zone.name());
 
         // 当前特效
@@ -405,9 +414,52 @@ public class ZoneGui {
     }
 
     private boolean handleZoneInfoClick(int slot, ItemStack item) {
-        // 返回按钮
+        // 返回按钮 (槽31)
         if (slot == 31) {
             openMainMenu();
+            return true;
+        }
+
+        // 升级经济区 (槽11)
+        if (slot == 11 && currentZoneId != null) {
+            Optional<ZoneSnapshot> zoneOpt = zoneModule.zoneById(currentZoneId);
+            if (zoneOpt.isPresent()) {
+                ZoneSnapshot zone = zoneOpt.get();
+                if (zone.level() < zone.type().getMaxLevel()) {
+                    // TODO: 调用 zoneModule.upgradeZone 或类似方法
+                    player.sendMessage("§a正在升级经济区... (功能开发中)");
+                }
+            }
+            return true;
+        }
+
+        // 特效管理 (槽13)
+        if (slot == 13 && currentZoneId != null) {
+            openEffectsMenu(currentZoneId);
+            return true;
+        }
+
+        // 删除经济区 (槽15)
+        if (slot == 15 && currentZoneId != null) {
+            Optional<ZoneSnapshot> zoneOpt = zoneModule.zoneById(currentZoneId);
+            if (zoneOpt.isPresent()) {
+                ZoneSnapshot zone = zoneOpt.get();
+                // TODO: 调用 zoneModule.deleteZone 或类似方法
+                player.sendMessage("§c正在删除经济区: " + zone.name() + " (功能开发中)");
+                player.closeInventory();
+            }
+            return true;
+        }
+
+        // 启用/停用 (槽22)
+        if (slot == 22 && currentZoneId != null) {
+            Optional<ZoneSnapshot> zoneOpt = zoneModule.zoneById(currentZoneId);
+            if (zoneOpt.isPresent()) {
+                ZoneSnapshot zone = zoneOpt.get();
+                // TODO: 调用 zoneModule.toggleZoneActive 或类似方法
+                String action = zone.active() ? "停用" : "启用";
+                player.sendMessage("§a正在" + action + "经济区... (功能开发中)");
+            }
             return true;
         }
 
@@ -421,30 +473,77 @@ public class ZoneGui {
             return true;
         }
 
-        // 选择类型
+        // 选择类型 (槽0-26)
         if (slot >= 0 && slot < 27) {
             if (item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
-                String typeName = item.getItemMeta().getDisplayName().replace("§6§l", "");
-                ZoneType type = ZoneType.valueOf(typeName);
-                if (type != null) {
-                    // 通知监听器等待输入（由 ZoneGuiListener 处理聊天输入）
+                // 从显示名称查找经济区类型
+                String displayName = item.getItemMeta().getDisplayName().replace("§6§l", "");
+                ZoneType selectedType = null;
+                for (ZoneType type : ZoneType.values()) {
+                    if (type.getDisplayName().equals(displayName)) {
+                        selectedType = type;
+                        break;
+                    }
+                }
+
+                if (selectedType != null) {
+                    // 记录等待输入状态
+                    waitingForInput.put(player.getUniqueId(),
+                        new InputWaitingState("create_zone", selectedType, 1));
                     player.sendMessage("§a请在聊天框输入经济区名称 (输入 'cancel' 取消)");
                     player.closeInventory();
-                    // 选择的类型会通过 ZoneGuiListener.handleNameInput 处理
                 }
             }
+            return true;
         }
 
         return false;
     }
 
     private boolean handleEffectsMenuClick(int slot, ItemStack item) {
-        // 返回按钮
+        // 返回按钮 (槽49)
         if (slot == 49) {
-            // 需要返回到对应的经济区详情
+            if (currentZoneId != null) {
+                openZoneInfo(currentZoneId);
+            } else {
+                openMainMenu();
+            }
+            return true;
+        }
+
+        // 添加/移除特效 (槽0-34 为拥有的特效, 槽36-48 为可添加的特效)
+        if (item != null && item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
+            String effectName = item.getItemMeta().getDisplayName()
+                .replace("§a§l", "")
+                .replace("§c§l", "");
+            player.sendMessage("§e特效功能开发中: " + effectName);
             return true;
         }
 
         return false;
+    }
+
+    /**
+     * 处理聊天输入（由 ZoneGuiListener 调用）
+     */
+    public void handleNameInput(String input) {
+        InputWaitingState state = waitingForInput.remove(player.getUniqueId());
+        if (state == null) {
+            return;
+        }
+
+        if (input.equalsIgnoreCase("cancel")) {
+            player.sendMessage("§c已取消创建经济区");
+            return;
+        }
+
+        // 验证名称
+        if (input.length() < 2 || input.length() > 16) {
+            player.sendMessage("§c经济区名称长度必须在2-16个字符之间");
+            return;
+        }
+
+        // TODO: 调用 zoneModule.createZone 或类似方法
+        player.sendMessage("§a正在创建经济区: " + input + " (类型: " + state.type().getDisplayName() + ") (功能开发中)");
     }
 }
