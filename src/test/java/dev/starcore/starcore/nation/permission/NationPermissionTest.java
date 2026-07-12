@@ -172,7 +172,7 @@ class NationPermissionTest {
         @Test
         @DisplayName("普通成员权限应为MEMBER级别")
         void memberPermissionsShouldBeMemberLevel() {
-            assertEquals(PermissionLevel.MEMBER, NationPermission.BANK_DEPOSIT.getDefaultLevel());
+            assertEquals(PermissionLevel.TRUSTED, NationPermission.BANK_DEPOSIT.getDefaultLevel()); // audit A-031: 提升为 TRUSTED 防恶意存款
             assertEquals(PermissionLevel.MEMBER, NationPermission.SPAWN_TP.getDefaultLevel());
         }
     }
@@ -194,9 +194,9 @@ class NationPermissionTest {
         }
 
         @Test
-        @DisplayName("存款权限对所有成员开放")
+        @DisplayName("存款权限仅限受信任成员（audit A-031 安全加固）")
         void depositShouldBeOpenToMembers() {
-            assertEquals(PermissionLevel.MEMBER, NationPermission.BANK_DEPOSIT.getDefaultLevel());
+            assertEquals(PermissionLevel.TRUSTED, NationPermission.BANK_DEPOSIT.getDefaultLevel());
         }
 
         @Test
