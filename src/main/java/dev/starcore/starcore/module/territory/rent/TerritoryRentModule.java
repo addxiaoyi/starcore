@@ -831,6 +831,199 @@ public final class TerritoryRentModule implements StarCoreModule, TerritoryRentS
         }
 
         loadChunkIndex();
+
+        // 从数据库加载统计数据
+        loadNationStatsFromDb();
+    }
+
+    /**
+     * 从数据库批量加载国家统计数据
+     */
+    private void loadNationStatsFromDb() {
+        databaseService.dataSource().ifPresent(ds -> {
+            try (Connection conn = ds.getConnection()) {
+                // 统计每个国家的租借数据
+                String sql = """
+                    SELECT
+                        lessor_nation_id,
+                        COUNT(*) as total_contracts,
+                        SUM(CASE WHEN status = 'ACTIVE' THEN 1 ELSE 0 END) as active_as_lessor,
+                        SUM(chunks_count) as chunks_leased_out,
+                        SUM(
+                            (SELECT COALESCE(SUM(amount), 0)
+                             FROM starcore_lease_payments p
+                             WHERE p.contract_id = starcore_lease_contracts.contract_id
+                               AND p.payer_type = 'NATION')
+                        ) as total_rent_earned
+                    FROM starcore_lease_contracts
+                    WHERE lessor_nation_id IS NOT NULL
+                    GROUP BY lessor_nation_id
+                """;
+
+                try (PreparedStatement stmt = conn.prepareStatement(sql);
+                     ResultSet rs = stmt.executeQuery()) {
+                    while (rs.next()) {
+                        UUID nationId = UUID.fromString(rs.getString("lessor_nation_id"));
+                        int totalContracts = rs.getInt("total_contracts");
+                        int activeAsLessor = rs.getInt("active_as_lessor");
+                        int chunksLeasedOut = rs.getInt("chunks_leased_out");
+                        BigDecimal totalRentEarned = rs.getBigDecimal("total_rent_earned");
+
+                        nationStats.compute(nationId, (k, existing) -> {
+                            LeaseStats current = existing != null ? existing : new LeaseStats(0, 0, 0, BigDecimal.ZERO, BigDecimal.ZERO, 0, 0);
+                            return new LeaseStats(
+                                totalContracts,
+                                activeAsLessor,
+                                current.activeContractsAsLessee(),
+                                totalRentEarned != null ? totalRentEarned : BigDecimal.ZERO,
+                                current.totalRentPaid(),
+                                chunksLeasedOut,
+                                current.chunksLeasedIn()
+                            );
+                        });
+                    }
+                }
+
+                // 统计作为承租方的数据
+                String lesseeSql = """
+                    SELECT
+                        lessee_nation_id,
+                        COUNT(*) as total_contracts,
+                        SUM(CASE WHEN status = 'ACTIVE' THEN 1 ELSE 0 END) as active_as_lessee,
+                        SUM(chunks_count) as chunks_leased_in,
+                        SUM(
+                            (SELECT COALESCE(SUM(amount), 0)
+                             FROM starcore_lease_payments p
+                             WHERE p.contract_id = starcore_lease_contracts.contract_id
+                               AND p.payer_type = 'NATION')
+                        ) as total_rent_paid
+                    FROM starcore_lease_contracts
+                    WHERE lessee_nation_id IS NOT NULL AND status = 'ACTIVE'
+                    GROUP BY lessee_nation_id
+                """;
+
+                try (PreparedStatement stmt = conn.prepareStatement(lesseeSql);
+                     ResultSet rs = stmt.executeQuery()) {
+                    while (rs.next()) {
+                        UUID nationId = UUID.fromString(rs.getString("lessee_nation_id"));
+                        int totalContracts = rs.getInt("total_contracts");
+                        int activeAsLessee = rs.getInt("active_as_lessee");
+                        int chunksLeasedIn = rs.getInt("chunks_leased_in");
+                        BigDecimal totalRentPaid = rs.getBigDecimal("total_rent_paid");
+
+                        nationStats.compute(nationId, (k, existing) -> {
+                            LeaseStats current = existing != null ? existing : new LeaseStats(0, 0, 0, BigDecimal.ZERO, BigDecimal.ZERO, 0, 0);
+                            return new LeaseStats(
+                                current.totalContracts() + totalContracts,
+                                current.activeContractsAsLessor(),
+                                activeAsLessee,
+                                current.totalRentEarned(),
+                                totalRentPaid != null ? totalRentPaid : BigDecimal.ZERO,
+                                current.chunksLeasedOut(),
+                                chunksLeasedIn
+                            );
+                        });
+                    }
+                }
+
+                plugin.getLogger().info("Loaded nation rent stats from database.");
+            } catch (SQLException e) {
+                plugin.getLogger().warning("Failed to load nation stats from database: " + e.getMessage());
+            }
+        });
+    }
+
+    /**
+     * 重新计算指定国家的统计数据
+     */
+    public void recalculateStats(NationId nationId) {
+        UUID uuid = nationId.value();
+
+        // 重新从数据库计算
+        databaseService.dataSource().ifPresent(ds -> {
+            try (Connection conn = ds.getConnection()) {
+                // 计算作为出租方的统计
+                String lessorSql = """
+                    SELECT
+                        COUNT(*) as total_contracts,
+                        SUM(CASE WHEN status = 'ACTIVE' THEN 1 ELSE 0 END) as active_as_lessor,
+                        SUM(chunks_count) as chunks_leased_out,
+                        SUM(
+                            (SELECT COALESCE(SUM(amount), 0)
+                             FROM starcore_lease_payments p
+                             WHERE p.contract_id = starcore_lease_contracts.contract_id)
+                        ) as total_rent_earned
+                    FROM starcore_lease_contracts
+                    WHERE lessor_nation_id = ?
+                """;
+
+                try (PreparedStatement stmt = conn.prepareStatement(lessorSql)) {
+                    stmt.setString(1, uuid.toString());
+                    try (ResultSet rs = stmt.executeQuery()) {
+                        if (rs.next()) {
+                            int totalContracts = rs.getInt("total_contracts");
+                            int activeAsLessor = rs.getInt("active_as_lessor");
+                            int chunksLeasedOut = rs.getInt("chunks_leased_out");
+                            BigDecimal totalRentEarned = rs.getBigDecimal("total_rent_earned");
+
+                            nationStats.compute(uuid, (k, existing) -> {
+                                LeaseStats current = existing != null ? existing : new LeaseStats(0, 0, 0, BigDecimal.ZERO, BigDecimal.ZERO, 0, 0);
+                                return new LeaseStats(
+                                    totalContracts,
+                                    activeAsLessor,
+                                    current.activeContractsAsLessee(),
+                                    totalRentEarned != null ? totalRentEarned : BigDecimal.ZERO,
+                                    current.totalRentPaid(),
+                                    chunksLeasedOut,
+                                    current.chunksLeasedIn()
+                                );
+                            });
+                        }
+                    }
+                }
+
+                // 计算作为承租方的统计
+                String lesseeSql = """
+                    SELECT
+                        COUNT(*) as total_contracts,
+                        SUM(CASE WHEN status = 'ACTIVE' THEN 1 ELSE 0 END) as active_as_lessee,
+                        SUM(chunks_count) as chunks_leased_in,
+                        SUM(
+                            (SELECT COALESCE(SUM(amount), 0)
+                             FROM starcore_lease_payments p
+                             WHERE p.contract_id = starcore_lease_contracts.contract_id)
+                        ) as total_rent_paid
+                    FROM starcore_lease_contracts
+                    WHERE lessee_nation_id = ?
+                """;
+
+                try (PreparedStatement stmt = conn.prepareStatement(lesseeSql)) {
+                    stmt.setString(1, uuid.toString());
+                    try (ResultSet rs = stmt.executeQuery()) {
+                        if (rs.next()) {
+                            int activeAsLessee = rs.getInt("active_as_lessee");
+                            int chunksLeasedIn = rs.getInt("chunks_leased_in");
+                            BigDecimal totalRentPaid = rs.getBigDecimal("total_rent_paid");
+
+                            nationStats.compute(uuid, (k, existing) -> {
+                                LeaseStats current = existing != null ? existing : new LeaseStats(0, 0, 0, BigDecimal.ZERO, BigDecimal.ZERO, 0, 0);
+                                return new LeaseStats(
+                                    current.totalContracts(),
+                                    current.activeContractsAsLessor(),
+                                    activeAsLessee,
+                                    current.totalRentEarned(),
+                                    totalRentPaid != null ? totalRentPaid : BigDecimal.ZERO,
+                                    current.chunksLeasedOut(),
+                                    chunksLeasedIn
+                                );
+                            });
+                        }
+                    }
+                }
+            } catch (SQLException e) {
+                plugin.getLogger().warning("Failed to recalculate stats for nation " + uuid + ": " + e.getMessage());
+            }
+        });
     }
 
     private void saveProposals() {
