@@ -21,8 +21,11 @@ import java.util.UUID;
  * Simplified policy GUI menu
  *
  * audit B-164 (partial): 修正 activeCount 恒 0 的占位 bug，真正查询活跃政策表
- * 本菜单目前没有任何调用方，仅保留类型骨架。完整菜单（点击展示已激活政策、可激活列表与冷却）
+ * 本菜单目前没有任何调用方，仅保留类型骨架。
+ *
  * 政策创建功能已由 PolicyCreationMenu 和 PolicyMenuListener 实现。
+ * 如需使用此菜单，需要在 NationManagementMenu 中添加打开 PolicyMenu 的逻辑，
+ * 并传入 PolicyMenuListener 来处理点击事件。
  *
  * @deprecated 请使用 PolicyCreationMenu 和 PolicyMenuListener
  */
@@ -62,7 +65,7 @@ public class PolicyMenu {
             int activeCount = policyService.activePolicy(nation.get().id()).isPresent() ? 1 : 0;
             inv.setItem(11, createMenuItem(Material.BOOK, "Active Policies", String.valueOf(activeCount)));
             inv.setItem(13, createMenuItem(Material.PAPER, "All Policies", "View all policies"));
-            inv.setItem(15, createMenuItem(Material.WRITABLE_BOOK, "New Policy", "Create new policy (TODO)"));
+            inv.setItem(15, createMenuItem(Material.WRITABLE_BOOK, "New Policy", "Create new policy"));
         } else {
             inv.setItem(13, createMenuItem(Material.BARRIER, "No Nation", "Join a nation first"));
         }

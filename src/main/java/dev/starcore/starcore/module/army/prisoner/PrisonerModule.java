@@ -62,8 +62,8 @@ public final class PrisonerModule implements StarCoreModule {
 
         // 注册命令（如果存在）
         if (context.plugin().getCommand("prisoner") != null) {
-            context.plugin().getCommand("prisoner").setExecutor(new PrisonerCommand(prisonerService, messages));
-            context.plugin().getCommand("prisoner").setTabCompleter(new PrisonerCommand(prisonerService, messages));
+            context.plugin().getCommand("prisoner").setExecutor(new PrisonerCommand(prisonerService, nationService, messages));
+            context.plugin().getCommand("prisoner").setTabCompleter(new PrisonerCommand(prisonerService, nationService, messages));
         }
 
         // 注册监听器

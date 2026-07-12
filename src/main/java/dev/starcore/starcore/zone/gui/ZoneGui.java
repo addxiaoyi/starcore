@@ -426,8 +426,15 @@ public class ZoneGui {
             if (zoneOpt.isPresent()) {
                 ZoneSnapshot zone = zoneOpt.get();
                 if (zone.level() < zone.type().getMaxLevel()) {
-                    // TODO: 调用 zoneModule.upgradeZone 或类似方法
-                    player.sendMessage("§a正在升级经济区... (功能开发中)");
+                    boolean success = zoneModule.upgradeZone(currentZoneId);
+                    if (success) {
+                        player.sendMessage("§a经济区升级成功!");
+                        openZoneInfo(currentZoneId);
+                    } else {
+                        player.sendMessage("§c经济区升级失败，可能资金不足。");
+                    }
+                } else {
+                    player.sendMessage("§c经济区已达最高等级!");
                 }
             }
             return true;
@@ -444,9 +451,13 @@ public class ZoneGui {
             Optional<ZoneSnapshot> zoneOpt = zoneModule.zoneById(currentZoneId);
             if (zoneOpt.isPresent()) {
                 ZoneSnapshot zone = zoneOpt.get();
-                // TODO: 调用 zoneModule.deleteZone 或类似方法
-                player.sendMessage("§c正在删除经济区: " + zone.name() + " (功能开发中)");
-                player.closeInventory();
+                boolean success = zoneModule.deleteZone(currentZoneId);
+                if (success) {
+                    player.sendMessage("§c已删除经济区: " + zone.name());
+                    player.closeInventory();
+                } else {
+                    player.sendMessage("§c删除经济区失败!");
+                }
             }
             return true;
         }
@@ -456,9 +467,14 @@ public class ZoneGui {
             Optional<ZoneSnapshot> zoneOpt = zoneModule.zoneById(currentZoneId);
             if (zoneOpt.isPresent()) {
                 ZoneSnapshot zone = zoneOpt.get();
-                // TODO: 调用 zoneModule.toggleZoneActive 或类似方法
-                String action = zone.active() ? "停用" : "启用";
-                player.sendMessage("§a正在" + action + "经济区... (功能开发中)");
+                if (zone.active()) {
+                    zoneModule.disableZone(currentZoneId);
+                    player.sendMessage("§a经济区已停用。");
+                } else {
+                    zoneModule.enableZone(currentZoneId);
+                    player.sendMessage("§a经济区已启用。");
+                }
+                openZoneInfo(currentZoneId);
             }
             return true;
         }
