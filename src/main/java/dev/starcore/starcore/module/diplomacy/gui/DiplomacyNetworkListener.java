@@ -188,7 +188,8 @@ public class DiplomacyNetworkListener implements Listener {
         } else if (itemName.contains("发动战争") || itemName.contains("查看敌国")) {
             player.sendMessage("§e请使用 /war declare <国家名> 发起战争");
         } else if (itemName.contains("关系详情") || itemName.contains("二阶")) {
-            player.sendMessage("§e正在开发中...");
+            player.sendMessage("§e请通过点击盟国/敌国图标查看关系详情");
+            player.sendMessage("§7提示: 绿宝石图标=盟国，红石图标=敌国");
         }
 
         // 关系节点点击
