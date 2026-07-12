@@ -53,12 +53,39 @@ mvn clean package
 
 ---
 
+## 📋 主要命令
+
+| 命令 | 描述 |
+|------|------|
+| `/nation` | 国家管理 |
+| `/territory` / `/claim` | 领地管理 |
+| `/treasury` | 国库管理 |
+| `/diplomacy` | 外交关系 |
+| `/war` | 战争系统 |
+| `/army` | 军队管理 |
+| `/officer` | 官职任命 |
+| `/policy` | 政策系统 |
+| `/technology` | 科技研发 |
+| `/resolution` | 投票决议 |
+| `/social` | 社交系统 |
+| `/zone` | 区域系统 |
+| `/visualizer` | 交互可视化 |
+
+---
+
 ## 📁 项目结构
 
 ```
 src/main/java/dev/starcore/starcore/
 ├── foundation/        # 基础设施（经济、存储、反馈）
 ├── module/           # 核心业务模块
+│   ├── nation/       # 国家系统
+│   ├── territory/    # 领土系统
+│   ├── treasury/     # 国库系统
+│   ├── diplomacy/    # 外交系统
+│   ├── war/          # 战争系统
+│   ├── army/         # 军事系统
+│   └── ...
 ├── integration/      # 插件集成
 └── api/             # 公开API
 ```
@@ -72,6 +99,12 @@ src/main/java/dev/starcore/starcore/
 | Java 类文件 | 1800+ |
 | 核心模块 | 13 |
 | 集成插件支持 | 6 |
+
+---
+
+## 🤝 贡献
+
+欢迎提交 Issue 和 Pull Request！
 
 ---
 
