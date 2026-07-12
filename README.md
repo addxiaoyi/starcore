@@ -31,64 +31,104 @@
 
 ## 🚀 快速开始
 
-```bash
-# 构建
-mvn clean package
+### 构建
 
-# 生成: target/starcore-0.1.0-SNAPSHOT.jar
+```bash
+mvn clean package
 ```
+
+生成文件：`target/starcore-0.1.0-SNAPSHOT.jar`
 
 ### 前置要求
 
-- Java 21+
-- Minecraft 1.21.11+ (Paper/Spigot)
+- **Java** 21+
+- **Minecraft** 1.21.11+ (Paper/Spigot)
 - **Vault**（必需）
 
 ### 集成支持
 
-- Vault 经济系统
-- PlaceholderAPI 占位符
-- squaremap/Pl3xMap/dynmap 地图渲染
-- ProtectorAPI/WorldGuard 领地保护
+| 集成 | 说明 |
+|------|------|
+| Vault | 经济系统 |
+| PlaceholderAPI | 占位符扩展 |
+| squaremap/Pl3xMap/dynmap | 地图渲染 |
+| ProtectorAPI/WorldGuard | 领地保护 |
+| Citizens | NPC 集成 |
+| PacketEvents | 数据包处理 |
 
 ---
 
 ## 📋 主要命令
 
+### 国家系统
 | 命令 | 描述 |
 |------|------|
 | `/nation` | 国家管理 |
-| `/territory` / `/claim` | 领地管理 |
 | `/treasury` | 国库管理 |
-| `/diplomacy` | 外交关系 |
+| `/government` | 政体管理 |
+
+### 军事外交
+| 命令 | 描述 |
+|------|------|
 | `/war` | 战争系统 |
 | `/army` | 军队管理 |
-| `/officer` | 官职任命 |
-| `/policy` | 政策系统 |
+| `/diplomacy` | 外交关系 |
+
+### 领土科技
+| 命令 | 描述 |
+|------|------|
+| `/territory` / `/claim` | 领地管理 |
 | `/technology` | 科技研发 |
+| `/policy` | 政策系统 |
 | `/resolution` | 投票决议 |
-| `/social` | 社交系统 |
+
+### 社交系统
+| 命令 | 描述 |
+|------|------|
+| `/social` | 社交菜单 |
 | `/zone` | 区域系统 |
 | `/visualizer` | 交互可视化 |
 
 ---
 
-## 📁 项目结构
+## 🏗️ 项目架构
 
 ```
 src/main/java/dev/starcore/starcore/
-├── foundation/        # 基础设施（经济、存储、反馈）
-├── module/           # 核心业务模块
-│   ├── nation/       # 国家系统
-│   ├── territory/    # 领土系统
-│   ├── treasury/     # 国库系统
-│   ├── diplomacy/    # 外交系统
-│   ├── war/          # 战争系统
-│   ├── army/         # 军事系统
+├── core/                    # 核心框架
+│   ├── module/             # 模块系统
+│   ├── database/           # 数据库服务
+│   ├── event/              # 事件总线
+│   ├── scheduler/          # 任务调度
+│   └── service/            # 核心服务
+├── foundation/             # 基础设施
+│   ├── player/             # 玩家数据
+│   ├── territory/          # 领土
+│   ├── economy/            # 经济
+│   ├── message/            # 消息服务
+│   └── permission/         # 权限
+├── module/                 # 业务模块
+│   ├── nation/             # 国家系统
+│   ├── war/                # 战争系统
+│   ├── army/               # 军事系统
+│   ├── diplomacy/          # 外交系统
+│   ├── treasury/           # 国库系统
+│   ├── technology/         # 科技系统
+│   ├── policy/             # 政策系统
 │   └── ...
-├── integration/      # 插件集成
-└── api/             # 公开API
+├── integration/             # 插件集成
+└── api/                    # 公开API
 ```
+
+### 核心服务
+
+| 服务 | 说明 |
+|------|------|
+| `StarCoreContext` | 全局上下文，持有所有核心服务引用 |
+| `ModuleManager` | 模块生命周期管理 |
+| `StarCoreEventBus` | 事件总线，跨模块通信 |
+| `DatabaseService` | 数据库连接池（MySQL/SQLite/Redis） |
+| `StarCoreScheduler` | 异步任务调度（Folia 兼容） |
 
 ---
 
@@ -96,7 +136,7 @@ src/main/java/dev/starcore/starcore/
 
 | 指标 | 数量 |
 |------|------|
-| Java 类文件 | 1800+ |
+| Java 类文件 | 677+ |
 | 核心模块 | 13 |
 | 集成插件支持 | 6 |
 
@@ -105,6 +145,13 @@ src/main/java/dev/starcore/starcore/
 ## 🤝 贡献
 
 欢迎提交 Issue 和 Pull Request！
+
+### 开发环境
+
+1. 安装 JDK 21+
+2. 克隆仓库：`git clone https://github.com/addxiaoyi/starcore.git`
+3. 构建：`mvn clean package`
+4. 复制 JAR 到服务器 plugins 目录
 
 ---
 
