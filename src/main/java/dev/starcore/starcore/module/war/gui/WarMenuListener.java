@@ -396,14 +396,17 @@ public class WarMenuListener implements Listener {
         player.sendMessage("§7请求者: §e" + player.getName());
         player.closeInventory();
 
-        // TODO: 通过事件系统向盟友国家成员广播
-        // nationService.getNationMembers(playerNation.id()).forEach(member -> {
-        //     Player ally = Bukkit.getPlayer(member.playerId());
-        //     if (ally != null && !ally.equals(player)) {
-        //         ally.sendMessage("§6⚔️ 盟友增援请求 ⚔️");
-        //         ally.sendMessage("§e" + player.getName() + " §7请求对 §c" + enemyName + " §7的战争增援!");
-        //     }
-        // });
+        // 通过事件系统向盟友国家成员广播
+        nationService.getNation(playerNation.id()).ifPresent(nation -> {
+            for (var member : nation.getMembers()) {
+                Player ally = Bukkit.getPlayer(member.playerId());
+                if (ally != null && !ally.equals(player)) {
+                    ally.sendMessage(Component.text("§6⚔️ 盟友增援请求 ⚔️"));
+                    ally.sendMessage(Component.text("§e" + player.getName() + " §7请求对 §c" + enemyName + " §7的战争增援!"));
+                    ally.playSound(ally.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1.0f, 0.5f);
+                }
+            }
+        });
     }
 
     private ItemStack createInfoItem(Material material, String name, String lore) {
