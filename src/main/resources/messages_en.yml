@@ -1,0 +1,156 @@
+# STARCORE English Language File
+# Note:
+# - Changes take effect after /starcore reload
+# - Placeholders use {0}, {1}, {2} like MessageFormat numbers
+# - Missing keys fallback to raw text in code
+
+command:
+  no-permission: "You don't have permission to use STARCORE commands."
+  player-only: "This subcommand can only be executed by players."
+  amount-positive: "Amount must be positive."
+
+  help:
+    title: "STARCORE Command Center"
+    basic-label: "Basic: "
+    basic-main: "/{0} status"
+    basic-tail: " | modules | reload"
+    nation-label: "Nation: "
+    nation-main: "/sc n c <name>"
+    nation-tail: " | cl | t | ok | un | ls | i <name>"
+    economy-label: "Economy: "
+    economy-main: "/{0} economy balance [player]"
+    economy-tail: " | give/take/set <player> <amount>"
+    strategy-label: "Strategy: "
+    strategy-main: "policy | treasury | diplomacy | government | resolution"
+    extension-label: "Extension: "
+    extension-main: "resource | technology | war | officer | event | map | epoch | time"
+    tab-hint: "Tip: Tab completion supports English and common Chinese commands."
+
+  status:
+    platform: "Platform: "
+    minecraft: "Minecraft: "
+    compatibility: "Compatibility: "
+    locale: "Language: "
+    database: "Database: "
+    external-protection: "External Protection: "
+    external-protection-detail: "  - {0}: {1} | {2}"
+    services: "Registered Services: "
+    modules: "Loaded Modules: "
+    epoch: "Epoch: "
+    time-sync: "Real Time: "
+    enabled: "Enabled"
+    disabled: "Disabled"
+
+  modules:
+    title: "STARCORE Modules:"
+
+  reload:
+    no-permission: "You don't have permission to reload STARCORE."
+    generated-map-secret: "New map access secret generated."
+    complete: "STARCORE configuration and language files reloaded. Module toggles will be applied on next server restart."
+
+  economy:
+    disabled-service: "Personal economy service is not enabled."
+    usage: "Usage: /{0} economy [balance|give|take|set] [player] [amount]"
+    balance-usage: "Usage: /starcore economy balance <player>"
+    give-usage: "Usage: /starcore economy give <player> <amount>"
+    take-usage: "Usage: /starcore economy take <player> <amount>"
+    set-usage: "Usage: /starcore economy set <player> <amount>"
+    no-admin: "You don't have permission to adjust personal economy accounts."
+    insufficient: "Player's personal balance is insufficient."
+    balance-label: "Personal Balance: "
+    given: "Personal funds given: "
+    taken: "Personal funds deducted: "
+    set: "Personal balance set: "
+    balance-detail: " = {0}"
+    delta-detail: " {0}{1}, balance={2}"
+
+  nation:
+    disabled-service: "Nation module is not enabled."
+    usage: "Usage: /sc nation <subcommand>\nAvailable subcommands:\n  §egui§7/§emenu§f - Open nation management menu\n  §ecreate <name>§f - Create a nation\n  §einfo <name>§f - View nation info\n  §eclaim§f - Claim current chunk\n  §eunclaim§f - Unclaim current chunk\n  §etool§f - Use claiming tool\n  §elist§f - List all nations\n  §ehere§f - View current location ownership"
+    gui-unavailable: "Nation management menu is temporarily unavailable."
+    create-usage: "Usage: §e/sc nation create <nation name>§f [reason]\n\nExamples:\n  §7/sc nation create Star Empire§f\n  §7/sc nation create Moon Federation For peace and prosperity§f"
+    created: "§a✓ Successfully created nation: §f"
+    create-failed: "§c✗ Failed to create nation§f\nReason: §e{0}§f\n\nTip: Check if nation name is duplicate or contains invalid characters"
+    no-nation: "You are not in any nation."
+    not-leader: "Only nation leaders can perform this action."
+    member-added: "Member added: "
+    member-removed: "Member removed: "
+
+  war:
+    disabled-service: "War module is not enabled."
+    declare-usage: "Usage: /war declare <nation>"
+    already-at-war: "You are already at war with {0}."
+    war-declared: "War declared against {0}!"
+    peace-treaty: "Peace treaty signed with {0}."
+    war-list-title: "Active Wars:"
+
+  army:
+    disabled-service: "Army module is not enabled."
+    create-usage: "Usage: /army create <name>"
+    created: "Army created: {0}"
+    list-title: "Your Armies:"
+    recruit-usage: "Usage: /army recruit <army> <amount>"
+
+  diplomacy:
+    disabled-service: "Diplomacy module is not enabled."
+    ally-request: "{0} requests alliance with {1}."
+    ally-accepted: "Alliance formed with {0}!"
+    ally-declined: "Alliance declined."
+    relation-changed: "Relation with {0} changed to {1}."
+
+  policy:
+    disabled-service: "Policy module is not enabled."
+    active-policies: "Active Policies:"
+    new-policy: "New Policy"
+    cooldown-active: "Policy on cooldown: {0} remaining"
+    policy-applied: "Policy '{0}' applied."
+
+  technology:
+    disabled-service: "Technology module is not enabled."
+    research-started: "Research started: {0}"
+    research-complete: "Technology unlocked: {0}"
+    research-cancelled: "Research cancelled."
+
+  treasury:
+    disabled-service: "Treasury module is not enabled."
+    balance: "Treasury Balance: "
+    deposit: "Deposited: "
+    withdraw: "Withdrawn: "
+    insufficient: "Insufficient treasury funds."
+    tax-collected: "Tax collected: "
+
+  territory:
+    disabled-service: "Territory module is not enabled."
+    claim-success: "Chunk claimed successfully!"
+    claim-failed: "Failed to claim chunk: {0}"
+    unclaim-confirm: "Type /claim unclaim confirm to unclaim this chunk."
+    unclaim-success: "Chunk unclaimed."
+    not-owner: "You don't own this territory."
+    visualize: "Territory visualized."
+    visualize-stopped: "Territory visualization stopped."
+
+  social:
+    disabled-service: "Social module is not enabled."
+    friend-added: "Friend added: {0}"
+    friend-removed: "Friend removed: {0}"
+    mail-sent: "Mail sent to {0}."
+    mail-received: "You have new mail!"
+
+  general:
+    loading: "Loading..."
+    saving: "Saving..."
+    success: "Success!"
+    failed: "Failed!"
+    error: "Error: {0}"
+    confirm: "Confirm"
+    cancel: "Cancel"
+    close: "Close"
+    back: "Back"
+    next: "Next"
+    previous: "Previous"
+    refresh: "Refresh"
+    no-permission: "No permission"
+    player-only: "Player only command"
+    cooldown: "Please wait {0} seconds"
+    invalid-arguments: "Invalid arguments. Usage: {0}"

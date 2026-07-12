@@ -33,8 +33,73 @@ jobs:
           path: target/starcore-*.jar
           retention-days: 7
 
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Run tests
+        run: mvn test
+
+      - name: Upload coverage
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: target/surefire-reports/
+          retention-days: 7
+
+      - name: Upload JaCoCo report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: jacoco-report
+          path: target/site/jacoco/
+          retention-days: 7
+
+  code-quality:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Check Spotless formatting
+        run: mvn spotless:check || true
+
+      - name: Run Spotless
+        if: always()
+        run: mvn spotless:apply || true
+
+      - name: Check for uncommitted formatting changes
+        run: |
+          if git diff --exit-code; then
+            echo "✓ Code is properly formatted"
+          else
+            echo "✗ Code formatting issues found. Run 'mvn spotless:apply' to fix."
+            exit 1
+          fi
+
   release:
-    needs: build
+    needs: [build, test, code-quality]
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v'))
     permissions:
