@@ -317,6 +317,9 @@ public final class TerritoryRentModule implements StarCoreModule, TerritoryRentS
         saveContracts();
         saveProposals();
 
+        // 新增契约时更新统计
+        addNewContractStats(contract.lessorNationId(), contract.lesseeNationId(), contract.chunksCount());
+
         return contract;
     }
 
@@ -621,24 +624,23 @@ public final class TerritoryRentModule implements StarCoreModule, TerritoryRentS
         contracts.put(contract.contractId(), updatedContract);
         saveContracts();
 
-        // Update stats
-        updateStats(contract.lessorNationId(), contract.lesseeNationId(), contract.rentPerDay());
+        // 收租时仅累加收支金额
+        accrueStats(contract.lessorNationId(), contract.lesseeNationId(), contract.rentPerDay());
 
         return payment;
     }
 
-    private void updateStats(UUID lessorId, UUID lesseeId, BigDecimal amount) {
-        // 审计 A-070: 收租时不应 +1 统计 activeContracts/chunksLeasedOut
-        // TODO audit A-070: 区分 addStats(新增契约时调用) 和 accrueStats(收租时调用)
+    private void accrueStats(UUID lessorId, UUID lesseeId, BigDecimal amount) {
+        // 收租时仅累加收支金额，不改变契约计数
         nationStats.compute(lessorId, (k, v) -> {
             if (v == null) v = new LeaseStats(0, 0, 0, BigDecimal.ZERO, BigDecimal.ZERO, 0, 0);
             return new LeaseStats(
                 v.totalContracts(),
-                v.activeContractsAsLessor(), // TODO audit A-070: 新增契约时 +1
+                v.activeContractsAsLessor(),
                 v.activeContractsAsLessee(),
                 v.totalRentEarned().add(amount),
                 v.totalRentPaid(),
-                v.chunksLeasedOut(), // TODO audit A-070: 新增契约时 +1
+                v.chunksLeasedOut(),
                 v.chunksLeasedIn()
             );
         });
@@ -649,11 +651,44 @@ public final class TerritoryRentModule implements StarCoreModule, TerritoryRentS
                 return new LeaseStats(
                     v.totalContracts(),
                     v.activeContractsAsLessor(),
-                    v.activeContractsAsLessee() + 1,
+                    v.activeContractsAsLessee(),
                     v.totalRentEarned(),
                     v.totalRentPaid().add(amount),
                     v.chunksLeasedOut(),
-                    v.chunksLeasedIn() + 1
+                    v.chunksLeasedIn()
+                );
+            });
+        }
+    }
+
+    /**
+     * 新增契约时更新统计（增加契约数和区块数）
+     */
+    private void addNewContractStats(UUID lessorId, UUID lesseeId, int chunksCount) {
+        nationStats.compute(lessorId, (k, v) -> {
+            if (v == null) v = new LeaseStats(0, 0, 0, BigDecimal.ZERO, BigDecimal.ZERO, 0, 0);
+            return new LeaseStats(
+                v.totalContracts() + 1,
+                v.activeContractsAsLessor() + 1,
+                v.activeContractsAsLessee(),
+                v.totalRentEarned(),
+                v.totalRentPaid(),
+                v.chunksLeasedOut() + chunksCount,
+                v.chunksLeasedIn()
+            );
+        });
+
+        if (lesseeId != null) {
+            nationStats.compute(lesseeId, (k, v) -> {
+                if (v == null) v = new LeaseStats(0, 0, 0, BigDecimal.ZERO, BigDecimal.ZERO, 0, 0);
+                return new LeaseStats(
+                    v.totalContracts() + 1,
+                    v.activeContractsAsLessor(),
+                    v.activeContractsAsLessee() + 1,
+                    v.totalRentEarned(),
+                    v.totalRentPaid(),
+                    v.chunksLeasedOut(),
+                    v.chunksLeasedIn() + chunksCount
                 );
             });
         }

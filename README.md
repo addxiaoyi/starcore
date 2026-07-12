@@ -65,6 +65,16 @@ src/main/java/dev/starcore/starcore/
 
 ---
 
+## 📊 项目统计
+
+| 指标 | 数量 |
+|------|------|
+| Java 类文件 | 1800+ |
+| 核心模块 | 13 |
+| 集成插件支持 | 6 |
+
+---
+
 ## 📄 许可证
 
 [MIT License](LICENSE)
