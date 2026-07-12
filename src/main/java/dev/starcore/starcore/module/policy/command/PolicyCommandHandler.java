@@ -449,12 +449,17 @@ public class PolicyCommandHandler {
 
     private boolean hasPolicyAdminPermission(Player player, Nation nation) {
         // 检查是否是管理员
-        // audit B-156: starcore.admin 绕过检查需记录到审计日志，未配置 Audit 模块时记 warning
+        // audit B-156: starcore.admin 绕过检查需记录到审计日志
         if (player.hasPermission("starcore.admin")) {
             try {
                 var audit = context.serviceRegistry().find(dev.starcore.starcore.audit.AuditLogService.class);
                 if (audit.isPresent()) {
-                    // audit B-156: 缺 AuditService 接口无法精确记录；TODO 等待 Audit 模块定义日志 API
+                    audit.get().logPermissionChange(
+                        player.getUniqueId(),
+                        player.getName(),
+                        "starcore.admin.policy.override:" + nation.id().value(),
+                        true
+                    );
                 } else {
                     context.plugin().getLogger().warning("Policy admin override: " + player.getName() + " used starcore.admin on nation " + nation.name());
                 }
