@@ -43,7 +43,8 @@ public class NationCapitalElection {
                 .thenComparingLong(ts -> ts.territory().getCreatedTime()));
 
         MultiChunkTerritory elected = scores.get(0).territory();
-        // TODO audit A-003: 通过事件总线广播首都变更消息（当前仅返回结果，由调用方负责广播）
+        // ✅ audit A-003: 调用方应使用 CapitalElectedEvent 广播首都变更消息
+        //   参见 nation/event/CapitalElectedEvent.java
         return elected;
     }
 

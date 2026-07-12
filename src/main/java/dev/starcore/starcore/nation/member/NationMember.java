@@ -52,8 +52,8 @@ public class NationMember {
     }
 
     public void setLevel(PermissionLevel level) {
-        // TODO audit A-004: 直接 setLevel 可绕过 promote 流程；为防止越权提升到 FOUNDER，
-        //   此处禁止通过该 setter 直接设为 FOUNDER，请使用专门的 promote/transferOwnership 流程。
+        // ✅ audit A-004: 已实现防御，禁止通过该 setter 直接设为 FOUNDER
+        //   为防止越权提升到 FOUNDER，强制使用专门的 promote/transferOwnership 流程
         if (level == PermissionLevel.FOUNDER && this.level != PermissionLevel.FOUNDER) {
             throw new IllegalStateException("Cannot promote to FOUNDER via setLevel; use dedicated founder transfer flow");
         }

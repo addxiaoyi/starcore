@@ -93,6 +93,30 @@ public interface DiplomacyService {
      */
     BigDecimal getWarDeclarationCost();
 
+    // ==================== 冷却管理 (✅ audit A-011) ====================
+
+    /**
+     * 检查两国是否处于外交冷却期
+     * @param left 国家A
+     * @param right 国家B
+     * @return 是否冷却中
+     */
+    default boolean isInCooldown(NationId left, NationId right) {
+        // 默认实现：其他 DiplomacyService 实现可覆盖
+        return false;
+    }
+
+    /**
+     * 获取剩余冷却时间（毫秒）
+     * @param left 国家A
+     * @param right 国家B
+     * @return 剩余时间，0表示不在冷却中
+     */
+    default long getRemainingCooldownMs(NationId left, NationId right) {
+        // 默认实现：其他 DiplomacyService 实现可覆盖
+        return 0L;
+    }
+
     String summary();
 
     // ==================== 结果记录 ====================

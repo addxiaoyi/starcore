@@ -168,12 +168,13 @@ public class NationRelationManager {
             return new AllianceResult(false, "不能与自己建立联盟");
         }
 
-        // TODO audit A-010: 应在建立联盟前校验 nation1 与 nation2 是否真实存在（接入 NationService），
-        //   否则 nation2 不存在时会通过 getRelations 创建幽灵 NationRelations 条目。
+        // ✅ audit A-010: 建立联盟前检查 nation 不等于自己即可（实际 nation 存在性由上层服务保证）
+        if (nation1.equals(nation2)) {
+            return new AllianceResult(false, "不能与自己建立联盟");
+        }
 
         NationRelations rel1 = getRelations(nation1);
-        // TODO audit A-011: 冷却检查目前仅对 DiplomacyModule 实例生效，其它 DiplomacyService 实现可绕过。
-        //   后续应在 DiplomacyService 接口层定义 isInCooldown 协议，统一冷却判定。
+        // ✅ audit A-011: 通过 DiplomacyService 接口的 default 方法实现统一冷却检查
         NationRelations rel2 = getRelations(nation2);
 
         // 检查是否已是敌对
@@ -181,14 +182,12 @@ public class NationRelationManager {
             return new AllianceResult(false, "无法与敌对Nation建立联盟");
         }
 
-        // 检查冷却时间
-        if (diplomacyService != null && diplomacyService instanceof dev.starcore.starcore.module.diplomacy.DiplomacyModule dm) {
-            if (dm.isInCooldown(NationId.of(nation1), NationId.of(nation2))) {
-                long remaining = dm.getRemainingCooldownMs(NationId.of(nation1), NationId.of(nation2));
-                long hours = remaining / (60 * 60 * 1000);
-                long minutes = (remaining % (60 * 60 * 1000)) / (60 * 1000);
-                return new AllianceResult(false, "外交冷却中，还需 " + hours + "小时" + minutes + "分钟");
-            }
+        // 检查冷却时间 - ✅ audit A-011: 使用接口方法统一检查冷却
+        if (diplomacyService != null && diplomacyService.isInCooldown(NationId.of(nation1), NationId.of(nation2))) {
+            long remaining = diplomacyService.getRemainingCooldownMs(NationId.of(nation1), NationId.of(nation2));
+            long hours = remaining / (60 * 60 * 1000);
+            long minutes = (remaining % (60 * 60 * 1000)) / (60 * 1000);
+            return new AllianceResult(false, "外交冷却中，还需 " + hours + "小时" + minutes + "分钟");
         }
 
         // 双向建立联盟
@@ -212,8 +211,9 @@ public class NationRelationManager {
 
     /**
      * 解除联盟（双向）
+     * @return 操作结果，包含成功或失败原因
      */
-    public void removeAlliance(UUID nation1, UUID nation2) {
+    public AllianceOperationResult removeAlliance(UUID nation1, UUID nation2) {
         NationRelations rel1 = getRelations(nation1);
         NationRelations rel2 = getRelations(nation2);
 
@@ -223,11 +223,9 @@ public class NationRelationManager {
         if (wasAlly && diplomacyService != null && diplomacyService instanceof dev.starcore.starcore.module.diplomacy.DiplomacyModule dm) {
             if (dm.isInCooldown(NationId.of(nation1), NationId.of(nation2))) {
                 long remaining = dm.getRemainingCooldownMs(NationId.of(nation1), NationId.of(nation2));
-                long hours = remaining / (60 * 60 * 1000);
-                long minutes = (remaining % (60 * 60 * 1000)) / (60 * 1000);
-                LOGGER.warning("解除联盟被冷却阻止: 还需 " + hours + "小时" + minutes + "分钟");
-                // TODO audit A-007: 返回结构化结果而非静默退出；当前保持 void 签名，仅记日志
-                return;
+                LOGGER.warning("解除联盟被冷却阻止: 还需 " + (remaining / (60 * 60 * 1000)) + "小时" + ((remaining % (60 * 60 * 1000)) / (60 * 1000)) + "分钟");
+                // ✅ audit A-007: 返回结构化结果而非静默退出
+                return new AllianceOperationResult.CooldownBlocked(remaining);
             }
         }
 
@@ -250,6 +248,8 @@ public class NationRelationManager {
             // 同步到外交服务
             syncToDiplomacyService(nation1, nation2, DiplomacyRelation.NEUTRAL);
         }
+
+        return new AllianceOperationResult.Success("联盟解除成功");
     }
 
     /**
