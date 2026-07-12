@@ -6,6 +6,8 @@
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.21.11-green.svg)](https://www.minecraft.net/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Build](https://github.com/addxiaoyi/starcore/workflows/Build/badge.svg)](https://github.com/addxiaoyi/starcore/actions)
+[![Issues](https://img.shields.io/github/issues/addxiaoyi/starcore)](https://github.com/addxiaoyi/starcore/issues)
+[![Stars](https://img.shields.io/github/stars/addxiaoyi/starcore)](https://github.com/addxiaoyi/starcore)
 
 ---
 
@@ -153,6 +155,12 @@ src/main/java/dev/starcore/starcore/
 3. 构建：`mvn clean package`
 4. 复制 JAR 到服务器 plugins 目录
 
+### 开发规范
+
+- 代码风格：遵循 Google Java Style Guide
+- 提交规范：使用 Conventional Commits
+- 分支策略：feature/*, fix/*, refactor/*
+
 ---
 
 ## 📄 许可证
@@ -164,3 +172,4 @@ src/main/java/dev/starcore/starcore/
 ## 🔗 链接
 
 - [问题反馈](https://github.com/addxiaoyi/starcore/issues)
+- [功能建议](https://github.com/addxiaoyi/starcore/discussions)
