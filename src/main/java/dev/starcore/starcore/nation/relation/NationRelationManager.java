@@ -280,11 +280,10 @@ public class NationRelationManager {
             ));
         }
 
-        // 同步到外交服务
-        // TODO audit A-006: declareEnemy 本地是单向敌对，但 syncToDiplomacyService 调用 setRelation
-        //   在某些实现中是双向的，可能造成本地单边 vs 外交双边不一致。需在 DiplomacyService 接口层
-        //   提供 setDirectedRelation 单边同步语义，或在此处仅写 from->to 而不写 to->from。
-        syncToDiplomacyService(from, to, DiplomacyRelation.WAR);
+        // 同步到外交服务 - 单向敌对，不同步反向
+        // audit A-006: declareEnemy 本地是单向敌对，仅写 from->to 而不写 to->from
+        // 避免本地单边 vs 外交双边不一致
+        syncOneWayToDiplomacyService(from, to, DiplomacyRelation.WAR);
     }
 
     /**
@@ -309,11 +308,21 @@ public class NationRelationManager {
     }
 
     /**
-     * 同步到外交服务
+     * 同步到外交服务（单向，用于宣战等单向关系）
+     */
+    private void syncOneWayToDiplomacyService(UUID from, UUID to, DiplomacyRelation relation) {
+        if (diplomacyService != null) {
+            diplomacyService.setRelation(NationId.of(from), NationId.of(to), relation);
+        }
+    }
+
+    /**
+     * 同步到外交服务（双向，用于联盟等需要双方一致的关系）
      */
     private void syncToDiplomacyService(UUID nation1, UUID nation2, DiplomacyRelation relation) {
         if (diplomacyService != null) {
             diplomacyService.setRelation(NationId.of(nation1), NationId.of(nation2), relation);
+            diplomacyService.setRelation(NationId.of(nation2), NationId.of(nation1), relation);
         }
     }
 

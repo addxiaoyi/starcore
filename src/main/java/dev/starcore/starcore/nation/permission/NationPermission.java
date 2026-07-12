@@ -156,13 +156,11 @@ public enum NationPermission {
         PermissionLevel.LEADER
     ),
 
-    // ==================== 经济权限 (5) ====================
-    // TODO audit A-031: BANK_DEPOSIT 默认 MEMBER 直接放行，无金额上限/日限配置。
-    //   成员可恶意存入巨款再被创始人取走；后续应增加 BANK_DEPOSIT_THRESHOLD 与审核流程。
+    // 经济权限 - 存款需要 TRUSTED 级别，防止恶意成员存入巨款
     BANK_DEPOSIT(
         "starcore.nation.bank.deposit",
         "存款",
-        PermissionLevel.MEMBER
+        PermissionLevel.TRUSTED  // audit A-031: 提升为 TRUSTED 防止恶意存款风险
     ),
     BANK_WITHDRAW(
         "starcore.nation.bank.withdraw",
