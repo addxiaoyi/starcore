@@ -22,6 +22,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -73,6 +74,7 @@ public final class TerritoryRentCommand implements CommandExecutor, TabCompleter
                 case "renew" -> handleRenew(player, args);
                 case "proposals", "p" -> handleProposals(player, args);
                 case "stats" -> handleStats(player, args);
+                case "createconfirm" -> handleCreateConfirm(player);
                 case "help", "h" -> showHelp(player);
                 default -> player.sendMessage(Component.text("未知命令: " + subCommand, NamedTextColor.RED));
             }
@@ -147,13 +149,6 @@ public final class TerritoryRentCommand implements CommandExecutor, TabCompleter
             player.getLocation().getChunk().getZ()
         );
 
-        // Check ownership
-        var claim = rentService.getPlugin().getServer().getScheduler()
-            .callSyncMethod(rentService.getPlugin(), () -> {
-                var svc = rentService;
-                return null;
-            });
-
         // Get player's owned chunks
         Collection<dev.starcore.starcore.foundation.territory.model.TerritoryClaim> ownedClaims =
             nationService.claimsOf(playerNation.id());
@@ -179,6 +174,7 @@ public final class TerritoryRentCommand implements CommandExecutor, TabCompleter
         BigDecimal totalRent = rentPerChunk
             .multiply(BigDecimal.valueOf(availableChunks.size()))
             .multiply(BigDecimal.valueOf(days));
+        BigDecimal dailyRent = totalRent.divide(BigDecimal.valueOf(days), 2, java.math.RoundingMode.HALF_UP);
 
         player.sendMessage(Component.text(""));
         player.sendMessage(Component.text("=== 租借提议预览 ===", NamedTextColor.GOLD));
@@ -194,7 +190,18 @@ public final class TerritoryRentCommand implements CommandExecutor, TabCompleter
         player.sendMessage(Component.text(""));
 
         // Store temporary data for confirmation
-        // (In a real implementation, use a map to store pending confirmations)
+        BigDecimal creationFee = rentService.getCreationFee();
+        pendingCreates.put(player.getUniqueId(), new CreateConfirmData(
+            player.getUniqueId(),
+            playerNation.id(),
+            targetNation.id(),
+            availableChunks,
+            world,
+            days,
+            dailyRent,
+            rentPerChunk,
+            creationFee
+        ));
     }
 
     private void handleList(Player player, String[] args) {
@@ -451,10 +458,56 @@ public final class TerritoryRentCommand implements CommandExecutor, TabCompleter
         player.sendMessage(Component.text(""));
     }
 
+    // 存储待确认的租借提议
+    private final Map<UUID, CreateConfirmData> pendingCreates = new java.util.concurrent.ConcurrentHashMap<>();
+
+    private record CreateConfirmData(
+        UUID proposerId,
+        NationId lessorNationId,
+        NationId lesseeNationId,
+        List<ChunkCoordinate> chunks,
+        String world,
+        int durationDays,
+        BigDecimal rentPerDay,
+        BigDecimal rentPerChunk,
+        BigDecimal creationFee
+    ) {}
+
+    private void handleCreateConfirm(Player player) {
+        CreateConfirmData data = pendingCreates.remove(player.getUniqueId());
+        if (data == null) {
+            player.sendMessage(Component.text("没有待确认的租借提议，请先使用 /rent create 创建", NamedTextColor.RED));
+            return;
+        }
+
+        try {
+            LeaseProposal proposal = rentService.createProposal(
+                data.proposerId(),
+                data.lessorNationId(),
+                data.lesseeNationId(),
+                null,
+                data.chunks(),
+                data.world(),
+                data.durationDays(),
+                data.rentPerDay(),
+                data.rentPerChunk()
+            );
+
+            // 自动接受提议
+            LeaseContract contract = rentService.acceptProposal(proposal.proposalId(), player.getUniqueId());
+
+            player.sendMessage(Component.text("租借成功! 契约已生效.", NamedTextColor.GREEN));
+            player.sendMessage(Component.text("契约ID: " + contract.contractId().toString().substring(0, 8), NamedTextColor.GRAY));
+        } catch (Exception e) {
+            player.sendMessage(Component.text("租借失败: " + e.getMessage(), NamedTextColor.RED));
+        }
+    }
+
     private void showHelp(Player player) {
         player.sendMessage(Component.text(""));
         player.sendMessage(Component.text("=== 领土租借系统 ===", NamedTextColor.GOLD));
         player.sendMessage(Component.text("/rent create <国家> <天数> [每区块日租] - 创建租借提议", NamedTextColor.GRAY));
+        player.sendMessage(Component.text("/rent createconfirm - 确认租借提议", NamedTextColor.GRAY));
         player.sendMessage(Component.text("/rent list - 查看所有契约", NamedTextColor.GRAY));
         player.sendMessage(Component.text("/rent info <契约ID> - 查看契约详情", NamedTextColor.GRAY));
         player.sendMessage(Component.text("/rent accept <提议ID> - 接受租借提议", NamedTextColor.GRAY));
@@ -476,7 +529,7 @@ public final class TerritoryRentCommand implements CommandExecutor, TabCompleter
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command,
                                                 @NotNull String alias, @NotNull String[] args) {
         if (args.length == 1) {
-            return List.of("create", "list", "info", "accept", "reject", "terminate", "renew", "proposals", "stats", "help");
+            return List.of("create", "createconfirm", "list", "info", "accept", "reject", "terminate", "renew", "proposals", "stats", "help");
         }
 
         if (args.length == 2) {

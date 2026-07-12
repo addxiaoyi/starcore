@@ -459,6 +459,9 @@ public final class TerritoryRentModule implements StarCoreModule, TerritoryRentS
         updateChunkIndex(terminated);
         saveContracts();
 
+        // 契约终止时减少活跃计数
+        decrementActiveContractStats(terminated);
+
         return terminated;
     }
 
@@ -544,6 +547,8 @@ public final class TerritoryRentModule implements StarCoreModule, TerritoryRentS
                 LeaseContract expired = contract.withStatus(dev.starcore.starcore.module.territory.rent.model.LeaseStatus.EXPIRED);
                 contracts.put(entry.getKey(), expired);
                 updateChunkIndex(expired);
+                // 契约过期时减少活跃计数
+                decrementActiveContractStats(expired);
             }
         }
         saveContracts();
@@ -656,6 +661,45 @@ public final class TerritoryRentModule implements StarCoreModule, TerritoryRentS
                     v.totalRentPaid().add(amount),
                     v.chunksLeasedOut(),
                     v.chunksLeasedIn()
+                );
+            });
+        }
+    }
+
+    /**
+     * 契约终止/过期时减少活跃契约计数
+     */
+    private void decrementActiveContractStats(LeaseContract contract) {
+        UUID lessorId = contract.lessorNationId();
+        UUID lesseeId = contract.lesseeNationId();
+        int chunksCount = contract.chunksCount();
+
+        // 减少出租方活跃计数
+        nationStats.compute(lessorId, (k, v) -> {
+            if (v == null) v = new LeaseStats(0, 0, 0, BigDecimal.ZERO, BigDecimal.ZERO, 0, 0);
+            return new LeaseStats(
+                v.totalContracts(),
+                Math.max(0, v.activeContractsAsLessor() - 1),
+                v.activeContractsAsLessee(),
+                v.totalRentEarned(),
+                v.totalRentPaid(),
+                Math.max(0, v.chunksLeasedOut() - chunksCount),
+                v.chunksLeasedIn()
+            );
+        });
+
+        // 减少承租方活跃计数
+        if (lesseeId != null) {
+            nationStats.compute(lesseeId, (k, v) -> {
+                if (v == null) v = new LeaseStats(0, 0, 0, BigDecimal.ZERO, BigDecimal.ZERO, 0, 0);
+                return new LeaseStats(
+                    v.totalContracts(),
+                    v.activeContractsAsLessor(),
+                    Math.max(0, v.activeContractsAsLessee() - 1),
+                    v.totalRentEarned(),
+                    v.totalRentPaid(),
+                    v.chunksLeasedOut(),
+                    Math.max(0, v.chunksLeasedIn() - chunksCount)
                 );
             });
         }
