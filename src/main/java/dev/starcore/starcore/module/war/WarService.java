@@ -15,5 +15,10 @@ public interface WarService {
 
     Collection<WarSnapshot> activeWarsOf(NationId nationId);
 
+    /**
+     * 获取战争历史记录
+     */
+    Collection<WarSnapshot> warHistory(NationId nationId);
+
     String summary();
 }

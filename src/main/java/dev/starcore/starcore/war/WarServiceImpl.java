@@ -148,6 +148,18 @@ public final class WarServiceImpl implements dev.starcore.starcore.module.war.Wa
     }
 
     @Override
+    public Collection<dev.starcore.starcore.module.war.WarSnapshot> warHistory(NationId nationId) {
+        Set<UUID> warIds = nationWars.getOrDefault(nationId, Collections.emptySet());
+        return warIds.stream()
+            .map(wars::get)
+            .filter(Objects::nonNull)
+            .sorted(Comparator.comparing((War w) -> w.declaredAt()).reversed())
+            .limit(20)
+            .map(this::toSnapshot)
+            .collect(Collectors.toList());
+    }
+
+    @Override
     public String summary() {
         long activeCount = wars.values().stream().filter(War::isActive).count();
         return String.format("Wars: %d active, %d total", activeCount, wars.size());
@@ -310,7 +322,8 @@ public final class WarServiceImpl implements dev.starcore.starcore.module.war.Wa
         return new dev.starcore.starcore.module.war.WarSnapshot(
             war.aggressor(),
             war.defender(),
-            war.declaredAt()
+            war.declaredAt(),
+            war.endedAt()
         );
     }
 

@@ -1,4 +1,4 @@
-# StarCore
+# 🌟 StarCore
 
 **Paper/Nukkit 原生国家战略与政策引擎** — 完整的多人王国管理、领土系统、外交战争、财政科技玩法。
 
@@ -9,7 +9,7 @@
 
 ---
 
-## 核心功能
+## ✨ 核心功能
 
 | 模块 | 功能 |
 |------|------|
@@ -29,7 +29,7 @@
 
 ---
 
-## 快速开始
+## 🚀 快速开始
 
 ```bash
 mvn clean package
@@ -51,7 +51,7 @@ mvn clean package
 
 ---
 
-## 项目结构
+## 📁 项目结构
 
 ```
 src/main/java/dev/starcore/starcore/
@@ -63,7 +63,7 @@ src/main/java/dev/starcore/starcore/
 
 ---
 
-## 统计数据
+## 📊 统计数据
 
 - **677+** 个 Java 类文件
 - **13+** 个核心模块
@@ -71,13 +71,13 @@ src/main/java/dev/starcore/starcore/
 
 ---
 
-## 许可证
+## 📄 许可证
 
 [MIT License](LICENSE)
 
 ---
 
-## 链接
+## 🔗 链接
 
 - [问题反馈](https://github.com/addxiaoyi/starcore/issues)
 - [Actions](https://github.com/addxiaoyi/starcore/actions)

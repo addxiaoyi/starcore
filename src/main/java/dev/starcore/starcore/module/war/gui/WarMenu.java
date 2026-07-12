@@ -233,6 +233,67 @@ public final class WarMenu {
     }
 
     /**
+     * 打开战争历史界面
+     */
+    public void openWarHistory(Player player) {
+        if (animationManager != null) {
+            animationManager.playMenuOpenAnimation(player, "战争历史");
+        }
+
+        NationId playerNationId = getPlayerNationId(player);
+        if (playerNationId == null) {
+            player.sendMessage("§c你需要先加入一个国家");
+            return;
+        }
+
+        Collection<WarSnapshot> history = warService.warHistory(playerNationId);
+
+        int size = Math.max(36, ((history.size() / 5) + 1) * 9 + 9);
+        size = Math.min(size, 54);
+        Inventory inv = Bukkit.createInventory(null, size, Component.text(WAR_HISTORY_TITLE));
+        fillBorder(inv, Material.ORANGE_STAINED_GLASS_PANE);
+
+        // 标题
+        inv.setItem(4, createTitleItem("§6§l📜 战争历史记录"));
+
+        if (history.isEmpty()) {
+            inv.setItem(13, ButtonFactory.createInfoButton(
+                "§a✌️ 和平安宁",
+                "你的国家没有战争历史记录",
+                "点击返回主菜单"
+            ));
+            inv.setItem(size - 9 + 4, ButtonFactory.createBackButton());
+            player.openInventory(inv);
+            return;
+        }
+
+        // 填充历史记录
+        int slot = 10;
+        for (WarSnapshot war : history) {
+            if (slot % 9 == 8) slot += 2;
+            if (slot >= size - 9) break;
+
+            NationId enemyId = war.left().equals(playerNationId) ? war.right() : war.left();
+            String enemyName = getNationName(enemyId);
+
+            Duration duration = Duration.between(war.declaredAt(), Instant.now());
+            String durationStr = formatDuration(duration);
+
+            boolean isAggressor = war.left().equals(playerNationId);
+            String status = war.ended() ? "§a已结束" : "§c进行中";
+
+            ItemStack item = createWarHistoryItem(enemyName, isAggressor, durationStr, war.declaredAt(), status);
+            safeSetItem(inv, slot, item);
+            slot++;
+        }
+
+        // 返回按钮
+        safeSetItem(inv, size - 9 + 4, ButtonFactory.createBackButton());
+
+        player.openInventory(inv);
+    }
+
+    /**
      * 打开宣战选择界面
      */
     public void openDeclareWarMenu(Player player) {
@@ -637,5 +698,23 @@ public final class WarMenu {
     private String formatInstant(Instant instant) {
         java.time.LocalDateTime ldt = instant.atZone(java.time.ZoneId.systemDefault()).toLocalDateTime();
         return ldt.format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+    }
+
+    private ItemStack createWarHistoryItem(String enemyName, boolean isAggressor, String duration, Instant declaredAt, String status) {
+        ItemStack item = new ItemStack(Material.BOOK);
+        ItemMeta meta = item.getItemMeta();
+        meta.displayName(Component.text("§e⚔️ vs " + enemyName)
+            .decoration(TextDecoration.ITALIC, false));
+
+        List<Component> lore = new ArrayList<>();
+        lore.add(Component.text("§7宣战时间: §f" + formatInstant(declaredAt)));
+        lore.add(Component.text("§7持续时间: §f" + duration));
+        lore.add(Component.text("§7我方角色: " + (isAggressor ? "§c进攻方" : "§9防守方")));
+        lore.add(Component.text("§7状态: " + status));
+        lore.add(Component.text(""));
+        lore.add(Component.text("§a点击查看详情"));
+        meta.lore(lore);
+        item.setItemMeta(meta);
+        return item;
     }
 }

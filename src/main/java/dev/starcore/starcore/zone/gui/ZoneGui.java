@@ -532,7 +532,38 @@ public class ZoneGui {
             String effectName = item.getItemMeta().getDisplayName()
                 .replace("§a§l", "")
                 .replace("§c§l", "");
-            player.sendMessage("§e特效功能开发中: " + effectName);
+
+            // 解析特效名称
+            ZoneEffect effect = null;
+            for (ZoneEffect e : ZoneEffect.values()) {
+                if (e.getDisplayName().equals(effectName)) {
+                    effect = e;
+                    break;
+                }
+            }
+
+            if (effect != null) {
+                // 检查是添加还是移除
+                if (slot < 35) {
+                    // 拥有的特效 - 移除
+                    if (zoneModule.removeEffect(currentZoneId, effect)) {
+                        player.sendMessage("§a已移除特效: " + effect.getDisplayName());
+                    } else {
+                        player.sendMessage("§c移除特效失败!");
+                    }
+                } else {
+                    // 可添加的特效 - 添加
+                    if (zoneModule.addEffect(currentZoneId, effect)) {
+                        player.sendMessage("§a已添加特效: " + effect.getDisplayName() + " - " + effect.getDescription());
+                    } else {
+                        player.sendMessage("§c添加特效失败，可能已达上限或特效已存在!");
+                    }
+                }
+                // 刷新特效菜单
+                openEffectsMenu(currentZoneId);
+            } else {
+                player.sendMessage("§c未知的特效类型: " + effectName);
+            }
             return true;
         }
 
@@ -559,7 +590,14 @@ public class ZoneGui {
             return;
         }
 
-        // TODO: 调用 zoneModule.createZone 或类似方法
-        player.sendMessage("§a正在创建经济区: " + input + " (类型: " + state.type().getDisplayName() + ") (功能开发中)");
+        // 创建经济区
+        ZoneSnapshot newZone = zoneModule.createZone(nationId, input, state.type());
+        if (newZone != null) {
+            player.sendMessage("§a经济区创建成功: " + newZone.name() + " (类型: " + state.type().getDisplayName() + ")");
+            waitingForInput.remove(player.getUniqueId());
+            openMainMenu();
+        } else {
+            player.sendMessage("§c经济区创建失败!");
+        }
     }
 }

@@ -272,6 +272,12 @@ public final class WarModule implements StarCoreModule, WarService {
     }
 
     @Override
+    public Collection<WarSnapshot> warHistory(NationId nationId) {
+        // 委托给 WarServiceImpl 获取国家参与的战争历史
+        return warServiceImpl.warHistory(nationId);
+    }
+
+    @Override
     public String summary() {
         return warServiceImpl.summary();
     }
@@ -431,7 +437,7 @@ public final class WarModule implements StarCoreModule, WarService {
     private Collection<WarSnapshot> snapshots(Map<WarPairKey, Instant> source) {
         return source.entrySet().stream()
             .sorted(Comparator.comparing(entry -> entry.getValue()))
-            .map(entry -> new WarSnapshot(entry.getKey().left(), entry.getKey().right(), entry.getValue()))
+            .map(entry -> new WarSnapshot(entry.getKey().left(), entry.getKey().right(), entry.getValue(), null))
             .toList();
     }
 

@@ -105,9 +105,8 @@ public class WarMenuListener implements Listener {
                 warMenu.openActiveWars(player);
             }
             case 21 -> {
-                // 战争历史 - 暂时显示消息
-                player.sendMessage("§6=== 战争历史 ===");
-                player.sendMessage("§7战争历史记录功能开发中...");
+                // 战争历史
+                warMenu.openWarHistory(player);
             }
             case 23 -> {
                 // 战况预览
