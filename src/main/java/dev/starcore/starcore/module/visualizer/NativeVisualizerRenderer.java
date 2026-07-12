@@ -1,5 +1,6 @@
 package dev.starcore.starcore.module.visualizer;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Banner;
 import org.bukkit.block.Beacon;
@@ -100,12 +101,14 @@ final class NativeVisualizerRenderer implements VisualizerRenderer {
                 top = item;
             }
         }
+        double fillPercent = (double) used / inventory.getSize() * 100;
+        String fillIndicator = fillPercent >= 90 ? "&c" : fillPercent >= 70 ? "&e" : "&a";
         List<String> lines = new ArrayList<>();
         lines.add("&e" + entry.displayName());
-        lines.add("&7Slots: &f" + used + "&8/&f" + inventory.getSize());
-        lines.add("&7Items: &f" + total);
+        lines.add("&7" + fillIndicator + String.format("%.0f%%", fillPercent) + " &8(" + used + "&8/&f" + inventory.getSize() + "&8) &7slots");
+        lines.add("&7Items: &f" + total + " &7total");
         if (top != null) {
-            lines.add("&7Top: &f" + VisualizerText.itemName(top) + " x" + top.getAmount());
+            lines.add("&7Top: &f" + VisualizerText.itemName(top) + " &8x" + top.getAmount());
         }
         return lines;
     }
@@ -117,13 +120,20 @@ final class NativeVisualizerRenderer implements VisualizerRenderer {
         int total = Math.max(1, furnace.getCookTimeTotal());
         double progress = Math.max(0, furnace.getCookTime()) / (double) total;
         boolean burning = furnace.getBurnTime() > 0;
+        String statusColor = burning ? "&a" : "&c";
+        String statusIcon = burning ? "🔥" : "☠";
+        String statusText = burning ? "Active" : "No fuel";
         List<String> lines = new ArrayList<>();
         lines.add("&e" + entry.displayName());
-        lines.add("&7Cook " + VisualizerText.progressBar(progress, 10, "&e", "&7", "|"));
-        lines.add(burning ? "&6Fuel active" : "&cNo fuel");
+        lines.add("&7Progress: " + VisualizerText.progressBar(progress, 12, "&6", "&8", "▓"));
+        lines.add(statusColor + statusIcon + " " + statusText);
         ItemStack input = furnace.getInventory().getSmelting();
+        ItemStack result = furnace.getInventory().getResult();
         if (input != null && !input.getType().isAir()) {
-            lines.add("&7Input: &f" + VisualizerText.itemName(input) + " x" + input.getAmount());
+            lines.add("&7In: &f" + VisualizerText.itemName(input) + " &8x" + input.getAmount());
+        }
+        if (result != null && !result.getType().isAir()) {
+            lines.add("&7Out: &a" + VisualizerText.itemName(result) + " &8x" + result.getAmount());
         }
         return lines;
     }
@@ -134,11 +144,17 @@ final class NativeVisualizerRenderer implements VisualizerRenderer {
         }
         int total = Math.max(1, brewing.getRecipeBrewTime());
         double progress = brewing.getBrewingTime() <= 0 ? 0.0D : 1.0D - (brewing.getBrewingTime() / (double) total);
-        return List.of(
-            "&eBrewing Stand",
-            "&7Brew " + VisualizerText.progressBar(progress, 10, "&6", "&7", "|"),
-            brewing.getFuelLevel() > 0 ? "&6Fuel: &f" + brewing.getFuelLevel() : "&cNo fuel"
-        );
+        int fuelPercent = (int) (brewing.getFuelLevel() * 100L / 20);
+        ItemStack ingredient = brewing.getInventory().getIngredient();
+        String fuelStatus = brewing.getFuelLevel() > 0 ? "&a⚗ " + fuelPercent + "%" : "&c☠ Empty";
+        List<String> lines = new ArrayList<>();
+        lines.add("&5⚗ Brewing Stand");
+        lines.add("&7Brew: " + VisualizerText.progressBar(progress, 12, "&d", "&8", "▓"));
+        lines.add("&7Fuel: " + fuelStatus);
+        if (ingredient != null && !ingredient.getType().isAir()) {
+            lines.add("&7Reagent: &f" + VisualizerText.itemName(ingredient));
+        }
+        return lines;
     }
 
     private List<String> campfireLines(VisualizerEntry entry, BlockState state) {
@@ -146,20 +162,30 @@ final class NativeVisualizerRenderer implements VisualizerRenderer {
             return simpleInteractionLines(entry);
         }
         List<String> lines = new ArrayList<>();
-        lines.add("&e" + entry.displayName());
+        lines.add("&e🔥 " + entry.displayName());
         int occupied = 0;
+        int totalItems = 0;
         for (int slot = 0; slot < campfire.getSize(); slot++) {
             ItemStack item = campfire.getItem(slot);
             if (item == null || item.getType().isAir()) {
                 continue;
             }
             occupied++;
-            int total = Math.max(1, campfire.getCookTimeTotal(slot));
-            double progress = campfire.getCookTime(slot) / (double) total;
-            lines.add("&7" + VisualizerText.itemName(item) + " " + VisualizerText.progressBar(progress, 10, "&e", "&7", "|"));
+            totalItems += item.getAmount();
+            int cookTime = campfire.getCookTime(slot);
+            int totalCookTime = campfire.getCookTimeTotal(slot);
+            if (totalCookTime > 0) {
+                double progress = (double) cookTime / totalCookTime;
+                String status = progress >= 1.0 ? "&a✓" : "&e";
+                lines.add("&7" + status + " " + VisualizerText.itemName(item) + " " + VisualizerText.progressBar(progress, 6, "&a", "&7", "▓"));
+            } else {
+                lines.add("&7  &f" + VisualizerText.itemName(item) + " &8x" + item.getAmount());
+            }
         }
         if (occupied == 0) {
-            lines.add("&7No cooking items");
+            lines.add("&8  No cooking items");
+        } else {
+            lines.add("&7  &8" + occupied + " slots, " + totalItems + " items");
         }
         return lines;
     }
@@ -170,14 +196,16 @@ final class NativeVisualizerRenderer implements VisualizerRenderer {
         }
         PotionEffect primary = beacon.getPrimaryEffect();
         PotionEffect secondary = beacon.getSecondaryEffect();
+        int range = (int) beacon.getEffectRange();
+        String rangeDesc = range >= 50 ? "&a" + range + "m" : range >= 25 ? "&e" + range + "m" : "&c" + range + "m";
         List<String> lines = new ArrayList<>();
-        lines.add("&bBeacon Tier &f" + beacon.getTier());
-        lines.add("&7Range: &f" + Math.round(beacon.getEffectRange()) + "m");
+        lines.add("&b⛨ Beacon &7[Tier " + beacon.getTier() + "]");
+        lines.add("&7Range: " + rangeDesc);
         if (primary != null) {
-            lines.add("&7Primary: &f" + prettyEnum(primary.getType().getKey().getKey()));
+            lines.add("&6★ &7Primary: &f" + prettyEnum(primary.getType().getKey().getKey()));
         }
         if (secondary != null) {
-            lines.add("&7Secondary: &f" + prettyEnum(secondary.getType().getKey().getKey()));
+            lines.add("&d☆ &7Secondary: &f" + prettyEnum(secondary.getType().getKey().getKey()));
         }
         return lines;
     }
@@ -206,16 +234,29 @@ final class NativeVisualizerRenderer implements VisualizerRenderer {
         if (book != null && book.getItemMeta() instanceof BookMeta bookMeta) {
             String title = bookMeta.hasTitle() ? bookMeta.getTitle() : "Book";
             String author = bookMeta.hasAuthor() ? bookMeta.getAuthor() : "Unknown";
-            return List.of("&e" + title, "&7- " + author, "&7Page: &f" + (lectern.getPage() + 1));
+            int page = lectern.getPage() + 1;
+            int totalPages = bookMeta.getPageCount();
+            String pageInfo = totalPages > 0 ? page + "&8/&f" + totalPages : String.valueOf(page);
+            return List.of(
+                "&b📖 Lectern",
+                "&7" + truncate(title, 20),
+                "&8by &7" + truncate(author, 15),
+                "&7Page: &f" + pageInfo
+            );
         }
-        return List.of("&eLectern", "&7Empty");
+        return List.of("&b📖 Lectern", "&8  No book");
     }
 
     private List<String> jukeboxLines(BlockState state) {
         if (!(state instanceof Jukebox jukebox) || !jukebox.hasRecord()) {
-            return List.of("&eJukebox", "&7No disc");
+            return List.of("&b🎵 Jukebox", "&8  No disc inserted");
         }
-        return List.of("&eJukebox", "&7Playing: &f" + VisualizerText.itemName(jukebox.getRecord()));
+        ItemStack record = jukebox.getRecord();
+        return List.of(
+            "&b🎵 Jukebox",
+            "&7Playing: &f" + VisualizerText.itemName(record),
+            "&7Disc: &d" + (jukebox.isPlaying() ? "▶ Playing" : "⏸ Paused")
+        );
     }
 
     private List<String> noteBlockLines(Block block) {
@@ -234,11 +275,16 @@ final class NativeVisualizerRenderer implements VisualizerRenderer {
             return simpleInteractionLines(VisualizerEntry.SPAWNER);
         }
         int maxDelay = Math.max(1, spawner.getMaxSpawnDelay());
-        double progress = 1.0D - Math.max(0, spawner.getDelay()) / (double) maxDelay;
+        int currentDelay = Math.max(0, spawner.getDelay());
+        double progress = 1.0D - currentDelay / (double) maxDelay;
+        int spawnCount = spawner.getSpawnCount();
+        int minSpawnDelay = spawner.getMinSpawnDelay();
+        int maxSpawnDelay = spawner.getMaxSpawnDelay();
         return List.of(
-            "&eSpawner",
+            "&c⚡ Spawner",
             "&7Mob: &f" + prettyEnum(spawner.getSpawnedType().name()),
-            "&7Spawn " + VisualizerText.progressBar(progress, 10, "&a", "&c", "|"),
+            "&7Spawn: " + VisualizerText.progressBar(progress, 10, "&a", "&c", "▓"),
+            "&7Count: &f" + spawnCount + " &8| &7Delay: &f" + minSpawnDelay + "&8-&f" + maxSpawnDelay + "t",
             "&7Range: &f" + spawner.getSpawnRange() + "m"
         );
     }
@@ -262,14 +308,23 @@ final class NativeVisualizerRenderer implements VisualizerRenderer {
     private List<String> bookshelfLines(Block block, BlockState state) {
         if (state instanceof ChiseledBookshelf bookshelf) {
             int books = 0;
-            for (ItemStack item : bookshelf.getInventory().getContents()) {
+            int lastSlot = -1;
+            for (int i = 0; i < bookshelf.getInventory().getContents().length; i++) {
+                ItemStack item = bookshelf.getInventory().getItem(i);
                 if (item != null && !item.getType().isAir()) {
                     books++;
+                    lastSlot = i + 1;
                 }
             }
-            return List.of("&eChiseled Bookshelf", "&7Books: &f" + books + "&8/&f6", "&7Last slot: &f" + bookshelf.getLastInteractedSlot());
+            int filled = (int) (books * 100.0 / 6);
+            String fillColor = filled >= 80 ? "&a" : filled >= 40 ? "&e" : "&7";
+            return List.of(
+                "&d📚 Chiseled Bookshelf",
+                "&7Books: " + fillColor + books + "&8/&f6 &8(" + fillColor + filled + "%&8)",
+                "&7Last: &fSlot " + (lastSlot > 0 ? lastSlot : "—")
+            );
         }
-        return List.of("&eBookshelf", "&7Decorative shelf");
+        return List.of("&d📚 Bookshelf", "&8  Decorative shelf");
     }
 
     private List<String> simpleInteractionLines(VisualizerEntry entry) {
@@ -358,5 +413,12 @@ final class NativeVisualizerRenderer implements VisualizerRenderer {
             }
         }
         return builder.toString();
+    }
+
+    private String truncate(String text, int maxLen) {
+        if (text == null) return "";
+        text = ChatColor.stripColor(text);
+        if (text.length() <= maxLen) return text;
+        return text.substring(0, maxLen - 1) + "…";
     }
 }

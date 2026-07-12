@@ -3,6 +3,7 @@ package dev.starcore.starcore.module.visualizer;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.World;
+import org.bukkit.Color;
 import org.bukkit.entity.Display;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.ItemDisplay;
@@ -124,7 +125,9 @@ final class VisualizerDisplayManager {
                 display.setShadowed(true);
                 display.setSeeThrough(false);
                 display.setDefaultBackground(false);
-                display.setLineWidth(180);
+                display.setLineWidth(200);
+                display.setBackgroundColor(Color.fromRGB(13, 13, 13));
+                display.setTextOpacity((byte) 255);
             });
         }
         active.text.teleport(textLocation);
