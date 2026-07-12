@@ -2,7 +2,9 @@ package dev.starcore.starcore.module.technology;
 
 import org.bukkit.scheduler.BukkitTask;
 
+import java.time.Duration;
 import java.time.Instant;
+import java.util.Objects;
 
 /**
  * Represents an ongoing research operation.
@@ -13,8 +15,10 @@ public final class ResearchProgress {
     private final Instant startTime;
     private final Instant estimatedCompletion;
     private final int totalTicks;
-    private final int remainingTicks;
-    private transient BukkitTask scheduledTask;  // Not serialized - restored on loadState()
+    private transient BukkitTask scheduledTask;
+
+    // 缓存的计算值，避免每次计算
+    private final Integer cachedRemainingTicks;
 
     public ResearchProgress(String technologyKey, Instant startTime, Instant estimatedCompletion,
                           int totalTicks, int remainingTicks, BukkitTask scheduledTask) {
@@ -22,8 +26,8 @@ public final class ResearchProgress {
         this.startTime = startTime;
         this.estimatedCompletion = estimatedCompletion;
         this.totalTicks = totalTicks;
-        this.remainingTicks = remainingTicks;
         this.scheduledTask = scheduledTask;
+        this.cachedRemainingTicks = remainingTicks;
     }
 
     public String technologyKey() {
@@ -42,8 +46,40 @@ public final class ResearchProgress {
         return totalTicks;
     }
 
+    /**
+     * 获取剩余 ticks。
+     * 如果是从持久化恢复的研究任务，通过 estimatedCompletion 重新计算。
+     * 如果 scheduledTask 为 null（持久化恢复），使用动态计算。
+     * 否则使用缓存值。
+     */
     public int remainingTicks() {
-        return remainingTicks;
+        // 如果有正在运行的任务，使用缓存值
+        if (scheduledTask != null && cachedRemainingTicks != null) {
+            return cachedRemainingTicks;
+        }
+
+        // 从 estimatedCompletion 动态计算（用于持久化恢复后的场景）
+        return calculateRemainingTicksFromCompletion();
+    }
+
+    /**
+     * 从 estimatedCompletion 计算剩余 ticks
+     */
+    private int calculateRemainingTicksFromCompletion() {
+        Instant now = Instant.now();
+        if (now.isAfter(estimatedCompletion)) {
+            return 0;
+        }
+        Duration duration = Duration.between(now, estimatedCompletion);
+        long remainingSeconds = duration.getSeconds();
+        return (int) Math.min(remainingSeconds * 20L, Integer.MAX_VALUE - 1);
+    }
+
+    /**
+     * 获取剩余秒数（动态计算）
+     */
+    public long getRemainingSeconds() {
+        return remainingTicks() / 20L;
     }
 
     public BukkitTask scheduledTask() {
@@ -55,12 +91,16 @@ public final class ResearchProgress {
     }
 
     public double getProgress() {
+        int remaining = remainingTicks();
         if (totalTicks <= 0) return 1.0;
-        return 1.0 - ((double) remainingTicks / totalTicks);
+        return 1.0 - ((double) remaining / totalTicks);
     }
 
-    public long getRemainingSeconds() {
-        return remainingTicks / 20L;
+    /**
+     * 检查研究是否已超时（用于持久化恢复后的超时检测）
+     */
+    public boolean isExpired() {
+        return Instant.now().isAfter(estimatedCompletion);
     }
 
     /**
@@ -77,7 +117,7 @@ public final class ResearchProgress {
      */
     public ResearchProgress withTask(BukkitTask task) {
         return new ResearchProgress(
-            technologyKey, startTime, estimatedCompletion, totalTicks, remainingTicks, task
+            technologyKey, startTime, estimatedCompletion, totalTicks, cachedRemainingTicks != null ? cachedRemainingTicks : calculateRemainingTicksFromCompletion(), task
         );
     }
 
@@ -87,15 +127,15 @@ public final class ResearchProgress {
         if (o == null || getClass() != o.getClass()) return false;
         ResearchProgress that = (ResearchProgress) o;
         return totalTicks == that.totalTicks &&
-               remainingTicks == that.remainingTicks &&
-               java.util.Objects.equals(technologyKey, that.technologyKey) &&
-               java.util.Objects.equals(startTime, that.startTime) &&
-               java.util.Objects.equals(estimatedCompletion, that.estimatedCompletion);
+               remainingTicks() == that.remainingTicks() &&
+               Objects.equals(technologyKey, that.technologyKey) &&
+               Objects.equals(startTime, that.startTime) &&
+               Objects.equals(estimatedCompletion, that.estimatedCompletion);
     }
 
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(technologyKey, startTime, estimatedCompletion, totalTicks, remainingTicks);
+        return Objects.hash(technologyKey, startTime, estimatedCompletion, totalTicks, remainingTicks());
     }
 
     @Override
@@ -105,7 +145,7 @@ public final class ResearchProgress {
                ", startTime=" + startTime +
                ", estimatedCompletion=" + estimatedCompletion +
                ", totalTicks=" + totalTicks +
-               ", remainingTicks=" + remainingTicks +
+               ", remainingTicks=" + remainingTicks() +
                '}';
     }
 }
