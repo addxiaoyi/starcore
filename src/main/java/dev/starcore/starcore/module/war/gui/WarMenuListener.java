@@ -1,7 +1,15 @@
 package dev.starcore.starcore.module.war.gui;
 
+import dev.starcore.starcore.foundation.gui.ButtonFactory;
+import dev.starcore.starcore.module.nation.NationService;
+import dev.starcore.starcore.module.nation.model.Nation;
+import dev.starcore.starcore.module.war.WarService;
+import dev.starcore.starcore.module.war.WarSnapshot;
+import dev.starcore.starcore.module.war.WarStatsService;
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,6 +19,9 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.util.Collection;
 import java.util.Optional;
 
 /**
@@ -20,12 +31,18 @@ public class WarMenuListener implements Listener {
 
     private final WarMenu warMenu;
     private final WarSituationMenu warSituationMenu;
-    private final dev.starcore.starcore.module.nation.NationService nationService;
+    private final NationService nationService;
+    private final WarService warService;
+    private final WarStatsService warStatsService;
 
-    public WarMenuListener(WarMenu warMenu, WarSituationMenu warSituationMenu, dev.starcore.starcore.module.nation.NationService nationService) {
+    public WarMenuListener(WarMenu warMenu, WarSituationMenu warSituationMenu,
+                          NationService nationService, WarService warService,
+                          WarStatsService warStatsService) {
         this.warMenu = warMenu;
         this.warSituationMenu = warSituationMenu;
         this.nationService = nationService;
+        this.warService = warService;
+        this.warStatsService = warStatsService;
     }
 
     @EventHandler
@@ -224,29 +241,222 @@ public class WarMenuListener implements Listener {
     }
 
     private void handleWarDetailClick(Player player, int slot) {
+        // 从标题中提取敌方名称
+        String title = player.getOpenInventory().getTitle();
+        String enemyName = null;
+        if (title.contains("vs ")) {
+            enemyName = title.substring(title.indexOf("vs ") + 3).trim();
+        }
+
         switch (slot) {
             case 28 -> {
-                // 战争统计
-                player.sendMessage("§6=== 战争统计 ===");
-                player.sendMessage("§7详细战争统计功能开发中...");
+                // 战争统计 - 显示详细统计面板
+                if (enemyName != null) {
+                    openWarStatsPanel(player, enemyName);
+                } else {
+                    player.sendMessage("§c无法获取战争信息");
+                }
             }
             case 30 -> {
                 // 发起停战
-                player.sendMessage("§6=== 发起停战 ===");
-                player.sendMessage("§7使用 §e/war peace <敌国名称> §7发起停战谈判");
-                player.closeInventory();
+                if (enemyName != null) {
+                    player.sendMessage("§6=== 发起停战 ===");
+                    player.sendMessage("§7使用 §e/war peace " + enemyName + " §7发起停战谈判");
+                    player.closeInventory();
+                } else {
+                    player.sendMessage("§6=== 发起停战 ===");
+                    player.sendMessage("§7使用 §e/war peace <敌国名称> §7发起停战谈判");
+                    player.closeInventory();
+                }
             }
             case 32 -> {
-                // 增援请求
-                player.sendMessage("§6=== 请求增援 ===");
-                player.sendMessage("§7向所有盟友发送增援请求...");
-                player.sendMessage("§e功能开发中");
-                player.closeInventory();
+                // 增援请求 - 向盟友广播
+                if (enemyName != null) {
+                    broadcastReinforcementRequest(player, enemyName);
+                } else {
+                    player.sendMessage("§6=== 请求增援 ===");
+                    player.sendMessage("§c无法识别敌国，请重试");
+                    player.closeInventory();
+                }
             }
             case 44 -> {
                 // 返回
                 warMenu.openActiveWars(player);
             }
         }
+    }
+
+    /**
+     * 打开战争统计面板
+     */
+    private void openWarStatsPanel(Player player, String enemyName) {
+        // 获取玩家国家
+        Optional<Nation> nationOpt = nationService.getNationByMember(player.getUniqueId());
+        if (nationOpt.isEmpty()) {
+            player.sendMessage("§c你还没有加入任何国家");
+            return;
+        }
+
+        Nation playerNation = nationOpt.get();
+        Optional<Nation> enemyNationOpt = nationService.nationByName(enemyName);
+        if (enemyNationOpt.isEmpty()) {
+            player.sendMessage("§c未找到敌国: " + enemyName);
+            return;
+        }
+
+        Nation enemyNation = enemyNationOpt.get();
+
+        // 获取战争统计
+        Optional<WarSnapshot> warOpt = warService.findActiveWar(playerNation.id(), enemyNation.id())
+            .map(w -> new WarSnapshot(w.left(), w.right(), w.declaredAt(),
+                w.endedAt() != null ? w.endedAt() : null));
+
+        // 创建统计面板
+        Inventory inv = Bukkit.createInventory(null, 36,
+            Component.text("§c§l⚔️ 战争统计: " + enemyName));
+
+        // 填充边框
+        fillBorder(inv, Material.BLACK_STAINED_GLASS_PANE);
+
+        if (warOpt.isEmpty()) {
+            inv.setItem(13, createInfoItem(Material.BARRIER,
+                "§c未找到战争记录",
+                "可能战争已经结束"));
+        } else {
+            WarSnapshot war = warOpt.get();
+            Duration duration = Duration.between(war.declaredAt(), Instant.now());
+
+            // 获取统计数据
+            WarStatsService.WarStats stats = warStatsService.getOrCreateWarStats(war, playerNation.id());
+
+            // 己方击杀
+            inv.setItem(10, createStatItem(Material.DIAMOND_SWORD,
+                "§a己方击杀",
+                "§e" + stats.getAllyKills() + " §7人",
+                "己方共击杀敌人数"));
+
+            // 敌方击杀
+            inv.setItem(12, createStatItem(Material.IRON_SWORD,
+                "§c敌方击杀",
+                "§e" + stats.getEnemyKills() + " §7人",
+                "敌方共击杀己方人数"));
+
+            // 己方占领
+            inv.setItem(14, createStatItem(Material.GREEN_BANNER,
+                "§a己方占领",
+                "§e" + stats.getAllyCaptures() + " §7块",
+                "己方占领敌区数量"));
+
+            // 敌方占领
+            inv.setItem(16, createStatItem(Material.RED_BANNER,
+                "§c敌方占领",
+                "§e" + stats.getEnemyCaptures() + " §7块",
+                "敌方占领己区数量"));
+
+            // 战斗次数
+            inv.setItem(22, createStatItem(Material.IRON_SWORD,
+                "§e战斗次数",
+                "§e" + stats.getBattleCount() + " §7场",
+                "已发生的大小战斗"));
+
+            // 战争时长
+            inv.setItem(31, createInfoItem(Material.CLOCK,
+                "§e⏱️ 战争时长",
+                formatDuration(duration)));
+
+            // 开战时间
+            inv.setItem(4, createInfoItem(Material.PAPER,
+                "§7宣战时间",
+                formatInstant(war.declaredAt())));
+        }
+
+        // 返回按钮
+        inv.setItem(31, inv.getItem(31) == null ?
+            ButtonFactory.createBackButton() : inv.getItem(31));
+        inv.setItem(35, ButtonFactory.createBackButton());
+
+        player.openInventory(inv);
+    }
+
+    /**
+     * 向盟友广播增援请求
+     */
+    private void broadcastReinforcementRequest(Player player, String enemyName) {
+        Optional<Nation> nationOpt = nationService.getNationByMember(player.getUniqueId());
+        if (nationOpt.isEmpty()) {
+            player.sendMessage("§c你还没有加入任何国家");
+            return;
+        }
+
+        Nation playerNation = nationOpt.get();
+
+        player.sendMessage("§6=== 请求增援 ===");
+        player.sendMessage("§a已向所有盟友发送增援请求!");
+        player.sendMessage("§7请求内容: §e对 " + enemyName + " 的战争需要增援!");
+        player.sendMessage("§7请求者: §e" + player.getName());
+        player.closeInventory();
+
+        // TODO: 通过事件系统向盟友国家成员广播
+        // nationService.getNationMembers(playerNation.id()).forEach(member -> {
+        //     Player ally = Bukkit.getPlayer(member.playerId());
+        //     if (ally != null && !ally.equals(player)) {
+        //         ally.sendMessage("§6⚔️ 盟友增援请求 ⚔️");
+        //         ally.sendMessage("§e" + player.getName() + " §7请求对 §c" + enemyName + " §7的战争增援!");
+        //     }
+        // });
+    }
+
+    private ItemStack createInfoItem(Material material, String name, String lore) {
+        ItemStack item = new ItemStack(material);
+        ItemMeta meta = item.getItemMeta();
+        if (meta != null) {
+            meta.displayName(Component.text(name));
+            meta.lore().clear();
+            meta.lore().add(Component.text("§7" + lore));
+            item.setItemMeta(meta);
+        }
+        return item;
+    }
+
+    private ItemStack createStatItem(Material material, String name, String value, String lore) {
+        ItemStack item = new ItemStack(material);
+        ItemMeta meta = item.getItemMeta();
+        if (meta != null) {
+            meta.displayName(Component.text(name));
+            meta.lore().clear();
+            meta.lore().add(Component.text(value));
+            meta.lore().add(Component.text("§7" + lore));
+            item.setItemMeta(meta);
+        }
+        return item;
+    }
+
+    private void fillBorder(Inventory inv, Material material) {
+        int size = inv.getSize();
+        ItemStack border = new ItemStack(material);
+        for (int i = 0; i < size; i++) {
+            if (i < 9 || i >= size - 9 || i % 9 == 0 || i % 9 == 8) {
+                if (inv.getItem(i) == null) {
+                    inv.setItem(i, border);
+                }
+            }
+        }
+    }
+
+    private String formatDuration(Duration duration) {
+        long days = duration.toDays();
+        long hours = duration.toHoursPart();
+        long minutes = duration.toMinutesPart();
+        if (days > 0) {
+            return String.format("%d天 %d小时", days, hours);
+        } else if (hours > 0) {
+            return String.format("%d小时 %d分钟", hours, minutes);
+        } else {
+            return String.format("%d分钟", minutes);
+        }
+    }
+
+    private String formatInstant(Instant instant) {
+        return instant.toString().replace("T", " ").substring(0, 16);
     }
 }

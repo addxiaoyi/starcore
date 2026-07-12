@@ -18,21 +18,23 @@
 | **Treasury** | 国库管理、税收、预算 |
 | **Diplomacy** | 外交关系、联盟、停战 |
 | **War** | 宣战、战争规则、停战协议 |
-| **Army** | 军队管理、军阵、教条、俘虏 |
+| **Army** | 军队管理、军阵、教条 |
 | **Officer** | 官职任命、权限管理 |
 | **Policy** | 国家政策、效果应用 |
 | **Technology** | 科技研发、赛季科技树 |
 | **Resolution** | 投票决议、公投系统 |
 | **Resource** | 资源区块、采集、加工 |
-| **Social** | 社交系统、影响力、排行榜 |
-| **Zone** | 经济区管理、特效系统 |
+| **Event** | 事件记录、查询、统计 |
+| **Government** | 政体类型（君主/共和/独裁） |
 
 ---
 
 ## 🚀 快速开始
 
 ```bash
+# 构建
 mvn clean package
+
 # 生成: target/starcore-0.1.0-SNAPSHOT.jar
 ```
 
@@ -55,18 +57,18 @@ mvn clean package
 
 ```
 src/main/java/dev/starcore/starcore/
-├── foundation/        # 基础设施（经济、消息、权限）
+├── foundation/        # 基础设施（经济、存储、反馈）
 ├── module/           # 核心业务模块
 ├── integration/      # 插件集成
-└── api/              # 公开API
+└── api/             # 公开API
 ```
 
 ---
 
 ## 📊 统计数据
 
-- **677+** 个 Java 类文件
-- **13+** 个核心模块
+- **1700+** 个 Java 类文件
+- **13** 个核心模块
 - **6** 个集成插件
 
 ---
@@ -80,4 +82,3 @@ src/main/java/dev/starcore/starcore/
 ## 🔗 链接
 
 - [问题反馈](https://github.com/addxiaoyi/starcore/issues)
-- [Actions](https://github.com/addxiaoyi/starcore/actions)

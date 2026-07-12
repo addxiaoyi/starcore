@@ -72,6 +72,7 @@ public final class WarModule implements StarCoreModule, WarService {
     private SoundFeedbackManager soundManager;
     private BattlefieldService battlefieldService;
     private ArmyService armyService;
+    private WarStatsService warStatsService;
 
     @Override
     public ModuleMetadata metadata() {
@@ -135,6 +136,9 @@ public final class WarModule implements StarCoreModule, WarService {
             serviceConfig,
             eventBus
         );
+
+        // 初始化战争统计服务
+        this.warStatsService = new WarStatsService(nationService);
 
         // 注册战争命令
         registerCommands(context);
@@ -211,7 +215,7 @@ public final class WarModule implements StarCoreModule, WarService {
         }
 
         // 获取完整的 War 对象用于清理盟友
-        Optional<War> warOpt = warServiceImpl.findActiveWar(left, right);
+        Optional<War> warOpt = warServiceImpl.findActiveWarInternal(left, right);
         if (warOpt.isEmpty()) {
             return false;
         }
@@ -251,12 +255,18 @@ public final class WarModule implements StarCoreModule, WarService {
     }
 
     @Override
+    public Optional<WarSnapshot> findActiveWar(NationId left, NationId right) {
+        // 委托给 WarServiceImpl
+        return warServiceImpl.findActiveWar(left, right);
+    }
+
+    @Override
     public boolean atWar(NationId left, NationId right) {
         if (left.equals(right)) {
             return false;
         }
         // 委托给 WarServiceImpl 查询完整 War 对象
-        return warServiceImpl.findActiveWar(left, right).isPresent();
+        return warServiceImpl.atWar(left, right);
     }
 
     @Override
@@ -365,7 +375,7 @@ public final class WarModule implements StarCoreModule, WarService {
         );
 
         // 注册菜单事件监听器
-        WarMenuListener menuListener = new WarMenuListener(warMenu, warSituationMenu, nationService);
+        WarMenuListener menuListener = new WarMenuListener(warMenu, warSituationMenu, nationService, this, warStatsService);
         context.plugin().getServer().getPluginManager().registerEvents(menuListener, context.plugin());
         context.plugin().getLogger().info("War menu GUI registered.");
 

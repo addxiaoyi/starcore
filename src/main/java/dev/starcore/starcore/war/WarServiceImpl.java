@@ -107,7 +107,7 @@ public final class WarServiceImpl implements dev.starcore.starcore.module.war.Wa
 
     @Override
     public boolean endWar(NationId nation1, NationId nation2) {
-        Optional<War> warOpt = findActiveWar(nation1, nation2);
+        Optional<War> warOpt = findActiveWarInternal(nation1, nation2);
         if (warOpt.isEmpty()) {
             return false;
         }
@@ -125,7 +125,7 @@ public final class WarServiceImpl implements dev.starcore.starcore.module.war.Wa
 
     @Override
     public boolean atWar(NationId nation1, NationId nation2) {
-        return findActiveWar(nation1, nation2).isPresent();
+        return findActiveWarInternal(nation1, nation2).isPresent();
     }
 
     @Override
@@ -165,6 +165,11 @@ public final class WarServiceImpl implements dev.starcore.starcore.module.war.Wa
         return String.format("Wars: %d active, %d total", activeCount, wars.size());
     }
 
+    @Override
+    public Optional<dev.starcore.starcore.module.war.WarSnapshot> findActiveWar(NationId nation1, NationId nation2) {
+        return findActiveWarInternal(nation1, nation2).map(this::toSnapshot);
+    }
+
     // ==================== 扩展方法 ====================
 
     /**
@@ -177,7 +182,7 @@ public final class WarServiceImpl implements dev.starcore.starcore.module.war.Wa
     /**
      * 查找活跃战争
      */
-    public Optional<War> findActiveWar(NationId nation1, NationId nation2) {
+    public Optional<War> findActiveWarInternal(NationId nation1, NationId nation2) {
         Set<UUID> wars1 = nationWars.getOrDefault(nation1, Collections.emptySet());
         Set<UUID> wars2 = nationWars.getOrDefault(nation2, Collections.emptySet());
 
