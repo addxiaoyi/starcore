@@ -73,5 +73,4 @@ src/main/java/dev/starcore/starcore/
 
 ## 🔗 链接
 
-- [文档](docs/)
 - [问题反馈](https://github.com/addxiaoyi/starcore/issues)
