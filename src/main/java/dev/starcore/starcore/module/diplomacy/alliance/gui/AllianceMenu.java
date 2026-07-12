@@ -307,6 +307,9 @@ public class AllianceMenu {
         // 联合行动
         inv.setItem(16, createItem(Material.DIAMOND, "§e联合行动", "查看与该盟国的联合行动", "如联合军事演习等"));
 
+        // 联盟升级
+        inv.setItem(22, createItem(Material.NETHER_STAR, "§6联盟升级", "§7提升联盟等级解锁更多特权", "§7当前等级: " + (infoOpt.isPresent() ? getAllianceLevel(infoOpt.get().durationDays()) : "§8未知")));
+
         // 操作按钮
         inv.setItem(28, createItem(Material.BOOK, "§b联盟历史", "查看联盟历史记录"));
 

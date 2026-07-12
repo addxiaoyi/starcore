@@ -38,13 +38,20 @@ public class AllianceMenuListener implements Listener {
     /**
      * 菜单状态跟踪
      */
-    private record AllianceMenuState(String menuType, int page) {}
+    private record AllianceMenuState(String menuType, int page, NationId selectedAllyId) {}
 
     /**
      * 跟踪玩家菜单状态
      */
     public void trackState(UUID playerId, String menuType, int page) {
-        playerStates.put(playerId, new AllianceMenuState(menuType, page));
+        playerStates.put(playerId, new AllianceMenuState(menuType, page, null));
+    }
+
+    /**
+     * 跟踪玩家菜单状态（带选中盟国）
+     */
+    public void trackState(UUID playerId, String menuType, int page, NationId selectedAllyId) {
+        playerStates.put(playerId, new AllianceMenuState(menuType, page, selectedAllyId));
     }
 
     /**
@@ -168,6 +175,8 @@ public class AllianceMenuListener implements Listener {
                 // 左键查看详情
                 AllianceMenu menu = new AllianceMenu(allianceService, nationService, player.getUniqueId());
                 menu.openAllianceDetailMenu(player, targetId);
+                // 记录选中的盟国ID
+                trackState(player.getUniqueId(), "alliance_detail", 0, targetId);
             }
         }
     }
@@ -289,7 +298,46 @@ public class AllianceMenuListener implements Listener {
         }
 
         if (name.contains("升级")) {
-            player.sendMessage(ColorCodes.YELLOW + "联盟升级功能正在开发中...");
+            // 处理联盟升级
+            Optional<Nation> myNationOpt = nationService.nationOf(player.getUniqueId());
+            if (myNationOpt.isEmpty()) return;
+
+            // 从状态中获取选中的盟国ID
+            AllianceMenuState state = playerStates.get(player.getUniqueId());
+            NationId selectedAllyNationId = state != null ? state.selectedAllyId() : null;
+            if (selectedAllyNationId == null) {
+                player.sendMessage(ColorCodes.ERROR + "请先选择一个盟国");
+                return;
+            }
+
+            // 获取当前联盟信息
+            Optional<AllianceService.AllianceInfo> infoOpt = allianceService.getAllianceInfo(
+                myNationOpt.get().id(),
+                selectedAllyNationId
+            );
+
+            if (infoOpt.isPresent()) {
+                AllianceService.AllianceInfo info = infoOpt.get();
+                long days = info.durationDays();
+
+                // 检查是否可以升级
+                String currentLevel = getAllianceLevel(days);
+                String nextLevel = getNextLevel(days);
+
+                if (nextLevel != null) {
+                    // 计算升级条件
+                    long daysNeeded = getDaysNeededForNextLevel(days);
+                    player.sendMessage(ColorCodes.INFO + "联盟升级信息:");
+                    player.sendMessage(ColorCodes.GRAY + "当前等级: " + currentLevel);
+                    player.sendMessage(ColorCodes.GRAY + "下一等级: " + nextLevel);
+                    player.sendMessage(ColorCodes.GRAY + "还需: " + ColorCodes.HIGHLIGHT + daysNeeded + " 天");
+                    player.sendMessage(ColorCodes.GRAY + "联盟持续 " + days + " 天后自动升级");
+                } else {
+                    player.sendMessage(ColorCodes.SUCCESS + "你的联盟已达到最高等级!");
+                }
+            } else {
+                player.sendMessage(ColorCodes.ERROR + "无法获取联盟信息");
+            }
         } else if (name.contains("解除")) {
             // 解除联盟
             Optional<Nation> myNationOpt = nationService.nationOf(player.getUniqueId());
@@ -361,5 +409,41 @@ public class AllianceMenuListener implements Listener {
                 player.sendMessage(message);
             }
         }
+    }
+
+    /**
+     * 根据持续时间获取联盟等级
+     */
+    private String getAllianceLevel(long days) {
+        if (days >= 365) return "§6传说";
+        if (days >= 180) return "§e史诗";
+        if (days >= 90) return "§b稀有";
+        if (days >= 30) return "§a优秀";
+        if (days >= 7) return "§7普通";
+        return "§8新结盟";
+    }
+
+    /**
+     * 获取下一等级名称
+     */
+    private String getNextLevel(long days) {
+        if (days >= 365) return null; // 最高等级
+        if (days >= 180) return "§6传说";
+        if (days >= 90) return "§e史诗";
+        if (days >= 30) return "§b稀有";
+        if (days >= 7) return "§a优秀";
+        return "§7普通";
+    }
+
+    /**
+     * 获取达到下一等级还需的天数
+     */
+    private long getDaysNeededForNextLevel(long days) {
+        if (days >= 365) return 0;
+        if (days >= 180) return 365 - days;
+        if (days >= 90) return 180 - days;
+        if (days >= 30) return 90 - days;
+        if (days >= 7) return 30 - days;
+        return 7 - days;
     }
 }
