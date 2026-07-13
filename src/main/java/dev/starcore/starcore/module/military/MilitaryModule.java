@@ -11,12 +11,15 @@ import dev.starcore.starcore.module.diplomacy.military.MilitaryAllianceService;
 import dev.starcore.starcore.module.military.gui.BattleStatusMenu;
 import dev.starcore.starcore.module.military.gui.BattleStatusMenuListener;
 import dev.starcore.starcore.module.nation.NationService;
+import dev.starcore.starcore.module.military.storage.MilitaryStorage;
 import dev.starcore.starcore.module.war.WarService;
 import dev.starcore.starcore.module.war.situation.WarSituationService;
 import dev.starcore.starcore.war.BattlefieldService;
 import org.bukkit.plugin.Plugin;
 
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * 军事综合模块
