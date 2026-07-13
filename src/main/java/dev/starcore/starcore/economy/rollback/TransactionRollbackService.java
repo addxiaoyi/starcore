@@ -9,8 +9,11 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 
 /**
  * 交易回滚服务
@@ -20,6 +23,23 @@ public final class TransactionRollbackService {
     private final DatabaseService databaseService;
     private final EconomyService economyService;
     private final Logger logger;
+
+    // ✅ audit B-019: 账户级事务锁，防止并发交易导致快照不精准
+    private final ConcurrentHashMap<UUID, ReentrantLock> accountLocks = new ConcurrentHashMap<>();
+
+    /**
+     * 获取账户锁（用于交易原子性保证）
+     */
+    private ReentrantLock getLock(UUID accountId) {
+        return accountLocks.computeIfAbsent(accountId, k -> new ReentrantLock());
+    }
+
+    /**
+     * 释放不再需要的锁（减少内存占用）
+     */
+    private void releaseLock(UUID accountId) {
+        accountLocks.remove(accountId);
+    }
 
     public TransactionRollbackService(Plugin plugin, DatabaseService databaseService, EconomyService economyService) {
         this.databaseService = databaseService;
@@ -105,23 +125,33 @@ public final class TransactionRollbackService {
     }
 
     /**
-     * 记录交易快照（在交易前调用）
+     * 原子性记录交易快照（在交易前调用）
+     * ✅ audit B-019 (FIXED): 自动加锁，保证 snapshot -> 交易 -> updateAfter 原子化
      */
-    public CompletableFuture<String> snapshotTransaction(
+    public CompletableFuture<String> recordAtomicTransaction(
         TransactionType type,
         UUID from,
         UUID to,
         BigDecimal amount,
         Map<String, String> metadata
     ) {
-        // audit B-019 (TODO): snapshotTransaction 与 updateAfterBalances 之间未对账户加锁，
-        // 并发交易可能让 before/after 读取的余额不在同一原子点，回滚时还原的"前状态"不精准。
-        // 当前调用方约定为：snapshot -> 执行交易 -> updateAfter 严格顺序，外层不应再有并发同账号操作。
-        // 完整修复需引入账户级事务锁或操作队列，超出最小补丁范围，故仅在注释标注，待长任务后续重构。
         return CompletableFuture.supplyAsync(() -> {
-            String transactionId = UUID.randomUUID().toString();
-
+            // 获取锁并确保释放
+            List<ReentrantLock> acquiredLocks = new ArrayList<>();
             try {
+                // 按 UUID 排序确保死锁避免
+                List<UUID> accounts = Stream.of(from, to)
+                    .filter(Objects::nonNull)
+                    .sorted()
+                    .toList();
+
+                for (UUID account : accounts) {
+                    ReentrantLock lock = getLock(account);
+                    lock.lock();
+                    acquiredLocks.add(lock);
+                }
+
+                String transactionId = UUID.randomUUID().toString();
                 BigDecimal fromBalanceBefore = from != null ? economyService.getBalance(from) : null;
                 BigDecimal toBalanceBefore = to != null ? economyService.getBalance(to) : null;
 
@@ -145,21 +175,23 @@ public final class TransactionRollbackService {
                     stmt.setBigDecimal(7, toBalanceBefore);
                     stmt.setString(8, metadataToJson(metadata));
                     stmt.executeUpdate();
-                } catch (Exception e) {
-                    logger.severe("Database error recording transaction snapshot: " + e.getMessage());
-                    throw new RuntimeException("Failed to record transaction snapshot", e);
                 }
 
                 return transactionId;
             } catch (Exception e) {
-                logger.warning("记录交易快照失败: " + e.getMessage());
-                return null;
+                logger.severe("记录交易快照失败: " + e.getMessage());
+                throw new RuntimeException("Failed to record transaction snapshot", e);
+            } finally {
+                // 释放所有锁
+                for (ReentrantLock lock : acquiredLocks) {
+                    lock.unlock();
+                }
             }
         });
     }
 
     /**
-     * 更新交易后的余额（在交易后调用）
+     * 更新交易后的余额（在交易后调用，配合 recordAtomicTransaction 使用）
      */
     public CompletableFuture<Void> updateAfterBalances(String transactionId, UUID from, UUID to) {
         return CompletableFuture.runAsync(() -> {

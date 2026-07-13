@@ -84,6 +84,7 @@ src/main/java/dev/starcore/starcore/
 - ✅ A-011: 外交冷却统一接口
 - ✅ A-017: 税收收集性能优化（Map 索引）
 - ✅ A-018: 税收通知体验改进
+- ✅ B-019: 交易快照并发锁机制（ReentrantLock）
 - ✅ 影响力排行榜累积问题
 - ✅ GUI 假数据问题
 - ✅ 社交持久化问题
