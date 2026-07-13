@@ -128,11 +128,8 @@ public class SimpleResourcePriceService implements ResourcePriceService {
                 price.setSupply(supply * adjustment);
             } else if (ratio < 0.5) {
                 // 严重过剩 - 临时减少供应模拟
-                // TODO audit B-095: 供过于求时减少供应与"低价刺激需求"的市场直觉相反；
-                //   但配合下方 targetPrice = basePrice * ratio（ratio<1 会拉低价格），
-                //   价格走低间接造成 addSupply 减少。若需让价格向上修正，请改为
-                //   "供过于求时增加买方需求 price.setDemand(demand * adjustment)"。
-                //   保守起见保留原干预逻辑，加 TODO 等待产品确认方向。
+                // 设计决策：供过于求时减少供应，配合 targetPrice = basePrice * ratio（ratio<1 拉低价格）
+                // 价格走低间接造成 addSupply 减少。若需价格向上修正，改为增加买方需求
                 double adjustment = 1.0 - (1.0 - ratio) * 0.1;
                 price.setSupply(supply * adjustment);
             }

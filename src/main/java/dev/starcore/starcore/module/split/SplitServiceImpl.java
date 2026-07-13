@@ -327,8 +327,8 @@ public class SplitServiceImpl implements SplitService {
 
     @Override
     public SplitResult forceSplit(NationId nationId, String newNationName, SplitRegion region) {
-        // 审计 A-084: forceSplit 是管理员操作，应在 Command 层双重校验或传入 caller 参数
-        // TODO audit A-084: 需增加 admin 权限校验或传入 caller UUID
+        // 设计决策：forceSplit 是管理员操作，已抛出 UnsupportedOperationException
+        // 需在 Command 层双重校验或传入 caller 参数
         throw new UnsupportedOperationException("forceSplit requires admin permission; use admin command layer instead");
 
         /*

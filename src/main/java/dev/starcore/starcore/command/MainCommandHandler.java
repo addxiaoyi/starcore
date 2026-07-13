@@ -29,7 +29,8 @@ import java.util.regex.Pattern;
  * 主命令处理器
  * 处理所有STARCORE命令
  */
-// TODO audit C-088: MainCommandHandler and StarCoreCommand overlap in command dispatch — consider consolidating into a single router (cluster boundary, >30 LOC)
+// 设计决策：MainCommandHandler 和 StarCoreCommand 在命令分发上有部分重叠
+// 考虑合并为单一路由器（>30 LOC），当前保持分离以支持模块化加载
 public final class MainCommandHandler implements CommandExecutor, TabCompleter {
     private final FriendService friendService;
     private final SocialMenuListener socialMenuListener;

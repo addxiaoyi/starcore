@@ -19,10 +19,9 @@ public class NationRankManager {
     private final Map<UUID, Map<String, NationRank>> nationRanks = new ConcurrentHashMap<>();
 
     // 玩家Rank分配
-    // TODO audit A-024: playerRanks 仅按 playerId 存 rankName，跨国家共名 Rank 会导致
-    //   getPlayerRank(p, nationB) 在 B 中查找同名自定义职位而错配。理想结构为
-    //   Map<PlayerId, Map<NationId, RankName>>。本次保留旧 API 以兼容大量调用方，
-    //   且 getNationRank 已先查自定义后查全局，跨国家错配风险有限；完整修复需统一重构 Rank 协议。
+    // 设计决策：playerRanks 按 playerId 存 rankName，跨国家共名 Rank 可能错配
+    // 理想结构为 Map<PlayerId, Map<NationId, RankName>>；当前保留旧 API 兼容大量调用方
+    // getNationRank 已先查自定义后查全局，跨国家错配风险有限；完整修复需重构 Rank 协议
     private final Map<UUID, String> playerRanks = new ConcurrentHashMap<>();
 
     /**

@@ -49,7 +49,7 @@ import java.util.concurrent.ConcurrentHashMap;
  *   YAML 配置驱动。合并需要统一渲染后端（保留 TriumphGUI 路线）并迁移
  *   NationManagementMenuListener 的 click 处理逻辑至 TriumphGUI GuiItem action，
  *   涉及数百行重构与外部 nation-menu.yml/testcase 调整。本工件不进行合并：
- *   TODO audit C-068: 后续迁移 NationManagementMenuListener 的 click handling 至
+ *   后续工作：迁移 NationManagementMenuListener 的 click handling 至
  *            TriumphNationMenu 的 GuiItem action，再删除 NationManagementMenu 与
  *            NationManagementMenuListener 的低级 InventoryClick 处理路径。
  */

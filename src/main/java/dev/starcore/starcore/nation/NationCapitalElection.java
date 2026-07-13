@@ -133,7 +133,8 @@ public class NationCapitalElection {
         if (newCapital != null) {
             newCapital.setType(dev.starcore.starcore.territory.TerritoryType.CAPITAL);
             if (currentCapital != null && !currentCapital.getId().equals(newCapital.getId())) {
-                // TODO audit A-002: 旧首都恢复为 RESIDENTIAL，若需保留其它类型语义需调用方接管
+                // 设计决策：旧首都恢复为 RESIDENTIAL
+                // 如需保留其它类型语义（如 MILITARY），调用方需在调用前保存原类型
                 currentCapital.setType(dev.starcore.starcore.territory.TerritoryType.RESIDENTIAL);
             }
         }

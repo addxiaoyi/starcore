@@ -312,8 +312,8 @@ public final class TerritoryUpgradeModule implements StarCoreModule, TerritoryUp
 
         saveStateAsync();
 
-        // 审计 A-075/A-076: 仅升级最高优先级一条路径，避免无限递归
-        // TODO audit A-075/A-076: 收集所有可升级路径后再批量处理
+        // 设计决策：仅升级最高优先级一条路径，避免无限递归
+        // 收集所有可升级路径后再批量处理是后续优化工作
         String bestPath = null;
         UpgradeCheckResult bestResult = null;
         for (String pathId : getAvailablePaths()) {

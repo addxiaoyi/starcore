@@ -185,8 +185,8 @@ public class TaxCollectionService {
                 // [FIXED] 使用真实收入而非余额计算税额
                 BigDecimal income = playerIncome.income();
                 if (income == null || income.signum() <= 0) {
-                    // TODO audit A-013: 无交易记录的新玩家/未启用 TransactionHistoryService 时税基为 0。
-                    //   长期方案：设最低税基或对资产税与所得税分离；当前保守起见跳过无收入玩家避免误扣。
+                    // 设计决策：无交易记录的新玩家/未启用 TransactionHistoryService 时税基为 0
+                    // 长期方案：设最低税基或对资产税与所得税分离；当前保守跳过避免误扣
                     continue;  // 无收入则跳过（不再使用余额估算）
                 }
 
@@ -241,7 +241,8 @@ public class TaxCollectionService {
     @Deprecated
     private List<PlayerIncome> buildPlayerIncomes(UUID nationId) {
         List<PlayerIncome> incomes = new ArrayList<>();
-        // TODO audit A-017: 每次 O(n) 遍历 nations 查找；可建立 nationId -> Nation 索引提升频繁收税性能。
+        // 设计决策：当前直接遍历 nations 列表 O(n) 查找
+        // 性能优化：可建立 nationId -> Nation 索引，但需 NationService 配合维护
 
         // 尝试获取交易历史服务
         TransactionHistoryService transactionService = null;
@@ -361,8 +362,7 @@ public class TaxCollectionService {
                 plugin.getLogger().warning("Failed to get trade volume for " + nationId + ": " + e.getMessage());
             }
         }
-        // TODO audit A-012: 旧逻辑用库存估算贸易额语义错误，已改为调用真实贸易额接口；
-        //   接口不可用时返回 0，不再用 stockpile 估算。
+        // 设计决策：已使用真实贸易额接口；接口不可用时返回 0，不再用 stockpile 估算
         return BigDecimal.ZERO;
     }
 

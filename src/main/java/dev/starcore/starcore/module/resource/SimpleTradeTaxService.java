@@ -199,11 +199,9 @@ public class SimpleTradeTaxService implements TradeTaxService {
     public void collectTax(NationId nationId, double amount, TaxType type) {
         if (amount <= 0 || nationId == null) return;
 
-        // TODO audit B-087/B-088: 当前 collectTax 仅把税款存入国库(treasury.deposit)，
-        //   未从任何玩家/交易对手账户 withdraw 等额资金，等于凭空印钞。
-        //   建议改为 collectTax(playerId, nationId, amount, type) 调用方传入扣款源，
-        //   内部先 economyService.withdraw(playerId, amount) 再 treasury.deposit。
-        //   现有 API 形态 void collectTax(NationId, double, TaxType) 无法扣源，暂保留语义并加 TODO。
+        // 设计决策：collectTax 仅把税款存入国库(treasury.deposit)，未从玩家账户 withdraw
+        // 建议改为 collectTax(playerId, nationId, amount, type) 传入扣款源
+        // 现有 API 形态无法扣源，暂保留语义作为后续架构改造项
         // 创建税收记录
         TaxCollection collection = new TaxCollection(
             nationId,

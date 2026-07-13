@@ -6,8 +6,6 @@
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.21.11-green.svg)](https://www.minecraft.net/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Build](https://github.com/addxiaoyi/starcore/workflows/Build/badge.svg)](https://github.com/addxiaoyi/starcore/actions)
-[![Issues](https://img.shields.io/github/issues/addxiaoyi/starcore)](https://github.com/addxiaoyi/starcore/issues)
-[![Stars](https://img.shields.io/github/stars/addxiaoyi/starcore)](https://github.com/addxiaoyi/starcore)
 
 ---
 
@@ -26,8 +24,6 @@
 | **Technology** | 科技研发、赛季科技树 |
 | **Resolution** | 投票决议、公投系统 |
 | **Resource** | 资源区块、采集、加工 |
-| **Event** | 事件记录、查询、统计 |
-| **Government** | 政体类型（君主/共和/独裁） |
 | **Visualizer** | 方块交互可视化预览 |
 
 ---
@@ -70,43 +66,9 @@ src/main/java/dev/starcore/starcore/
 
 ## 📊 项目统计
 
-| 指标 | 数量 |
-|------|------|
-| Java 类文件 | **677+** |
-| 核心模块 | **13** |
-| 集成插件 | **6** |
-| 单元测试 | **220+** |
-| GitHub Actions | CI/CD 自动化构建 |
-
-### 🏆 已修复问题
-
-- ✅ A-010: 联盟建立存在性校验
-- ✅ A-011: 外交冷却统一接口
-- ✅ A-017: 税收收集性能优化（Map 索引）
-- ✅ A-018: 税收通知体验改进
-- ✅ B-019: 交易快照并发锁机制（ReentrantLock）
-- ✅ 影响力排行榜累积问题
-- ✅ GUI 假数据问题
-- ✅ 社交持久化问题
-
----
-
-## 🤝 贡献
-
-欢迎提交 Issue 和 Pull Request！
-
-### 开发环境
-
-1. 安装 JDK 21+
-2. 克隆仓库：`git clone https://github.com/addxiaoyi/starcore.git`
-3. 构建：`mvn clean package`
-4. 复制 JAR 到服务器 plugins 目录
-
-### 开发规范
-
-- 代码风格：遵循 Google Java Style Guide
-- 提交规范：使用 Conventional Commits
-- 分支策略：feature/*, fix/*, refactor/*
+- **677+** Java 类文件
+- **13** 核心模块
+- **220+** 单元测试
 
 ---
 
@@ -119,4 +81,3 @@ src/main/java/dev/starcore/starcore/
 ## 🔗 链接
 
 - [问题反馈](https://github.com/addxiaoyi/starcore/issues)
-- [功能建议](https://github.com/addxiaoyi/starcore/discussions)

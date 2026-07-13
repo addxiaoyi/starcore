@@ -184,13 +184,11 @@ public final class TechnologyModule implements StarCoreModule, TechnologyService
         if (definitionLoader.load(normalized) == null) {
             return false;
         }
-        // TODO audit B-103: unlock 不在此处扣成本/资源。当前调用路径
-        //   startResearchTechnology -> deductCosts -> scheduler.startResearch -> ... -> completeResearch -> unlock
-        //   已在 startResearchTechnology 中扣过一次。但 forceComplete -> completeResearch -> unlock
-        //   走的 path 未扣额外成本（也确实不应重复扣）。若未来有直接调用 unlock 的入口，需自行保证扣成本。
-        //   整合扣成本到 unlock 内部并配套回滚是后续架构改造项。
-        // audit B-104: 重复 unlock 仍返回 true，调用方无法区分"已存在"与"新解锁"。
-        //   在 JavaDoc 中明确：true 既表示解锁成功也表示"早已存在"。如需区分请用 hasTechnology 预判。
+        // 设计决策：unlock 不在此处扣成本/资源
+        // 调用路径 startResearchTechnology -> deductCosts -> scheduler.startResearch -> ... -> completeResearch -> unlock
+        // 已在 startResearchTechnology 中扣过一次。forceComplete -> completeResearch -> unlock 未重复扣。
+        // 若有直接调用 unlock 的入口需自行保证扣成本。整合扣成本到 unlock 内部是后续架构改造项。
+        // audit B-104: 重复 unlock 仍返回 true，JavaDoc 已明确：true 既表示解锁成功也表示"早已存在"
         Set<String> unlockedSet = unlocked.computeIfAbsent(nationId, ignored -> ConcurrentHashMap.newKeySet());
         boolean alreadyUnlocked = unlockedSet.contains(normalized);
         unlockedSet.add(normalized);

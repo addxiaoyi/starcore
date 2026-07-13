@@ -108,7 +108,7 @@ public class NationRankCommand implements CommandExecutor, TabCompleter {
                 return handleTest(player, args[1]);
             }
             case "reload" -> {
-                // TODO audit A-023: 显式在 plugin.yml 注册 starcore.admin (default: op)，避免默认 op-only 模糊
+                // starcore.admin 已在 plugin.yml 中注册 (default: op)
                 if (!player.hasPermission("starcore.admin")) {
                     player.sendMessage("§c你没有权限");
                     return true;

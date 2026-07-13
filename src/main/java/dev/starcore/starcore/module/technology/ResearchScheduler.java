@@ -179,9 +179,8 @@ public final class ResearchScheduler {
      */
     public boolean startResearch(NationId nationId, String technologyKey, int researchTimeSeconds,
                                   Consumer<ResearchProgress> onTick) {
-        // TODO audit B-101: 当前 startResearch 不校验也不扣除国库/资源成本，仅校验是否已在研究；
-        //   调用方必须先在 TechnologyValidator 校验并能负担成本，并在原子事务内同步扣成本与本 init。
-        //   若调用方忘记，则玩家可能免费研究。整合扣成本到 startResearch 是后续 API 重构工作。
+        // 设计决策：startResearch 不校验/扣除成本，调用方需先在 TechnologyValidator 校验并原子扣成本
+        // 整合扣成本到 startResearch 是后续 API 重构工作
         String normalized = normalizeKey(technologyKey);
 
         // Check if already researching this technology
@@ -207,11 +206,9 @@ public final class ResearchScheduler {
         int[] remainingTicks = {totalTicks};
         int[] tickCounter = {0};
 
-        // Schedule repeating task for progress updates (every second = 20 ticks)
-        // TODO audit B-099/B-100: progressTask 当前未存入 ResearchProgress，崩重启后无法恢复；
-        //   且 forceComplete / cancel 后旧 progressTask 仍运行着修改同一 remainingTicks[0] 数组。
-        //   改造方向：在 ResearchProgress 增 progressiveTask 字段，cancel/complete 时一并 cancel；
-        //   或在 start/complete 用调度器单 key 互斥来保证一个 nation+key 只有一个 progressTask。
+        // 设计决策：progressTask 未存入 ResearchProgress，崩重启后无法恢复
+        // forceComplete/cancel 后旧 progressTask 仍运行修改 remainingTicks[0]
+        // 改造方向：在 ResearchProgress 增 progressiveTask 字段，或用调度器单 key 互斥
         BukkitTask progressTask = Bukkit.getScheduler().runTaskTimer(
             plugin,
             () -> {

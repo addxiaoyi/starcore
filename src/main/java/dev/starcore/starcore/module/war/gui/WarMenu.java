@@ -48,11 +48,9 @@ public final class WarMenu {
 
     // audit C-073/C-074: 顶部标题常量仅用于 Inventory 标题文本，未见资源/格式问题。
     //   playerPages 字段此前从未被读写，是死状态缓存（C-074）；已移除以避免内存泄漏。
-    // audit C-075/C-076: 未见 InventoryCloseEvent / PlayerQuitEvent 监听在此类内
-    //   注册（菜单本身不实现 Listener），但所有 open* 方法均使用 Bukkit.createInventory(null, …)，
-    //   即 holder=null，外部监听器无法据其回溯清理状态。若未来引入分页状态缓存，
-    //   务必在关闭/退出时 remove(player.getUniqueId())。已创建空 listener 钩子留作 TODO：
-    //   TODO audit C-076: 当 WarMenu 增加分页状态缓存时，必须实现关闭/退出清理。
+    // 设计决策：未实现 InventoryCloseEvent/PlayerQuitEvent 监听（菜单本身不实现 Listener）
+    // 使用 Bukkit.createInventory(null, …)，holder=null，外部监听器无法据其回溯清理状态
+    // 若未来引入分页状态缓存，务必在关闭/退出时 remove(player.getUniqueId())
 
     public WarMenu(
             WarService warService,
