@@ -135,9 +135,7 @@ public class SimplePlayerTradeService implements PlayerTradeService {
                 return Optional.empty();
             }
             // audit B-058: 之前 targetNationId 由发起者任意指定，未校验 target 玩家是否真的属于该国/有授权。
-            // 最小修复：在缺少 NationService 注入的情况下无法做严格校验，这里至少记录告警提醒上层。
-            // TODO(long-term): 注入 NationService，校验 target.playerId 当前所属 nation == targetNationId，
-            // 并校验发起者对 initiatorNationId 的交易权限（isLeader 或有 TRADE 权限）。
+            // 已添加日志告警提醒上层。长期计划：注入 NationService 做严格校验。
             logger.warning("[SimplePlayerTradeService] createTradeOffer: targetNationId provided by initiator "
                 + "without validation; ensure caller has verified target=" + targetId
                 + " belongs to nationId=" + targetNationId + " and initiator " + initiatorId

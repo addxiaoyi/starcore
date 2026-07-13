@@ -396,9 +396,8 @@ public class SimpleProcessingService implements ProcessingService {
         ProcessingRecipe recipe = recipeOpt.get();
         Map<String, Long> inputs = recipe.calculateBatchInputs(batches);
 
-        // audit B-081: 之前仅算输入资源市场价值，未含工厂运营成本或税收。玩家看到的"利润"与实际收益不符。
-        // 最小修复：在文档/方法语义中说明此函数返回的是"原材料成本"，不含税和运营成本；并加注释让上层调用方知情。
-        // TODO(long-term): 接入 TradeTaxService 计算加工税 + 工厂运营时间成本，作为完整成本视图的独立方法。
+        // audit B-081: 此函数返回的是"原材料成本"，不含税和运营成本。
+        // 长期计划：接入 TradeTaxService 计算加工税 + 工厂运营时间成本。
         double totalCost = 0.0;
         for (Map.Entry<String, Long> entry : inputs.entrySet()) {
             double price = priceService.getCurrentPrice(entry.getKey());

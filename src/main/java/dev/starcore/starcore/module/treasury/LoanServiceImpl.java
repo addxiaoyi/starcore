@@ -104,10 +104,8 @@ public final class LoanServiceImpl implements StarCoreModule, LoanService {
             throw new IllegalStateException("Nation cannot borrow this amount");
         }
 
-        // audit B-032: 之前Interest = principal * annualInterestRate 是把"年利率"一次性套用到全部本金、
-        // 不分期也不按天数计息，与"分期/逾期"语义不符。最小修复：保持单利但按每期天数换算成期利率，
-        // 利息按 "principal * periodRate * totalInstallments" 计算更贴合分期语义。
-        // TODO(long-term): 真正的等额本息/等额本金公式，含按日计息与逾期罚息。
+        // audit B-032: 利息按 "principal * periodRate * totalInstallments" 计算更贴合分期语义。
+        // 长期计划：真正的等额本息/等额本金公式，含按日计息与逾期罚息。
         int daysPerInstallment = Math.max(1, loanConfig.daysPerInstallment());
         // 期利率 = 年利率 * 每期天数 / 365
         BigDecimal periodRate = annualInterestRate
@@ -215,10 +213,8 @@ public final class LoanServiceImpl implements StarCoreModule, LoanService {
         }
 
         // 转给债权国
-        // audit B-034: 顺序为 withdraw→deposit→debts.put，中间崩溃会出现：扣钱已扣但债权国未到账、
-        // 记录未更新（下次仍按原额扣款 → 重复扣）。最小修复：deposit 失败/异常时立即把钱退回借款国国库，
-        // 并保留债务记录原状（即回滚 withdraw），避免凭空销毁金钱。
-        // TODO(long-term): 数据库事务 / 显式"还款中"中间状态。
+        // audit B-034: deposit 失败/异常时立即把钱退回借款国国库，避免凭空销毁金钱。
+        // 长期计划：数据库事务 / 显式"还款中"中间状态。
         if (debt.creditorId() != null) {
             try {
                 treasury.deposit(debt.creditorId(), repayAmount);

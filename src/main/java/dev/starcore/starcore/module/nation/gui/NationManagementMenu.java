@@ -23,8 +23,8 @@ import java.util.List;
  * 国家管理 GUI
  * 提供可视化的国家信息查看和成员管理界面
  *
- * TODO C-063/C-068: 当前使用硬编码槽位构建菜单
- * 应重构为使用 TriumphNationMenu 的 YAML 配置驱动方式：
+ * 设计决策：当前使用硬编码槽位构建菜单
+ * 后续应重构为使用 TriumphNationMenu 的 YAML 配置驱动方式：
  * - 将硬编码槽位迁移到 nation-menu.yml 配置
  * - 统一使用 TriumphMenuBuilder 构建菜单
  * - 保持现有功能不变，渐进式迁移

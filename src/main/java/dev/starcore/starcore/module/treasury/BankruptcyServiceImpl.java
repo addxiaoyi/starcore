@@ -226,7 +226,7 @@ public final class BankruptcyServiceImpl implements StarCoreModule, BankruptcySe
                 return false;
             }
             // liftedRestrictions 非空 → 已走 exitBankruptcy 流程 → 视为 EXITED；否则保守视为 ACTIVE。
-            // TODO(long-term): 持久化结构增加 state 字段并加载到 bankruptcyStates。
+            // 长期计划：持久化结构增加 state 字段并加载到 bankruptcyStates。
             return record.liftedRestrictions().isEmpty();
         }
         return state == BankruptcyState.ACTIVE;

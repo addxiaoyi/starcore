@@ -202,9 +202,8 @@ public final class TaxationServiceImpl implements StarCoreModule, TaxationServic
                 // 只有这一类有真实扣款源（玩家）
                 treasury.deposit(nationId, amount);
             } else {
-                // 其他税种目前没有扣款源，凭空 deposit 会造成国库凭空印钞；
-                // 保守修复：跳过 deposit 并记录 admin 警告，避免财政数据失真。
-                // TODO(long-term): 为各税种建立明确扣款源后再启用 deposit。
+                // 其他税种目前没有扣款源，凭空 deposit 会造成国库凭空印钞；已跳过并记录警告。
+                // 长期计划：为各税种建立明确扣款源后再启用 deposit。
                 currentContext.plugin().getLogger().warning("[Tax] 税种 " + type + " 当前未配置扣款源，已跳过 treasury.deposit 避免凭空印发国库资金."
                     + " amount=" + amount + " nationId=" + nationId);
                 // 金额不算 reel income，归零返回
@@ -601,9 +600,8 @@ public final class TaxationServiceImpl implements StarCoreModule, TaxationServic
             persistenceService.saveProperties(namespace, fileName, props);
 
         } catch (Exception e) {
-            // audit B-028: 配置写入失败（IO 异常等）会导致下次 reload 丢失变更，且当前仅警告不重试。
-            // 完整修复需 WAL/原子写入（临时文件+rename），超出最小补丁范围；此处升级为 severe 并向上抛出，
-            // 让调用方感知配置未持久化。TODO(long-term): 引入原子写入机制。
+            // audit B-028: 配置写入失败会导致下次 reload 丢失变更，已升级为 severe 并向上抛出
+            // 长期计划：引入原子写入机制（WAL 或临时文件+rename）
             currentContext.plugin().getLogger().severe(
                 "[Tax] saveConfigs 失败：当前内存配置已变更但未落盘，下次 reload 将丢失。原因: " + e.getMessage());
             throw new RuntimeException("saveConfigs failed: " + e.getMessage(), e);

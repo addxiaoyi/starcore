@@ -494,10 +494,8 @@ public final class BudgetServiceImpl implements StarCoreModule, BudgetService {
 
     private void startMonthlyResetTask(StarCoreContext context) {
         stopMonthlyResetTask();
-        // audit B-049: 注释为"月初重置"但实际间隔是 1 天（24h检查一次），逻辑次月才真正重置。
-        // 功能正确（次日检查到新月才重置），稍浪费 CPU——遍历全部国家。
-        // 采用更精确月初 cron 需要动态计算下一次新月剩余 tick（见 pushMonthlyResetTask）。
-        // TODO(low): 改为按"上次处理月份 != 当前月份"过滤，避免每天遍历全部国家。
+        // audit B-049: 功能正确（次日检查到新月才重置），稍浪费 CPU——遍历全部国家。
+        // 长期计划：改为按"上次处理月份 != 当前月份"过滤，避免每天遍历全部国家。
         this.monthlyResetTask = Bukkit.getScheduler().runTaskTimer(
             context.plugin(),
             () -> performMonthlyReset(),

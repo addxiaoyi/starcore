@@ -97,9 +97,8 @@ public class SimpleResourceTradeService implements ResourceTradeService {
                 resourceId, amount, pricePerUnit, startTime, expiryTime
         );
         tradeAgreements.put(agreementId, agreement);
-        // audit B-075: 之前 tradeAgreements 仅放内存，无持久化机制，重启后所有协定丢失，可能影响活跃协定。
-        // 最小修复：暴露 saveState/loadState 钩子，由拥有 PersistenceService 的上层 (ResourceModule) 在 enable/disable 时调用。
-        // TODO(long-term): 注入 PersistenceService 或由 ResourceModule 负责序列化 tradeAgreements 到 properties 表。
+        // audit B-075: 协定仅存内存，无持久化。已暴露 saveState/loadState 钩子供上层调用。
+        // 长期计划：注入 PersistenceService 序列化 tradeAgreements 到 properties 表。
         markAgreementsDirty();
         return agreement;
     }

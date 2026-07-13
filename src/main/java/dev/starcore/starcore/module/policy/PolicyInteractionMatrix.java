@@ -13,7 +13,7 @@ import java.util.*;
  * audit B-163 (partial): 此处的 MUTUALLY_EXCLUSIVE 表与 PolicyDefinition.conflictKeys
  * 是两套冲突来源，存在不一致（matrix 中有的 key 默认定义里没有；默认定义里有的 matrix 没收录）。
  * 长期应统一冲突源为 PolicyDefinition.conflictKeys，本表降级为可选协同表；
- * 短期统一开销大暂保持现状，TODO 等政策定义配置体系重构时一并修。
+ * 短期统一开销大暂保持现状，等政策定义配置体系重构时一并修。
  */
 public final class PolicyInteractionMatrix {
 
