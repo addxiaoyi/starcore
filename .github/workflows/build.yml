@@ -3,12 +3,21 @@ name: Build and Release
 on:
   push:
     branches: [ main, master ]
+    paths:
+      - 'starcore/**'
+      - '.github/workflows/build.yml'
   pull_request:
     branches: [ main, master ]
+    paths:
+      - 'starcore/**'
+      - '.github/workflows/build.yml'
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: starcore
     permissions:
       contents: read
 
@@ -30,11 +39,14 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: starcore-jar
-          path: target/starcore-*.jar
+          path: starcore/target/starcore-*.jar
           retention-days: 7
 
   test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: starcore
     permissions:
       contents: read
 
@@ -56,7 +68,7 @@ jobs:
         if: always()
         with:
           name: test-results
-          path: target/surefire-reports/
+          path: starcore/target/surefire-reports/
           retention-days: 7
 
       - name: Upload JaCoCo report
@@ -64,11 +76,14 @@ jobs:
         if: always()
         with:
           name: jacoco-report
-          path: target/site/jacoco/
+          path: starcore/target/site/jacoco/
           retention-days: 7
 
   code-quality:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: starcore
     permissions:
       contents: read
 
