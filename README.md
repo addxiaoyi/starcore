@@ -19,6 +19,7 @@
 | **Diplomacy** | 外交关系、联盟、停战 |
 | **War** | 宣战、战争规则、停战协议 |
 | **Army** | 军队管理、军阵、教条 |
+| **Military** | 统一军事指挥中心、战场态势 |
 | **Officer** | 官职任命、权限管理 |
 | **Policy** | 国家政策、效果应用 |
 | **Technology** | 科技研发、赛季科技树 |
@@ -32,43 +33,23 @@
 ## 🚀 快速开始
 
 ```bash
-# 构建
 mvn clean package
-
-# 生成: target/starcore-0.1.0-SNAPSHOT.jar
 ```
+
+**生成**: `target/starcore-0.1.0-SNAPSHOT.jar`
 
 ### 前置要求
-
-- Java 21+
-- Minecraft 1.21.11+ (Paper/Spigot)
-- **Vault**（必需）
+- Java 21+ | Minecraft 1.21.11+ (Paper/Spigot) | **Vault**
 
 ### 集成支持
-
-- Vault 经济系统
-- PlaceholderAPI 占位符
-- squaremap/Pl3xMap/dynmap 地图渲染
-- ProtectorAPI/WorldGuard 领地保护
-
----
-
-## 📁 项目结构
-
-```
-src/main/java/dev/starcore/starcore/
-├── foundation/        # 基础设施（经济、存储、反馈）
-├── module/           # 核心业务模块
-├── integration/      # 插件集成
-└── api/             # 公开API
-```
+Vault 经济 · PlaceholderAPI 占位符 · squaremap/Pl3xMap/dynmap 地图 · ProtectorAPI/WorldGuard 领地
 
 ---
 
 ## 📊 统计数据
 
-- **677+** 个 Java 类文件
-- **13** 个核心模块
+- **677+** 个 Java 类
+- **14** 个核心模块
 - **6** 个集成插件
 
 ---
@@ -76,10 +57,3 @@ src/main/java/dev/starcore/starcore/
 ## 📄 许可证
 
 [MIT License](LICENSE)
-
----
-
-## 🔗 链接
-
-- [文档](docs/)
-- [问题反馈](https://github.com/addxiaoyi/starcore/issues)
