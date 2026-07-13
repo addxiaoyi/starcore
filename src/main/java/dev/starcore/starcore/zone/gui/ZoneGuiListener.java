@@ -123,8 +123,18 @@ public class ZoneGuiListener implements Listener {
             }
             case 13 -> gui.openEffectsMenu(zoneId);
             case 15 -> {
-                // 删除确认
-                player.sendMessage("§c正在删除经济区... (功能待确认)");
+                // 删除经济区
+                Optional<ZoneSnapshot> zoneOpt = zoneModule.zoneById(zoneId);
+                if (zoneOpt.isPresent()) {
+                    ZoneSnapshot zone = zoneOpt.get();
+                    boolean success = zoneModule.deleteZone(zoneId);
+                    if (success) {
+                        player.sendMessage("§c已删除经济区: " + zone.name());
+                        player.closeInventory();
+                    } else {
+                        player.sendMessage("§c删除经济区失败!");
+                    }
+                }
             }
             case 22 -> {
                 // 启用/停用
