@@ -52,6 +52,3 @@ sqlite_mcp_server.db
 
 # Archives
 .archive/
-*.zip
-*.tar.gz
-*.rar
