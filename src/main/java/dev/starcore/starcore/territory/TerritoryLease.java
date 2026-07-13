@@ -37,6 +37,9 @@ public class TerritoryLease {
     // 欠租天数
     private int overdueDays;
 
+    // 上次逾期检查时间（用于增量计算逾期天数）
+    private long lastOverdueCheckTime;
+
     // 押金
     private double deposit;
 
@@ -170,7 +173,7 @@ public class TerritoryLease {
     public void recordPayment() {
         this.lastPaymentTime = System.currentTimeMillis();
         this.nextPaymentTime = lastPaymentTime + getRentPeriodMillis();
-        this.overdueDays = 0;
+        resetOverdueStatus(); // 重置逾期状态
 
         // 如果是第一次支付，激活租约
         if (status == LeaseStatus.PENDING) {
@@ -179,10 +182,41 @@ public class TerritoryLease {
     }
 
     /**
-     * 增加欠租天数
+     * 增加欠租天数（增量更新）
+     * @param days 增加的天数
      */
     public void addOverdueDays(int days) {
         this.overdueDays += days;
+        this.lastOverdueCheckTime = System.currentTimeMillis();
+    }
+
+    /**
+     * 增量更新逾期天数（基于上次检查时间）
+     * @param currentTime 当前时间戳
+     */
+    public void updateOverdueDays(long currentTime) {
+        if (lastOverdueCheckTime > 0) {
+            long millisSinceLastCheck = currentTime - lastOverdueCheckTime;
+            int daysSinceLastCheck = (int) (millisSinceLastCheck / (24L * 60 * 60 * 1000));
+            if (daysSinceLastCheck > 0) {
+                this.overdueDays += daysSinceLastCheck;
+                this.lastOverdueCheckTime = currentTime;
+            }
+        } else {
+            // 首次检查，初始化
+            this.lastOverdueCheckTime = currentTime;
+            if (this.overdueDays == 0) {
+                this.overdueDays = 1;
+            }
+        }
+    }
+
+    /**
+     * 重置逾期状态（支付后调用）
+     */
+    public void resetOverdueStatus() {
+        this.overdueDays = 0;
+        this.lastOverdueCheckTime = 0;
     }
 
     /**

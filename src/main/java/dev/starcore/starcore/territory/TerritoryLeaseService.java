@@ -333,11 +333,11 @@ public class TerritoryLeaseService {
 
             // 检查是否需要支付
             if (lease.needsPayment()) {
-                // 审计 A-054: 增量更新逾期天数，避免从 nextPaymentTime 累加全量天数
-                // TODO audit A-054: 需在 TerritoryLease 中记录 lastOverdueCheckTime，增量更新
-                // 临时方案：仅记录一次逾期，跳过累加（后续需完善）
-                if (lease.getOverdueDays() == 0) {
-                    lease.addOverdueDays(1);
+                // 审计 A-054: 使用增量更新逾期天数
+                long currentTime = System.currentTimeMillis();
+                lease.updateOverdueDays(currentTime);
+
+                if (lease.getOverdueDays() > 0) {
                     overdueCount++;
                 }
 
