@@ -24,7 +24,8 @@
 | **Technology** | 科技研发、赛季科技树 |
 | **Resolution** | 投票决议、公投系统 |
 | **Resource** | 资源区块、采集、加工 |
-| **Visualizer** | 方块交互可视化预览 |
+| **Event** | 事件记录、查询、统计 |
+| **Government** | 政体类型（君主/共和/独裁） |
 
 ---
 
@@ -57,18 +58,18 @@ mvn clean package
 ```
 src/main/java/dev/starcore/starcore/
 ├── foundation/        # 基础设施（经济、存储、反馈）
-├── module/            # 核心业务模块
-├── integration/       # 插件集成
-└── api/               # 公开API
+├── module/           # 核心业务模块
+├── integration/      # 插件集成
+└── api/             # 公开API
 ```
 
 ---
 
-## 📊 项目统计
+## 📊 统计数据
 
-- **677+** Java 类文件
-- **13** 核心模块
-- **220+** 单元测试
+- **677+** 个 Java 类文件
+- **13** 个核心模块
+- **6** 个集成插件
 
 ---
 
@@ -80,4 +81,5 @@ src/main/java/dev/starcore/starcore/
 
 ## 🔗 链接
 
+- [文档](docs/)
 - [问题反馈](https://github.com/addxiaoyi/starcore/issues)
